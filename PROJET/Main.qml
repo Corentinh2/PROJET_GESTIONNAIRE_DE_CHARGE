@@ -13,16 +13,52 @@ ApplicationWindow {
 
     // --- DONNÉES GLOBALES ET ÉTAT ---
 
+    // Variables tampons pour la création de session
     property string selectedStation: ""
     property string selectedVehicle: ""
-
     property bool isBookingFlow: false
 
     property string selectedDays: ""
     property string selectedStartTime: ""
     property string selectedEndTime: ""
     property string selectedMileage: ""
-    property bool hasActiveSession: false
+
+    // On considère qu'il y a une session active si le modèle n'est pas vide
+    property bool hasActiveSession: sessionsModel.count > 0
+
+    // --- Paramètres Utilisateur ---
+    property double userCostPerKwh: 0.20
+    property int userMaxPower: 12
+
+    // --- Cerveau de la Session (Global) ---
+    // Ces variables stockent l'état de la session active visible
+    property int sessionDurationSeconds: 0
+    property double sessionEnergyKwh: 0.0
+    property double sessionCostEuro: 0.0
+
+    // --- Timer Global ---
+    Timer {
+        id: globalChargingTimer
+        interval: 1000
+        repeat: true
+        // Tourne si on a des sessions ET que la station ACTUELLEMENT SÉLECTIONNÉE est en charge
+        running: window.hasActiveSession && (window.getSelectedStationStatus() === "En Charge")
+
+        onTriggered: {
+            window.sessionDurationSeconds += 1;
+            // Formule : Puissance (kW) / 3600 = kWh par seconde
+            var powerKw = window.userMaxPower;
+            var energyAdded = powerKw / 3600.0;
+            window.sessionEnergyKwh += energyAdded;
+            window.sessionCostEuro = window.sessionEnergyKwh * window.userCostPerKwh;
+        }
+    }
+
+    // --- MODÈLE DES SESSIONS PROGRAMMÉES (POUR LE CARROUSEL) ---
+    ListModel {
+        id: sessionsModel
+        // Structure: { station, vehicle, days, start, end }
+    }
 
     // Modèle Source Véhicules
     ListModel {
@@ -41,7 +77,6 @@ ApplicationWindow {
         ListElement { name: "Borne D"; loc: "Extérieur"; dist: "125m"; kwh: "50 kW"; type: "CCS"; status: "Disponible" }
     }
 
-    // Modèle d'Affichage Bornes
     ListModel {
         id: stationsModelDisplay
         Component.onCompleted: window.updateStationFilter(false)
@@ -51,7 +86,22 @@ ApplicationWindow {
 
     // --- LOGIQUE METIER ---
 
-    // AJOUTER BORNE
+    // Mise à jour des variables globales quand on change de slide dans le carrousel
+    function syncGlobalsWithSession(index) {
+        if (index >= 0 && index < sessionsModel.count) {
+            var item = sessionsModel.get(index);
+            window.selectedStation = item.station;
+            window.selectedVehicle = item.vehicle;
+            window.selectedDays = item.days;
+            window.selectedStartTime = item.start;
+            window.selectedEndTime = item.end;
+        } else {
+            // Plus de session
+            window.selectedStation = "";
+            window.selectedVehicle = "";
+        }
+    }
+
     function addStationToModel(name, loc, power) {
         var success = false;
         if (name !== "") {
@@ -64,16 +114,16 @@ ApplicationWindow {
         return success;
     }
 
-    // SUPPRIMER BORNE (NOUVEAU)
     function removeStation(stationName) {
         var removed = false;
-        // On parcourt à l'envers pour supprimer sans casser les index
         for (var i = stationsModelSource.count - 1; i >= 0; i--) {
             var item = stationsModelSource.get(i);
             if (item.name === stationName) {
-                // Si on supprime la borne active, on reset la session
-                if (window.selectedStation === stationName) {
-                    window.resetSession();
+                // Supprimer aussi la session associée si elle existe
+                for(var k = sessionsModel.count - 1; k >=0; k--) {
+                    if (sessionsModel.get(k).station === stationName) {
+                        window.deleteSession(k);
+                    }
                 }
                 stationsModelSource.remove(i);
                 removed = true;
@@ -83,22 +133,18 @@ ApplicationWindow {
         return removed;
     }
 
-    // AJOUTER VÉHICULE
     function addVehicleToModel(name, year, km) {
         var success = false;
         if (name !== "") {
-            vehiclesModel.append({
-                "name": name, "year": year, "batt": "N/A", "km": km
-            });
+            vehiclesModel.append({ "name": name, "year": year, "batt": "N/A", "km": km });
             success = true;
         }
         return success;
     }
 
-    // SUPPRIMER VÉHICULE (NOUVEAU)
     function removeVehicle(index) {
         var item = vehiclesModel.get(index);
-        // Si c'est le véhicule sélectionné, on le désélectionne
+        // Si c'est le véhicule sélectionné hors résa, on le vide
         if (item.name === window.selectedVehicle) {
             window.selectedVehicle = "";
         }
@@ -106,25 +152,21 @@ ApplicationWindow {
         return true;
     }
 
-    // 1. Démarrer le processus de réservation
     function startBookingProcess(stationName) {
-        window.selectedStation = stationName;
+        window.selectedStation = stationName; // Temp pour la création
         window.isBookingFlow = true;
-
         window.selectedDays = "";
         window.selectedStartTime = "";
         window.selectedEndTime = "";
-
         stackView.push(schedulePage);
         return true;
     }
 
-    // 2. Enregistrer l'horaire
     function saveSchedule(daysStr, startStr, endStr) {
         window.selectedDays = daysStr;
         window.selectedStartTime = startStr;
         window.selectedEndTime = endStr;
-
+        // Si un véhicule est déjà choisi (hors résa), on saute l'étape véhicule
         if (window.selectedVehicle !== "") {
             stackView.push(mileagePage);
         } else {
@@ -133,10 +175,8 @@ ApplicationWindow {
         return true;
     }
 
-    // 3. Sélectionner le véhicule
     function selectVehicle(vehicleName) {
         window.selectedVehicle = vehicleName;
-
         if (window.isBookingFlow) {
             stackView.push(mileagePage);
         } else {
@@ -145,11 +185,19 @@ ApplicationWindow {
         return true;
     }
 
-    // 4. Finaliser
     function finalizeBooking(km) {
         window.selectedMileage = km;
-        window.hasActiveSession = true;
 
+        // Ajout au carrousel
+        sessionsModel.append({
+            "station": window.selectedStation,
+            "vehicle": window.selectedVehicle,
+            "days": window.selectedDays,
+            "start": window.selectedStartTime,
+            "end": window.selectedEndTime
+        });
+
+        // Mise à jour du statut de la borne
         var found = false;
         for (var i = 0; i < stationsModelSource.count; i++) {
             var item = stationsModelSource.get(i);
@@ -165,31 +213,40 @@ ApplicationWindow {
         return found;
     }
 
-    // Reset
-    function resetSession() {
-        if (window.selectedStation !== "") {
+    // Supprime une session spécifique par index
+    function deleteSession(index) {
+        if (index >= 0 && index < sessionsModel.count) {
+            var item = sessionsModel.get(index);
+            var stationName = item.station;
+
+            // Libérer la borne correspondante
             for (var i = 0; i < stationsModelSource.count; i++) {
-                var item = stationsModelSource.get(i);
-                if (item.name === window.selectedStation) {
+                var sItem = stationsModelSource.get(i);
+                if (sItem.name === stationName) {
                     stationsModelSource.setProperty(i, "status", "Disponible");
                 }
             }
-        }
-        window.selectedStation = "";
-        window.selectedDays = "";
-        window.selectedStartTime = "";
-        window.selectedEndTime = "";
-        window.selectedMileage = "";
-        window.hasActiveSession = false;
-        window.isBookingFlow = false;
 
-        window.updateStationFilter(window.showOnlyAvailable);
+            // Retirer du modèle
+            sessionsModel.remove(index);
+
+            // Reset compteurs si plus aucune session
+            if (sessionsModel.count === 0) {
+                window.sessionDurationSeconds = 0;
+                window.sessionEnergyKwh = 0.0;
+                window.sessionCostEuro = 0.0;
+                window.selectedStation = ""; // Clean UI
+                window.selectedVehicle = "";
+            }
+
+            window.updateStationFilter(window.showOnlyAvailable);
+        }
         return true;
     }
 
-    // Marche Forcée
     function toggleForcedMode() {
         var currentState = "Inconnu";
+        // On agit sur la borne actuellement sélectionnée (celle visible dans le carrousel)
         for (var i = 0; i < stationsModelSource.count; i++) {
             var item = stationsModelSource.get(i);
             if (item.name === window.selectedStation) {
@@ -227,18 +284,13 @@ ApplicationWindow {
             var item = stationsModelSource.get(i);
             var shouldAdd = true;
             if (onlyAvailable) {
-                if (item.status !== "Disponible") {
-                    shouldAdd = false;
-                }
+                if (item.status !== "Disponible") { shouldAdd = false; }
             }
-            if (shouldAdd) {
-                stationsModelDisplay.append(item);
-            }
+            if (shouldAdd) { stationsModelDisplay.append(item); }
         }
         return true;
     }
 
-    // --- UTILS GRAPHIQUES ---
     function getStatusColor(status) {
         var col = "#888";
         if (status === "Disponible") { col = "#00C853"; }
@@ -246,9 +298,7 @@ ApplicationWindow {
             if (status === "Occupée") { col = "#FF5252"; }
             else {
                 if (status === "Programmé") { col = "#2979FF"; }
-                else {
-                     if (status === "En Charge") { col = "#FF9100"; }
-                }
+                else { if (status === "En Charge") { col = "#FF9100"; } }
             }
         }
         return col;
@@ -261,15 +311,12 @@ ApplicationWindow {
             if (status === "Occupée") { col = "#FFEBEE"; }
             else {
                 if (status === "Programmé") { col = "#E3F2FD"; }
-                else {
-                    if (status === "En Charge") { col = "#FFF3E0"; }
-                }
+                else { if (status === "En Charge") { col = "#FFF3E0"; } }
             }
         }
         return col;
     }
 
-    // --- NAVIGATION ---
     StackView {
         id: stackView
         anchors.fill: parent
@@ -281,7 +328,7 @@ ApplicationWindow {
     }
 
     // ============================================================
-    // PAGE 1 : DASHBOARD
+    // PAGE 1 : DASHBOARD (AVEC CARROUSEL CORRIGÉ)
     // ============================================================
     Component {
         id: dashboardPage
@@ -290,8 +337,6 @@ ApplicationWindow {
                 anchors.fill: parent; contentWidth: parent.width
                 ColumnLayout {
                     width: parent.width; spacing: 24; anchors.margins: 40
-
-                    // Header
                     RowLayout {
                         Layout.fillWidth: true; Layout.margins: 40; Layout.topMargin: 40
                         Rectangle { width: 48; height: 48; radius: 12; color: "#00C853"; Text { anchors.centerIn: parent; text: "⚡"; color: "white"; font.pixelSize: 24 } }
@@ -301,8 +346,9 @@ ApplicationWindow {
                         }
                         Item { Layout.fillWidth: true }
 
+                        // Si une voiture est choisie hors session, on l'affiche
                         Rectangle {
-                            visible: window.selectedVehicle !== ""
+                            visible: window.selectedVehicle !== "" && sessionsModel.count === 0
                             width: 200; height: 40; radius: 20; color: "#EDE7F6"
                             RowLayout {
                                 anchors.centerIn: parent
@@ -310,32 +356,77 @@ ApplicationWindow {
                                 Text { text: window.selectedVehicle; font.bold: true; color: "#673AB7" }
                             }
                         }
-                        AppButton { text: "Déconnexion"; isPrimary: false; textColor: "#FF5252"; onClicked: print("Logout") }
-                    }
-
-                    // --- BANDEAU D'ETAT ---
-                    Rectangle {
-                        visible: window.hasActiveSession
-                        Layout.fillWidth: true; Layout.leftMargin: 40; Layout.rightMargin: 40
-                        height: 140; radius: 12; color: "#E3F2FD"
-                        border.color: "#2979FF"; border.width: 1
 
                         RowLayout {
-                            anchors.fill: parent; anchors.margins: 20
-                            Rectangle { width: 50; height: 50; radius: 25; color: "#2979FF"; Text { anchors.centerIn: parent; text: "ℹ️"; font.pixelSize: 24 } }
+                            spacing: 10
+                            RoundButton { text: "⚙️"; font.pixelSize: 18; onClicked: stackView.push(settingsPage) }
+                            AppButton { text: "Déconnexion"; isPrimary: false; textColor: "#FF5252"; onClicked: print("Logout") }
+                        }
+                    }
 
-                            ColumnLayout {
-                                Layout.fillWidth: true
-                                Text { text: "Session Programmée en cours"; font.bold: true; color: "#1565C0" }
-                                Text {
-                                    text: "Borne: " + window.selectedStation + "\n" +
-                                          "Véhicule: " + window.selectedVehicle + "\n" +
-                                          "Jours: " + window.selectedDays + "\n" +
-                                          "Horaire: " + window.selectedStartTime + " à " + window.selectedEndTime
-                                    color: "#555"
+                    // --- CARROUSEL DES SESSIONS ---
+                    ColumnLayout {
+                        visible: window.hasActiveSession
+                        Layout.fillWidth: true; Layout.leftMargin: 40; Layout.rightMargin: 40
+                        spacing: 10
+
+                        SwipeView {
+                            id: sessionSwipe
+                            Layout.fillWidth: true
+                            height: 160
+                            clip: true
+
+                            // Synchroniser les globales quand on swipe
+                            onCurrentIndexChanged: {
+                                window.syncGlobalsWithSession(currentIndex);
+                            }
+
+                            // Init au chargement
+                            Component.onCompleted: {
+                                if (sessionsModel.count > 0) window.syncGlobalsWithSession(0);
+                            }
+
+                            // CORRECTION MAJEURE ICI : Repeater obligatoire pour SwipeView dynamique
+                            Repeater {
+                                model: sessionsModel
+                                delegate: Rectangle {
+                                    // Utilisation de la largeur du SwipeView parent
+                                    width: sessionSwipe.width
+                                    height: 160
+                                    radius: 12; color: "#E3F2FD"
+                                    border.color: "#2979FF"; border.width: 1
+
+                                    RowLayout {
+                                        anchors.fill: parent; anchors.margins: 20
+                                        Rectangle { width: 50; height: 50; radius: 25; color: "#2979FF"; Text { anchors.centerIn: parent; text: "ℹ️"; font.pixelSize: 24 } }
+                                        ColumnLayout {
+                                            Layout.fillWidth: true
+                                            // Les variables 'station', 'vehicle', etc. viennent du modèle
+                                            Text { text: "Session Programmée " + (index + 1); font.bold: true; color: "#1565C0" }
+                                            Text {
+                                                text: "Borne: " + station + "\n" +
+                                                      "Véhicule: " + vehicle + "\n" +
+                                                      "Jours: " + days + "\n" +
+                                                      "Horaire: " + start + " à " + end
+                                                color: "#555"
+                                            }
+                                        }
+
+                                        AppButton {
+                                            text: "Supprimer"; isPrimary: false; textColor: "#D32F2F"
+                                            onClicked: window.deleteSession(index)
+                                        }
+                                    }
                                 }
                             }
-                            AppButton { text: "Réinitialiser"; isPrimary: false; textColor: "#D32F2F"; onClicked: window.resetSession() }
+                        }
+
+                        // Indicateur de page
+                        PageIndicator {
+                            Layout.alignment: Qt.AlignHCenter
+                            count: sessionSwipe.count
+                            currentIndex: sessionSwipe.currentIndex
+                            visible: sessionSwipe.count > 1
                         }
                     }
 
@@ -345,24 +436,21 @@ ApplicationWindow {
 
                     GridLayout {
                         columns: 3; Layout.fillWidth: true; Layout.leftMargin: 40; Layout.rightMargin: 40; columnSpacing: 20; rowSpacing: 20
-
                         AppCard {
                             iconChar: "🔌"; iconBg: "#2979FF"; title: "Bornes"; subTitle: "Programmer une charge"; actionText: "Démarrer >"
-                            onClicked: {
-                                if (window.hasActiveSession) { print("Déjà une session active"); }
-                                stackView.push(stationsPage);
-                            }
+                            onClicked: { stackView.push(stationsPage); }
                         }
                         AppCard {
                             iconChar: "🚗"; iconBg: "#D500F9"; title: "Mes Véhicules"; subTitle: "Gérer la flotte"; actionText: "Accéder >"
-                            onClicked: {
-                                window.isBookingFlow = false;
-                                stackView.push(vehiclesPage);
-                            }
+                            onClicked: { window.isBookingFlow = false; stackView.push(vehiclesPage); }
                         }
                         AppCard {
                             iconChar: "📊"; iconBg: "#00C853"; title: "Contrôle & Status"; subTitle: "Marche forcée et stats"; actionText: "Accéder >"
-                            onClicked: stackView.push(consumptionPage)
+                            onClicked: {
+                                // On sync avant d'y aller pour être sûr
+                                window.syncGlobalsWithSession(sessionSwipe.currentIndex);
+                                stackView.push(consumptionPage);
+                            }
                         }
                     }
                 }
@@ -371,7 +459,7 @@ ApplicationWindow {
     }
 
     // ============================================================
-    // PAGE 2 : LISTE BORNES (+ SUPPRESSION)
+    // PAGE 2 : LISTE BORNES
     // ============================================================
     Component {
         id: stationsPage
@@ -379,7 +467,6 @@ ApplicationWindow {
             Rectangle { anchors.fill: parent; color: "#F4F6F9" }
             ColumnLayout {
                 anchors.fill: parent; anchors.margins: 40; spacing: 20
-
                 RowLayout {
                     Layout.fillWidth: true
                     RoundButton { text: "←"; onClicked: stackView.pop(); font.pixelSize: 18 }
@@ -387,7 +474,6 @@ ApplicationWindow {
                     Item { Layout.fillWidth: true }
                     AppButton { text: "+ Ajouter"; onClicked: stackView.push(addStationPage) }
                 }
-
                 ListView {
                     Layout.fillWidth: true; Layout.fillHeight: true; clip: true; spacing: 15
                     model: stationsModelDisplay
@@ -395,42 +481,26 @@ ApplicationWindow {
                         width: parent.width; height: 120; radius: 12; color: "white"
                         border.color: mouseAreaSt.containsMouse ? "#2979FF" : "#EEF0F2"
                         border.width: mouseAreaSt.containsMouse ? 2 : 1
-
                         MouseArea {
                             id: mouseAreaSt
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            cursorShape: (status === "Disponible") ? Qt.PointingHandCursor : Qt.ArrowCursor
-                            onClicked: {
-                                if (status === "Disponible") { window.startBookingProcess(name); }
-                            }
+                            anchors.fill: parent; hoverEnabled: true; cursorShape: (status === "Disponible") ? Qt.PointingHandCursor : Qt.ArrowCursor
+                            onClicked: { if (status === "Disponible") { window.startBookingProcess(name); } }
                         }
-
                         Rectangle {
                             width: 6; height: parent.height; color: window.getStatusColor(status)
                             radius: 12; Rectangle { width: 3; height: parent.height; color: parent.color; anchors.right: parent.right }
                         }
-
                         Item {
                             anchors.fill: parent; anchors.margins: 15; anchors.leftMargin: 20
                             RowLayout {
                                 anchors.top: parent.top; width: parent.width
-                                Rectangle {
-                                    width: 48; height: 48; radius: 12; color: window.getStatusBgColor(status)
-                                    Text { anchors.centerIn: parent; text: "⚡"; font.pixelSize: 24; color: window.getStatusColor(status) }
-                                }
+                                Rectangle { width: 48; height: 48; radius: 12; color: window.getStatusBgColor(status); Text { anchors.centerIn: parent; text: "⚡"; font.pixelSize: 24; color: window.getStatusColor(status) } }
                                 ColumnLayout {
                                     Text { text: name; font.bold: true; font.pixelSize: 16; color: "#333" }
                                     Text { text: "📍 " + loc + " • " + kwh; color: "#888"; font.pixelSize: 13 }
                                 }
                                 Item { Layout.fillWidth: true }
-                                // BOUTON SUPPRIMER BORNE
-                                RoundButton {
-                                    text: "🗑️"
-                                    font.pixelSize: 16
-                                    flat: true
-                                    onClicked: window.removeStation(name)
-                                }
+                                RoundButton { text: "🗑️"; font.pixelSize: 16; flat: true; onClicked: window.removeStation(name) }
                             }
                             RowLayout {
                                 anchors.bottom: parent.bottom; anchors.right: parent.right
@@ -444,9 +514,6 @@ ApplicationWindow {
         }
     }
 
-    // ============================================================
-    // PAGE 2 BIS : FORMULAIRE AJOUT BORNE
-    // ============================================================
     Component {
         id: addStationPage
         Item {
@@ -454,11 +521,9 @@ ApplicationWindow {
             ColumnLayout {
                 anchors.centerIn: parent; width: 400; spacing: 20
                 Text { text: "Ajouter une Borne"; font.pixelSize: 24; font.bold: true; color: "#333"; Layout.alignment: Qt.AlignHCenter }
-
                 AppTextField { id: sName; placeholderText: "Nom (ex: Borne E)" }
                 AppTextField { id: sLoc; placeholderText: "Emplacement (ex: Niveau 2)" }
                 AppTextField { id: sPower; placeholderText: "Puissance (ex: 22)" }
-
                 RowLayout {
                     Layout.fillWidth: true; Layout.topMargin: 20
                     AppButton { text: "Annuler"; isPrimary: false; Layout.fillWidth: true; onClicked: stackView.pop() }
@@ -532,7 +597,7 @@ ApplicationWindow {
     }
 
     // ============================================================
-    // PAGE 4 : LISTE VÉHICULES (+ AJOUT ET SUPPRESSION)
+    // PAGE 4 : LISTE VÉHICULES
     // ============================================================
     Component {
         id: vehiclesPage
@@ -540,24 +605,17 @@ ApplicationWindow {
             Rectangle { anchors.fill: parent; color: "#F4F6F9" }
             ColumnLayout {
                 anchors.fill: parent; anchors.margins: 40; spacing: 20
-
                 RowLayout {
                     Layout.fillWidth: true
                     RoundButton { text: "←"; onClicked: stackView.pop(); font.pixelSize: 18 }
                     ColumnLayout {
                         Layout.leftMargin: 10
                         Text { text: window.isBookingFlow ? "Choisir le véhicule" : "Mes Véhicules"; font.pixelSize: 28; font.bold: true; color: "#333" }
-                        Text {
-                            visible: window.isBookingFlow
-                            text: "Planifié : " + window.selectedDays + " | " + window.selectedStartTime + " - " + window.selectedEndTime
-                            color: "#2979FF"; font.bold: true
-                        }
+                        Text { visible: window.isBookingFlow; text: "Planifié : " + window.selectedDays + " | " + window.selectedStartTime + " - " + window.selectedEndTime; color: "#2979FF"; font.bold: true }
                     }
                     Item { Layout.fillWidth: true }
-                    // BOUTON AJOUTER VÉHICULE
                     AppButton { text: "+ Ajouter"; onClicked: stackView.push(addVehicleFormPage) }
                 }
-
                 ListView {
                     Layout.fillWidth: true; Layout.fillHeight: true; clip: true; spacing: 15
                     model: vehiclesModel
@@ -565,15 +623,10 @@ ApplicationWindow {
                         width: parent.width; height: 120; radius: 12; color: "white"
                         border.color: mouseAreaVeh.containsMouse ? "#2979FF" : "#EEF0F2"
                         border.width: mouseAreaVeh.containsMouse ? 2 : 1
-
                         MouseArea {
-                            id: mouseAreaVeh
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            cursorShape: Qt.PointingHandCursor
+                            id: mouseAreaVeh; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor
                             onClicked: window.selectVehicle(name)
                         }
-
                         RowLayout {
                             anchors.fill: parent; anchors.margins: 20; spacing: 20
                             Rectangle { width: 80; height: 60; color: "#F5F5F5"; radius: 8; Text { anchors.centerIn: parent; text: "🚗"; font.pixelSize: 30 } }
@@ -582,13 +635,7 @@ ApplicationWindow {
                                 Text { text: name; font.bold: true; font.pixelSize: 18; color: "#333" }
                                 Text { text: "Kilométrage: " + km + " km"; color: "#888" }
                             }
-                            // BOUTON SUPPRIMER VÉHICULE
-                            RoundButton {
-                                text: "🗑️"
-                                font.pixelSize: 16
-                                flat: true
-                                onClicked: window.removeVehicle(index)
-                            }
+                            RoundButton { text: "🗑️"; font.pixelSize: 16; flat: true; onClicked: window.removeVehicle(index) }
                             Rectangle {
                                 height: 36; width: 120; radius: 18; color: "#2979FF"
                                 Text { anchors.centerIn: parent; text: window.isBookingFlow ? "Choisir" : "Sélectionner"; color: "white"; font.bold: true }
@@ -600,9 +647,6 @@ ApplicationWindow {
         }
     }
 
-    // ============================================================
-    // PAGE 4 BIS : FORMULAIRE VÉHICULE (AJOUT)
-    // ============================================================
     Component {
         id: addVehicleFormPage
         Item {
@@ -610,11 +654,9 @@ ApplicationWindow {
             ColumnLayout {
                 anchors.centerIn: parent; width: 400; spacing: 20
                 Text { text: "Nouveau Véhicule"; font.pixelSize: 24; font.bold: true; color: "#333"; Layout.alignment: Qt.AlignHCenter }
-
                 AppTextField { id: vName; placeholderText: "Modèle (ex: Peugeot e-208)" }
                 AppTextField { id: vYear; placeholderText: "Année (ex: 2024)" }
                 AppTextField { id: vKm; placeholderText: "Kilométrage (ex: 12000)" }
-
                 RowLayout {
                     Layout.fillWidth: true; Layout.topMargin: 20
                     AppButton { text: "Annuler"; isPrimary: false; Layout.fillWidth: true; onClicked: stackView.pop() }
@@ -630,9 +672,6 @@ ApplicationWindow {
         }
     }
 
-    // ============================================================
-    // PAGE 5 : SAISIE KILOMETRAGE
-    // ============================================================
     Component {
         id: mileagePage
         Item {
@@ -666,28 +705,42 @@ ApplicationWindow {
     }
 
     // ============================================================
-    // PAGE STATUS & CONTROLE
+    // PAGE STATUS & CONTROLE (AVEC DONNÉES GLOBALES)
     // ============================================================
     Component {
         id: consumptionPage
         Item {
+            id: consumptionContent
             Rectangle { anchors.fill: parent; color: "#F4F6F9" }
+
+            function formatTime(totalSeconds) {
+                var m = Math.floor(totalSeconds / 60);
+                var s = totalSeconds % 60;
+                return (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
+            }
+
             ScrollView {
                 anchors.fill: parent; contentWidth: parent.width
                 ColumnLayout {
                     width: parent.width; anchors.margins: 40; spacing: 24
+
                     RowLayout {
                         Layout.fillWidth: true; Layout.topMargin: 40; Layout.leftMargin: 40
                         RoundButton { text: "←"; onClicked: stackView.pop(); font.pixelSize: 18 }
                         Text { text: "Suivi & Contrôle"; font.pixelSize: 28; font.bold: true; color: "#333"; Layout.leftMargin: 10 }
                     }
+
                     Text { visible: !window.hasActiveSession; text: "Aucune session active."; color: "#666"; font.italic: true; Layout.leftMargin: 40 }
+
                     Rectangle {
+                        id: statusRect
                         visible: window.hasActiveSession
                         Layout.fillWidth: true; Layout.margins: 40; height: 160; radius: 16; color: "white"
                         border.color: "#FF9100"; border.width: 1
+
                         property string stStatus: window.getSelectedStationStatus()
                         property bool isCharging: (stStatus === "En Charge")
+
                         RowLayout {
                             anchors.fill: parent; anchors.margins: 24
                             Rectangle { width: 60; height: 60; radius: 30; color: "#FFF3E0"; Text { anchors.centerIn: parent; text: "⚠️"; font.pixelSize: 28 } }
@@ -706,14 +759,89 @@ ApplicationWindow {
                             }
                         }
                     }
+
+                    Rectangle {
+                        visible: window.hasActiveSession
+                        Layout.fillWidth: true; Layout.margins: 40; height: 250; radius: 16; color: "white"
+                        ColumnLayout {
+                            anchors.centerIn: parent; spacing: 20
+                            Text { text: "Session en Temps Réel"; font.bold: true; font.pixelSize: 18; color: "#333"; Layout.alignment: Qt.AlignHCenter }
+
+                            // CHRONO QUI UTILISE LA VARIABLE GLOBALE
+                            Text {
+                                text: consumptionContent.formatTime(window.sessionDurationSeconds)
+                                font.pixelSize: 48; font.bold: true; color: statusRect.isCharging ? "#00C853" : "#CCC"
+                                Layout.alignment: Qt.AlignHCenter
+                            }
+
+                            GridLayout {
+                                columns: 3; columnSpacing: 40
+                                ColumnLayout {
+                                    Text { text: "Coût Total"; color: "#888"; font.pixelSize: 14; Layout.alignment: Qt.AlignHCenter }
+                                    Text {
+                                        text: window.sessionCostEuro.toFixed(4) + " €"
+                                        font.bold: true; font.pixelSize: 20; color: "#333"; Layout.alignment: Qt.AlignHCenter
+                                    }
+                                }
+                                Rectangle { width: 1; height: 40; color: "#EEE" }
+                                ColumnLayout {
+                                    Text { text: "Énergie"; color: "#888"; font.pixelSize: 14; Layout.alignment: Qt.AlignHCenter }
+                                    Text {
+                                        text: window.sessionEnergyKwh.toFixed(3) + " kWh"
+                                        font.bold: true; font.pixelSize: 20; color: "#333"; Layout.alignment: Qt.AlignHCenter
+                                    }
+                                }
+                            }
+
+                            Text {
+                                text: "Puissance de charge : " + (statusRect.isCharging ? window.userMaxPower : 0) + " kW"
+                                color: "#2979FF"; font.bold: true; Layout.alignment: Qt.AlignHCenter
+                            }
+                        }
+                    }
                 }
             }
         }
     }
 
-    // ============================================================
-    // COMPOSANTS UI
-    // ============================================================
+    Component {
+        id: settingsPage
+        Item {
+            Rectangle { anchors.fill: parent; color: "white" }
+            ColumnLayout {
+                anchors.centerIn: parent; width: 400; spacing: 25
+                Text { text: "Paramètres Généraux"; font.pixelSize: 24; font.bold: true; color: "#333"; Layout.alignment: Qt.AlignHCenter }
+                ColumnLayout {
+                    Layout.fillWidth: true; spacing: 5
+                    Text { text: "Tarif électricité (€/kWh)"; font.bold: true; color: "#555" }
+                    AppTextField { id: costInput; text: window.userCostPerKwh.toString(); placeholderText: "0.20"; inputMethodHints: Qt.ImhFormattedNumbersOnly }
+                    Text { text: "Utilisé pour l'estimation des coûts."; color: "#888"; font.pixelSize: 12 }
+                }
+                ColumnLayout {
+                    Layout.fillWidth: true; spacing: 5
+                    Text { text: "Puissance Souscrite Max (kW)"; font.bold: true; color: "#555" }
+                    AppTextField { id: powerInput; text: window.userMaxPower.toString(); placeholderText: "12"; inputMethodHints: Qt.ImhDigitsOnly }
+                    Text { text: "Seuil d'alerte de dépassement."; color: "#888"; font.pixelSize: 12 }
+                }
+                Item { height: 20 }
+                RowLayout {
+                    Layout.fillWidth: true
+                    AppButton { text: "Annuler"; isPrimary: false; Layout.fillWidth: true; onClicked: stackView.pop() }
+                    AppButton {
+                        text: "Sauvegarder"; Layout.fillWidth: true
+                        onClicked: {
+                            var newCost = parseFloat(costInput.text.replace(",", "."));
+                            var newPower = parseInt(powerInput.text);
+                            if (!isNaN(newCost)) window.userCostPerKwh = newCost;
+                            if (!isNaN(newPower)) window.userMaxPower = newPower;
+                            stackView.pop();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     component AppButton : Button {
         property bool isPrimary: true
         property color textColor: isPrimary ? "white" : "#333"

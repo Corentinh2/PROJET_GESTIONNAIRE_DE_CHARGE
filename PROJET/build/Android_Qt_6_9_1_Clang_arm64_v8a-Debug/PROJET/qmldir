@@ -1,0 +1,5 @@
+module PROJET
+typeinfo appPROJET.qmltypes
+prefer :/qt/qml/PROJET/
+Main 1.0 Main.qml
+

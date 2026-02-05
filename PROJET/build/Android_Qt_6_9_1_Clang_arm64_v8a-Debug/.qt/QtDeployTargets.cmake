@@ -1,0 +1,2 @@
+set(__QT_DEPLOY_TARGET_appPROJET_FILE /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/libappPROJET_arm64-v8a.so)
+set(__QT_DEPLOY_TARGET_appPROJET_TYPE MODULE_LIBRARY)
