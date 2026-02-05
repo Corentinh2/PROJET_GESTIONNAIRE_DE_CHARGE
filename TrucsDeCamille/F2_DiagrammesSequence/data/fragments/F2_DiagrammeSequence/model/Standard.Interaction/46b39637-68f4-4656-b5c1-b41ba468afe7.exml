@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Mémoriser les paramètres de la charge" version="4">
+  <OBJECT>
+    <ID name="Mémoriser les paramètres de la charge" mc="Standard.Interaction" uid="46b39637-68f4-4656-b5c1-b41ba468afe7"/>
+    <PID name="Mémoriser les paramètres de la charge" mc="Standard.UseCase" uid="57c692bf-f43a-4af0-b29b-0e912fc910d6"/>
+    <ATTRIBUTES>
+      <ATT name="IsReentrant">false</ATT>
+      <ATT name="Name"><![CDATA[Mémoriser les paramètres de la charge]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedCollaboration">
+        <OBJECT>
+          <ID name="locals" mc="Standard.Collaboration" uid="8604451a-a4ac-4f5e-8fa1-fe948b011b3a"/>
+          <ATTRIBUTES>
+            <ATT name="IsConcurrent">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="IsLeaf">false</ATT>
+            <ATT name="IsRoot">false</ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="Name"><![CDATA[locals]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+      <COMP relation="Product">
+        <COMPID name="Mémoriser les paramètres de la charge" mc="Standard.SequenceDiagram" uid="dc98468b-51d3-4337-a248-ac9d9b0f38b9"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

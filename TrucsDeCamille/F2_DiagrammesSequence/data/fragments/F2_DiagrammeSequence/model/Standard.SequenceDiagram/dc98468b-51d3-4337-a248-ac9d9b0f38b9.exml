@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Mémoriser les paramètres de la charge" version="4">
+  <OBJECT>
+    <ID name="Mémoriser les paramètres de la charge" mc="Standard.SequenceDiagram" uid="dc98468b-51d3-4337-a248-ac9d9b0f38b9"/>
+    <PID name="Mémoriser les paramètres de la charge" mc="Standard.Interaction" uid="46b39637-68f4-4656-b5c1-b41ba468afe7"/>
+    <ATTRIBUTES>
+      <ATT name="UiDataVersion">2</ATT>
+      <ATT name="UiData"><![CDATA[eJztU9tO20AQ/ZWV37MJONBEMkFgowhhCEraSn1CY+9gFvaS7q4h/iP6HfxY1yShJDSRK6HywtOOZvbMnJk5Ex3OpCD3aCzX6iDYoZ2AHA6iUXaLuSOceVdAXDXFg0CbgkrNUHBNSymoxZ8lqhwZh8KApN5w2lAUKFE5+yY+lJOFJ5l7AiLhVpurl+qdYBBdGj1F4yqiQPqiAipdugQc+Nh3ECUu2KhSiKA9iNpLwBvoxFUCg5Vedv/Wy5Kfrf9bmmuDdI5twC8GmwNDtix2MnNjvG5Y5cKnWCAJzlySnXqOz2ZtxDoD4dZ6bM+72da3QQEOmaexNrLz2kXua089HVAMDKNrSyEs7/e6+72stbfDwlY3DL+0YLfba0HeZ/2scx32sv72wQuw7kzpB5VChmKNxMQZropgcP70S2rDLRri50Gm4Gs/PTrjbYZEAMlvwBQYtZ/BW/vVAk9VrOVUW+78ojZUbJAqvuGCGawzpNzWU148GxEpV3e2+ffjIjHw4OmkUKFZFWe4TZwvV8XmeEtFncEf1UrC/3NR/4b6cD1ytkERyZCmRz9OxlfHR/HZcDz6dpG8j0gaXOnrtf0R0Cs5dD/l8FFy+Dq6fG8dbAz9BuvBn5w=]]></ATT>
+      <ATT name="PreviewData"><![CDATA[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAABHNCSVQICAgIfAhkiAAAACNJREFUOI1j/P///38GKgMmahs4auiooaOGjho6auiooVQCAFkwBCaD6blRAAAAAElFTkSuQmCC]]></ATT>
+      <ATT name="JsStructure"></ATT>
+      <ATT name="Name"><![CDATA[Mémoriser les paramètres de la charge]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="Descriptor">
+        <OBJECT>
+          <ID name="" mc="Infrastructure.Note" uid="53581e3e-a99e-4e72-8237-38e11a8a4ce9"/>
+          <ATTRIBUTES>
+            <ATT name="Content"></ATT>
+            <ATT name="MimeType"><![CDATA[text/plain]]></ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Model">
+              <FOREIGNID name="description" mc="Infrastructure.NoteType" uid="00000000-0000-3e81-0000-000000000000"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

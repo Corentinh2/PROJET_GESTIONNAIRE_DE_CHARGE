@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Mesurer le courant" version="4">
+  <OBJECT>
+    <ID name="Mesurer le courant" mc="Standard.Interaction" uid="5f61c417-38d7-4a0d-a625-7ff6d22abd12"/>
+    <PID name="Mesurer le courant" mc="Standard.UseCase" uid="74cddf0e-3897-460f-adcb-1a98bf7bcdcf"/>
+    <ATTRIBUTES>
+      <ATT name="IsReentrant">false</ATT>
+      <ATT name="Name"><![CDATA[Mesurer le courant]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedCollaboration">
+        <OBJECT>
+          <ID name="locals" mc="Standard.Collaboration" uid="130782fb-6675-4623-9c5e-aad9f2c6cb30"/>
+          <ATTRIBUTES>
+            <ATT name="IsConcurrent">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="IsLeaf">false</ATT>
+            <ATT name="IsRoot">false</ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="Name"><![CDATA[locals]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+      <COMP relation="Product">
+        <COMPID name="Mesurer le courant" mc="Standard.SequenceDiagram" uid="077d0985-9643-43b7-8266-693b7479b68e"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

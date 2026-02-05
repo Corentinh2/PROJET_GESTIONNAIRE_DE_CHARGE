@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Gestionnaire de la borne de recharge" version="4">
+  <OBJECT>
+    <ID name="Gestionnaire de la borne de recharge" mc="Standard.Package" uid="cca08ebd-477c-4b8c-94ba-58c1f7552ec6"/>
+    <PID name="F2_DiagrammeSequence" mc="Standard.Project" uid="a4e5f4b1-758f-41ef-a217-85914cb4260b"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Gestionnaire de la borne de recharge]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="Piloter la charge" mc="Standard.UseCase" uid="ef06ec50-499f-42e1-9097-20a2571f7db8"/>
+        <COMPID name="Surveiller la température du câble et du boitier" mc="Standard.UseCase" uid="3efe2df0-bc8c-4a95-b6d3-7c10369ff517"/>
+        <COMPID name="Notifier en cas d'erreur ou en cas d'alerte" mc="Standard.UseCase" uid="fd93c79d-8c15-4852-9e22-84926a9b568d"/>
+        <COMPID name="Mémoriser les paramètres de la charge" mc="Standard.UseCase" uid="57c692bf-f43a-4af0-b29b-0e912fc910d6"/>
+        <COMPID name="Mesurer le courant" mc="Standard.UseCase" uid="74cddf0e-3897-460f-adcb-1a98bf7bcdcf"/>
+        <COMPID name="RelaisCommande" mc="Standard.Class" uid="fddb009a-7585-442a-893a-4dd98fc5fb33"/>
+        <COMPID name="HorlogeTempsReel" mc="Standard.Class" uid="1cbcaff5-6d7f-4541-927e-621cce59c0f4"/>
+        <COMPID name="GestionnaireCharge" mc="Standard.Class" uid="47640999-ca0c-457a-9aeb-3d1c863dff91"/>
+        <COMPID name="CapteurTemp" mc="Standard.Class" uid="bb23bf97-1a93-4347-8d2d-50362d8d72af"/>
+        <COMPID name="GestionCharge" mc="Standard.Class" uid="4fd93721-dde5-4157-82b9-99dd7e130005"/>
+        <COMPID name="Conducteur" mc="Standard.Actor" uid="99969b37-c131-42b5-992b-c135bdd6585b"/>
+        <COMPID name="MemoireProgramme" mc="Standard.Class" uid="2e7e2d3d-76e2-439e-9e36-26eb1b448bf4"/>
+      </COMP>
+      <COMP relation="Product">
+        <COMPID name="Diagramme de cas d'utilisation" mc="Standard.UseCaseDiagram" uid="c7574907-0175-43c4-94b8-2d5001a87ab9"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

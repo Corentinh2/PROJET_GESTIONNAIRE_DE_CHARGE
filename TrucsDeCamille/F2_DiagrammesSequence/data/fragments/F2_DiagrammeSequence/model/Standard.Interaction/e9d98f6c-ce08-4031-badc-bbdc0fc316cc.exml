@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Notifier en cas d'erreur ou en cas d'alerte" version="4">
+  <OBJECT>
+    <ID name="Notifier en cas d'erreur ou en cas d'alerte" mc="Standard.Interaction" uid="e9d98f6c-ce08-4031-badc-bbdc0fc316cc"/>
+    <PID name="Notifier en cas d'erreur ou en cas d'alerte" mc="Standard.UseCase" uid="fd93c79d-8c15-4852-9e22-84926a9b568d"/>
+    <ATTRIBUTES>
+      <ATT name="IsReentrant">false</ATT>
+      <ATT name="Name"><![CDATA[Notifier en cas d'erreur ou en cas d'alerte]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedCollaboration">
+        <OBJECT>
+          <ID name="locals" mc="Standard.Collaboration" uid="879727f0-7eea-4166-b942-dd72aa58670d"/>
+          <ATTRIBUTES>
+            <ATT name="IsConcurrent">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="IsLeaf">false</ATT>
+            <ATT name="IsRoot">false</ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="Name"><![CDATA[locals]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES></DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+      <COMP relation="Product">
+        <COMPID name="Notifier en cas d'erreur ou en cas d'alerte" mc="Standard.SequenceDiagram" uid="5e7d5808-a791-46c4-9dc6-7c3ff8b30af1"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>
