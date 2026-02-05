@@ -1,0 +1,8 @@
+#!/bin/sh
+
+/opt/Qt/6.9.1/gcc_64/libexec/qt-android-runner.py \
+    --adb "/opt/Android/Sdk/platform-tools/adb" \
+    --build-path "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET" \
+    --apk "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/appPROJET.apk" \
+    $@
+

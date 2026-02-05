@@ -1,0 +1,6 @@
+[
+    {
+        "merged": "org.qtproject.example.appPROJET-debug-10:/xml_qtprovider_paths.xml.flat",
+        "source": "org.qtproject.example.appPROJET-android-build-appPROJET-11:/xml/qtprovider_paths.xml"
+    }
+]
