@@ -1,0 +1,28 @@
+<svg viewBox="0 0 640 180" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .box { fill: #f8f9fa; stroke: #343a40; stroke-width: 2; }
+    .val { font-family: monospace; font-size: 18px; font-weight: bold; text-anchor: middle; fill: #212529; }
+    .lbl { font-family: sans-serif; font-size: 14px; font-weight: bold; text-anchor: middle; }
+    .byte { font-family: sans-serif; font-size: 12px; text-anchor: middle; fill: #6c757d; }
+  </style>
+  
+  <rect x="20" y="60" width="100" height="50" class="box" stroke="#0d6efd" stroke-width="3"/>
+  <rect x="120" y="60" width="100" height="50" class="box" stroke="#198754" stroke-width="3"/>
+  <rect x="220" y="60" width="200" height="50" class="box" fill="#e9ecef" stroke="#0dcaf0" stroke-width="3"/>
+  <rect x="420" y="60" width="200" height="50" class="box" fill="#e9ecef" stroke="#ffc107" stroke-width="3"/>
+
+  <text x="70" y="90" class="val">0x06</text>
+  <text x="170" y="90" class="val">'M'</text>
+  <text x="320" y="90" class="val">Tension (x10)</text>
+  <text x="520" y="90" class="val">Courant (x100)</text>
+
+  <text x="70" y="45" class="lbl" fill="#0d6efd">TAILLE</text>
+  <text x="170" y="45" class="lbl" fill="#198754">CMD</text>
+  <text x="320" y="45" class="lbl" fill="#0dcaf0">VALEUR U (16 bits)</text>
+  <text x="520" y="45" class="lbl" fill="#ffc107">VALEUR I (16 bits)</text>
+
+  <text x="70" y="130" class="byte">1 octet</text>
+  <text x="170" y="130" class="byte">1 octet</text>
+  <text x="320" y="130" class="byte">2 octets (MSB/LSB)</text>
+  <text x="520" y="130" class="byte">2 octets (MSB/LSB)</text>
+</svg>
