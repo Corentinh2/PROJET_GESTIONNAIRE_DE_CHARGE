@@ -36,7 +36,13 @@ ApplicationWindow {
     property double sessionEnergyKwh: 0.0
     property double sessionCostEuro: 0.0
 
-    // --- Timer Global ---
+    // --- NOUVEAU : Modèle pour les notifications ---
+    ListModel {
+        id: notificationModel
+        // Structure: { type: "SURCHAUFFE", message: "Température élevée" }
+    }
+
+    // --- Timer Global avec Simulation des Notifications ---
     Timer {
         id: globalChargingTimer
         interval: 1000
@@ -51,6 +57,22 @@ ApplicationWindow {
             var energyAdded = powerKw / 3600.0;
             window.sessionEnergyKwh += energyAdded;
             window.sessionCostEuro = window.sessionEnergyKwh * window.userCostPerKwh;
+
+            // --- NOUVEAU : Génération d'alertes simulées ---
+            // 1. Alerte Surtension si puissance > 20 kW
+            if (powerKw > 20 && notificationModel.count === 0) {
+                notificationModel.append({
+                    "type": "SURTENSION DETECTEE",
+                    "message": "Puissance critique dépassée (" + powerKw + " kW) sur " + window.selectedStation
+                });
+            }
+            // 2. Alerte Surchauffe aléatoire (1 chance sur 100 chaque seconde pour la démo)
+            if (Math.random() > 0.99 && notificationModel.count === 0 && powerKw <= 20) {
+                notificationModel.append({
+                    "type": "ALERTE SURCHAUFFE",
+                    "message": "Température anormale du câble sur " + window.selectedStation
+                });
+            }
         }
     }
 
@@ -237,6 +259,7 @@ ApplicationWindow {
                 window.sessionCostEuro = 0.0;
                 window.selectedStation = ""; // Clean UI
                 window.selectedVehicle = "";
+                notificationModel.clear(); // Reset notifs
             }
 
             window.updateStationFilter(window.showOnlyAvailable);
@@ -328,7 +351,7 @@ ApplicationWindow {
     }
 
     // ============================================================
-    // PAGE 1 : DASHBOARD (AVEC CARROUSEL CORRIGÉ)
+    // PAGE 1 : DASHBOARD
     // ============================================================
     Component {
         id: dashboardPage
@@ -364,6 +387,46 @@ ApplicationWindow {
                         }
                     }
 
+                    // --- NOUVEAU : ZONE DE NOTIFICATIONS ---
+                    Rectangle {
+                        visible: notificationModel.count > 0
+                        Layout.fillWidth: true; Layout.leftMargin: 40; Layout.rightMargin: 40
+                        height: 80; radius: 12; color: "#FFEBEE"
+                        border.color: "#FF5252"; border.width: 2
+
+                        // Animation clignotement pour attirer l'attention
+                        SequentialAnimation on opacity {
+                            loops: Animation.Infinite
+                            running: notificationModel.count > 0
+                            NumberAnimation { to: 0.6; duration: 500 }
+                            NumberAnimation { to: 1.0; duration: 500 }
+                        }
+
+                        RowLayout {
+                            anchors.fill: parent; anchors.margins: 15; spacing: 15
+                            Text { text: "⚠️"; font.pixelSize: 32 }
+                            ColumnLayout {
+                                Layout.fillWidth: true
+                                Text {
+                                    text: notificationModel.count > 0 ? notificationModel.get(0).type : ""
+                                    font.bold: true; font.pixelSize: 16; color: "#D32F2F"
+                                }
+                                Text {
+                                    text: notificationModel.count > 0 ? notificationModel.get(0).message : ""
+                                    color: "#333"; font.pixelSize: 14
+                                }
+                            }
+                            AppButton {
+                                text: "Acquitter"
+                                isPrimary: true
+                                // Surcharge des couleurs pour le bouton d'alerte
+                                background: Rectangle { color: "#D32F2F"; radius: 8 }
+                                contentItem: Text { text: "Acquitter"; color: "white"; font.bold: true; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
+                                onClicked: notificationModel.clear()
+                            }
+                        }
+                    }
+
                     // --- CARROUSEL DES SESSIONS ---
                     ColumnLayout {
                         visible: window.hasActiveSession
@@ -386,7 +449,6 @@ ApplicationWindow {
                                 if (sessionsModel.count > 0) window.syncGlobalsWithSession(0);
                             }
 
-                            // CORRECTION MAJEURE ICI : Repeater obligatoire pour SwipeView dynamique
                             Repeater {
                                 model: sessionsModel
                                 delegate: Rectangle {
@@ -401,7 +463,6 @@ ApplicationWindow {
                                         Rectangle { width: 50; height: 50; radius: 25; color: "#2979FF"; Text { anchors.centerIn: parent; text: "ℹ️"; font.pixelSize: 24 } }
                                         ColumnLayout {
                                             Layout.fillWidth: true
-                                            // Les variables 'station', 'vehicle', etc. viennent du modèle
                                             Text { text: "Session Programmée " + (index + 1); font.bold: true; color: "#1565C0" }
                                             Text {
                                                 text: "Borne: " + station + "\n" +
@@ -705,7 +766,7 @@ ApplicationWindow {
     }
 
     // ============================================================
-    // PAGE STATUS & CONTROLE (AVEC DONNÉES GLOBALES)
+    // PAGE STATUS & CONTROLE
     // ============================================================
     Component {
         id: consumptionPage
@@ -767,7 +828,6 @@ ApplicationWindow {
                             anchors.centerIn: parent; spacing: 20
                             Text { text: "Session en Temps Réel"; font.bold: true; font.pixelSize: 18; color: "#333"; Layout.alignment: Qt.AlignHCenter }
 
-                            // CHRONO QUI UTILISE LA VARIABLE GLOBALE
                             Text {
                                 text: consumptionContent.formatTime(window.sessionDurationSeconds)
                                 font.pixelSize: 48; font.bold: true; color: statusRect.isCharging ? "#00C853" : "#CCC"
