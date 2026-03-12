@@ -1,0 +1,38 @@
+<svg viewBox="0 0 740 180" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .box { fill: #f8f9fa; stroke: #343a40; stroke-width: 2; }
+    .val { font-family: monospace; font-size: 18px; font-weight: bold; text-anchor: middle; fill: #212529; }
+    .lbl { font-family: sans-serif; font-size: 14px; font-weight: bold; text-anchor: middle; }
+    .byte { font-family: sans-serif; font-size: 12px; text-anchor: middle; fill: #6c757d; }
+  </style>
+  
+  <rect x="20" y="60" width="100" height="50" class="box" stroke="#0d6efd" stroke-width="3"/>
+  <rect x="120" y="60" width="100" height="50" class="box" stroke="#198754" stroke-width="3"/>
+  <rect x="220" y="60" width="100" height="50" class="box" stroke="#fd7e14" stroke-width="3"/>
+  <rect x="320" y="60" width="100" height="50" class="box" stroke="#6f42c1" stroke-width="3"/>
+  <rect x="420" y="60" width="100" height="50" class="box" stroke="#6f42c1" stroke-width="3"/>
+  <rect x="520" y="60" width="100" height="50" class="box" stroke="#dc3545" stroke-width="3"/>
+  <rect x="620" y="60" width="100" height="50" class="box" stroke="#dc3545" stroke-width="3"/>
+
+  <text x="70" y="90" class="val">0x07</text>
+  <text x="170" y="90" class="val">'C'</text>
+  <text x="270" y="90" class="val">0-127</text>
+  <text x="370" y="90" class="val">HD</text>
+  <text x="470" y="90" class="val">MD</text>
+  <text x="570" y="90" class="val">HF</text>
+  <text x="670" y="90" class="val">MF</text>
+
+  <text x="70" y="45" class="lbl" fill="#0d6efd">TAILLE</text>
+  <text x="170" y="45" class="lbl" fill="#198754">CMD</text>
+  <text x="270" y="45" class="lbl" fill="#fd7e14">JOURS</text>
+  <text x="420" y="45" class="lbl" fill="#6f42c1">DEBUT</text>
+  <text x="620" y="45" class="lbl" fill="#dc3545">FIN</text>
+
+  <text x="70" y="130" class="byte">1 octet</text>
+  <text x="170" y="130" class="byte">1 octet</text>
+  <text x="270" y="130" class="byte">1 octet</text>
+  <text x="370" y="130" class="byte">1 octet</text>
+  <text x="470" y="130" class="byte">1 octet</text>
+  <text x="570" y="130" class="byte">1 octet</text>
+  <text x="670" y="130" class="byte">1 octet</text>
+</svg>
