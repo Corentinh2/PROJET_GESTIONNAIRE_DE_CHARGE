@@ -1,0 +1,63 @@
+<svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .node { fill: #f8f9fa; stroke: #343a40; stroke-width: 2; }
+    .bg-node { fill: #e9ecef; stroke: #343a40; stroke-width: 2; }
+    .title { font-family: sans-serif; font-size: 16px; font-weight: bold; text-anchor: middle; fill: #212529; }
+    .subtitle { font-family: sans-serif; font-size: 14px; font-style: italic; text-anchor: middle; fill: #495057; }
+    .text { font-family: sans-serif; font-size: 14px; text-anchor: middle; fill: #212529; }
+    .line { stroke: #343a40; stroke-width: 2; fill: none; }
+    .dashed { stroke: #343a40; stroke-width: 2; stroke-dasharray: 8,8; fill: none; }
+    .lbl-link { font-family: sans-serif; font-size: 14px; fill: #0d6efd; font-weight: bold; }
+    .lbl-link-http { font-family: sans-serif; font-size: 14px; fill: #198754; font-weight: bold; }
+  </style>
+
+  <rect x="50" y="80" width="240" height="110" rx="8" class="node"/>
+  <text x="170" y="110" class="title">Smartphone</text>
+  <text x="170" y="130" class="subtitle">&lt;&lt;Device&gt;&gt;</text>
+  <rect x="70" y="145" width="200" height="30" rx="4" class="node" fill="#fff"/>
+  <text x="170" y="165" class="text">App Mobile (Qt/QML)</text>
+
+  <rect x="50" y="320" width="240" height="140" rx="8" class="node"/>
+  <text x="170" y="350" class="title">Serveur Central</text>
+  <text x="170" y="370" class="subtitle">&lt;&lt;Raspberry Pi 4&gt;&gt;</text>
+  <rect x="70" y="385" width="200" height="30" rx="4" class="node" fill="#fff"/>
+  <text x="170" y="405" class="text">API Web (PHP)</text>
+  <rect x="70" y="420" width="200" height="30" rx="4" class="node" fill="#fff"/>
+  <text x="170" y="440" class="text">MariaDB</text>
+
+  <rect x="420" y="210" width="160" height="80" rx="8" class="node"/>
+  <text x="500" y="245" class="title">Box Internet</text>
+  <text x="500" y="265" class="subtitle">&lt;&lt;Router&gt;&gt;</text>
+
+  <rect x="650" y="70" width="320" height="320" rx="8" class="bg-node"/>
+  <text x="810" y="105" class="title">Borne de Recharge</text>
+  <text x="810" y="125" class="subtitle">&lt;&lt;Device&gt;&gt;</text>
+
+  <rect x="670" y="150" width="130" height="130" rx="5" class="node"/>
+  <text x="735" y="175" class="title">ESP32</text>
+  <text x="735" y="195" class="subtitle" font-size="12">&lt;&lt;Microcontroller&gt;&gt;</text>
+  <rect x="680" y="210" width="110" height="25" rx="3" class="node" fill="#fff"/>
+  <text x="735" y="227" class="text" font-size="12">Firmware C++</text>
+  <rect x="680" y="245" width="110" height="25" rx="3" class="node" fill="#fff"/>
+  <text x="735" y="262" class="text" font-size="12">SQLite</text>
+
+  <rect x="820" y="150" width="130" height="130" rx="5" class="node"/>
+  <text x="885" y="175" class="title">Capteurs / Relais</text>
+  <text x="885" y="195" class="subtitle" font-size="12">&lt;&lt;Hardware&gt;&gt;</text>
+  <text x="885" y="225" class="text" font-size="12">SCT-013</text>
+  <text x="885" y="245" class="text" font-size="12">ZMPT101B</text>
+  <text x="885" y="265" class="text" font-size="12">DS18S20</text>
+
+  <path d="M 800 215 L 820 215" class="line"/>
+  <text x="810" y="210" class="text" font-size="11">GPIO</text>
+
+  <path d="M 420 230 L 290 150" class="dashed"/>
+  <text x="350" y="175" class="lbl-link">Wi-Fi (WebSocket)</text>
+
+  <path d="M 420 270 L 290 350" class="line"/>
+  <text x="350" y="335" class="lbl-link-http">Ethernet (HTTP)</text>
+
+  <path d="M 580 250 L 650 250" class="dashed"/>
+  <text x="615" y="240" class="lbl-link">Wi-Fi (WebSocket)</text>
+
+</svg>
