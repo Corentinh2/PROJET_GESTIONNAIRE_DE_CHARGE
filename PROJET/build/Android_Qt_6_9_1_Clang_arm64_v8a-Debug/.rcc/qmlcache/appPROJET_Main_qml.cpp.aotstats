@@ -8,16 +8,16 @@
                         "column": 5,
                         "durationMicroseconds": 0,
                         "errorMessage": "Functions without type annotations won't be compiled",
-                        "functionName": "addStationToModel",
-                        "line": 55
+                        "functionName": "getVehicleMileage",
+                        "line": 97
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 5,
                         "durationMicroseconds": 0,
                         "errorMessage": "Functions without type annotations won't be compiled",
-                        "functionName": "removeStation",
-                        "line": 68
+                        "functionName": "selectActiveStation",
+                        "line": 108
                     },
                     {
                         "codegenSuccessful": false,
@@ -25,7 +25,7 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Functions without type annotations won't be compiled",
                         "functionName": "addVehicleToModel",
-                        "line": 87
+                        "line": 115
                     },
                     {
                         "codegenSuccessful": false,
@@ -33,15 +33,15 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Functions without type annotations won't be compiled",
                         "functionName": "removeVehicle",
-                        "line": 99
+                        "line": 124
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 5,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Functions without type annotations won't be compiled",
+                        "durationMicroseconds": 115,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: window",
                         "functionName": "startBookingProcess",
-                        "line": 110
+                        "line": 134
                     },
                     {
                         "codegenSuccessful": false,
@@ -49,7 +49,7 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Functions without type annotations won't be compiled",
                         "functionName": "saveSchedule",
-                        "line": 123
+                        "line": 144
                     },
                     {
                         "codegenSuccessful": false,
@@ -57,7 +57,7 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Functions without type annotations won't be compiled",
                         "functionName": "selectVehicle",
-                        "line": 137
+                        "line": 175
                     },
                     {
                         "codegenSuccessful": false,
@@ -65,63 +65,47 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Functions without type annotations won't be compiled",
                         "functionName": "finalizeBooking",
-                        "line": 149
+                        "line": 187
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 5,
-                        "durationMicroseconds": 1541,
-                        "errorMessage": "Cannot retrieve a non-object type by ID: window",
-                        "functionName": "resetSession",
-                        "line": 169
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Functions without type annotations won't be compiled",
+                        "functionName": "deleteSession",
+                        "line": 221
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 5,
-                        "durationMicroseconds": 2271,
+                        "durationMicroseconds": 4537,
                         "errorMessage": "Cannot retrieve a non-object type by ID: window",
                         "functionName": "toggleForcedMode",
-                        "line": 191
+                        "line": 251
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 5,
-                        "durationMicroseconds": 1340,
+                        "durationMicroseconds": 916,
                         "errorMessage": "Cannot retrieve a non-object type by ID: window",
                         "functionName": "getSelectedStationStatus",
-                        "line": 211
+                        "line": 299
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 5,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Functions without type annotations won't be compiled",
-                        "functionName": "updateStationFilter",
-                        "line": 224
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 5,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Functions without type annotations won't be compiled",
-                        "functionName": "getStatusColor",
-                        "line": 242
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 5,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Functions without type annotations won't be compiled",
-                        "functionName": "getStatusBgColor",
-                        "line": 257
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 32,
-                        "durationMicroseconds": 30,
+                        "column": 18,
+                        "durationMicroseconds": 69,
                         "errorMessage": "Cannot retrieve a non-object type by ID: window",
-                        "functionName": "onCompleted",
-                        "line": 47
+                        "functionName": "running",
+                        "line": 44
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 22,
+                        "durationMicroseconds": 467,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: window",
+                        "functionName": "onTriggered",
+                        "line": 46
                     },
                     {
                         "codegenSuccessful": false,
@@ -129,7 +113,7 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find property \"initialItem\".",
                         "functionName": "initialItem",
-                        "line": 276
+                        "line": 314
                     },
                     {
                         "codegenSuccessful": false,
@@ -137,23 +121,95 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find property \"fill\".",
                         "functionName": "fill",
-                        "line": 275
+                        "line": 313
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 142,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 323
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 31,
+                        "durationMicroseconds": 65,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 325
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 90,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 332
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 85,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 337
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 185,
-                        "durationMicroseconds": 101,
-                        "errorMessage": "Cannot access value for name Easing",
-                        "functionName": "type",
-                        "line": 277
+                        "column": 28,
+                        "durationMicroseconds": 38,
+                        "errorMessage": "Cannot access value for name stationsModelSource",
+                        "functionName": "model",
+                        "line": 342
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 32,
+                        "durationMicroseconds": 90,
+                        "errorMessage": "",
+                        "functionName": "width",
+                        "line": 344
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 183,
-                        "durationMicroseconds": 76,
-                        "errorMessage": "Cannot access value for name Easing",
-                        "functionName": "type",
-                        "line": 280
+                        "column": 70,
+                        "durationMicroseconds": 242,
+                        "errorMessage": "Cannot access value for name window",
+                        "functionName": "onClicked",
+                        "line": 345
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 51,
+                        "durationMicroseconds": 60,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 345
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 43,
+                        "durationMicroseconds": 53,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 347
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 42,
+                        "durationMicroseconds": 218,
+                        "errorMessage": "Cannot access value for name name",
+                        "functionName": "text",
+                        "line": 349
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 52,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 367
                     },
                     {
                         "codegenSuccessful": false,
@@ -161,7 +217,7 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find property \"contentWidth\".",
                         "functionName": "contentWidth",
-                        "line": 290
+                        "line": 369
                     },
                     {
                         "codegenSuccessful": false,
@@ -169,399 +225,31 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find property \"fill\".",
                         "functionName": "fill",
-                        "line": 290
+                        "line": 369
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 28,
-                        "durationMicroseconds": 742,
+                        "durationMicroseconds": 82,
                         "errorMessage": "",
                         "functionName": "width",
-                        "line": 292
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 115,
-                        "durationMicroseconds": 78,
-                        "errorMessage": "",
-                        "functionName": "centerIn",
-                        "line": 297
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 38,
-                        "durationMicroseconds": 80,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "visible",
-                        "line": 305
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 51,
-                        "durationMicroseconds": 102,
-                        "errorMessage": "",
-                        "functionName": "centerIn",
-                        "line": 308
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 46,
-                        "durationMicroseconds": 61,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "text",
-                        "line": 310
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 109,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find signal \"clicked\".",
-                        "functionName": "onClicked",
-                        "line": 313
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 34,
-                        "durationMicroseconds": 36,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "visible",
-                        "line": 318
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 43,
-                        "durationMicroseconds": 56,
-                        "errorMessage": "",
-                        "functionName": "fill",
-                        "line": 324
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 119,
-                        "durationMicroseconds": 60,
-                        "errorMessage": "",
-                        "functionName": "centerIn",
-                        "line": 325
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 43,
-                        "durationMicroseconds": 231,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "text",
-                        "line": 331
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 115,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find signal \"clicked\".",
-                        "functionName": "onClicked",
-                        "line": 338
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 40,
-                        "durationMicroseconds": 142,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "onClicked",
-                        "line": 351
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 40,
-                        "durationMicroseconds": 101,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "onClicked",
-                        "line": 358
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 40,
-                        "durationMicroseconds": 66,
-                        "errorMessage": "Cannot access value for name stackView",
-                        "functionName": "onClicked",
-                        "line": 365
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 39,
-                        "durationMicroseconds": 66,
-                        "errorMessage": "",
-                        "functionName": "fill",
-                        "line": 379
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 31,
-                        "durationMicroseconds": 71,
-                        "errorMessage": "",
-                        "functionName": "fill",
-                        "line": 381
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 57,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find signal \"clicked\".",
-                        "functionName": "onClicked",
-                        "line": 385
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 63,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find signal \"clicked\".",
-                        "functionName": "onClicked",
-                        "line": 388
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 28,
-                        "durationMicroseconds": 34,
-                        "errorMessage": "Cannot access value for name stationsModelDisplay",
-                        "functionName": "model",
-                        "line": 393
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 32,
-                        "durationMicroseconds": 87,
-                        "errorMessage": "",
-                        "functionName": "width",
-                        "line": 395
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 39,
-                        "durationMicroseconds": 365,
-                        "errorMessage": "",
-                        "functionName": "color",
-                        "line": 396
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 39,
-                        "durationMicroseconds": 173,
-                        "errorMessage": "",
-                        "functionName": "width",
-                        "line": 397
+                        "line": 371
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 42,
-                        "durationMicroseconds": 113,
-                        "errorMessage": "Cannot access value for name status",
-                        "functionName": "cursorShape",
-                        "line": 403
+                        "durationMicroseconds": 47,
+                        "errorMessage": "Cannot access value for name window",
+                        "functionName": "text",
+                        "line": 376
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 40,
-                        "durationMicroseconds": 289,
-                        "errorMessage": "Cannot access value for name status",
-                        "functionName": "onClicked",
-                        "line": 404
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 43,
-                        "durationMicroseconds": 62,
-                        "errorMessage": "",
-                        "functionName": "fill",
-                        "line": 401
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 47,
-                        "durationMicroseconds": 84,
-                        "errorMessage": "",
-                        "functionName": "height",
-                        "line": 410
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 69,
-                        "durationMicroseconds": 77,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "color",
-                        "line": 410
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 71,
-                        "durationMicroseconds": 75,
-                        "errorMessage": "",
-                        "functionName": "height",
-                        "line": 411
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 93,
-                        "durationMicroseconds": 87,
-                        "errorMessage": "Cannot load property color from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/Main.qml)::parent with type QQuickItem.",
-                        "functionName": "color",
-                        "line": 411
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 122,
-                        "durationMicroseconds": 124,
-                        "errorMessage": "",
-                        "functionName": "right",
-                        "line": 411
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 43,
-                        "durationMicroseconds": 59,
-                        "errorMessage": "",
-                        "functionName": "fill",
-                        "line": 415
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 65,
-                        "durationMicroseconds": 86,
-                        "errorMessage": "",
-                        "functionName": "width",
-                        "line": 417
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 46,
-                        "durationMicroseconds": 122,
-                        "errorMessage": "",
-                        "functionName": "top",
-                        "line": 417
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 79,
-                        "durationMicroseconds": 75,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "color",
-                        "line": 419
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 108,
-                        "durationMicroseconds": 81,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "color",
-                        "line": 420
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 62,
-                        "durationMicroseconds": 68,
-                        "errorMessage": "",
-                        "functionName": "centerIn",
-                        "line": 420
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 50,
-                        "durationMicroseconds": 259,
-                        "errorMessage": "Cannot access value for name name",
-                        "functionName": "text",
-                        "line": 423
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 50,
-                        "durationMicroseconds": 378,
-                        "errorMessage": "Cannot access value for name loc",
-                        "functionName": "text",
-                        "line": 424
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 48,
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find signal \"clicked\".",
                         "functionName": "onClicked",
-                        "line": 432
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 49,
-                        "durationMicroseconds": 105,
-                        "errorMessage": "",
-                        "functionName": "bottom",
-                        "line": 436
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 79,
-                        "durationMicroseconds": 96,
-                        "errorMessage": "",
-                        "functionName": "right",
-                        "line": 436
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 49,
-                        "durationMicroseconds": 46,
-                        "errorMessage": "Cannot access value for name status",
-                        "functionName": "visible",
-                        "line": 437
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 49,
-                        "durationMicroseconds": 43,
-                        "errorMessage": "Cannot access value for name status",
-                        "functionName": "visible",
-                        "line": 438
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 80,
-                        "durationMicroseconds": 38,
-                        "errorMessage": "Cannot access value for name status",
-                        "functionName": "text",
-                        "line": 438
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 95,
-                        "durationMicroseconds": 72,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "color",
-                        "line": 438
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 39,
-                        "durationMicroseconds": 64,
-                        "errorMessage": "",
-                        "functionName": "fill",
-                        "line": 453
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 35,
-                        "durationMicroseconds": 65,
-                        "errorMessage": "",
-                        "functionName": "centerIn",
-                        "line": 455
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 121,
-                        "durationMicroseconds": 89,
-                        "errorMessage": "",
-                        "functionName": "alignment",
-                        "line": 456
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 103,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find signal \"clicked\".",
-                        "functionName": "onClicked",
-                        "line": 464
+                        "line": 383
                     },
                     {
                         "codegenSuccessful": false,
@@ -569,15 +257,167 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find signal \"clicked\".",
                         "functionName": "onClicked",
-                        "line": 467
+                        "line": 389
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 34,
+                        "durationMicroseconds": 40,
+                        "errorMessage": "Cannot access value for name notificationModel",
+                        "functionName": "visible",
+                        "line": 394
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 43,
+                        "durationMicroseconds": 55,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 397
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 39,
+                        "durationMicroseconds": 115,
+                        "errorMessage": "Cannot access value for name notificationModel",
+                        "functionName": "text",
+                        "line": 400
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 122,
+                        "durationMicroseconds": 83,
+                        "errorMessage": "",
+                        "functionName": "wrapMode",
+                        "line": 401
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 64,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 403
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 112,
+                        "durationMicroseconds": 74,
+                        "errorMessage": "Cannot access value for name stackView",
+                        "functionName": "onClicked",
+                        "line": 410
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 105,
+                        "durationMicroseconds": 107,
+                        "errorMessage": "Cannot access value for name window",
+                        "functionName": "onClicked",
+                        "line": 411
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 120,
+                        "durationMicroseconds": 66,
+                        "errorMessage": "Cannot access value for name stackView",
+                        "functionName": "onClicked",
+                        "line": 412
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 58,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 425
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 31,
+                        "durationMicroseconds": 62,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 427
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 57,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 430
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 92,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 434
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 28,
+                        "durationMicroseconds": 33,
+                        "errorMessage": "Cannot access value for name sessionsModel",
+                        "functionName": "model",
+                        "line": 438
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 32,
+                        "durationMicroseconds": 88,
+                        "errorMessage": "",
+                        "functionName": "width",
+                        "line": 440
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 43,
+                        "durationMicroseconds": 65,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 442
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 46,
+                        "durationMicroseconds": 273,
+                        "errorMessage": "Cannot access value for name vehicle",
+                        "functionName": "text",
+                        "line": 445
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 46,
+                        "durationMicroseconds": 200,
+                        "errorMessage": "Cannot access value for name days",
+                        "functionName": "text",
+                        "line": 446
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 46,
+                        "durationMicroseconds": 382,
+                        "errorMessage": "Cannot access value for name start",
+                        "functionName": "text",
+                        "line": 447
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 99,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 449
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 40,
-                        "durationMicroseconds": 82,
+                        "durationMicroseconds": 62,
                         "errorMessage": "Cannot generate efficient code for storing an array in a non-sequence type",
                         "functionName": "tempDaysList",
-                        "line": 485
+                        "line": 465
                     },
                     {
                         "codegenSuccessful": false,
@@ -585,7 +425,7 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Functions without type annotations won't be compiled",
                         "functionName": "toggleDay",
-                        "line": 486
+                        "line": 467
                     },
                     {
                         "codegenSuccessful": false,
@@ -593,199 +433,23 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Functions without type annotations won't be compiled",
                         "functionName": "isDaySelected",
-                        "line": 492
+                        "line": 476
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 13,
-                        "durationMicroseconds": 54,
+                        "durationMicroseconds": 23,
                         "errorMessage": "function without return type annotation returns call to method join, returning QJSValue. This may prevent proper compilation to Cpp.",
                         "functionName": "getDaysString",
-                        "line": 493
+                        "line": 482
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 39,
-                        "durationMicroseconds": 67,
+                        "durationMicroseconds": 54,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 484
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 35,
-                        "durationMicroseconds": 62,
-                        "errorMessage": "",
-                        "functionName": "centerIn",
-                        "line": 496
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 117,
-                        "durationMicroseconds": 86,
-                        "errorMessage": "",
-                        "functionName": "alignment",
-                        "line": 497
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 30,
-                        "durationMicroseconds": 43,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "text",
-                        "line": 498
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 120,
-                        "durationMicroseconds": 95,
-                        "errorMessage": "",
-                        "functionName": "alignment",
-                        "line": 498
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 39,
-                        "durationMicroseconds": 92,
-                        "errorMessage": "",
-                        "functionName": "alignment",
-                        "line": 502
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 32,
-                        "durationMicroseconds": 295,
-                        "errorMessage": "Cannot generate efficient code for storing an array in a non-sequence type",
-                        "functionName": "model",
-                        "line": 504
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 53,
-                        "durationMicroseconds": 245,
-                        "errorMessage": "Cannot access value for name schedulePageItem",
-                        "functionName": "selected",
-                        "line": 506
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 36,
-                        "durationMicroseconds": 288,
-                        "errorMessage": "",
-                        "functionName": "color",
-                        "line": 508
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 43,
-                        "durationMicroseconds": 232,
-                        "errorMessage": "",
-                        "functionName": "color",
-                        "line": 509
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 68,
-                        "durationMicroseconds": 309,
-                        "errorMessage": "Cannot access value for name modelData",
-                        "functionName": "text",
-                        "line": 511
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 102,
-                        "durationMicroseconds": 115,
-                        "errorMessage": "Cannot load property selected from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/Main.qml)::parent with type QQuickItem.",
-                        "functionName": "color",
-                        "line": 511
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 54,
-                        "durationMicroseconds": 62,
-                        "errorMessage": "",
-                        "functionName": "centerIn",
-                        "line": 511
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 76,
-                        "durationMicroseconds": 80,
-                        "errorMessage": "",
-                        "functionName": "cursorShape",
-                        "line": 512
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 110,
-                        "durationMicroseconds": 258,
-                        "errorMessage": "Cannot access value for name schedulePageItem",
-                        "functionName": "onClicked",
-                        "line": 512
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 55,
-                        "durationMicroseconds": 56,
-                        "errorMessage": "",
-                        "functionName": "fill",
-                        "line": 512
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 162,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find property \"model\".",
-                        "functionName": "model",
-                        "line": 518
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 158,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find property \"model\".",
-                        "functionName": "model",
-                        "line": 519
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 102,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find signal \"clicked\".",
-                        "functionName": "onClicked",
-                        "line": 523
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 34,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find property \"enabled\".",
-                        "functionName": "enabled",
-                        "line": 526
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 85,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find property \"opacity\".",
-                        "functionName": "opacity",
-                        "line": 526
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 36,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find signal \"clicked\".",
-                        "functionName": "onClicked",
-                        "line": 527
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 39,
-                        "durationMicroseconds": 55,
-                        "errorMessage": "",
-                        "functionName": "fill",
-                        "line": 540
+                        "line": 464
                     },
                     {
                         "codegenSuccessful": true,
@@ -793,183 +457,95 @@
                         "durationMicroseconds": 54,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 542
+                        "line": 488
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 57,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find signal \"clicked\".",
-                        "functionName": "onClicked",
-                        "line": 546
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 38,
-                        "durationMicroseconds": 58,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "text",
-                        "line": 549
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 38,
-                        "durationMicroseconds": 40,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "visible",
-                        "line": 551
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 35,
-                        "durationMicroseconds": 131,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "text",
-                        "line": 552
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 63,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find signal \"clicked\".",
-                        "functionName": "onClicked",
-                        "line": 558
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 28,
-                        "durationMicroseconds": 38,
-                        "errorMessage": "Cannot access value for name vehiclesModel",
-                        "functionName": "model",
-                        "line": 563
-                    },
-                    {
-                        "codegenSuccessful": true,
                         "column": 32,
-                        "durationMicroseconds": 93,
-                        "errorMessage": "",
-                        "functionName": "width",
-                        "line": 565
+                        "durationMicroseconds": 293,
+                        "errorMessage": "Cannot generate efficient code for storing an array in a non-sequence type",
+                        "functionName": "model",
+                        "line": 494
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 53,
+                        "durationMicroseconds": 233,
+                        "errorMessage": "Cannot access value for name schedulePageItem",
+                        "functionName": "selected",
+                        "line": 496
                     },
                     {
                         "codegenSuccessful": true,
-                        "column": 39,
-                        "durationMicroseconds": 293,
+                        "column": 36,
+                        "durationMicroseconds": 237,
                         "errorMessage": "",
                         "functionName": "color",
-                        "line": 566
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 39,
-                        "durationMicroseconds": 168,
-                        "errorMessage": "",
-                        "functionName": "width",
-                        "line": 567
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 42,
-                        "durationMicroseconds": 84,
-                        "errorMessage": "",
-                        "functionName": "cursorShape",
-                        "line": 573
+                        "line": 498
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 40,
-                        "durationMicroseconds": 225,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "onClicked",
-                        "line": 574
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 43,
-                        "durationMicroseconds": 55,
-                        "errorMessage": "",
-                        "functionName": "fill",
-                        "line": 571
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 43,
-                        "durationMicroseconds": 54,
-                        "errorMessage": "",
-                        "functionName": "fill",
-                        "line": 578
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 118,
-                        "durationMicroseconds": 68,
-                        "errorMessage": "",
-                        "functionName": "centerIn",
-                        "line": 579
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 46,
-                        "durationMicroseconds": 213,
-                        "errorMessage": "Cannot access value for name name",
+                        "column": 68,
+                        "durationMicroseconds": 282,
+                        "errorMessage": "Cannot access value for name modelData",
                         "functionName": "text",
-                        "line": 582
+                        "line": 499
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 46,
-                        "durationMicroseconds": 175,
-                        "errorMessage": "Cannot access value for name km",
-                        "functionName": "text",
-                        "line": 583
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 44,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find signal \"clicked\".",
-                        "functionName": "onClicked",
-                        "line": 590
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 72,
-                        "durationMicroseconds": 52,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "text",
-                        "line": 594
+                        "column": 86,
+                        "durationMicroseconds": 86,
+                        "errorMessage": "Cannot load property selected from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/Main.qml)::parent with type QQuickItem.",
+                        "functionName": "color",
+                        "line": 499
                     },
                     {
                         "codegenSuccessful": true,
-                        "column": 58,
+                        "column": 54,
                         "durationMicroseconds": 56,
                         "errorMessage": "",
                         "functionName": "centerIn",
-                        "line": 594
+                        "line": 499
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 134,
+                        "durationMicroseconds": 65,
+                        "errorMessage": "Cannot load property selected from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/Main.qml)::parent with type QQuickItem.",
+                        "functionName": "bold",
+                        "line": 499
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 74,
+                        "durationMicroseconds": 239,
+                        "errorMessage": "Cannot access value for name schedulePageItem",
+                        "functionName": "onClicked",
+                        "line": 500
                     },
                     {
                         "codegenSuccessful": true,
-                        "column": 39,
-                        "durationMicroseconds": 73,
+                        "column": 55,
+                        "durationMicroseconds": 55,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 609
+                        "line": 500
                     },
                     {
-                        "codegenSuccessful": true,
-                        "column": 35,
-                        "durationMicroseconds": 86,
-                        "errorMessage": "",
-                        "functionName": "centerIn",
-                        "line": 611
+                        "codegenSuccessful": false,
+                        "column": 74,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find property \"model\".",
+                        "functionName": "model",
+                        "line": 509
                     },
                     {
-                        "codegenSuccessful": true,
-                        "column": 120,
-                        "durationMicroseconds": 73,
-                        "errorMessage": "",
-                        "functionName": "alignment",
-                        "line": 612
+                        "codegenSuccessful": false,
+                        "column": 74,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find property \"model\".",
+                        "functionName": "model",
+                        "line": 512
                     },
                     {
                         "codegenSuccessful": false,
@@ -977,95 +553,7 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find signal \"clicked\".",
                         "functionName": "onClicked",
-                        "line": 620
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 36,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find signal \"clicked\".",
-                        "functionName": "onClicked",
-                        "line": 623
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 39,
-                        "durationMicroseconds": 61,
-                        "errorMessage": "",
-                        "functionName": "fill",
-                        "line": 639
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 35,
-                        "durationMicroseconds": 65,
-                        "errorMessage": "",
-                        "functionName": "centerIn",
-                        "line": 641
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 114,
-                        "durationMicroseconds": 80,
-                        "errorMessage": "",
-                        "functionName": "alignment",
-                        "line": 642
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 43,
-                        "durationMicroseconds": 59,
-                        "errorMessage": "",
-                        "functionName": "centerIn",
-                        "line": 646
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 38,
-                        "durationMicroseconds": 45,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "text",
-                        "line": 647
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 38,
-                        "durationMicroseconds": 45,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "text",
-                        "line": 648
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 38,
-                        "durationMicroseconds": 44,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "text",
-                        "line": 650
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 38,
-                        "durationMicroseconds": 82,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "text",
-                        "line": 651
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 93,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find property \"inputMethodHints\".",
-                        "functionName": "inputMethodHints",
-                        "line": 655
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 102,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find signal \"clicked\".",
-                        "functionName": "onClicked",
-                        "line": 658
+                        "line": 519
                     },
                     {
                         "codegenSuccessful": false,
@@ -1073,15 +561,167 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find property \"enabled\".",
                         "functionName": "enabled",
-                        "line": 661
+                        "line": 522
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 66,
+                        "column": 36,
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find signal \"clicked\".",
                         "functionName": "onClicked",
-                        "line": 661
+                        "line": 523
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 55,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 536
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 31,
+                        "durationMicroseconds": 53,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 538
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 57,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 541
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 92,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 545
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 90,
+                        "durationMicroseconds": 34,
+                        "errorMessage": "Cannot access value for name vehiclesModel",
+                        "functionName": "model",
+                        "line": 548
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 32,
+                        "durationMicroseconds": 90,
+                        "errorMessage": "",
+                        "functionName": "width",
+                        "line": 550
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 70,
+                        "durationMicroseconds": 220,
+                        "errorMessage": "Cannot access value for name window",
+                        "functionName": "onClicked",
+                        "line": 551
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 51,
+                        "durationMicroseconds": 55,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 551
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 43,
+                        "durationMicroseconds": 53,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 553
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 46,
+                        "durationMicroseconds": 210,
+                        "errorMessage": "Cannot access value for name name",
+                        "functionName": "text",
+                        "line": 556
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 46,
+                        "durationMicroseconds": 169,
+                        "errorMessage": "Cannot access value for name km",
+                        "functionName": "text",
+                        "line": 557
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 99,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 559
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 55,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 570
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 31,
+                        "durationMicroseconds": 53,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 572
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 53,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 578
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 97,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find property \"inputMethodHints\".",
+                        "functionName": "inputMethodHints",
+                        "line": 582
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 103,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 590
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 36,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 593
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 44,
+                        "durationMicroseconds": 57,
+                        "errorMessage": "Cannot access value for name window",
+                        "functionName": "currentVehicleKm",
+                        "line": 609
                     },
                     {
                         "codegenSuccessful": true,
@@ -1089,143 +729,295 @@
                         "durationMicroseconds": 67,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 674
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 53,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find property \"contentWidth\".",
-                        "functionName": "contentWidth",
-                        "line": 676
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 31,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find property \"fill\".",
-                        "functionName": "fill",
-                        "line": 676
+                        "line": 607
                     },
                     {
                         "codegenSuccessful": true,
-                        "column": 28,
-                        "durationMicroseconds": 88,
+                        "column": 31,
+                        "durationMicroseconds": 61,
                         "errorMessage": "",
-                        "functionName": "width",
-                        "line": 678
+                        "functionName": "fill",
+                        "line": 612
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 60,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 618
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 61,
+                        "column": 38,
+                        "durationMicroseconds": 41,
+                        "errorMessage": "Cannot access value for name window",
+                        "functionName": "text",
+                        "line": 620
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 38,
+                        "durationMicroseconds": 210,
+                        "errorMessage": "",
+                        "functionName": "text",
+                        "line": 621
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 47,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find property \"inputMethodHints\".",
+                        "functionName": "inputMethodHints",
+                        "line": 626
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 38,
+                        "durationMicroseconds": 116,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: kmInput",
+                        "functionName": "visible",
+                        "line": 629
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 103,
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find signal \"clicked\".",
                         "functionName": "onClicked",
-                        "line": 681
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 37,
-                        "durationMicroseconds": 58,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "visible",
-                        "line": 684
+                        "line": 640
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 34,
-                        "durationMicroseconds": 39,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "visible",
-                        "line": 686
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find property \"enabled\".",
+                        "functionName": "enabled",
+                        "line": 644
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 51,
-                        "durationMicroseconds": 46,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "stStatus",
-                        "line": 689
+                        "column": 36,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 645
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 13,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Functions without type annotations won't be compiled",
+                        "functionName": "formatTime",
+                        "line": 668
                     },
                     {
                         "codegenSuccessful": true,
-                        "column": 51,
-                        "durationMicroseconds": 127,
+                        "column": 39,
+                        "durationMicroseconds": 70,
                         "errorMessage": "",
-                        "functionName": "isCharging",
-                        "line": 690
+                        "functionName": "fill",
+                        "line": 659
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 30,
+                        "durationMicroseconds": 51,
+                        "errorMessage": "Cannot access value for name window",
+                        "functionName": "onTriggered",
+                        "line": 665
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 31,
+                        "durationMicroseconds": 65,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 680
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 57,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 682
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 28,
+                        "durationMicroseconds": 524,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 688
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 35,
+                        "durationMicroseconds": 504,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 689
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 31,
+                        "durationMicroseconds": 115,
+                        "errorMessage": "Cannot generate efficient code for call to untyped JavaScript function",
+                        "functionName": "text",
+                        "line": 693
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 32,
+                        "durationMicroseconds": 480,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 695
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 43,
                         "durationMicroseconds": 56,
                         "errorMessage": "",
-                        "functionName": "fill",
+                        "functionName": "centerIn",
                         "line": 692
                     },
                     {
-                        "codegenSuccessful": true,
-                        "column": 119,
-                        "durationMicroseconds": 59,
-                        "errorMessage": "",
-                        "functionName": "centerIn",
-                        "line": 693
-                    },
-                    {
                         "codegenSuccessful": false,
-                        "column": 46,
-                        "durationMicroseconds": 48,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "text",
-                        "line": 696
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 46,
-                        "durationMicroseconds": 46,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "text",
-                        "line": 697
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 46,
-                        "durationMicroseconds": 88,
-                        "errorMessage": "Cannot load property stStatus from QQuickItem::parent with type QQuickItem.",
-                        "functionName": "text",
-                        "line": 698
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 39,
+                        "column": 27,
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find property \"text\".",
                         "functionName": "text",
-                        "line": 702
+                        "line": 701
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 44,
+                        "column": 32,
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find signal \"clicked\".",
                         "functionName": "onClicked",
-                        "line": 705
+                        "line": 704
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 64,
-                        "durationMicroseconds": 48,
-                        "errorMessage": "Cannot access value for name parent",
+                        "column": 52,
+                        "durationMicroseconds": 58,
+                        "errorMessage": "Cannot access value for name consumptionContent",
                         "functionName": "color",
-                        "line": 703
+                        "line": 702
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 30,
+                        "durationMicroseconds": 125,
+                        "errorMessage": "",
+                        "functionName": "visible",
+                        "line": 708
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 55,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 711
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 38,
+                        "durationMicroseconds": 60,
+                        "errorMessage": "Cannot access value for name window",
+                        "functionName": "text",
+                        "line": 713
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 171,
+                        "durationMicroseconds": 86,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 713
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 46,
+                        "durationMicroseconds": 59,
+                        "errorMessage": "Cannot access value for name window",
+                        "functionName": "text",
+                        "line": 719
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 46,
+                        "durationMicroseconds": 57,
+                        "errorMessage": "Cannot access value for name window",
+                        "functionName": "text",
+                        "line": 724
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 67,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 740
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 31,
+                        "durationMicroseconds": 58,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 742
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 60,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 748
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 61,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find property \"text\".",
+                        "functionName": "text",
+                        "line": 751
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 62,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find property \"text\".",
+                        "functionName": "text",
+                        "line": 754
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 103,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 762
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 36,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 766
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 35,
-                        "durationMicroseconds": 272,
+                        "durationMicroseconds": 270,
                         "errorMessage": "",
                         "functionName": "textColor",
-                        "line": 719
+                        "line": 782
                     },
                     {
                         "codegenSuccessful": false,
@@ -1233,175 +1025,103 @@
                         "durationMicroseconds": 18,
                         "errorMessage": "Cannot access value for name parent",
                         "functionName": "text",
-                        "line": 721
+                        "line": 784
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 55,
-                        "durationMicroseconds": 262,
-                        "errorMessage": "Cannot access value for name parent",
+                        "durationMicroseconds": 20,
+                        "errorMessage": "Cannot access value for name textColor",
                         "functionName": "color",
-                        "line": 721
+                        "line": 784
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 132,
-                        "durationMicroseconds": 192,
+                        "column": 104,
+                        "durationMicroseconds": 216,
                         "errorMessage": "Cannot access value for name Text",
                         "functionName": "horizontalAlignment",
-                        "line": 721
+                        "line": 784
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 170,
-                        "durationMicroseconds": 185,
+                        "column": 142,
+                        "durationMicroseconds": 173,
                         "errorMessage": "Cannot access value for name Text",
                         "functionName": "verticalAlignment",
-                        "line": 721
+                        "line": 784
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 40,
-                        "durationMicroseconds": 177,
+                        "durationMicroseconds": 42,
                         "errorMessage": "Cannot access value for name isPrimary",
                         "functionName": "color",
-                        "line": 722
+                        "line": 785
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 173,
-                        "durationMicroseconds": 43,
-                        "errorMessage": "Cannot access value for name isPrimary",
-                        "functionName": "color",
-                        "line": 722
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 223,
-                        "durationMicroseconds": 26,
-                        "errorMessage": "Cannot access value for name isPrimary",
-                        "functionName": "width",
-                        "line": 722
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 76,
-                        "durationMicroseconds": 44,
+                        "column": 93,
+                        "durationMicroseconds": 36,
                         "errorMessage": "Cannot access value for name parent",
                         "functionName": "color",
-                        "line": 726
+                        "line": 790
                     },
                     {
                         "codegenSuccessful": true,
-                        "column": 16,
-                        "durationMicroseconds": 227,
-                        "errorMessage": "",
-                        "functionName": "scale",
-                        "line": 735
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 23,
-                        "durationMicroseconds": 272,
-                        "errorMessage": "",
-                        "functionName": "color",
-                        "line": 734
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 90,
-                        "durationMicroseconds": 145,
-                        "errorMessage": "",
-                        "functionName": "width",
-                        "line": 734
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 91,
-                        "durationMicroseconds": 114,
-                        "errorMessage": "",
-                        "functionName": "cursorShape",
-                        "line": 737
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 125,
-                        "durationMicroseconds": 113,
+                        "column": 54,
+                        "durationMicroseconds": 104,
                         "errorMessage": "",
                         "functionName": "onClicked",
-                        "line": 737
+                        "line": 797
                     },
                     {
                         "codegenSuccessful": true,
-                        "column": 50,
-                        "durationMicroseconds": 58,
+                        "column": 35,
+                        "durationMicroseconds": 54,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 737
+                        "line": 797
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 27,
-                        "durationMicroseconds": 59,
+                        "durationMicroseconds": 52,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 739
+                        "line": 799
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 67,
-                        "durationMicroseconds": 30,
-                        "errorMessage": "Cannot access value for name iconBg",
-                        "functionName": "color",
-                        "line": 740
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 114,
-                        "durationMicroseconds": 30,
+                        "column": 56,
+                        "durationMicroseconds": 37,
                         "errorMessage": "Cannot access value for name iconChar",
                         "functionName": "text",
-                        "line": 740
+                        "line": 802
                     },
                     {
                         "codegenSuccessful": true,
-                        "column": 100,
-                        "durationMicroseconds": 66,
+                        "column": 42,
+                        "durationMicroseconds": 55,
                         "errorMessage": "",
                         "functionName": "centerIn",
-                        "line": 740
+                        "line": 802
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 26,
-                        "durationMicroseconds": 30,
+                        "column": 30,
+                        "durationMicroseconds": 36,
                         "errorMessage": "Cannot access value for name title",
                         "functionName": "text",
-                        "line": 741
+                        "line": 806
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 26,
-                        "durationMicroseconds": 28,
+                        "column": 30,
+                        "durationMicroseconds": 30,
                         "errorMessage": "Cannot access value for name subTitle",
                         "functionName": "text",
-                        "line": 742
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 105,
-                        "durationMicroseconds": 82,
-                        "errorMessage": "",
-                        "functionName": "wrapMode",
-                        "line": 742
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 26,
-                        "durationMicroseconds": 37,
-                        "errorMessage": "Cannot access value for name actionText",
-                        "functionName": "text",
-                        "line": 743
+                        "line": 807
                     }
                 ],
                 "filePath": "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/Main.qml"

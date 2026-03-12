@@ -41,3 +41,16 @@
 3948	4000	0	/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/CMakeFiles/appPROJET_prepare_apk_dir	7a75ae3533dff9a0
 52	90	0	CMakeFiles/appPROJET_prepare_apk_dir	7a75ae3533dff9a0
 52	90	0	/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/CMakeFiles/appPROJET_prepare_apk_dir	7a75ae3533dff9a0
+67	82	1773074571348290475	.qt/appPROJET_qml.txt	412d932234342320
+67	82	1773074571348290475	/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.qt/appPROJET_qml.txt	412d932234342320
+83	94	1773074571360290472	.qt/rcc/qrc_appPROJET_raw_qml_0.cpp	cfafb1a87ae7ee7f
+83	94	1773074571360290472	/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.qt/rcc/qrc_appPROJET_raw_qml_0.cpp	cfafb1a87ae7ee7f
+83	260	1773074571520290428	.rcc/qmlcache/appPROJET_Main_qml.cpp	6d5de641338bdd83
+83	260	1773074571520290428	.rcc/qmlcache/appPROJET_Main_qml.cpp.aotstats	6d5de641338bdd83
+83	260	1773074571520290428	/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_Main_qml.cpp	6d5de641338bdd83
+83	260	1773074571520290428	/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_Main_qml.cpp.aotstats	6d5de641338bdd83
+261	407	1773074571668290387	CMakeFiles/appPROJET.dir/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.qt/rcc/qrc_appPROJET_raw_qml_0.cpp.o	5839e34a4c9284a4
+261	3183	1773074574428289618	CMakeFiles/appPROJET.dir/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_Main_qml.cpp.o	b10486096ce9aa93
+3183	3629	1773074574884289492	libappPROJET_arm64-v8a.so	5a5d9aadf3b035b5
+3629	3661	0	CMakeFiles/appPROJET_prepare_apk_dir	7a75ae3533dff9a0
+3629	3661	0	/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/CMakeFiles/appPROJET_prepare_apk_dir	7a75ae3533dff9a0
