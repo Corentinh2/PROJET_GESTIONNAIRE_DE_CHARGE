@@ -10,6 +10,7 @@ class MemoireProgramme {
   private:
     sqlite3* db;
     bool estOuverte;
+
     bool creerTables();
 
   public:

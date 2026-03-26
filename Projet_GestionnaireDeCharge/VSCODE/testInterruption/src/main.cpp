@@ -3,10 +3,23 @@
 #include "GestionnaireCharge.h"
 
 
+
 const char *ssid = "WIFI_BTS_CIEL";
 const char *password = "BTSciel72?";
 
 GestionnaireCharge *gestionnaire;
+
+
+/*
+volatile bool alarmeDeclenchee = false;
+
+
+void IRAM_ATTR onAlarme()
+{
+  alarmeDeclenchee = true;
+}
+*/
+
 
 
 void setup()
@@ -32,18 +45,32 @@ void setup()
   // Efface d'abord manuellement avant de configurer
   gestionnaire->obtenirHorloge()->clearAlarm(1);
   gestionnaire->obtenirHorloge()->clearAlarm(2);
+
   gestionnaire->obtenirHorloge()->configurerAlarmeMinute();
 }
 
 void loop()
 {
+#if 0
+  // Debug - affiche l'état de la broche toutes les 2 secondes
+  Serial.print("SQW : ");
+  Serial.print(digitalRead(PIN_ALARME));
+  Serial.print(" | alarmFired : ");
+  Serial.println(gestionnaire->obtenirHorloge()->alarmFired(1));
+  delay(2000);
+#endif
 
+  
   if (gestionnaire->obtenirHorloge()->getAlarme())
   {
     gestionnaire->obtenirHorloge()->setAlarme(false);
     gestionnaire->obtenirHorloge()->reinitialiserAlarme();
-    gestionnaire->obtenirHorloge()->printTime();
+    //Serial.println("Nouvelle minute !");
+    //gestionnaire->obtenirHorloge()->printTime();
     gestionnaire->obtenirMemoire()->lireCalendrier();
   }
+
+
+  //UTILISER GETTER ET SETTER POUR AVOIR ACCES AU FLAG alarmeDeclenchee de la classe horloge
     
 }
