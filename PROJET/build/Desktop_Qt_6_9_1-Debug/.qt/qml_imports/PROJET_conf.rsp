@@ -1,0 +1,14 @@
+-rootPath
+/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET
+-cmake-output
+-output-file
+/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/.qt/qml_imports/PROJET_conf.cmake
+-importPath
+/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/PROJET
+-importPath
+/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug
+-importPath
+/opt/Qt/6.9.1/gcc_64/qml
+-qrcFiles
+/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/.qt/rcc/qmake_PROJET.qrc
+/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/.qt/rcc/PROJET_raw_qml_0.qrc

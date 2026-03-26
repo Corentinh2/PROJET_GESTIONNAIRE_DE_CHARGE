@@ -1,0 +1,132 @@
+[
+    {
+        "moduleFiles": [
+            {
+                "entries": [
+                    {
+                        "codegenSuccessful": true,
+                        "column": 23,
+                        "durationMicroseconds": 148,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 11
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 49,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 17
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 24,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 24
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 20,
+                        "durationMicroseconds": 666,
+                        "errorMessage": "Cannot access value for name vehiclesModel",
+                        "functionName": "model",
+                        "line": 29
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 24,
+                        "durationMicroseconds": 103,
+                        "errorMessage": "",
+                        "functionName": "width",
+                        "line": 33
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 32,
+                        "durationMicroseconds": 1041,
+                        "errorMessage": "Cannot access value for name name",
+                        "functionName": "onClicked",
+                        "line": 37
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 35,
+                        "durationMicroseconds": 80,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 36
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 35,
+                        "durationMicroseconds": 59,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 41
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 38,
+                        "durationMicroseconds": 227,
+                        "errorMessage": "Cannot access value for name name",
+                        "functionName": "text",
+                        "line": 45
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 38,
+                        "durationMicroseconds": 174,
+                        "errorMessage": "Cannot access value for name km",
+                        "functionName": "text",
+                        "line": 46
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 36,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 52
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 31,
+                        "durationMicroseconds": 61,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 64
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 39,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find property \"inputMethodHints\".",
+                        "functionName": "inputMethodHints",
+                        "line": 79
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 103,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 85
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 36,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 89
+                    }
+                ],
+                "filePath": "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/VehiculesPage.qml"
+            }
+        ],
+        "moduleId": "PROJET(appPROJET)"
+    }
+]

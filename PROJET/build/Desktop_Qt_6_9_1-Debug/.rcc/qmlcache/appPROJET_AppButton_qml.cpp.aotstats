@@ -1,0 +1,60 @@
+[
+    {
+        "moduleFiles": [
+            {
+                "entries": [
+                    {
+                        "codegenSuccessful": true,
+                        "column": 31,
+                        "durationMicroseconds": 376,
+                        "errorMessage": "",
+                        "functionName": "textColor",
+                        "line": 7
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 15,
+                        "durationMicroseconds": 37,
+                        "errorMessage": "Cannot access value for name control",
+                        "functionName": "text",
+                        "line": 10
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 16,
+                        "durationMicroseconds": 21,
+                        "errorMessage": "Cannot access value for name control",
+                        "functionName": "color",
+                        "line": 11
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 30,
+                        "durationMicroseconds": 217,
+                        "errorMessage": "Cannot access value for name Text",
+                        "functionName": "horizontalAlignment",
+                        "line": 13
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 28,
+                        "durationMicroseconds": 182,
+                        "errorMessage": "Cannot access value for name Text",
+                        "functionName": "verticalAlignment",
+                        "line": 14
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 16,
+                        "durationMicroseconds": 46,
+                        "errorMessage": "Cannot access value for name isPrimary",
+                        "functionName": "color",
+                        "line": 19
+                    }
+                ],
+                "filePath": "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/AppButton.qml"
+            }
+        ],
+        "moduleId": "PROJET(appPROJET)"
+    }
+]

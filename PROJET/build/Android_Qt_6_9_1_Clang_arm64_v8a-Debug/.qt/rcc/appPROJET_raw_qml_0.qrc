@@ -1,6 +1,21 @@
 <RCC>
   <qresource prefix="/qt/qml/PROJET/">
     <file alias="Main.qml">/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/Main.qml</file>
+    <file alias="logique.js">/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/logique.js</file>
+    <file alias="AppButton.qml">/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/AppButton.qml</file>
+    <file alias="AppTextField.qml">/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/AppTextField.qml</file>
+    <file alias="AppCard.qml">/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/AppCard.qml</file>
+    <file alias="VehiculesPage.qml">/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/VehiculesPage.qml</file>
+    <file alias="BootPage.qml">/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/BootPage.qml</file>
+    <file alias="StatusPage.qml">/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/StatusPage.qml</file>
+    <file alias="DashboardPage.qml">/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/DashboardPage.qml</file>
+    <file alias="SettingsPage.qml">/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/SettingsPage.qml</file>
+    <file alias="SessionsPage.qml">/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/SessionsPage.qml</file>
+    <file alias="KmPage.qml">/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/KmPage.qml</file>
+    <file alias="android/AndroidManifest.xml">/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/android/AndroidManifest.xml</file>
+    <file alias="android/build.gradle">/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/android/build.gradle</file>
+    <file alias="android/res/values/libs.xml">/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/android/res/values/libs.xml</file>
+    <file alias="android/res/xml/qtprovider_paths.xml">/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/android/res/xml/qtprovider_paths.xml</file>
   </qresource>
 </RCC>
 

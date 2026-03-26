@@ -33,12 +33,14 @@
         android:extractNativeLibs="false"
         android:fullBackupOnly="false"
         android:hardwareAccelerated="true"
+        android:icon="@drawable/icon"
         android:label="appPROJET"
         android:requestLegacyExternalStorage="true" >
         <activity
             android:name="org.qtproject.qt.android.bindings.QtActivity"
             android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density"
             android:exported="true"
+            android:label=""
             android:launchMode="singleTop"
             android:screenOrientation="unspecified" >
             <intent-filter>

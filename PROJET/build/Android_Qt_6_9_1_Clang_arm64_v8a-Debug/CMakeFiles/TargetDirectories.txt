@@ -14,6 +14,7 @@
 /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/CMakeFiles/appPROJET_copy_res.dir
 /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/CMakeFiles/module_appPROJET_aotstats_target.dir
 /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/CMakeFiles/all_aotstats.dir
+/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/CMakeFiles/appPROJET_other_files.dir
 /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/CMakeFiles/appPROJET_copy_apk_dependencies.dir
 /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/CMakeFiles/_qt_internal_apk_dependencies.dir
 /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/CMakeFiles/apk_all.dir

@@ -1,0 +1,108 @@
+[
+    {
+        "moduleFiles": [
+            {
+                "entries": [
+                    {
+                        "codegenSuccessful": false,
+                        "column": 36,
+                        "durationMicroseconds": 994,
+                        "errorMessage": "Cannot access value for name window",
+                        "functionName": "currentVehicleKm",
+                        "line": 10
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 23,
+                        "durationMicroseconds": 115,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 13
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 31,
+                        "durationMicroseconds": 58,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 22
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 85,
+                        "durationMicroseconds": 86,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 23
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 30,
+                        "durationMicroseconds": 243,
+                        "errorMessage": "Cannot access value for name window",
+                        "functionName": "text",
+                        "line": 24
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 127,
+                        "durationMicroseconds": 78,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 24
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 30,
+                        "durationMicroseconds": 196,
+                        "errorMessage": "",
+                        "functionName": "text",
+                        "line": 25
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 39,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find property \"inputMethodHints\".",
+                        "functionName": "inputMethodHints",
+                        "line": 30
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 30,
+                        "durationMicroseconds": 115,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: kmInput",
+                        "functionName": "visible",
+                        "line": 35
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 28,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 50
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 26,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find property \"enabled\".",
+                        "functionName": "enabled",
+                        "line": 58
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 28,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 59
+                    }
+                ],
+                "filePath": "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/KmPage.qml"
+            }
+        ],
+        "moduleId": "PROJET(appPROJET)"
+    }
+]

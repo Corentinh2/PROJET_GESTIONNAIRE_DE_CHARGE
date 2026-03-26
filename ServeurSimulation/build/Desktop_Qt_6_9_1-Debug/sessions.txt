@@ -1,0 +1,6 @@
+Borne Camille;Twingo;Lun;08:00;07:00 (lendemain)
+
+Borne Camille;Twingo;Lun, Mar, Mer, Jeu, Ven, Sam, Dim;22:00;07:00 (lendemain)
+Borne Camille;Twingo;Lun, Mar, Mer, Jeu, Ven, Sam, Dim;22:00;07:00 (lendemain)
+Borne Camille;Twingo;Lun, Dim;08:00;07:00 (lendemain)
+Borne Camille;Twingo;Mer, Jeu, Ven;20:00;07:00 (lendemain)
