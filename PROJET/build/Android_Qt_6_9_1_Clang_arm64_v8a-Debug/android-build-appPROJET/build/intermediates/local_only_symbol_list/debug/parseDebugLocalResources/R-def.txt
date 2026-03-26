@@ -3,6 +3,7 @@ local
 array bundled_libs
 array load_local_libs
 array qt_libs
+drawable icon
 string bundle_local_qt_libs
 string fatal_error_msg
 string system_libs_prefix

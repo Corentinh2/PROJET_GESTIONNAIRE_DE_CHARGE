@@ -1,0 +1,18 @@
+{
+    "classes": [
+        {
+            "className": "CommunicationESP",
+            "lineNumber": 6,
+            "object": true,
+            "qualifiedClassName": "CommunicationESP",
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "communicationesp.h",
+    "outputRevision": 69
+}

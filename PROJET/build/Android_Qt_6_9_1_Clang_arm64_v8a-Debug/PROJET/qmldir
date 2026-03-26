@@ -2,4 +2,14 @@ module PROJET
 typeinfo appPROJET.qmltypes
 prefer :/qt/qml/PROJET/
 Main 1.0 Main.qml
+AppButton 1.0 AppButton.qml
+AppTextField 1.0 AppTextField.qml
+AppCard 1.0 AppCard.qml
+VehiculesPage 1.0 VehiculesPage.qml
+BootPage 1.0 BootPage.qml
+StatusPage 1.0 StatusPage.qml
+DashboardPage 1.0 DashboardPage.qml
+SettingsPage 1.0 SettingsPage.qml
+SessionsPage 1.0 SessionsPage.qml
+KmPage 1.0 KmPage.qml
 

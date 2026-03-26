@@ -12,6 +12,83 @@ namespace _qt_qml_PROJET_Main_qml {
         reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
     };
 }
+namespace _qt_qml_PROJET_logique_js { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
+namespace _qt_qml_PROJET_AppButton_qml { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
+namespace _qt_qml_PROJET_AppTextField_qml { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
+namespace _qt_qml_PROJET_AppCard_qml { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
+namespace _qt_qml_PROJET_VehiculesPage_qml { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
+namespace _qt_qml_PROJET_BootPage_qml { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
+namespace _qt_qml_PROJET_StatusPage_qml { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
+namespace _qt_qml_PROJET_DashboardPage_qml { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
+namespace _qt_qml_PROJET_SettingsPage_qml { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
+namespace _qt_qml_PROJET_SessionsPage_qml { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
+namespace _qt_qml_PROJET_KmPage_qml { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
 
 }
 namespace {
@@ -27,6 +104,17 @@ Q_GLOBAL_STATIC(Registry, unitRegistry)
 
 Registry::Registry() {
     resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/Main.qml"), &QmlCacheGeneratedCode::_qt_qml_PROJET_Main_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/logique.js"), &QmlCacheGeneratedCode::_qt_qml_PROJET_logique_js::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/AppButton.qml"), &QmlCacheGeneratedCode::_qt_qml_PROJET_AppButton_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/AppTextField.qml"), &QmlCacheGeneratedCode::_qt_qml_PROJET_AppTextField_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/AppCard.qml"), &QmlCacheGeneratedCode::_qt_qml_PROJET_AppCard_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/VehiculesPage.qml"), &QmlCacheGeneratedCode::_qt_qml_PROJET_VehiculesPage_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/BootPage.qml"), &QmlCacheGeneratedCode::_qt_qml_PROJET_BootPage_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/StatusPage.qml"), &QmlCacheGeneratedCode::_qt_qml_PROJET_StatusPage_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/DashboardPage.qml"), &QmlCacheGeneratedCode::_qt_qml_PROJET_DashboardPage_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/SettingsPage.qml"), &QmlCacheGeneratedCode::_qt_qml_PROJET_SettingsPage_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/SessionsPage.qml"), &QmlCacheGeneratedCode::_qt_qml_PROJET_SessionsPage_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/KmPage.qml"), &QmlCacheGeneratedCode::_qt_qml_PROJET_KmPage_qml::unit);
     QQmlPrivate::RegisterQmlUnitCacheHook registration;
     registration.structVersion = 0;
     registration.lookupCachedQmlUnit = &lookupCachedUnit;

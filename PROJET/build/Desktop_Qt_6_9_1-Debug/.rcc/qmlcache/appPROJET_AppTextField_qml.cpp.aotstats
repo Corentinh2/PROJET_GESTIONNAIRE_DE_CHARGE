@@ -1,0 +1,20 @@
+[
+    {
+        "moduleFiles": [
+            {
+                "entries": [
+                    {
+                        "codegenSuccessful": false,
+                        "column": 23,
+                        "durationMicroseconds": 114,
+                        "errorMessage": "Cannot access value for name control",
+                        "functionName": "color",
+                        "line": 11
+                    }
+                ],
+                "filePath": "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/AppTextField.qml"
+            }
+        ],
+        "moduleId": "PROJET(appPROJET)"
+    }
+]
