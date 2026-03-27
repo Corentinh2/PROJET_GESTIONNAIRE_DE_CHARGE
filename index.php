@@ -1,8 +1,23 @@
 <?php
+// index.php à la racine de votre projet NetBeans
 
-/* 
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
- */
+require_once 'controllers/LoginController.php';
 
-echo "coucou2";
+$action = $_GET['action'] ?? 'showLogin';
+
+$controller = new LoginController();
+
+switch ($action) {
+    case 'login':
+        $controller->login();
+        break;
+        
+    case 'dashboard':
+        echo "Bienvenue sur le tableau de bord !";
+        // include 'views/dashboard.php';
+        break;
+
+    default:
+        $controller->login();
+        break;
+}
