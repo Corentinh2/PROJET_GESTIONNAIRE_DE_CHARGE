@@ -1,23 +1,20 @@
 <?php
-// index.php à la racine de votre projet NetBeans
+require_once 'controllers/Controleur.php';
 
-require_once 'controllers/LoginController.php';
-
-$action = $_GET['action'] ?? 'showLogin';
-
-$controller = new LoginController();
+$action = $_GET['action'] ?? 'Connexion';
+$ctrl = new Controleur();
 
 switch ($action) {
-    case 'login':
-        $controller->login();
+    case 'Connexion':
+        $ctrl->Connexion();
         break;
-        
-    case 'dashboard':
-        echo "Bienvenue sur le tableau de bord !";
-        // include 'views/dashboard.php';
+    case 'ChoixParam':
+        $ctrl->ChoixParam();
         break;
-
+    case 'EnregistreGraph':
+        $ctrl->EnregistreGraph();
+        break;
     default:
-        $controller->login();
+        $ctrl->Erreur404();
         break;
 }
