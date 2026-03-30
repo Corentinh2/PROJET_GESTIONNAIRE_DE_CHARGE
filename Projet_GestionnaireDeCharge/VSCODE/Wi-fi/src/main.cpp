@@ -4,8 +4,8 @@
 #include <Wire.h>
 #include <RTClib.h>  // Bibliothèque Adafruit RTClib
 
-const char* ssid     = "WIFI_BTS_CIEL";
-const char* password = "BTSciel72?";
+const char* ssid     = "fortinet";
+const char* password = "Projet2026";
 
 // Serveurs NTP et fuseau horaire (France = UTC+1, UTC+2 en été)
 const char* ntpServer1   = "pool.ntp.org";
