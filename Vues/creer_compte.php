@@ -2,7 +2,7 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>Connexion</title>
+        <title>Créer un compte</title>
         <style>
             body {
                 background-color: #121212;
@@ -27,6 +27,7 @@
                 margin: 10px 0;
                 border: none;
                 border-radius: 4px;
+                box-sizing: border-box;
             }
             button {
                 width: 100%;
@@ -38,18 +39,26 @@
                 cursor: pointer;
                 font-weight: bold;
             }
+            a {
+                color: #00d4ff;
+                font-size: 0.85em;
+                display: block;
+                margin-top: 15px;
+            }
         </style>
     </head>
     <body>
         <div class="login-container">
-            <h2>Connexion</h2>
+            <h2>Créer un compte</h2>
             <?php if (isset($erreur)) echo "<p style='color:red'>$erreur</p>"; ?>
-            <form action="/index.php?action=Connexion" method="POST">
-                <input type="text" name="identifiant" placeholder="Identifiant" required>
+            <?php if (isset($succes)) echo "<p style='color:green'>$succes</p>"; ?>
+            <form action="/index.php?action=CreerCompte" method="POST">
+                <input type="text" name="identifiant" placeholder="Identifiant" value="<?= htmlspecialchars($identifiant ?? '') ?>" required>
                 <input type="password" name="password" placeholder="Mot de passe" required>
-                <button type="submit">SE CONNECTER</button>
+                <input type="password" name="password_confirm" placeholder="Confirmer le mot de passe" required>
+                <button type="submit">CRÉER LE COMPTE</button>
             </form>
-
+            <a href="/index.php?action=Connexion">← Retour à la connexion</a>
         </div>
     </body>
 </html>

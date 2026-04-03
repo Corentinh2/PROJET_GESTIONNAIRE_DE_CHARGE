@@ -6,14 +6,14 @@ class LoginController {
     public function login() {
         // 1. Vérifier si le formulaire a été soumis
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
+
             $identifiant = $_POST['identifiant'] ?? '';
             $password = $_POST['password'] ?? '';
 
             // 2. Appel au Modèle (Simulation de vérification)
             // Dans un vrai projet, vous feriez : $user = $this->model->checkAuth($id, $pass);
             if ($this->verifierIdentifiants($identifiant, $password)) {
-                
+
                 // Authentification réussie : on ouvre une session
                 session_start();
                 $_SESSION['user'] = $identifiant;

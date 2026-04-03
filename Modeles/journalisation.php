@@ -1,5 +1,7 @@
 <?php
+
 class Journalisation {
+
     public function LogConnexion($user, $timestamp) {
         // Logique d'enregistrement (ex: table SQL ou fichier error_log)
         error_log("Succès : $user connecté le $timestamp");
