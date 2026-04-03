@@ -1,0 +1,2 @@
+set(__QT_DEPLOY_TARGET_serveur_esp32_proto_FILE /home/USERS/ELEVES/CIEL2024/vruelle/Documents/Projet_GIT/RaspberryPi/Code/serveur_esp32_proto/build/Desktop_Qt_6_9_1-Debug/serveur_esp32_proto)
+set(__QT_DEPLOY_TARGET_serveur_esp32_proto_TYPE EXECUTABLE)

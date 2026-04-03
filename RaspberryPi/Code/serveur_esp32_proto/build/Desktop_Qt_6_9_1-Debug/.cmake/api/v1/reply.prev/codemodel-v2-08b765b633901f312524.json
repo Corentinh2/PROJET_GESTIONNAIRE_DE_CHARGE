@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "serveur_esp32_proto",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "serveur_esp32_proto::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-serveur_esp32_proto-Debug-0d5a26d70eae911a7d81.json",
+					"name" : "serveur_esp32_proto",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/USERS/ELEVES/CIEL2024/vruelle/Documents/Projet_GIT/RaspberryPi/Code/serveur_esp32_proto/build/Desktop_Qt_6_9_1-Debug",
+		"source" : "/home/USERS/ELEVES/CIEL2024/vruelle/Documents/Projet_GIT/RaspberryPi/Code/serveur_esp32_proto"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

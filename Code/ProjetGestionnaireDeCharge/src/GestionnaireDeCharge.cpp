@@ -1,7 +1,7 @@
 #include "GestionnaireDeCharge.h"
 #include <Arduino.h>
 
-GestionnaireDeCharge::GestionnaireDeCharge(CapteurTension* t, CapteurCourant* c)
+GestionnaireDeCharge::GestionnaireDeCharge(CapteurTension* t, CapteurCourant* c, ConnectionRaspberryPi* r)
     : sensorTension(t), sensorCourant(c), sommeTension(0), sommeCourant(0),
       energieCumuleeWh(0), nombreLectures(0), chronoMinute(0) {}
 
@@ -10,6 +10,8 @@ void GestionnaireDeCharge::initialiser() {
     sensorCourant->initialiser();
     chronoMinute = millis();
 }
+
+
 
 void GestionnaireDeCharge::envoyerMesures() {
     float V = sensorTension->lireValeurTension();
@@ -47,3 +49,4 @@ void GestionnaireDeCharge::envoyerMesures() {
 
     delay(1000);
 }
+
