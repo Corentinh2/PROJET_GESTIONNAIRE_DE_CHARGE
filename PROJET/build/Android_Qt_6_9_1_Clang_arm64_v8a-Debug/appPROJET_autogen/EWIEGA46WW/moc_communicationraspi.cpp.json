@@ -2,9 +2,135 @@
     "classes": [
         {
             "className": "CommunicationRaspi",
-            "lineNumber": 6,
+            "lineNumber": 15,
+            "methods": [
+                {
+                    "access": "public",
+                    "index": 6,
+                    "name": "obtenirStation",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 7,
+                    "name": "obtenirVehicule",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "name",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "km",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 8,
+                    "name": "ajouterVehicule",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "id",
+                            "type": "int"
+                        }
+                    ],
+                    "index": 9,
+                    "name": "supprimerVehicule",
+                    "returnType": "void"
+                }
+            ],
             "object": true,
             "qualifiedClassName": "CommunicationRaspi",
+            "signals": [
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "status",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 0,
+                    "name": "connectionStatusChanged",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "id",
+                            "type": "int"
+                        },
+                        {
+                            "name": "name",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "kwh",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "status",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 1,
+                    "name": "stationRecue",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "id",
+                            "type": "int"
+                        },
+                        {
+                            "name": "name",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "km",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 2,
+                    "name": "vehiculeRecu",
+                    "returnType": "void"
+                }
+            ],
+            "slots": [
+                {
+                    "access": "private",
+                    "index": 3,
+                    "name": "onConnected",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "index": 4,
+                    "name": "onDisconnected",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "arguments": [
+                        {
+                            "name": "message",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 5,
+                    "name": "onTextMessageReceived",
+                    "returnType": "void"
+                }
+            ],
             "superClasses": [
                 {
                     "access": "public",

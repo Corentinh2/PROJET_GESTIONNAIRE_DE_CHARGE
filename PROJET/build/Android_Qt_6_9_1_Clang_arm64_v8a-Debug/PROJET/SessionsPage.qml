@@ -1,178 +1,308 @@
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
-import "logique.js" as Logique // Indispensable pour les fonctions JS
 
 Item {
     id: sessionsRoot
 
-    // --- VUE 1 : LA LISTE DES SESSIONS (Page principale de ce fichier) ---
+    Component.onCompleted: {
+        console.log("[SESSIONS] Borne active : " + window.activeStation);
+        sessionsModel.clear();
+        commEsp.obtenirCalendrier();
+    }
+
+    property int editingIndex: -1
+
+    function findIndexInArray(array, value) {
+        var indexTrouve = 0;
+        for (var i = 0; i < array.length; i++) {
+            if (array[i] === value) {
+                indexTrouve = i;
+            }
+        }
+        return indexTrouve;
+    }
+
     ColumnLayout {
-        anchors.fill: parent // <--- CORRECTION ICI : On remplit la page
+        anchors.fill: parent
         anchors.margins: 15
-        spacing: 15
+        spacing: 14
 
         // En-tête
         RowLayout {
             Layout.fillWidth: true
-            RoundButton { text: "←"; onClicked: stackView.pop() }
-            Text { text: "Mes Sessions"; font.pixelSize: 20; font.bold: true; Layout.leftMargin: 10 }
+            spacing: 10
+
+            Rectangle {
+                width: 36; height: 36; radius: 18
+                color: "#F5F5F5"
+                Text { anchors.centerIn: parent; text: "←"; font.pixelSize: 16; color: "#546E7A" }
+                MouseArea { anchors.fill: parent; onClicked: stackView.pop() }
+            }
+
+            Text {
+                text: "Mes Sessions"
+                font.pixelSize: 20
+                font.bold: true
+                color: "#263238"
+            }
         }
 
-        // Bouton pour lancer le tunnel de programmation
         AppButton {
             text: "+ Programmer une charge"
             Layout.fillWidth: true
             onClicked: {
-                // Initialisation des variables globales dans le Main via JS
-                Logique.startBookingProcess();
-                // On pousse la première étape du tunnel : le calendrier
-                stackView.push(scheduleStep);
+                sessionsRoot.editingIndex = -1;
+                window.bookingDays = "";
+                window.bookingStart = "";
+                window.bookingEnd = "";
+                stackView.push(scheduleStep, {
+                                   "tempDaysList": [],
+                                   "initialStart": "08:00",
+                                   "initialEnd": "17:00"
+                               });
             }
         }
 
-        // Liste des sessions (ListView)
         ListView {
             id: sessionList
             Layout.fillWidth: true
             Layout.fillHeight: true
             clip: true
             spacing: 10
-            model: sessionsModel // Défini dans Main.qml
+            model: sessionsModel
 
-            delegate: Rectangle {
+            delegate: Item {
                 width: sessionList.width
-                height: 100
-                radius: 10
-                color: "white"
-                border.color: "#EEE"
-                border.width: 1
+                property bool isGoodStation: station === window.activeStation
+                height: isGoodStation ? 110 : 0
+                visible: isGoodStation
 
-                RowLayout {
-                    anchors.fill: parent
-                    anchors.margins: 15
-                    spacing: 15
+                Rectangle {
+                    width: parent.width
+                    height: 100
+                    radius: 14
+                    color: "white"
+                    border.color: "#EEEEEE"
+                    border.width: 1
 
-                    // Icône d'état (basée sur la station)
                     Rectangle {
-                        width: 50; height: 50; radius: 25
-                        color: "#E3F2FD" // Bleu clair par défaut
-                        Text { anchors.centerIn: parent; text: "⚡"; font.pixelSize: 24 }
+                        anchors.fill: parent
+                        anchors.topMargin: 3
+                        radius: parent.radius
+                        color: "#000000"
+                        opacity: 0.04
+                        z: -1
                     }
 
-                    // Infos textuelles
-                    ColumnLayout {
-                        Layout.fillWidth: true
-                        spacing: 2
-                        Text { text: "🚗 " + vehicle; font.bold: true; font.pixelSize: 16; color: "#333" }
-                        Text { text: "🔌 " + station; color: "#666"; font.pixelSize: 12 }
-                        Text { text: "📅 " + days + " - de " + start + " à " + end; color: "#2979FF"; font.bold: true; font.pixelSize: 12 }
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            sessionsRoot.editingIndex = index;
+                            var cleanEnd = end.replace(" (lendemain)", "");
+                            stackView.push(scheduleStep, {
+                                               "tempDaysList": days.split(", "),
+                                               "initialStart": start,
+                                               "initialEnd": cleanEnd
+                                           });
+                        }
                     }
 
-                    // Bouton Supprimer
-                    AppButton {
-                        text: "X"
-                        isPrimary: false
-                        textColor: "#FF5252"
-                        Layout.preferredWidth: 40
-                        Layout.preferredHeight: 40
-                        onClicked: Logique.deleteSession(index) // Suppression via JS
-                    }
-                }
-            }
-        }
-    }
+                    RowLayout {
+                        anchors.fill: parent
+                        anchors.leftMargin: 14
+                        anchors.rightMargin: 10
+                        spacing: 12
 
-    // =========================================================================
-    // --- SOUS-PAGES DU TUNNEL DE RÉSERVATION (Intégrées comme Components) ---
-    // =========================================================================
+                        Rectangle {
+                            width: 4; height: 60; radius: 2
+                            color: "#1E88E5"
+                            Layout.alignment: Qt.AlignVCenter
+                        }
 
-    // --- ÉTAPE 1 : LE CALENDRIER (Jours et Heures) ---
-    Component {
-        id: scheduleStep
-        Item {
-            id: schedulePageItem
-            // Liste temporaire locale pour stocker les jours cochés
-            property var tempDaysList: []
-
-            // Fonctions locales pour gérer la sélection multiple des jours
-            function toggleDay(dayStr) {
-                var list = [];
-                for (var i = 0; i < tempDaysList.length; i++) { list.push(tempDaysList[i]); }
-                var idx = list.indexOf(dayStr);
-                if (idx !== -1) { list.splice(idx, 1); } // Retire si existe déjà
-                else { list.push(dayStr); }  // Ajoute si n'existe pas
-                tempDaysList = list; // Mise à jour pour forcer le rafraîchissement QML
-            }
-
-            function isDaySelected(dayStr) {
-                return tempDaysList.indexOf(dayStr) !== -1;
-            }
-
-            function getDaysString() {
-                return tempDaysList.join(", ");
-            }
-
-            ColumnLayout {
-                anchors.fill: parent; anchors.margins: 20; spacing: 25
-
-                Text { text: "Étape 1 : Quand charger ?"; font.bold: true; font.pixelSize: 20; color: "#2979FF" }
-                Text { text: "Sélectionnez les jours :"; font.bold: true; color: "#555" }
-
-                // Grille pour afficher les pastilles de jours (Repeater)
-                GridLayout {
-                    Layout.fillWidth: true; columns: 4; rowSpacing: 10; columnSpacing: 10
-                    Repeater {
-                        model: ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"]
-                        delegate: Rectangle {
-                            // Propriété calculée dynamiquement
-                            property bool isSelected: schedulePageItem.isDaySelected(modelData)
-
-                            Layout.fillWidth: true; height: 50; radius: 25
-                            // Changement de couleur si coché
-                            color: isSelected ? "#2979FF" : "#E0E0E0"
-                            border.color: isSelected ? "#1976D2" : "#CCC"
-                            border.width: 1
+                        ColumnLayout {
+                            Layout.fillWidth: true
+                            spacing: 3
 
                             Text {
-                                anchors.centerIn: parent;
-                                text: modelData;
-                                color: parent.isSelected ? "white" : "black";
-                                font.bold: parent.isSelected
+                                text: vehicle
+                                font.bold: true
+                                font.pixelSize: 14
+                                color: "#263238"
+                            }
+
+                            Text {
+                                text: days
+                                color: "#1E88E5"
+                                font.pixelSize: 12
+                                font.bold: true
+                            }
+
+                            Text {
+                                text: start + " → " + end
+                                color: "#78909C"
+                                font.pixelSize: 11
+                            }
+                        }
+
+                        // Bouton Supprimer — utilise l'ID
+                        Rectangle {
+                            width: 34; height: 34; radius: 17
+                            color: "#FFEBEE"
+                            Layout.alignment: Qt.AlignVCenter
+
+                            Text {
+                                anchors.centerIn: parent
+                                text: "✕"
+                                color: "#E53935"
+                                font.pixelSize: 14
+                                font.bold: true
                             }
 
                             MouseArea {
-                                anchors.fill: parent;
-                                onClicked: schedulePageItem.toggleDay(modelData)
+                                anchors.fill: parent
+                                z: 2
+                                onClicked: {
+                                    // Suppression par ID — l'ESP renverra la liste mise à jour
+                                    commEsp.supprimerCalendrier(sessionId);
+                                }
                             }
                         }
                     }
                 }
+            }
+        }
 
-                // Section Heures (ComboBox standard)
-                ColumnLayout {
-                    Layout.fillWidth: true; spacing: 10; Layout.topMargin: 15
-                    Text { text: "Heure de début :"; color: "#666" }
-                    ComboBox { id: sTime; Layout.fillWidth: true; model: ["08:00", "09:00", "18:00", "20:00", "22:00"] } // Simplifié pour l'exemple
-                    Text { text: "Heure de fin :"; color: "#666" }
-                    ComboBox { id: eTime; Layout.fillWidth: true; model: ["07:00", "17:00", "21:00", "23:00", "00:00"] }
+        Component {
+            id: scheduleStep
+            Item {
+                id: schedulePageItem
+
+                property var tempDaysList: []
+                property string initialStart: "08:00"
+                property string initialEnd: "17:00"
+                property var timeModelData: ["07:00", "08:00", "09:00", "17:00", "18:00", "20:00", "21:00", "22:00", "23:00", "00:00"]
+
+                Component.onCompleted: {
+                    sTime.currentIndex = sessionsRoot.findIndexInArray(timeModelData, initialStart);
+                    eTime.currentIndex = sessionsRoot.findIndexInArray(timeModelData, initialEnd);
                 }
 
-                Item { Layout.fillHeight: true } // Espaceur
+                function toggleDay(dayStr) {
+                    var list = [];
+                    for (var i = 0; i < tempDaysList.length; i++) { list.push(tempDaysList[i]); }
+                    var idx = list.indexOf(dayStr);
+                    if (idx !== -1) { list.splice(idx, 1); }
+                    if (idx === -1) { list.push(dayStr); }
+                    tempDaysList = list;
+                }
 
-                // Boutons de navigation
-                RowLayout {
-                    Layout.fillWidth: true; spacing: 15
-                    AppButton { text: "Annuler"; isPrimary: false; Layout.fillWidth: true; onClicked: stackView.pop() }
-                    AppButton {
-                        text: "Suivant →"
-                        Layout.fillWidth: true
-                        // Sécurité : désactivé si aucun jour n'est choisi
-                        enabled: schedulePageItem.tempDaysList.length > 0
-                        onClicked: {
-                            // Sauvegarde dans JS et passage auto à l'étape suivante (Véhicule ou KM)
-                            Logique.saveSchedule(schedulePageItem.getDaysString(), sTime.currentText, eTime.currentText);
-                            // NOTE : Le JS va gérer le push automatique vers mileageStep ou véhiculesPage selon le cas
+                function isDaySelected(dayStr) {
+                    var trouve = false;
+                    if (tempDaysList.indexOf(dayStr) !== -1) { trouve = true; }
+                    return trouve;
+                }
+
+                function getDaysString() { return tempDaysList.join(", "); }
+
+                ColumnLayout {
+                    anchors.fill: parent; anchors.margins: 20; spacing: 20
+
+                    Text {
+                        text: sessionsRoot.editingIndex === -1 ? "Programmer une charge" : "Modifier la charge"
+                        font.bold: true; font.pixelSize: 20; color: "#263238"
+                    }
+
+                    Rectangle {
+                        Layout.fillWidth: true; height: 40; radius: 10; color: "#E3F2FD"
+                        Text {
+                            anchors.centerIn: parent
+                            text: "🚗  " + window.selectedVehicle
+                            font.bold: true; font.pixelSize: 13; color: "#1565C0"
+                        }
+                    }
+
+                    GridLayout {
+                        Layout.fillWidth: true; columns: 4; rowSpacing: 8; columnSpacing: 8
+                        Repeater {
+                            model: ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"]
+                            delegate: Rectangle {
+                                property bool isSelected: schedulePageItem.isDaySelected(modelData)
+                                Layout.fillWidth: true; height: 44; radius: 12
+                                color: isSelected ? "#1E88E5" : "#F5F5F5"
+                                border.color: isSelected ? "#1565C0" : "#E0E0E0"
+                                border.width: 1
+
+                                Text {
+                                    anchors.centerIn: parent; text: modelData
+                                    color: parent.isSelected ? "white" : "#546E7A"
+                                    font.bold: parent.isSelected; font.pixelSize: 13
+                                }
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    onClicked: schedulePageItem.toggleDay(modelData)
+                                }
+                            }
+                        }
+                    }
+
+                    Rectangle {
+                        Layout.fillWidth: true; height: 120; radius: 14
+                        color: "white"; border.color: "#EEEEEE"; border.width: 1
+
+                        ColumnLayout {
+                            anchors.fill: parent; anchors.margins: 14; spacing: 8
+                            Text { text: "Heure de début"; color: "#78909C"; font.pixelSize: 12 }
+                            ComboBox { id: sTime; Layout.fillWidth: true; model: schedulePageItem.timeModelData }
+                            Text { text: "Heure de fin"; color: "#78909C"; font.pixelSize: 12 }
+                            ComboBox { id: eTime; Layout.fillWidth: true; model: schedulePageItem.timeModelData }
+                        }
+                    }
+
+                    Item { Layout.fillHeight: true }
+
+                    RowLayout {
+                        Layout.fillWidth: true; spacing: 12
+
+                        AppButton {
+                            text: "Annuler"; isPrimary: false; Layout.fillWidth: true
+                            onClicked: stackView.pop()
+                        }
+
+                        AppButton {
+                            text: sessionsRoot.editingIndex === -1 ? "Programmer ✓" : "Enregistrer ✓"
+                            Layout.fillWidth: true
+                            enabled: schedulePageItem.tempDaysList.length > 0
+
+                            onClicked: {
+                                var startStr = sTime.currentText;
+                                var endStr = eTime.currentText;
+                                window.bookingDays = schedulePageItem.getDaysString();
+                                window.bookingStart = startStr;
+                                var startHour = parseInt(startStr.substring(0, 2));
+                                var endHour = parseInt(endStr.substring(0, 2));
+                                var finalEndStr = endStr;
+                                if (endHour < startHour) {
+                                    finalEndStr = endStr + " (lendemain)";
+                                }
+                                window.bookingEnd = finalEndStr;
+
+                                // Mode modification : supprimer l'ancien par ID
+                                if (sessionsRoot.editingIndex !== -1) {
+                                    var oldSession = sessionsModel.get(sessionsRoot.editingIndex);
+                                    commEsp.supprimerCalendrier(oldSession.sessionId);
+                                }
+
+                                // Ajout du nouveau calendrier
+                                commEsp.ajouterCalendrier(
+                                            window.bookingDays,
+                                            window.bookingStart,
+                                            window.bookingEnd
+                                            );
+
+                                stackView.pop();
+                            }
                         }
                     }
                 }

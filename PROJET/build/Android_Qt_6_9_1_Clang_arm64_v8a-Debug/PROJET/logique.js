@@ -1,7 +1,5 @@
 // logique.js
 
-// L'objet "bookingState" a été supprimé car on utilise window.bookingDays, etc.
-
 function getVehicleMileage(vName) {
     var kmVal = 0;
     for (var i = 0; i < vehiclesModel.count; i++) {
@@ -13,9 +11,36 @@ function getVehicleMileage(vName) {
     return kmVal;
 }
 
+// 1. CHOIX DE LA BORNE -> Va vers les véhicules
 function selectActiveStation(stationName) {
     var success = true;
     window.activeStation = stationName;
+    stackView.push(vehiculesPage);
+    return success;
+}
+
+// 2. CHOIX DU VÉHICULE -> Va vers le kilométrage
+function selectVehicle(vehicleName) {
+    var success = true;
+    window.selectedVehicle = vehicleName;
+    stackView.push(mileagePage);
+    return success;
+}
+
+// 3. VALIDATION DU KM -> Ouvre le Dashboard (Fin du tunnel d'accueil)
+function validerDemarrage(km) {
+    var success = true;
+    window.selectedMileage = km;
+
+    // Mise à jour locale du KM
+    for (var v = 0; v < vehiclesModel.count; v++) {
+        var vItem = vehiclesModel.get(v);
+        if (vItem.name === window.selectedVehicle) {
+            vehiclesModel.setProperty(v, "km", km);
+        }
+    }
+
+    // On remplace tout l'historique de navigation par le Dashboard
     stackView.replace(null, dashboardPage);
     return success;
 }
@@ -39,12 +64,13 @@ function removeVehicle(index) {
     return success;
 }
 
+// --- PARTIE PROGRAMMATION DE CHARGE ---
+
 function startBookingProcess() {
     var success = true;
     window.isBookingFlow = true;
-    window.selectedVehicle = "";
 
-    // CORRECTION : On réinitialise les variables globales
+    // On réinitialise uniquement le temps (la borne et le véhicule sont déjà connus)
     window.bookingDays = "";
     window.bookingStart = "";
     window.bookingEnd = "";
@@ -54,8 +80,6 @@ function startBookingProcess() {
 
 function saveSchedule(daysStr, startStr, endStr) {
     var success = true;
-
-    // CORRECTION : On sauvegarde dans le Main.qml
     window.bookingDays = daysStr;
     window.bookingStart = startStr;
 
@@ -68,35 +92,14 @@ function saveSchedule(daysStr, startStr, endStr) {
     }
     window.bookingEnd = finalEndStr;
 
-    stackView.push(vehiculesPage);
-
     return success;
 }
 
-function selectVehicle(vehicleName) {
-    var success = true;
-    window.selectedVehicle = vehicleName;
-
-    if (window.isBookingFlow) {
-        stackView.push(mileagePage);
-    }
-    if (!window.isBookingFlow) {
-        stackView.pop(null);
-    }
-    return success;
-}
-
-function finalizeBooking(km) {
+// 4. ENVOI DE LA PROGRAMMATION AU SERVEUR
+function finalizeBooking() {
     var found = false;
 
-    for (var v = 0; v < vehiclesModel.count; v++) {
-        var vItem = vehiclesModel.get(v);
-        if (vItem.name === window.selectedVehicle) {
-            vehiclesModel.setProperty(v, "km", km);
-        }
-    }
-
-    // CORRECTION : On envoie les variables du window
+    // On demande au C++ de générer les trames Raspi et ESP
     commTemp.programmerCharge(
         window.activeStation,
         window.selectedVehicle,
@@ -106,7 +109,7 @@ function finalizeBooking(km) {
     );
 
     window.isBookingFlow = false;
-    stackView.pop(null);
+    stackView.pop(null); // On revient au tableau de bord
 
     found = true;
     return found;
@@ -114,6 +117,7 @@ function finalizeBooking(km) {
 
 function cancelBooking() {
     window.isBookingFlow = false;
+    stackView.pop(null); // On annule et on revient au tableau de bord
 }
 
 function deleteSession(index) {

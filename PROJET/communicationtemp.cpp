@@ -1,4 +1,4 @@
-#include "communicationtemp.h"
+/*#include "communicationtemp.h"
 #include <QDebug>
 #include <QStringList>
 
@@ -20,10 +20,10 @@ void CommunicationTemp::onConnected() {
 
     // Le tuyau est branché, on demande TOUTES les données !
     requestStationsList();
-    requestVehiclesList();
-    requestSessionsHistory();
 
-    return;
+
+
+
 }
 
 void CommunicationTemp::requestStationsList() {
@@ -31,8 +31,8 @@ void CommunicationTemp::requestStationsList() {
     trame.append(static_cast<char>(0x02));
     trame.append('B');
     m_webSocket.sendBinaryMessage(trame);
+    requestVehiclesList();
 
-    return;
 }
 
 void CommunicationTemp::requestVehiclesList() {
@@ -41,7 +41,7 @@ void CommunicationTemp::requestVehiclesList() {
     trame.append('V');
     m_webSocket.sendBinaryMessage(trame);
 
-    return;
+    requestSessionsHistory();
 }
 
 void CommunicationTemp::requestSessionsHistory() {
@@ -50,7 +50,7 @@ void CommunicationTemp::requestSessionsHistory() {
     trame.append('H');
     m_webSocket.sendBinaryMessage(trame);
 
-    return;
+
 }
 
 void CommunicationTemp::addVehicleToDb(const QString &name, const QString &km) {
@@ -81,7 +81,6 @@ void CommunicationTemp::addVehicleToDb(const QString &name, const QString &km) {
         qDebug() << "Ordre d'ajout envoyé au serveur. En attente de confirmation...";
     }
 
-    return;
 }
 
 void CommunicationTemp::programmerCharge(const QString &borne, const QString &vehicule, const QString &jours, const QString &start, const QString &end) {
@@ -109,7 +108,7 @@ void CommunicationTemp::programmerCharge(const QString &borne, const QString &ve
         trameP[0] = static_cast<char>(trameP.size());
 
         m_webSocket.sendBinaryMessage(trameP);
-        qDebug() << "[MOBILE] Trame Raspi 'P' envoyée";
+        //qDebug() << "[MOBILE] Trame Raspi 'P' envoyée";
 
         // --- 2. TRAME ESP ('C') ---
         QByteArray trameC;
@@ -153,7 +152,6 @@ void CommunicationTemp::programmerCharge(const QString &borne, const QString &ve
         }
     }
 
-    return;
 }
 
 void CommunicationTemp::onBinaryMessageReceived(QByteArray message) {
@@ -225,5 +223,36 @@ void CommunicationTemp::onBinaryMessageReceived(QByteArray message) {
         }
     }
 
-    return;
 }
+
+
+void CommunicationTemp::supprimerCharge(const QString &borne, const QString &vehicule, const QString &jours, const QString &start, const QString &end) {
+    bool isValid = true;
+
+    if (borne.isEmpty()) {
+        isValid = false;
+    }
+    if (vehicule.isEmpty()) {
+        isValid = false;
+    }
+
+    if (isValid) {
+        // --- TRAME DE SUPPRESSION ('S') ---
+        QByteArray trameS;
+        trameS.append(static_cast<char>(0x00));
+        trameS.append('S');
+
+        trameS.append(borne.toUtf8()); trameS.append('\0');
+        trameS.append(vehicule.toUtf8()); trameS.append('\0');
+        trameS.append(jours.toUtf8()); trameS.append('\0');
+        trameS.append(start.toUtf8()); trameS.append('\0');
+        trameS.append(end.toUtf8()); trameS.append('\0');
+
+        trameS[0] = static_cast<char>(trameS.size());
+
+        m_webSocket.sendBinaryMessage(trameS);
+        qDebug() << "[MOBILE] Trame de suppression 'S' envoyée au serveur";
+    }
+
+}
+*/

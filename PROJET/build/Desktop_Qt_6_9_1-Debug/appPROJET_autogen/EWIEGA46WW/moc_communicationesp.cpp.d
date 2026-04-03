@@ -1,10 +1,19 @@
 /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/appPROJET_autogen/EWIEGA46WW/moc_communicationesp.cpp: /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/communicationesp.h \
   /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/appPROJET_autogen/moc_predefs.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/QFlags \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/QObject \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/QSharedDataPointer \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/QString \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/QUrl \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/QVariant \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/q17memory.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/q20functional.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/q20iterator.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/q20memory.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/q20type_traits.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/q20utility.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/q23utility.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/q26numeric.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qalgorithms.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qanystringview.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qarraydata.h \
@@ -19,6 +28,7 @@
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qbytearrayalgorithms.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qbytearraylist.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qbytearrayview.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/qcalendar.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qchar.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qcompare.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qcompare_impl.h \
@@ -29,8 +39,12 @@
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qcontainerfwd.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qcontainerinfo.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qcontainertools_impl.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/qcontiguouscache.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/qcryptographichash.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qdarwinhelpers.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qdatastream.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/qdatetime.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/qdebug.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qexceptionhandling.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qflags.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qfloat16.h \
@@ -40,14 +54,18 @@
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qgenericatomic.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qglobal.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qglobalstatic.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/qhash.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qhashfunctions.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/qiodevice.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qiodevicebase.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qiterable.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qiterator.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qlatin1stringview.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qlist.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/qlocale.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qlogging.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qmalloc.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/qmap.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qmath.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qmetacontainer.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qmetatype.h \
@@ -64,6 +82,12 @@
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qrefcount.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qscopedpointer.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qscopeguard.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/qset.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/qshareddata.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/qshareddata_impl.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/qsharedpointer.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/qspan.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qstdlibdetection.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qstring.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qstringalgorithms.h \
@@ -89,6 +113,7 @@
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qtdeprecationdefinitions.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qtdeprecationmarkers.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qtenvironmentvariables.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/qtextstream.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qtformat_impl.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qtmetamacros.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qtnoop.h \
@@ -100,10 +125,37 @@
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qtversionchecks.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qtypeinfo.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qtypes.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/qurl.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qutf8stringview.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/qvariant.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/qvarlengtharray.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qversiontagging.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qxptype_traits.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qyieldcpu.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtNetwork/QAbstractSocket \
+  /opt/Qt/6.9.1/gcc_64/include/QtNetwork/QNetworkProxy \
+  /opt/Qt/6.9.1/gcc_64/include/QtNetwork/QNetworkRequest \
+  /opt/Qt/6.9.1/gcc_64/include/QtNetwork/QSslConfiguration \
+  /opt/Qt/6.9.1/gcc_64/include/QtNetwork/QSslError \
+  /opt/Qt/6.9.1/gcc_64/include/QtNetwork/qabstractsocket.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtNetwork/qhostaddress.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtNetwork/qhttpheaders.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtNetwork/qnetworkproxy.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtNetwork/qnetworkrequest.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtNetwork/qssl.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtNetwork/qsslcertificate.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtNetwork/qsslconfiguration.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtNetwork/qsslerror.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtNetwork/qsslsocket.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtNetwork/qtcpsocket.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtNetwork/qtnetwork-config.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtNetwork/qtnetworkexports.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtNetwork/qtnetworkglobal.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtWebSockets/QWebSocket \
+  /opt/Qt/6.9.1/gcc_64/include/QtWebSockets/qtwebsocketsexports.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtWebSockets/qwebsocket.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtWebSockets/qwebsocketprotocol.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtWebSockets/qwebsockets_global.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \
@@ -178,10 +230,12 @@
   /usr/include/c++/13/bits/stl_list.h \
   /usr/include/c++/13/bits/stl_map.h \
   /usr/include/c++/13/bits/stl_multimap.h \
+  /usr/include/c++/13/bits/stl_multiset.h \
   /usr/include/c++/13/bits/stl_numeric.h \
   /usr/include/c++/13/bits/stl_pair.h \
   /usr/include/c++/13/bits/stl_raw_storage_iter.h \
   /usr/include/c++/13/bits/stl_relops.h \
+  /usr/include/c++/13/bits/stl_set.h \
   /usr/include/c++/13/bits/stl_tempbuf.h \
   /usr/include/c++/13/bits/stl_tree.h \
   /usr/include/c++/13/bits/stl_uninitialized.h \
@@ -194,13 +248,16 @@
   /usr/include/c++/13/bits/uniform_int_dist.h \
   /usr/include/c++/13/bits/unique_ptr.h \
   /usr/include/c++/13/bits/unordered_map.h \
+  /usr/include/c++/13/bits/unordered_set.h \
   /usr/include/c++/13/bits/uses_allocator.h \
   /usr/include/c++/13/bits/uses_allocator_args.h \
   /usr/include/c++/13/bits/utility.h \
   /usr/include/c++/13/bits/vector.tcc \
+  /usr/include/c++/13/cassert \
   /usr/include/c++/13/cctype \
   /usr/include/c++/13/cerrno \
   /usr/include/c++/13/chrono \
+  /usr/include/c++/13/climits \
   /usr/include/c++/13/clocale \
   /usr/include/c++/13/cmath \
   /usr/include/c++/13/compare \
@@ -237,6 +294,7 @@
   /usr/include/c++/13/pstl/glue_memory_defs.h \
   /usr/include/c++/13/pstl/glue_numeric_defs.h \
   /usr/include/c++/13/ratio \
+  /usr/include/c++/13/set \
   /usr/include/c++/13/stdexcept \
   /usr/include/c++/13/streambuf \
   /usr/include/c++/13/string \
@@ -258,6 +316,7 @@
   /usr/include/c++/13/type_traits \
   /usr/include/c++/13/typeinfo \
   /usr/include/c++/13/unordered_map \
+  /usr/include/c++/13/unordered_set \
   /usr/include/c++/13/utility \
   /usr/include/c++/13/variant \
   /usr/include/c++/13/vector \
@@ -266,7 +325,9 @@
   /usr/include/errno.h \
   /usr/include/features-time64.h \
   /usr/include/features.h \
+  /usr/include/limits.h \
   /usr/include/linux/errno.h \
+  /usr/include/linux/limits.h \
   /usr/include/locale.h \
   /usr/include/pthread.h \
   /usr/include/sched.h \
@@ -300,8 +361,11 @@
   /usr/x86_64-linux-gnu/include/bits/floatn-common.h \
   /usr/x86_64-linux-gnu/include/bits/floatn.h \
   /usr/x86_64-linux-gnu/include/bits/libc-header-start.h \
+  /usr/x86_64-linux-gnu/include/bits/local_lim.h \
   /usr/x86_64-linux-gnu/include/bits/locale.h \
   /usr/x86_64-linux-gnu/include/bits/long-double.h \
+  /usr/x86_64-linux-gnu/include/bits/posix1_lim.h \
+  /usr/x86_64-linux-gnu/include/bits/posix2_lim.h \
   /usr/x86_64-linux-gnu/include/bits/pthread_stack_min-dynamic.h \
   /usr/x86_64-linux-gnu/include/bits/pthreadtypes-arch.h \
   /usr/x86_64-linux-gnu/include/bits/pthreadtypes.h \
@@ -347,10 +411,12 @@
   /usr/x86_64-linux-gnu/include/bits/types/wint_t.h \
   /usr/x86_64-linux-gnu/include/bits/typesizes.h \
   /usr/x86_64-linux-gnu/include/bits/uintn-identity.h \
+  /usr/x86_64-linux-gnu/include/bits/uio_lim.h \
   /usr/x86_64-linux-gnu/include/bits/waitflags.h \
   /usr/x86_64-linux-gnu/include/bits/waitstatus.h \
   /usr/x86_64-linux-gnu/include/bits/wchar.h \
   /usr/x86_64-linux-gnu/include/bits/wordsize.h \
+  /usr/x86_64-linux-gnu/include/bits/xopen_lim.h \
   /usr/x86_64-linux-gnu/include/gnu/stubs-64.h \
   /usr/x86_64-linux-gnu/include/gnu/stubs.h \
   /usr/x86_64-linux-gnu/include/sys/cdefs.h \

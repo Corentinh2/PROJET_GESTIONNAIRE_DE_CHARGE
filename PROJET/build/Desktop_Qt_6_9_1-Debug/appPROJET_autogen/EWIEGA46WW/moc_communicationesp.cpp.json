@@ -1,10 +1,194 @@
 {
     "classes": [
         {
-            "className": "CommunicationESP",
-            "lineNumber": 6,
+            "className": "CommunicationEsp",
+            "lineNumber": 15,
+            "methods": [
+                {
+                    "access": "public",
+                    "index": 8,
+                    "name": "obtenirCalendrier",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "jours",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "start",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "end",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 9,
+                    "name": "ajouterCalendrier",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "id",
+                            "type": "int"
+                        }
+                    ],
+                    "index": 10,
+                    "name": "supprimerCalendrier",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "activer",
+                            "type": "bool"
+                        }
+                    ],
+                    "index": 11,
+                    "name": "marcheForcee",
+                    "returnType": "void"
+                }
+            ],
             "object": true,
-            "qualifiedClassName": "CommunicationESP",
+            "properties": [
+                {
+                    "constant": false,
+                    "designable": true,
+                    "final": false,
+                    "index": 0,
+                    "name": "activeBorne",
+                    "notify": "activeBorneChanged",
+                    "read": "activeBorne",
+                    "required": false,
+                    "scriptable": true,
+                    "stored": true,
+                    "type": "QString",
+                    "user": false,
+                    "write": "setActiveBorne"
+                },
+                {
+                    "constant": false,
+                    "designable": true,
+                    "final": false,
+                    "index": 1,
+                    "name": "activeVehicule",
+                    "notify": "activeVehiculeChanged",
+                    "read": "activeVehicule",
+                    "required": false,
+                    "scriptable": true,
+                    "stored": true,
+                    "type": "QString",
+                    "user": false,
+                    "write": "setActiveVehicule"
+                }
+            ],
+            "qualifiedClassName": "CommunicationEsp",
+            "signals": [
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "status",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 0,
+                    "name": "connectionStatusChanged",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "id",
+                            "type": "int"
+                        },
+                        {
+                            "name": "borne",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "vehicule",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "jours",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "start",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "end",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 1,
+                    "name": "calendrierRecu",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "type",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "message",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 2,
+                    "name": "alerteRecue",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 3,
+                    "name": "activeBorneChanged",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 4,
+                    "name": "activeVehiculeChanged",
+                    "returnType": "void"
+                }
+            ],
+            "slots": [
+                {
+                    "access": "private",
+                    "index": 5,
+                    "name": "onConnected",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "index": 6,
+                    "name": "onDisconnected",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "arguments": [
+                        {
+                            "name": "message",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 7,
+                    "name": "onTextMessageReceived",
+                    "returnType": "void"
+                }
+            ],
             "superClasses": [
                 {
                     "access": "public",

@@ -2,90 +2,18 @@
     {
         "classes": [
             {
-                "className": "CommunicationESP",
-                "lineNumber": 6,
-                "object": true,
-                "qualifiedClassName": "CommunicationESP",
-                "superClasses": [
-                    {
-                        "access": "public",
-                        "name": "QObject"
-                    }
-                ]
-            }
-        ],
-        "inputFile": "communicationesp.h",
-        "outputRevision": 69
-    },
-    {
-        "classes": [
-            {
-                "className": "CommunicationRaspi",
-                "lineNumber": 6,
-                "object": true,
-                "qualifiedClassName": "CommunicationRaspi",
-                "superClasses": [
-                    {
-                        "access": "public",
-                        "name": "QObject"
-                    }
-                ]
-            }
-        ],
-        "inputFile": "communicationraspi.h",
-        "outputRevision": 69
-    },
-    {
-        "classes": [
-            {
-                "className": "CommunicationTemp",
-                "lineNumber": 8,
+                "className": "CommunicationEsp",
+                "lineNumber": 15,
                 "methods": [
                     {
                         "access": "public",
-                        "index": 6,
-                        "name": "requestStationsList",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "index": 7,
-                        "name": "requestVehiclesList",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "name",
-                                "type": "QString"
-                            },
-                            {
-                                "name": "km",
-                                "type": "QString"
-                            }
-                        ],
-                        "index": 8,
-                        "name": "addVehicleToDb",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
                         "index": 9,
-                        "name": "requestSessionsHistory",
+                        "name": "obtenirCalendrier",
                         "returnType": "void"
                     },
                     {
                         "access": "public",
                         "arguments": [
-                            {
-                                "name": "borne",
-                                "type": "QString"
-                            },
-                            {
-                                "name": "vehicule",
-                                "type": "QString"
-                            },
                             {
                                 "name": "jours",
                                 "type": "QString"
@@ -100,12 +28,68 @@
                             }
                         ],
                         "index": 10,
-                        "name": "programmerCharge",
+                        "name": "ajouterCalendrier",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "id",
+                                "type": "int"
+                            }
+                        ],
+                        "index": 11,
+                        "name": "supprimerCalendrier",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "activer",
+                                "type": "bool"
+                            }
+                        ],
+                        "index": 12,
+                        "name": "marcheForcee",
                         "returnType": "void"
                     }
                 ],
                 "object": true,
-                "qualifiedClassName": "CommunicationTemp",
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "activeBorne",
+                        "notify": "activeBorneChanged",
+                        "read": "activeBorne",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false,
+                        "write": "setActiveBorne"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 1,
+                        "name": "activeVehicule",
+                        "notify": "activeVehiculeChanged",
+                        "read": "activeVehicule",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false,
+                        "write": "setActiveVehicule"
+                    }
+                ],
+                "qualifiedClassName": "CommunicationEsp",
                 "signals": [
                     {
                         "access": "public",
@@ -123,41 +107,9 @@
                         "access": "public",
                         "arguments": [
                             {
-                                "name": "name",
-                                "type": "QString"
+                                "name": "id",
+                                "type": "int"
                             },
-                            {
-                                "name": "kwh",
-                                "type": "QString"
-                            },
-                            {
-                                "name": "status",
-                                "type": "QString"
-                            }
-                        ],
-                        "index": 1,
-                        "name": "stationReceived",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "name",
-                                "type": "QString"
-                            },
-                            {
-                                "name": "km",
-                                "type": "QString"
-                            }
-                        ],
-                        "index": 2,
-                        "name": "vehicleReceived",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
                             {
                                 "name": "borne",
                                 "type": "QString"
@@ -179,16 +131,56 @@
                                 "type": "QString"
                             }
                         ],
+                        "index": 1,
+                        "name": "calendrierRecu",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "type",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "message",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 2,
+                        "name": "alerteRecue",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
                         "index": 3,
-                        "name": "sessionReceived",
+                        "name": "clearCalendriers",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 4,
+                        "name": "activeBorneChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 5,
+                        "name": "activeVehiculeChanged",
                         "returnType": "void"
                     }
                 ],
                 "slots": [
                     {
                         "access": "private",
-                        "index": 4,
+                        "index": 6,
                         "name": "onConnected",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 7,
+                        "name": "onDisconnected",
                         "returnType": "void"
                     },
                     {
@@ -196,11 +188,11 @@
                         "arguments": [
                             {
                                 "name": "message",
-                                "type": "QByteArray"
+                                "type": "QString"
                             }
                         ],
-                        "index": 5,
-                        "name": "onBinaryMessageReceived",
+                        "index": 8,
+                        "name": "onTextMessageReceived",
                         "returnType": "void"
                     }
                 ],
@@ -212,7 +204,151 @@
                 ]
             }
         ],
-        "inputFile": "communicationtemp.h",
+        "inputFile": "communicationesp.h",
+        "outputRevision": 69
+    },
+    {
+        "classes": [
+            {
+                "className": "CommunicationRaspi",
+                "lineNumber": 15,
+                "methods": [
+                    {
+                        "access": "public",
+                        "index": 6,
+                        "name": "obtenirStation",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 7,
+                        "name": "obtenirVehicule",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "name",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "km",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 8,
+                        "name": "ajouterVehicule",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "id",
+                                "type": "int"
+                            }
+                        ],
+                        "index": 9,
+                        "name": "supprimerVehicule",
+                        "returnType": "void"
+                    }
+                ],
+                "object": true,
+                "qualifiedClassName": "CommunicationRaspi",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "status",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 0,
+                        "name": "connectionStatusChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "id",
+                                "type": "int"
+                            },
+                            {
+                                "name": "name",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "kwh",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "status",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 1,
+                        "name": "stationRecue",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "id",
+                                "type": "int"
+                            },
+                            {
+                                "name": "name",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "km",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 2,
+                        "name": "vehiculeRecu",
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "private",
+                        "index": 3,
+                        "name": "onConnected",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 4,
+                        "name": "onDisconnected",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "arguments": [
+                            {
+                                "name": "message",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 5,
+                        "name": "onTextMessageReceived",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "communicationraspi.h",
         "outputRevision": 69
     }
 ]

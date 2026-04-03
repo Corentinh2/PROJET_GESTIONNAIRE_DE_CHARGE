@@ -5,59 +5,99 @@
                 "entries": [
                     {
                         "codegenSuccessful": false,
+                        "column": 5,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Functions without type annotations won't be compiled",
+                        "functionName": "getMileage",
+                        "line": 8
+                    },
+                    {
+                        "codegenSuccessful": false,
                         "column": 36,
-                        "durationMicroseconds": 994,
+                        "durationMicroseconds": 191,
                         "errorMessage": "Cannot access value for name window",
                         "functionName": "currentVehicleKm",
-                        "line": 10
+                        "line": 19
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 23,
-                        "durationMicroseconds": 115,
-                        "errorMessage": "",
-                        "functionName": "fill",
-                        "line": 13
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 31,
-                        "durationMicroseconds": 58,
+                        "durationMicroseconds": 116,
                         "errorMessage": "",
                         "functionName": "fill",
                         "line": 22
                     },
                     {
+                        "codegenSuccessful": false,
+                        "column": 25,
+                        "durationMicroseconds": 64,
+                        "errorMessage": "Cannot load property radius from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/KmPage.qml)::parent with type QQuickItem.",
+                        "functionName": "radius",
+                        "line": 47
+                    },
+                    {
                         "codegenSuccessful": true,
-                        "column": 85,
-                        "durationMicroseconds": 86,
+                        "column": 31,
+                        "durationMicroseconds": 76,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 45
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 31,
+                        "durationMicroseconds": 64,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 54
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 84,
                         "errorMessage": "",
                         "functionName": "alignment",
-                        "line": 23
+                        "line": 64
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 43,
+                        "durationMicroseconds": 55,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 67
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 30,
-                        "durationMicroseconds": 243,
+                        "column": 27,
+                        "durationMicroseconds": 241,
                         "errorMessage": "Cannot access value for name window",
                         "functionName": "text",
-                        "line": 24
+                        "line": 74
                     },
                     {
                         "codegenSuccessful": true,
-                        "column": 127,
-                        "durationMicroseconds": 78,
+                        "column": 39,
+                        "durationMicroseconds": 76,
                         "errorMessage": "",
                         "functionName": "alignment",
-                        "line": 24
+                        "line": 78
                     },
                     {
                         "codegenSuccessful": true,
-                        "column": 30,
-                        "durationMicroseconds": 196,
+                        "column": 27,
+                        "durationMicroseconds": 193,
                         "errorMessage": "",
                         "functionName": "text",
-                        "line": 25
+                        "line": 89
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 84,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 93
                     },
                     {
                         "codegenSuccessful": false,
@@ -65,15 +105,15 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find property \"inputMethodHints\".",
                         "functionName": "inputMethodHints",
-                        "line": 30
+                        "line": 99
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 30,
-                        "durationMicroseconds": 115,
+                        "durationMicroseconds": 123,
                         "errorMessage": "Cannot retrieve a non-object type by ID: kmInput",
                         "functionName": "visible",
-                        "line": 35
+                        "line": 104
                     },
                     {
                         "codegenSuccessful": false,
@@ -81,7 +121,7 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find signal \"clicked\".",
                         "functionName": "onClicked",
-                        "line": 50
+                        "line": 124
                     },
                     {
                         "codegenSuccessful": false,
@@ -89,7 +129,7 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find property \"enabled\".",
                         "functionName": "enabled",
-                        "line": 58
+                        "line": 130
                     },
                     {
                         "codegenSuccessful": false,
@@ -97,7 +137,7 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find signal \"clicked\".",
                         "functionName": "onClicked",
-                        "line": 59
+                        "line": 131
                     }
                 ],
                 "filePath": "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/KmPage.qml"

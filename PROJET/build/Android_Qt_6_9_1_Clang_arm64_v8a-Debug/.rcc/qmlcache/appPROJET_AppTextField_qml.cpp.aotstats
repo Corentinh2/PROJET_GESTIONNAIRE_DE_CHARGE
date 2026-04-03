@@ -5,11 +5,27 @@
                 "entries": [
                     {
                         "codegenSuccessful": false,
-                        "column": 23,
-                        "durationMicroseconds": 102,
+                        "column": 16,
+                        "durationMicroseconds": 124,
                         "errorMessage": "Cannot access value for name control",
                         "functionName": "color",
-                        "line": 11
+                        "line": 15
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 23,
+                        "durationMicroseconds": 41,
+                        "errorMessage": "Cannot access value for name control",
+                        "functionName": "width",
+                        "line": 17
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 23,
+                        "durationMicroseconds": 43,
+                        "errorMessage": "Cannot access value for name control",
+                        "functionName": "color",
+                        "line": 18
                     }
                 ],
                 "filePath": "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/AppTextField.qml"

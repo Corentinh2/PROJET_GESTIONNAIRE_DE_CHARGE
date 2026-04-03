@@ -38,10 +38,59 @@ template <> constexpr inline auto CommunicationRaspi::qt_create_metaobjectdata<q
 {
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
-        "CommunicationRaspi"
+        "CommunicationRaspi",
+        "connectionStatusChanged",
+        "",
+        "status",
+        "stationRecue",
+        "id",
+        "name",
+        "kwh",
+        "vehiculeRecu",
+        "km",
+        "onConnected",
+        "onDisconnected",
+        "onTextMessageReceived",
+        "message",
+        "obtenirStation",
+        "obtenirVehicule",
+        "ajouterVehicule",
+        "supprimerVehicule"
     };
 
     QtMocHelpers::UintData qt_methods {
+        // Signal 'connectionStatusChanged'
+        QtMocHelpers::SignalData<void(QString)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 3 },
+        }}),
+        // Signal 'stationRecue'
+        QtMocHelpers::SignalData<void(int, QString, QString, QString)>(4, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Int, 5 }, { QMetaType::QString, 6 }, { QMetaType::QString, 7 }, { QMetaType::QString, 3 },
+        }}),
+        // Signal 'vehiculeRecu'
+        QtMocHelpers::SignalData<void(int, QString, QString)>(8, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Int, 5 }, { QMetaType::QString, 6 }, { QMetaType::QString, 9 },
+        }}),
+        // Slot 'onConnected'
+        QtMocHelpers::SlotData<void()>(10, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onDisconnected'
+        QtMocHelpers::SlotData<void()>(11, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onTextMessageReceived'
+        QtMocHelpers::SlotData<void(const QString &)>(12, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 13 },
+        }}),
+        // Method 'obtenirStation'
+        QtMocHelpers::MethodData<void()>(14, 2, QMC::AccessPublic, QMetaType::Void),
+        // Method 'obtenirVehicule'
+        QtMocHelpers::MethodData<void()>(15, 2, QMC::AccessPublic, QMetaType::Void),
+        // Method 'ajouterVehicule'
+        QtMocHelpers::MethodData<void(const QString &, const QString &)>(16, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 6 }, { QMetaType::QString, 9 },
+        }}),
+        // Method 'supprimerVehicule'
+        QtMocHelpers::MethodData<void(int)>(17, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Int, 5 },
+        }}),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -63,10 +112,29 @@ Q_CONSTINIT const QMetaObject CommunicationRaspi::staticMetaObject = { {
 void CommunicationRaspi::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     auto *_t = static_cast<CommunicationRaspi *>(_o);
-    (void)_t;
-    (void)_c;
-    (void)_id;
-    (void)_a;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        switch (_id) {
+        case 0: _t->connectionStatusChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 1: _t->stationRecue((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[4]))); break;
+        case 2: _t->vehiculeRecu((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3]))); break;
+        case 3: _t->onConnected(); break;
+        case 4: _t->onDisconnected(); break;
+        case 5: _t->onTextMessageReceived((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 6: _t->obtenirStation(); break;
+        case 7: _t->obtenirVehicule(); break;
+        case 8: _t->ajouterVehicule((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 9: _t->supprimerVehicule((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        default: ;
+        }
+    }
+    if (_c == QMetaObject::IndexOfMethod) {
+        if (QtMocHelpers::indexOfMethod<void (CommunicationRaspi::*)(QString )>(_a, &CommunicationRaspi::connectionStatusChanged, 0))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (CommunicationRaspi::*)(int , QString , QString , QString )>(_a, &CommunicationRaspi::stationRecue, 1))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (CommunicationRaspi::*)(int , QString , QString )>(_a, &CommunicationRaspi::vehiculeRecu, 2))
+            return;
+    }
 }
 
 const QMetaObject *CommunicationRaspi::metaObject() const
@@ -85,6 +153,36 @@ void *CommunicationRaspi::qt_metacast(const char *_clname)
 int CommunicationRaspi::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QObject::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 10)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 10;
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 10)
+            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
+        _id -= 10;
+    }
     return _id;
+}
+
+// SIGNAL 0
+void CommunicationRaspi::connectionStatusChanged(QString _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
+}
+
+// SIGNAL 1
+void CommunicationRaspi::stationRecue(int _t1, QString _t2, QString _t3, QString _t4)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 1, nullptr, _t1, _t2, _t3, _t4);
+}
+
+// SIGNAL 2
+void CommunicationRaspi::vehiculeRecu(int _t1, QString _t2, QString _t3)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 2, nullptr, _t1, _t2, _t3);
 }
 QT_WARNING_POP

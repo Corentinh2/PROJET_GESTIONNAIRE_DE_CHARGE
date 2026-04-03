@@ -6,15 +6,15 @@
                     {
                         "codegenSuccessful": true,
                         "column": 23,
-                        "durationMicroseconds": 147,
+                        "durationMicroseconds": 155,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 10
+                        "line": 9
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 31,
-                        "durationMicroseconds": 96,
+                        "durationMicroseconds": 97,
                         "errorMessage": "",
                         "functionName": "alignment",
                         "line": 17
@@ -22,90 +22,162 @@
                     {
                         "codegenSuccessful": true,
                         "column": 35,
-                        "durationMicroseconds": 6147,
+                        "durationMicroseconds": 77,
                         "errorMessage": "",
                         "functionName": "alignment",
-                        "line": 22
+                        "line": 26
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 58,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 29
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 35,
-                        "durationMicroseconds": 118,
+                        "durationMicroseconds": 78,
                         "errorMessage": "",
                         "functionName": "alignment",
-                        "line": 27
+                        "line": 42
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 35,
+                        "durationMicroseconds": 77,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 49
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 20,
-                        "durationMicroseconds": 838,
+                        "durationMicroseconds": 3940,
                         "errorMessage": "Cannot access value for name stationsModelSource",
                         "functionName": "model",
-                        "line": 38
+                        "line": 74
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 24,
-                        "durationMicroseconds": 44,
+                        "durationMicroseconds": 60,
                         "errorMessage": "Cannot access value for name stationList",
                         "functionName": "width",
-                        "line": 41
+                        "line": 77
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 29,
+                        "durationMicroseconds": 72,
+                        "errorMessage": "Cannot load property radius from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/BootPage.qml)::parent with type QQuickItem.",
+                        "functionName": "radius",
+                        "line": 88
                     },
                     {
                         "codegenSuccessful": true,
-                        "column": 79,
-                        "durationMicroseconds": 170,
+                        "column": 35,
+                        "durationMicroseconds": 94,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 86
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 29,
+                        "durationMicroseconds": 64,
+                        "errorMessage": "Cannot load property radius from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/BootPage.qml)::parent with type QQuickItem.",
+                        "functionName": "radius",
+                        "line": 97
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 30,
+                        "durationMicroseconds": 165,
                         "errorMessage": "",
                         "functionName": "opacity",
-                        "line": 50
+                        "line": 99
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 35,
-                        "durationMicroseconds": 59,
+                        "durationMicroseconds": 56,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 50
+                        "line": 96
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 35,
-                        "durationMicroseconds": 57,
+                        "durationMicroseconds": 56,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 54
+                        "line": 103
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 43,
+                        "durationMicroseconds": 5631,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 114
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 47,
+                        "durationMicroseconds": 73,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 117
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 43,
+                        "durationMicroseconds": 79,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 125
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 38,
-                        "durationMicroseconds": 221,
+                        "column": 35,
+                        "durationMicroseconds": 252,
                         "errorMessage": "Cannot access value for name name",
                         "functionName": "text",
-                        "line": 60
+                        "line": 129
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 38,
-                        "durationMicroseconds": 189,
+                        "column": 35,
+                        "durationMicroseconds": 207,
                         "errorMessage": "Cannot access value for name kwh",
                         "functionName": "text",
-                        "line": 61
+                        "line": 136
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 43,
+                        "durationMicroseconds": 82,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 146
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 32,
-                        "durationMicroseconds": 5978,
-                        "errorMessage": "Cannot access value for name name",
+                        "durationMicroseconds": 543,
+                        "errorMessage": "Cannot access value for name window",
                         "functionName": "onClicked",
-                        "line": 69
+                        "line": 153
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 35,
-                        "durationMicroseconds": 112,
+                        "durationMicroseconds": 65,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 68
+                        "line": 152
                     }
                 ],
                 "filePath": "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/BootPage.qml"

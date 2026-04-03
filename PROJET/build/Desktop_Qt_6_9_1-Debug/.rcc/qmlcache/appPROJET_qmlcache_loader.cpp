@@ -12,13 +12,6 @@ namespace _qt_qml_PROJET_Main_qml {
         reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
     };
 }
-namespace _qt_qml_PROJET_logique_js { 
-    extern const unsigned char qmlData[];
-    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
-    const QQmlPrivate::CachedQmlUnit unit = {
-        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
-    };
-}
 namespace _qt_qml_PROJET_AppButton_qml { 
     extern const unsigned char qmlData[];
     extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
@@ -104,7 +97,6 @@ Q_GLOBAL_STATIC(Registry, unitRegistry)
 
 Registry::Registry() {
     resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/Main.qml"), &QmlCacheGeneratedCode::_qt_qml_PROJET_Main_qml::unit);
-    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/logique.js"), &QmlCacheGeneratedCode::_qt_qml_PROJET_logique_js::unit);
     resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/AppButton.qml"), &QmlCacheGeneratedCode::_qt_qml_PROJET_AppButton_qml::unit);
     resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/AppTextField.qml"), &QmlCacheGeneratedCode::_qt_qml_PROJET_AppTextField_qml::unit);
     resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/AppCard.qml"), &QmlCacheGeneratedCode::_qt_qml_PROJET_AppCard_qml::unit);

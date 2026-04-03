@@ -739,6 +739,7 @@
   /opt/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1/array \
   /opt/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1/atomic \
   /opt/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1/bit \
+  /opt/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1/cassert \
   /opt/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1/cctype \
   /opt/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1/cerrno \
   /opt/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1/chrono \
@@ -775,6 +776,7 @@
   /opt/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1/numeric \
   /opt/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1/optional \
   /opt/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1/ratio \
+  /opt/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1/set \
   /opt/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1/stdbool.h \
   /opt/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1/stddef.h \
   /opt/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1/stdexcept \
@@ -786,6 +788,7 @@
   /opt/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1/type_traits \
   /opt/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1/typeinfo \
   /opt/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1/unordered_map \
+  /opt/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1/unordered_set \
   /opt/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1/utility \
   /opt/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1/variant \
   /opt/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1/vector \
@@ -827,11 +830,20 @@
   /opt/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/wchar.h \
   /opt/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/wctype.h \
   /opt/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/xlocale.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/QFlags \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/QObject \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/QSharedDataPointer \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/QString \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/QUrl \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/QVariant \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/q17memory.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/q20functional.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/q20iterator.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/q20memory.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/q20type_traits.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/q20utility.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/q23utility.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/q26numeric.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qalgorithms.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qanystringview.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qarraydata.h \
@@ -846,6 +858,7 @@
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qbytearrayalgorithms.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qbytearraylist.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qbytearrayview.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qcalendar.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qchar.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qcompare.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qcompare_impl.h \
@@ -856,8 +869,12 @@
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qcontainerfwd.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qcontainerinfo.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qcontainertools_impl.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qcontiguouscache.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qcryptographichash.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qdarwinhelpers.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qdatastream.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qdatetime.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qdebug.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qexceptionhandling.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qflags.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qfloat16.h \
@@ -867,14 +884,18 @@
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qgenericatomic.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qglobal.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qglobalstatic.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qhash.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qhashfunctions.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qiodevice.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qiodevicebase.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qiterable.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qiterator.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qlatin1stringview.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qlist.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qlocale.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qlogging.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qmalloc.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qmap.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qmath.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qmetacontainer.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qmetatype.h \
@@ -891,6 +912,12 @@
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qrefcount.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qscopedpointer.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qscopeguard.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qset.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qshareddata.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qshareddata_impl.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qsharedpointer.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qsharedpointer_impl.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qspan.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qstdlibdetection.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qstring.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qstringalgorithms.h \
@@ -916,6 +943,7 @@
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qtdeprecationdefinitions.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qtdeprecationmarkers.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qtenvironmentvariables.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qtextstream.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qtformat_impl.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qtmetamacros.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qtnoop.h \
@@ -927,7 +955,34 @@
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qtversionchecks.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qtypeinfo.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qtypes.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qurl.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qutf8stringview.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qvariant.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qvarlengtharray.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qversiontagging.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qxptype_traits.h \
-  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qyieldcpu.h
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qyieldcpu.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtNetwork/QAbstractSocket \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtNetwork/QNetworkProxy \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtNetwork/QNetworkRequest \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtNetwork/QSslConfiguration \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtNetwork/QSslError \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtNetwork/qabstractsocket.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtNetwork/qhostaddress.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtNetwork/qhttpheaders.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtNetwork/qnetworkproxy.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtNetwork/qnetworkrequest.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtNetwork/qssl.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtNetwork/qsslcertificate.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtNetwork/qsslconfiguration.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtNetwork/qsslerror.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtNetwork/qsslsocket.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtNetwork/qtcpsocket.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtNetwork/qtnetwork-config.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtNetwork/qtnetworkexports.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtNetwork/qtnetworkglobal.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtWebSockets/QWebSocket \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtWebSockets/qtwebsocketsexports.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtWebSockets/qwebsocket.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtWebSockets/qwebsocketprotocol.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtWebSockets/qwebsockets_global.h

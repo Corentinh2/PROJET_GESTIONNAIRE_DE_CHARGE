@@ -9,95 +9,103 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Functions without type annotations won't be compiled",
                         "functionName": "formatTime",
-                        "line": 18
+                        "line": 15
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 22,
-                        "durationMicroseconds": 1015,
-                        "errorMessage": "Cannot generate efficient code for script lookup",
+                        "durationMicroseconds": 147,
+                        "errorMessage": "Cannot access value for name window",
                         "functionName": "onTriggered",
-                        "line": 14
+                        "line": 12
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 23,
-                        "durationMicroseconds": 75,
+                        "durationMicroseconds": 126,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 25
+                        "line": 22
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 42,
+                        "durationMicroseconds": 70,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 33
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 28,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find signal \"clicked\".",
+                        "column": 62,
+                        "durationMicroseconds": 250,
+                        "errorMessage": "Cannot access value for name stackView",
                         "functionName": "onClicked",
+                        "line": 34
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 43,
+                        "durationMicroseconds": 60,
+                        "errorMessage": "",
+                        "functionName": "fill",
                         "line": 34
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 20,
-                        "durationMicroseconds": 114,
+                        "durationMicroseconds": 128,
                         "errorMessage": "Cannot access value for name currentStatus",
                         "functionName": "color",
                         "line": 49
                     },
                     {
-                        "codegenSuccessful": false,
-                        "column": 27,
-                        "durationMicroseconds": 89,
-                        "errorMessage": "Cannot access value for name currentStatus",
-                        "functionName": "color",
-                        "line": 50
-                    },
-                    {
                         "codegenSuccessful": true,
                         "column": 35,
-                        "durationMicroseconds": 61,
+                        "durationMicroseconds": 59,
                         "errorMessage": "",
                         "functionName": "centerIn",
-                        "line": 54
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 27,
-                        "durationMicroseconds": 45,
-                        "errorMessage": "Cannot access value for name currentStatus",
-                        "functionName": "text",
                         "line": 56
                     },
                     {
-                        "codegenSuccessful": true,
+                        "codegenSuccessful": false,
+                        "column": 27,
+                        "durationMicroseconds": 43,
+                        "errorMessage": "Cannot access value for name currentStatus",
+                        "functionName": "text",
+                        "line": 60
+                    },
+                    {
+                        "codegenSuccessful": false,
                         "column": 28,
-                        "durationMicroseconds": 133,
-                        "errorMessage": "",
+                        "durationMicroseconds": 115,
+                        "errorMessage": "Cannot access value for name currentStatus",
                         "functionName": "color",
-                        "line": 58
+                        "line": 63
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 39,
-                        "durationMicroseconds": 83,
+                        "durationMicroseconds": 93,
                         "errorMessage": "",
                         "functionName": "alignment",
-                        "line": 59
+                        "line": 62
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 27,
-                        "durationMicroseconds": 311,
+                        "durationMicroseconds": 243,
                         "errorMessage": "Cannot access value for name window",
                         "functionName": "text",
-                        "line": 62
+                        "line": 71
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 39,
-                        "durationMicroseconds": 80,
+                        "durationMicroseconds": 79,
                         "errorMessage": "",
                         "functionName": "alignment",
-                        "line": 64
+                        "line": 73
                     },
                     {
                         "codegenSuccessful": false,
@@ -105,7 +113,7 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find property \"text\".",
                         "functionName": "text",
-                        "line": 71
+                        "line": 80
                     },
                     {
                         "codegenSuccessful": false,
@@ -113,7 +121,7 @@
                         "durationMicroseconds": 33,
                         "errorMessage": "Cannot access value for name currentStatus",
                         "functionName": "isPrimary",
-                        "line": 72
+                        "line": 81
                     },
                     {
                         "codegenSuccessful": false,
@@ -121,15 +129,7 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find signal \"clicked\".",
                         "functionName": "onClicked",
-                        "line": 78
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 24,
-                        "durationMicroseconds": 59,
-                        "errorMessage": "Cannot access value for name statusRoot",
-                        "functionName": "color",
-                        "line": 75
+                        "line": 84
                     },
                     {
                         "codegenSuccessful": false,
@@ -137,71 +137,87 @@
                         "durationMicroseconds": 33,
                         "errorMessage": "Cannot access value for name currentStatus",
                         "functionName": "visible",
-                        "line": 88
+                        "line": 140
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 25,
+                        "durationMicroseconds": 67,
+                        "errorMessage": "Cannot load property radius from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/StatusPage.qml)::parent with type QQuickItem.",
+                        "functionName": "radius",
+                        "line": 144
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 31,
-                        "durationMicroseconds": 59,
+                        "durationMicroseconds": 58,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 91
+                        "line": 143
                     },
                     {
                         "codegenSuccessful": true,
-                        "column": 65,
-                        "durationMicroseconds": 77,
+                        "column": 31,
+                        "durationMicroseconds": 55,
                         "errorMessage": "",
-                        "functionName": "alignment",
-                        "line": 95
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 27,
-                        "durationMicroseconds": 521,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "text",
-                        "line": 98
+                        "functionName": "fill",
+                        "line": 148
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 39,
-                        "durationMicroseconds": 79,
+                        "durationMicroseconds": 78,
                         "errorMessage": "",
                         "functionName": "alignment",
-                        "line": 100
+                        "line": 154
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 38,
-                        "durationMicroseconds": 243,
+                        "column": 27,
+                        "durationMicroseconds": 517,
                         "errorMessage": "Cannot access value for name window",
                         "functionName": "text",
-                        "line": 109
+                        "line": 159
                     },
                     {
                         "codegenSuccessful": true,
-                        "column": 43,
-                        "durationMicroseconds": 79,
+                        "column": 39,
+                        "durationMicroseconds": 86,
                         "errorMessage": "",
                         "functionName": "alignment",
-                        "line": 115
+                        "line": 161
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 38,
-                        "durationMicroseconds": 252,
+                        "column": 35,
+                        "durationMicroseconds": 261,
                         "errorMessage": "Cannot access value for name window",
                         "functionName": "text",
-                        "line": 117
+                        "line": 176
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 55,
+                        "durationMicroseconds": 81,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 184
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 35,
+                        "durationMicroseconds": 248,
+                        "errorMessage": "Cannot access value for name window",
+                        "functionName": "text",
+                        "line": 187
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 22,
-                        "durationMicroseconds": 34,
+                        "durationMicroseconds": 38,
                         "errorMessage": "Cannot access value for name currentStatus",
                         "functionName": "visible",
-                        "line": 128
+                        "line": 199
                     }
                 ],
                 "filePath": "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/StatusPage.qml"

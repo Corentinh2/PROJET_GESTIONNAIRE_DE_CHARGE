@@ -5,6 +5,7 @@
 #include <QtWebSockets/QWebSocketServer>
 #include <QtWebSockets/QWebSocket>
 #include <QList>
+#include <QMap>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,14 +21,16 @@ public:
 
 private slots:
     void onNewConnection();
-    // NOUVEAU : On utilise QByteArray pour le binaire
-    void processBinaryMessage(QByteArray message);
+    void processTextMessage(const QString &message);
     void socketDisconnected();
 
 private:
     Ui::MainWindow *ui;
     QWebSocketServer *m_pWebSocketServer;
     QList<QWebSocket *> m_clients;
+
+    // Identification des clients : socket → "raspi" ou "esp"
+    QMap<QWebSocket *, QString> m_clientRoles;
 };
 
 #endif // MAINWINDOW_H

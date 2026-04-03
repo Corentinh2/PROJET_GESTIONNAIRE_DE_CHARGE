@@ -4,80 +4,125 @@ import QtQuick.Controls 2.15
 
 Item {
     id: settingsRoot
-    // 1. AUCUNE ANCRE ICI (C'est le StackView qui donne la taille à cet Item)
 
     ColumnLayout {
-        // 2. IL FAUT REMETTRE L'ANCRE ICI (Pour que la colonne remplisse l'Item)
         anchors.fill: parent
         anchors.margins: 20
-        spacing: 25
+        spacing: 20
 
-        // En-tête avec bouton retour
+        // En-tête
         RowLayout {
             Layout.fillWidth: true
-            RoundButton {
-                text: "←"
-                onClicked: stackView.pop() // Retour au Dashboard
+            spacing: 10
+
+            Rectangle {
+                width: 36; height: 36; radius: 18
+                color: "#F5F5F5"
+                Text { anchors.centerIn: parent; text: "←"; font.pixelSize: 16; color: "#546E7A" }
+                MouseArea { anchors.fill: parent; onClicked: stackView.pop() }
             }
+
             Text {
-                text: "Paramètres Globaux"
+                text: "Paramètres"
                 font.pixelSize: 22
                 font.bold: true
-                Layout.leftMargin: 15
+                color: "#263238"
             }
         }
 
-        // Zone de saisie stylisée dans un Rectangle blanc
+        // Carte paramètres
         Rectangle {
             Layout.fillWidth: true
-            Layout.preferredHeight: 220
-            radius: 12
+            Layout.preferredHeight: 240
+            radius: 16
             color: "white"
-            border.color: "#EEE"
+            border.color: "#EEEEEE"
             border.width: 1
+
+            // Ombre
+            Rectangle {
+                anchors.fill: parent
+                anchors.topMargin: 3
+                radius: parent.radius
+                color: "#000000"
+                opacity: 0.04
+                z: -1
+            }
 
             ColumnLayout {
                 anchors.fill: parent
                 anchors.margins: 20
-                spacing: 15
+                spacing: 16
 
-                // Paramètre 1 :
-                //Prix a remplacer par un prix fixe défini par le prix du marché actuel
+                // Paramètre 1
                 ColumnLayout {
                     Layout.fillWidth: true
-                    spacing: 5
-                    Text { text: "Prix de l'électricité (€/kWh) :"; font.bold: true; color: "#555" }
-                    // Utilisation de ton composant personnalisé
+                    spacing: 6
+
+                    Text {
+                        text: "Prix de l'électricité"
+                        font.bold: true
+                        font.pixelSize: 14
+                        color: "#263238"
+                    }
+
+                    Text {
+                        text: "Tarif en €/kWh"
+                        font.pixelSize: 11
+                        color: "#90A4AE"
+                    }
+
                     AppTextField {
                         id: costInput
-                        text: window.userCostPerKwh.toFixed(2) // Affichera 0.16 au chargement
+                        text: window.userCostPerKwh.toFixed(2)
                         placeholderText: "0.16"
                         inputMethodHints: Qt.ImhFormattedNumbersOnly
+                        Layout.fillWidth: true
                     }
                 }
 
-                // Paramètre 2 : Puissance
-                // definir la puissance souscrite
+                // Séparateur
+                Rectangle {
+                    Layout.fillWidth: true
+                    height: 1
+                    color: "#EEEEEE"
+                }
+
+                // Paramètre 2
                 ColumnLayout {
                     Layout.fillWidth: true
-                    spacing: 5
-                    Text { text: "Puissance de simulation (kW) :"; font.bold: true; color: "#555" }
+                    spacing: 6
+
+                    Text {
+                        text: "Puissance souscrite"
+                        font.bold: true
+                        font.pixelSize: 14
+                        color: "#263238"
+                    }
+
+                    Text {
+                        text: "En kilowatts (kW)"
+                        font.pixelSize: 11
+                        color: "#90A4AE"
+                    }
+
                     AppTextField {
                         id: powerInput
                         text: window.userMaxPower.toString()
                         placeholderText: "Ex: 12"
                         inputMethodHints: Qt.ImhDigitsOnly
+                        Layout.fillWidth: true
                     }
                 }
             }
         }
 
-        Item { Layout.fillHeight: true } // Espaceur pour pousser les boutons vers le bas
+        Item { Layout.fillHeight: true }
 
-        // Boutons d'action
+        // Boutons
         RowLayout {
             Layout.fillWidth: true
-            spacing: 15
+            spacing: 12
 
             AppButton {
                 text: "Annuler"
@@ -90,20 +135,14 @@ Item {
                 text: "Sauvegarder"
                 Layout.fillWidth: true
                 onClicked: {
-                    // Logique de sauvegarde : on convertit le texte en nombres
-                    // Remplacement de la virgule par un point pour le parseFloat
                     var newCost = parseFloat(costInput.text.replace(",", "."));
                     var newPower = parseInt(powerInput.text);
-
-                    // Vérification sommaire et mise à jour des propriétés globales du Main
                     if (!isNaN(newCost) && newCost > 0) {
                         window.userCostPerKwh = newCost;
                     }
                     if (!isNaN(newPower) && newPower > 0) {
                         window.userMaxPower = newPower;
                     }
-
-                    // Retour automatique au Dashboard
                     stackView.pop();
                 }
             }

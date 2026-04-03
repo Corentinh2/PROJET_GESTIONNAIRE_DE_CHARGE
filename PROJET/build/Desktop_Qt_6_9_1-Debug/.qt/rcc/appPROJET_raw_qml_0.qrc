@@ -1,7 +1,6 @@
 <RCC>
   <qresource prefix="/qt/qml/PROJET/">
     <file alias="Main.qml">/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/Main.qml</file>
-    <file alias="logique.js">/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/logique.js</file>
     <file alias="AppButton.qml">/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/AppButton.qml</file>
     <file alias="AppTextField.qml">/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/AppTextField.qml</file>
     <file alias="AppCard.qml">/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/AppCard.qml</file>

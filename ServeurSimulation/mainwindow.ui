@@ -17,8 +17,8 @@
    <widget class="QListWidget" name="listVehicules">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>120</y>
+      <x>110</x>
+      <y>270</y>
       <width>256</width>
       <height>192</height>
      </rect>
@@ -27,9 +27,9 @@
    <widget class="QListWidget" name="listSessionsCamille">
     <property name="geometry">
      <rect>
-      <x>470</x>
+      <x>75</x>
       <y>30</y>
-      <width>256</width>
+      <width>651</width>
       <height>192</height>
      </rect>
     </property>
