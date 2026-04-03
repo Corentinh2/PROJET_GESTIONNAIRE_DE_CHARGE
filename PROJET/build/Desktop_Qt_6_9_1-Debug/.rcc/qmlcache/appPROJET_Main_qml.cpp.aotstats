@@ -5,35 +5,51 @@
                 "entries": [
                     {
                         "codegenSuccessful": false,
+                        "column": 29,
+                        "durationMicroseconds": 133,
+                        "errorMessage": "Cannot access value for name commEsp",
+                        "functionName": "onActiveStationChanged",
+                        "line": 22
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 31,
+                        "durationMicroseconds": 108,
+                        "errorMessage": "Cannot access value for name commEsp",
+                        "functionName": "onSelectedVehicleChanged",
+                        "line": 23
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 5,
+                        "durationMicroseconds": 938,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: window",
+                        "functionName": "getSelectedStationStatus",
+                        "line": 36
+                    },
+                    {
+                        "codegenSuccessful": false,
                         "column": 18,
-                        "durationMicroseconds": 4046,
+                        "durationMicroseconds": 104,
                         "errorMessage": "Cannot retrieve a non-object type by ID: window",
                         "functionName": "running",
-                        "line": 45
+                        "line": 58
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 22,
-                        "durationMicroseconds": 121,
+                        "durationMicroseconds": 126,
                         "errorMessage": "Cannot retrieve a non-object type by ID: window",
                         "functionName": "onTriggered",
-                        "line": 47
+                        "line": 60
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 23,
-                        "durationMicroseconds": 112,
+                        "durationMicroseconds": 109,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 59
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 26,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find property \"initialItem\".",
-                        "functionName": "initialItem",
-                        "line": 76
+                        "line": 71
                     },
                     {
                         "codegenSuccessful": false,
@@ -41,47 +57,63 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find property \"fill\".",
                         "functionName": "fill",
-                        "line": 69
+                        "line": 81
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 17,
-                        "durationMicroseconds": 70,
-                        "errorMessage": "Cannot access value for name commTemp",
+                        "durationMicroseconds": 64,
+                        "errorMessage": "Cannot access value for name commRaspi",
                         "functionName": "target",
-                        "line": 93
+                        "line": 95
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 9,
                         "durationMicroseconds": 0,
                         "errorMessage": "Functions without type annotations won't be compiled",
-                        "functionName": "onVehicleReceived",
-                        "line": 96
+                        "functionName": "onStationRecue",
+                        "line": 97
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 9,
                         "durationMicroseconds": 0,
                         "errorMessage": "Functions without type annotations won't be compiled",
-                        "functionName": "onStationReceived",
-                        "line": 104
+                        "functionName": "onVehiculeRecu",
+                        "line": 106
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 17,
+                        "durationMicroseconds": 77,
+                        "errorMessage": "Cannot access value for name commEsp",
+                        "functionName": "target",
+                        "line": 119
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 9,
                         "durationMicroseconds": 0,
                         "errorMessage": "Functions without type annotations won't be compiled",
-                        "functionName": "onSessionReceived",
-                        "line": 113
+                        "functionName": "onCalendrierRecu",
+                        "line": 121
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 9,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Functions without type annotations won't be compiled",
+                        "functionName": "onAlerteRecue",
+                        "line": 140
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 28,
-                        "durationMicroseconds": 150,
+                        "durationMicroseconds": 143,
                         "errorMessage": "",
                         "functionName": "onCompleted",
-                        "line": 133
+                        "line": 149
                     }
                 ],
                 "filePath": "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/Main.qml"

@@ -3,7 +3,6 @@
 --resource
 /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.qt/rcc/appPROJET_raw_qml_0.qrc
 /qt/qml/PROJET/Main.qml
-/qt/qml/PROJET/logique.js
 /qt/qml/PROJET/AppButton.qml
 /qt/qml/PROJET/AppTextField.qml
 /qt/qml/PROJET/AppCard.qml

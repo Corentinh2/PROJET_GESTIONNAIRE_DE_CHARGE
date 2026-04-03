@@ -1011,12 +1011,6 @@
 			"MU",
 			"EWIEGA46WW/moc_communicationraspi.cpp",
 			null
-		],
-		[
-			"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/communicationtemp.h",
-			"MU",
-			"EWIEGA46WW/moc_communicationtemp.cpp",
-			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -1106,7 +1100,6 @@
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_SettingsPage_qml.cpp",
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_StatusPage_qml.cpp",
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_VehiculesPage_qml.cpp",
-		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_logique_js.cpp",
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_qmlcache_loader.cpp",
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/appprojet_qmltyperegistrations.cpp"
 	],
@@ -1127,11 +1120,6 @@
 		],
 		[
 			"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/communicationraspi.cpp",
-			"MU",
-			null
-		],
-		[
-			"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/communicationtemp.cpp",
 			"MU",
 			null
 		],
@@ -1158,7 +1146,6 @@
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_SettingsPage_qml.cpp",
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_StatusPage_qml.cpp",
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_VehiculesPage_qml.cpp",
-		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_logique_js.cpp",
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_qmlcache_loader.cpp",
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/appprojet_qmltyperegistrations.cpp"
 	],

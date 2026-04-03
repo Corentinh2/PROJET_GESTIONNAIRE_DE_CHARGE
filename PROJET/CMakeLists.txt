@@ -21,12 +21,12 @@ qt_add_qml_module(appPROJET
     QML_FILES
         Main.qml
     SOURCES
-        communicationtemp.h communicationtemp.cpp
+        # communicationtemp.h communicationtemp.cpp
         communicationesp.h communicationesp.cpp
         communicationraspi.h communicationraspi.cpp
         RESOURCES
         RESOURCES
-        QML_FILES logique.js
+        QML_FILES
         QML_FILES AppButton.qml
         QML_FILES AppTextField.qml
         QML_FILES AppCard.qml

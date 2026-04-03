@@ -623,18 +623,6 @@
 				"parent" : 50
 			},
 			{
-				"command" : 25,
-				"file" : 10,
-				"line" : 3205,
-				"parent" : 50
-			},
-			{
-				"command" : 25,
-				"file" : 10,
-				"line" : 3398,
-				"parent" : 50
-			},
-			{
 				"command" : 29,
 				"file" : 10,
 				"line" : 3519,
@@ -644,19 +632,19 @@
 				"command" : 28,
 				"file" : 0,
 				"line" : 401,
-				"parent" : 99
+				"parent" : 97
 			},
 			{
 				"command" : 27,
 				"file" : 0,
 				"line" : 2528,
-				"parent" : 100
+				"parent" : 98
 			},
 			{
 				"command" : 25,
 				"file" : 0,
 				"line" : 2072,
-				"parent" : 101
+				"parent" : 99
 			},
 			{
 				"command" : 31,
@@ -668,7 +656,7 @@
 				"command" : 25,
 				"file" : 0,
 				"line" : 2197,
-				"parent" : 103
+				"parent" : 101
 			}
 		]
 	},
@@ -838,7 +826,7 @@
 				6,
 				8,
 				10,
-				12,
+				11,
 				13,
 				15,
 				17,
@@ -849,9 +837,7 @@
 				27,
 				29,
 				31,
-				33,
-				35,
-				36
+				32
 			]
 		}
 	],
@@ -992,7 +978,8 @@
 				2,
 				3,
 				4,
-				12,
+				10,
+				11,
 				13,
 				15,
 				17,
@@ -1003,23 +990,21 @@
 				27,
 				29,
 				31,
+				32,
 				33,
+				34,
 				35,
-				36,
-				37,
-				38,
-				39,
-				44,
+				40,
+				59,
+				60,
+				61,
+				62,
+				63,
 				64,
 				65,
 				66,
 				67,
-				68,
-				69,
-				70,
-				71,
-				72,
-				73
+				68
 			]
 		},
 		{
@@ -1029,8 +1014,8 @@
 				1,
 				6,
 				8,
-				10,
-				11,
+				9,
+				12,
 				14,
 				16,
 				18,
@@ -1039,9 +1024,7 @@
 				24,
 				26,
 				28,
-				30,
-				32,
-				34
+				30
 			]
 		},
 		{
@@ -1049,24 +1032,27 @@
 			"sourceIndexes" : 
 			[
 				5,
-				7,
-				9
+				7
 			]
 		},
 		{
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				40,
-				41,
-				42,
-				43
+				36,
+				37,
+				38,
+				39
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
+				41,
+				42,
+				43,
+				44,
 				45,
 				46,
 				47,
@@ -1080,12 +1066,7 @@
 				55,
 				56,
 				57,
-				58,
-				59,
-				60,
-				61,
-				62,
-				63
+				58
 			]
 		}
 	],
@@ -1123,17 +1104,6 @@
 			"isGenerated" : true,
 			"path" : "build/Desktop_Qt_6_9_1-Debug/.qt/rcc/qrc_qmake_PROJET.cpp",
 			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 72,
-			"path" : "communicationtemp.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 72,
-			"compileGroupIndex" : 0,
-			"path" : "communicationtemp.cpp",
-			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 72,
@@ -1178,178 +1148,166 @@
 		},
 		{
 			"backtrace" : 77,
-			"path" : "logique.js",
+			"path" : "AppButton.qml",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 78,
 			"compileGroupIndex" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_9_1-Debug/.rcc/qmlcache/appPROJET_logique_js.cpp",
+			"path" : "build/Desktop_Qt_6_9_1-Debug/.rcc/qmlcache/appPROJET_AppButton_qml.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 79,
-			"path" : "AppButton.qml",
+			"path" : "AppTextField.qml",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 80,
 			"compileGroupIndex" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_9_1-Debug/.rcc/qmlcache/appPROJET_AppButton_qml.cpp",
+			"path" : "build/Desktop_Qt_6_9_1-Debug/.rcc/qmlcache/appPROJET_AppTextField_qml.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 81,
-			"path" : "AppTextField.qml",
+			"path" : "AppCard.qml",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 82,
 			"compileGroupIndex" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_9_1-Debug/.rcc/qmlcache/appPROJET_AppTextField_qml.cpp",
+			"path" : "build/Desktop_Qt_6_9_1-Debug/.rcc/qmlcache/appPROJET_AppCard_qml.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 83,
-			"path" : "AppCard.qml",
+			"path" : "VehiculesPage.qml",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 84,
 			"compileGroupIndex" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_9_1-Debug/.rcc/qmlcache/appPROJET_AppCard_qml.cpp",
+			"path" : "build/Desktop_Qt_6_9_1-Debug/.rcc/qmlcache/appPROJET_VehiculesPage_qml.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 85,
-			"path" : "VehiculesPage.qml",
+			"path" : "BootPage.qml",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 86,
 			"compileGroupIndex" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_9_1-Debug/.rcc/qmlcache/appPROJET_VehiculesPage_qml.cpp",
+			"path" : "build/Desktop_Qt_6_9_1-Debug/.rcc/qmlcache/appPROJET_BootPage_qml.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 87,
-			"path" : "BootPage.qml",
+			"path" : "StatusPage.qml",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 88,
 			"compileGroupIndex" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_9_1-Debug/.rcc/qmlcache/appPROJET_BootPage_qml.cpp",
+			"path" : "build/Desktop_Qt_6_9_1-Debug/.rcc/qmlcache/appPROJET_StatusPage_qml.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 89,
-			"path" : "StatusPage.qml",
+			"path" : "DashboardPage.qml",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 90,
 			"compileGroupIndex" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_9_1-Debug/.rcc/qmlcache/appPROJET_StatusPage_qml.cpp",
+			"path" : "build/Desktop_Qt_6_9_1-Debug/.rcc/qmlcache/appPROJET_DashboardPage_qml.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 91,
-			"path" : "DashboardPage.qml",
+			"path" : "SettingsPage.qml",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 92,
 			"compileGroupIndex" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_9_1-Debug/.rcc/qmlcache/appPROJET_DashboardPage_qml.cpp",
+			"path" : "build/Desktop_Qt_6_9_1-Debug/.rcc/qmlcache/appPROJET_SettingsPage_qml.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 93,
-			"path" : "SettingsPage.qml",
+			"path" : "SessionsPage.qml",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 94,
 			"compileGroupIndex" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_9_1-Debug/.rcc/qmlcache/appPROJET_SettingsPage_qml.cpp",
+			"path" : "build/Desktop_Qt_6_9_1-Debug/.rcc/qmlcache/appPROJET_SessionsPage_qml.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 95,
-			"path" : "SessionsPage.qml",
+			"path" : "KmPage.qml",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 96,
 			"compileGroupIndex" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_9_1-Debug/.rcc/qmlcache/appPROJET_SessionsPage_qml.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 97,
-			"path" : "KmPage.qml",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 98,
-			"compileGroupIndex" : 0,
-			"isGenerated" : true,
 			"path" : "build/Desktop_Qt_6_9_1-Debug/.rcc/qmlcache/appPROJET_KmPage_qml.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
-			"backtrace" : 102,
+			"backtrace" : 100,
 			"compileGroupIndex" : 0,
 			"isGenerated" : true,
 			"path" : "build/Desktop_Qt_6_9_1-Debug/.qt/rcc/qrc_appPROJET_raw_qml_0.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
-			"backtrace" : 104,
+			"backtrace" : 102,
 			"isGenerated" : true,
 			"path" : "build/Desktop_Qt_6_9_1-Debug/.qt/rcc/qmake_PROJET.qrc",
 			"sourceGroupIndex" : 0
 		},
 		{
-			"backtrace" : 104,
+			"backtrace" : 102,
 			"isGenerated" : true,
 			"path" : "build/Desktop_Qt_6_9_1-Debug/PROJET/qmldir",
 			"sourceGroupIndex" : 0
 		},
 		{
-			"backtrace" : 104,
+			"backtrace" : 102,
 			"isGenerated" : true,
 			"path" : "build/Desktop_Qt_6_9_1-Debug/.qt/rcc/appPROJET_raw_qml_0.qrc",
 			"sourceGroupIndex" : 0
 		},
 		{
-			"backtrace" : 104,
+			"backtrace" : 102,
 			"path" : "android/AndroidManifest.xml",
 			"sourceGroupIndex" : 3
 		},
 		{
-			"backtrace" : 104,
+			"backtrace" : 102,
 			"path" : "android/build.gradle",
 			"sourceGroupIndex" : 3
 		},
 		{
-			"backtrace" : 104,
+			"backtrace" : 102,
 			"path" : "android/res/values/libs.xml",
 			"sourceGroupIndex" : 3
 		},
 		{
-			"backtrace" : 104,
+			"backtrace" : 102,
 			"path" : "android/res/xml/qtprovider_paths.xml",
 			"sourceGroupIndex" : 3
 		},
@@ -1387,12 +1345,6 @@
 			"backtrace" : 0,
 			"isGenerated" : true,
 			"path" : "build/Desktop_Qt_6_9_1-Debug/.rcc/qmlcache/appPROJET_Main_qml.cpp.rule",
-			"sourceGroupIndex" : 4
-		},
-		{
-			"backtrace" : 0,
-			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_9_1-Debug/.rcc/qmlcache/appPROJET_logique_js.cpp.rule",
 			"sourceGroupIndex" : 4
 		},
 		{

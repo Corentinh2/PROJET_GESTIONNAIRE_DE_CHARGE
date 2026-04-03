@@ -2,120 +2,131 @@ import QtQuick 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 
-// Importation de la logique JavaScript
-import "logique.js" as Logique
-
 ApplicationWindow {
     id: window
 
-    // --- FORMAT ET APPARENCE ---
     width: 360
     height: 720
     visible: true
     title: "Gestionnaire de charge"
-    color: "#1E1E1E" // Couleur de la "coque" du téléphone
+    color: "#CFD8DC"
     font.family: "Segoe UI"
 
-    // --- PROPRIÉTÉS GLOBALES (Accessibles par toutes les pages) ---
-    property string activeStation: ""      // Borne choisie
-    property string selectedVehicle: ""    // Véhicule pour la session
-    property bool isBookingFlow: false     // État du tunnel de réservation
+    // --- PROPRIÉTÉS GLOBALES ---
+    property string activeStation: ""
+    property string selectedVehicle: ""
+    property bool isBookingFlow: false
+    property int selectedMileage: 0
+
+    // Synchronisation borne/véhicule avec commEsp
+    onActiveStationChanged: commEsp.activeBorne = activeStation
+    onSelectedVehicleChanged: commEsp.activeVehicule = selectedVehicle
 
     property string bookingDays: ""
     property string bookingStart: ""
     property string bookingEnd: ""
 
-    // Paramètres utilisateur
     property double userCostPerKwh: 0.16
     property int userMaxPower: 12
 
-    // Variables de session (Temps réel)
     property int sessionDurationSeconds: 0
     property double sessionEnergyKwh: 0.0
     property double sessionCostEuro: 0.0
 
-    // --- MODÈLES DE DONNÉES (Tes BDD en mémoire) ---
+    function getSelectedStationStatus() {
+        var status = "Inconnu";
+        for (var i = 0; i < stationsModelSource.count; i++) {
+            var item = stationsModelSource.get(i);
+            if (item.name === window.activeStation) {
+                status = item.status;
+            }
+        }
+        return status;
+    }
+
+    // --- MODÈLES DE DONNÉES ---
     ListModel { id: notificationModel }
     ListModel { id: sessionsModel }
     ListModel { id: vehiclesModel }
     ListModel { id: stationsModelSource }
 
-    // --- MOTEUR DE SIMULATION DE CHARGE ---
+    // --- MOTEUR DE SIMULATION ---
     Timer {
         id: globalChargingTimer
         interval: 1000
         repeat: true
-        // On tourne si une borne est sélectionnée et qu'elle est en état "En Charge"
-        running: (window.activeStation !== "") && (Logique.getSelectedStationStatus() === "En Charge")
+        running: (window.activeStation !== "") && (window.getSelectedStationStatus() === "En Charge")
 
         onTriggered: {
             window.sessionDurationSeconds += 1;
-            // Calcul : Puissance (kW) / 3600 = Énergie ajoutée en 1 seconde
             var energyAdded = window.userMaxPower / 3600.0;
             window.sessionEnergyKwh += energyAdded;
             window.sessionCostEuro = window.sessionEnergyKwh * window.userCostPerKwh;
         }
     }
 
-    // --- STRUCTURE VISUELLE (Le téléphone) ---
+    // --- STRUCTURE VISUELLE ---
     Rectangle {
         id: appFrame
         anchors.fill: parent
-        anchors.margins: 2
-        radius: 30
-        color: "#F4F6F9" // Fond de l'écran du téléphone
-        border.color: "#000000"
-        border.width: 5
+        anchors.margins: 3
+        radius: 28
+        color: "#F5F7FA"
+        border.color: "#B0BEC5"
+        border.width: 3
         clip: true
 
         StackView {
             id: stackView
             anchors.fill: parent
-            anchors.topMargin: 15
+            anchors.topMargin: 14
             anchors.bottomMargin: 10
-            anchors.leftMargin: 8
-            anchors.rightMargin: 8
+            anchors.leftMargin: 10
+            anchors.rightMargin: 10
 
-            // On démarre sur la page de boot (sélection de borne)
-            initialItem: bootPage
+            initialItem: "BootPage.qml"
         }
     }
 
-    // --- DÉFINITION DES PAGES (Appel des fichiers externes) ---
-    // Qt va chercher automatiquement BootPage.qml, StatusPage.qml, etc.
-
-    Component { id: bootPage; BootPage {} }
-    Component { id: dashboardPage; DashboardPage {} }
-    Component { id: statusPage; StatusPage {} }
-    Component { id: vehiculesPage; VehiculesPage {} }
-    Component { id: mileagePage; KmPage {} }
-    Component { id: settingsPage; SettingsPage {} }
-    Component { id: sessionsPage; SessionsPage {} }
-
-    // --- CONNEXIONS C++ (Réception binaire sans JSON) ---
+    // ============================================================
+    // CONNEXIONS RASPBERRY PI (Stations + Véhicules)
+    // ============================================================
     Connections {
-        target: commTemp
+        target: commRaspi
 
-        // Réception d'un véhicule (un par un)
-        function onVehicleReceived(name, km) {
-            vehiclesModel.append({
-                "name": name,
-                "km": km
-            });
-        }
-
-        // Réception d'une borne (une par une)
-        function onStationReceived(name, kwh, status) {
+        function onStationRecue(id, name, kwh, status) {
             stationsModelSource.append({
+                "stationId": id,
                 "name": name,
                 "kwh": kwh,
                 "status": status
             });
         }
 
-        // Réception d'une session de charge (une par une)
-        function onSessionReceived(borne, vehicule, jours, start, end) {
+        function onVehiculeRecu(id, name, km) {
+            vehiclesModel.append({
+                "vehicleId": id,
+                "name": name,
+                "km": String(km)
+            });
+        }
+    }
+
+    // ============================================================
+    // CONNEXIONS ESP32 (Calendriers + Alertes)
+    // ============================================================
+    Connections {
+        target: commEsp
+
+        function onClearCalendriers() {
+            sessionsModel.clear();
+            console.log("[MAIN] Liste des calendriers vidée (nouvelle liste en cours)");
+        }
+
+        function onCalendrierRecu(id, borne, vehicule, jours, start, end) {
+            console.log("[MAIN] Calendrier ajouté : id=" + id + " / " + borne + " / " + vehicule + " / " + jours);
             sessionsModel.append({
+                "sessionId": id,
                 "station": borne,
                 "vehicle": vehicule,
                 "days": jours,
@@ -123,7 +134,6 @@ ApplicationWindow {
                 "end": end
             });
 
-            // Optionnel : Mettre à jour le statut de la borne
             for (var i = 0; i < stationsModelSource.count; i++) {
                 var item = stationsModelSource.get(i);
                 if (item.name === borne && item.status === "Disponible") {
@@ -131,10 +141,44 @@ ApplicationWindow {
                 }
             }
         }
+
+        function onAlerteRecue(type, message) {
+            notificationModel.append({
+                "type": type,
+                "message": message
+            });
+            console.log("[ALERTE ESP32] " + type + " : " + message);
+        }
     }
 
-    // --- INITIALISATION ---
     Component.onCompleted: {
         console.log("Application initialisée et prête.");
+
+        // ============================================================
+        // DONNÉES EN DUR POUR TEST SANS RASPI (à supprimer plus tard)
+        // ============================================================
+        stationsModelSource.append({
+            "stationId": 1,
+            "name": "Borne Camille",
+            "kwh": "22 kW - Parking Nord",
+            "status": "Disponible"
+        });
+        stationsModelSource.append({
+            "stationId": 2,
+            "name": "Borne Direction",
+            "kwh": "50 kW - Parking Sud",
+            "status": "Disponible"
+        });
+        vehiclesModel.append({
+            "vehicleId": 1,
+            "name": "Twingo",
+            "km": "1200"
+        });
+        vehiclesModel.append({
+            "vehicleId": 2,
+            "name": "Renault Megane 2001",
+            "km": "120000"
+        });
+        // ============================================================
     }
 }

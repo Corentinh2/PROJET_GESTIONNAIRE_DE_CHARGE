@@ -6,42 +6,74 @@
                     {
                         "codegenSuccessful": true,
                         "column": 23,
-                        "durationMicroseconds": 180,
+                        "durationMicroseconds": 111,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 11
+                        "line": 9
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 42,
+                        "durationMicroseconds": 63,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 21
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 28,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find signal \"clicked\".",
+                        "column": 62,
+                        "durationMicroseconds": 259,
+                        "errorMessage": "Cannot access value for name stackView",
                         "functionName": "onClicked",
-                        "line": 20
+                        "line": 22
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 43,
+                        "durationMicroseconds": 59,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 22
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 25,
+                        "durationMicroseconds": 70,
+                        "errorMessage": "Cannot load property radius from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/SettingsPage.qml)::parent with type QQuickItem.",
+                        "functionName": "radius",
+                        "line": 46
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 31,
-                        "durationMicroseconds": 63,
+                        "durationMicroseconds": 56,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 40
+                        "line": 44
                     },
                     {
-                        "codegenSuccessful": false,
+                        "codegenSuccessful": true,
                         "column": 31,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find property \"text\".",
-                        "functionName": "text",
+                        "durationMicroseconds": 55,
+                        "errorMessage": "",
+                        "functionName": "fill",
                         "line": 53
                     },
                     {
                         "codegenSuccessful": false,
+                        "column": 31,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find property \"text\".",
+                        "functionName": "text",
+                        "line": 77
+                    },
+                    {
+                        "codegenSuccessful": false,
                         "column": 43,
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find property \"inputMethodHints\".",
                         "functionName": "inputMethodHints",
-                        "line": 55
+                        "line": 79
                     },
                     {
                         "codegenSuccessful": false,
@@ -49,7 +81,7 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find property \"text\".",
                         "functionName": "text",
-                        "line": 67
+                        "line": 111
                     },
                     {
                         "codegenSuccessful": false,
@@ -57,7 +89,7 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find property \"inputMethodHints\".",
                         "functionName": "inputMethodHints",
-                        "line": 69
+                        "line": 113
                     },
                     {
                         "codegenSuccessful": false,
@@ -65,7 +97,7 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find signal \"clicked\".",
                         "functionName": "onClicked",
-                        "line": 86
+                        "line": 131
                     },
                     {
                         "codegenSuccessful": false,
@@ -73,7 +105,7 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find signal \"clicked\".",
                         "functionName": "onClicked",
-                        "line": 92
+                        "line": 137
                     }
                 ],
                 "filePath": "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/SettingsPage.qml"

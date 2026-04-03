@@ -4,84 +4,124 @@
             {
                 "entries": [
                     {
-                        "codegenSuccessful": true,
-                        "column": 20,
-                        "durationMicroseconds": 264,
-                        "errorMessage": "",
-                        "functionName": "onClicked",
-                        "line": 21
+                        "codegenSuccessful": false,
+                        "column": 17,
+                        "durationMicroseconds": 134,
+                        "errorMessage": "Cannot load property radius from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/AppCard.qml)::parent with type QQuickItem.",
+                        "functionName": "radius",
+                        "line": 24
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 23,
+                        "durationMicroseconds": 114,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 22
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 17,
                         "durationMicroseconds": 65,
+                        "errorMessage": "Cannot load property radius from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/AppCard.qml)::parent with type QQuickItem.",
+                        "functionName": "radius",
+                        "line": 33
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 18,
+                        "durationMicroseconds": 172,
                         "errorMessage": "",
-                        "functionName": "fill",
-                        "line": 20
+                        "functionName": "opacity",
+                        "line": 35
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 23,
-                        "durationMicroseconds": 59,
+                        "durationMicroseconds": 58,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 25
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 31,
-                        "durationMicroseconds": 89,
-                        "errorMessage": "",
-                        "functionName": "alignment",
                         "line": 32
                     },
                     {
-                        "codegenSuccessful": false,
-                        "column": 52,
-                        "durationMicroseconds": 58,
-                        "errorMessage": "Cannot access value for name iconChar",
-                        "functionName": "text",
-                        "line": 33
+                        "codegenSuccessful": true,
+                        "column": 20,
+                        "durationMicroseconds": 124,
+                        "errorMessage": "",
+                        "functionName": "onClicked",
+                        "line": 41
                     },
                     {
                         "codegenSuccessful": true,
-                        "column": 38,
-                        "durationMicroseconds": 58,
+                        "column": 23,
+                        "durationMicroseconds": 57,
                         "errorMessage": "",
-                        "functionName": "centerIn",
-                        "line": 33
+                        "functionName": "fill",
+                        "line": 40
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 23,
+                        "durationMicroseconds": 55,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 45
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 31,
-                        "durationMicroseconds": 79,
+                        "durationMicroseconds": 82,
                         "errorMessage": "",
                         "functionName": "alignment",
-                        "line": 39
+                        "line": 56
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 23,
-                        "durationMicroseconds": 34,
-                        "errorMessage": "Cannot access value for name title",
+                        "durationMicroseconds": 38,
+                        "errorMessage": "Cannot access value for name iconChar",
                         "functionName": "text",
-                        "line": 42
+                        "line": 60
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 35,
+                        "durationMicroseconds": 55,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 59
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 31,
+                        "durationMicroseconds": 76,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 68
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 23,
                         "durationMicroseconds": 31,
+                        "errorMessage": "Cannot access value for name title",
+                        "functionName": "text",
+                        "line": 72
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 23,
+                        "durationMicroseconds": 38,
                         "errorMessage": "Cannot access value for name subTitle",
                         "functionName": "text",
-                        "line": 48
+                        "line": 79
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 31,
-                        "durationMicroseconds": 78,
+                        "durationMicroseconds": 77,
                         "errorMessage": "",
                         "functionName": "alignment",
-                        "line": 60
+                        "line": 91
                     }
                 ],
                 "filePath": "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/AppCard.qml"

@@ -1,20 +1,20 @@
 -- Merging decision tree log ---
 provider#androidx.core.content.FileProvider
-INJECTED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:17:9-19:20
+INJECTED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:21:9-23:20
 	android:grantUriPermissions
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:17:144-178
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:21:144-178
 	android:authorities
 		INJECTED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:17:69-118
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:21:69-118
 	android:exported
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:17:119-143
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:21:119-143
 	android:name
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:17:19-68
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:21:19-68
 manifest
-ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:2:1-21:12
-INJECTED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:2:1-21:12
-INJECTED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:2:1-21:12
-INJECTED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:2:1-21:12
+ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:2:1-25:12
+INJECTED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:2:1-25:12
+INJECTED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:2:1-25:12
+INJECTED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:2:1-25:12
 MERGED from [androidx.core:core:1.13.1] /home/USERS/ELEVES/CIEL2024/chubert/.gradle/caches/8.12/transforms/6333199e01c11a086be1a63e1258fadd/transformed/core-1.13.1/AndroidManifest.xml:17:1-30:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/USERS/ELEVES/CIEL2024/chubert/.gradle/caches/8.12/transforms/11325bc04b0d3d6a13d0cf683915bbe4/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] /home/USERS/ELEVES/CIEL2024/chubert/.gradle/caches/8.12/transforms/4c3ca771abed64b70370a93954df21e0/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
@@ -37,31 +37,31 @@ MERGED from [androidx.annotation:annotation-experimental:1.4.0] /home/USERS/ELEV
 		INJECTED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml
 	android:installLocation
 		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:2:112-142
-uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:3:5-80
-	android:name
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:3:22-76
 uses-permission#android.permission.INTERNET
-ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:4:5-68
+ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:4:5-66
 	android:name
 		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:4:22-64
-uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:5:5-82
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:5:5-78
 	android:name
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:5:22-78
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:5:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:6:5-75
+	android:name
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:6:22-73
 supports-screens
-ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:6:5-135
+ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:8:5-135
 	android:largeScreens
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:6:49-76
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:8:49-76
 	android:smallScreens
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:6:106-133
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:8:106-133
 	android:normalScreens
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:6:77-105
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:8:77-105
 	android:anyDensity
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:6:23-48
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:8:23-48
 application
-ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:7:5-20:19
-INJECTED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:7:5-20:19
+ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:10:5-24:19
+INJECTED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:10:5-24:19
 MERGED from [androidx.core:core:1.13.1] /home/USERS/ELEVES/CIEL2024/chubert/.gradle/caches/8.12/transforms/6333199e01c11a086be1a63e1258fadd/transformed/core-1.13.1/AndroidManifest.xml:28:5-89
 MERGED from [androidx.core:core:1.13.1] /home/USERS/ELEVES/CIEL2024/chubert/.gradle/caches/8.12/transforms/6333199e01c11a086be1a63e1258fadd/transformed/core-1.13.1/AndroidManifest.xml:28:5-89
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/USERS/ELEVES/CIEL2024/chubert/.gradle/caches/8.12/transforms/11325bc04b0d3d6a13d0cf683915bbe4/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
@@ -73,63 +73,65 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] /home/USERS/ELEVES/CIEL2024
 	android:extractNativeLibs
 		INJECTED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml
 	android:requestLegacyExternalStorage
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:7:172-215
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:10:172-215
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.13.1] /home/USERS/ELEVES/CIEL2024/chubert/.gradle/caches/8.12/transforms/6333199e01c11a086be1a63e1258fadd/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
 	android:label
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:7:116-141
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:10:116-141
 	android:hardwareAccelerated
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:7:81-115
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:10:81-115
 	android:icon
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:7:142-171
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:10:142-171
 	android:allowBackup
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:7:216-242
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:10:216-242
 	android:fullBackupOnly
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:7:243-273
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:10:243-273
+	android:usesCleartextTraffic
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:10:274-309
 	android:name
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:7:18-80
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:10:18-80
 activity#org.qtproject.qt.android.bindings.QtActivity
-ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:8:9-15:20
+ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:12:9-19:20
 	android:screenOrientation
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:8:280-319
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:12:280-319
 	android:label
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:8:344-360
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:12:344-360
 	android:launchMode
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:8:249-279
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:12:249-279
 	android:exported
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:8:320-343
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:12:320-343
 	android:configChanges
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:8:79-248
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:12:79-248
 	android:name
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:8:19-78
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:12:19-78
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:9:13-12:29
+ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:13:13-16:29
 action#android.intent.action.MAIN
-ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:10:17-68
+ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:14:17-68
 	android:name
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:10:25-66
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:14:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:11:17-76
+ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:15:17-76
 	android:name
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:11:27-74
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:15:27-74
 meta-data#android.app.lib_name
-ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:13:13-87
+ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:17:13-87
 	android:value
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:13:60-85
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:17:60-85
 	android:name
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:13:24-59
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:17:24-59
 meta-data#android.app.arguments
-ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:14:13-79
+ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:18:13-79
 	android:value
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:14:61-77
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:18:61-77
 	android:name
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:14:24-60
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:18:24-60
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:18:13-117
+ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:22:13-117
 	android:resource
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:18:75-115
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:22:75-115
 	android:name
-		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:18:24-74
+		ADDED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml:22:24-74
 uses-sdk
 INJECTED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/android-build-appPROJET/AndroidManifest.xml

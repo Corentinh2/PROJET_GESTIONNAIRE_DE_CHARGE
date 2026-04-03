@@ -1,8 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+
 #include <QDebug>
 #include <QFile>
 #include <QTextStream>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -24,25 +27,18 @@ MainWindow::MainWindow(QWidget *parent)
         fichier.close();
     }
 
-    // --- CHARGEMENT DES SESSIONS AU DÉMARRAGE (Avec Tri) ---
+    // --- CHARGEMENT DES SESSIONS AU DÉMARRAGE ---
     QFile fichierSessions("sessions.txt");
     if (fichierSessions.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream fluxS(&fichierSessions);
         while (!fluxS.atEnd()) {
             QString ligne = fluxS.readLine();
             QStringList parts = ligne.split(";");
-
-            // Format attendu : Borne(0);Vehicule(1);Jours(2);Start(3);End(4)
             if (parts.size() == 5) {
                 QString nomBorne = parts[0];
                 QString affichage = "📅 " + parts[2] + " (" + parts[3] + "-" + parts[4] + ") | " + parts[1];
-
-                // On trie selon le nom de la borne
                 if (nomBorne == "Borne Camille") {
                     ui->listSessionsCamille->addItem(affichage);
-                }
-                if (nomBorne == "Borne Direction") {
-                    ui->listSessionsDirection->addItem(affichage);
                 }
             }
         }
@@ -50,11 +46,10 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     // --- INITIALISATION DU SERVEUR ---
-    m_pWebSocketServer = new QWebSocketServer(QStringLiteral("Serveur Simulation Raspi"),
+    m_pWebSocketServer = new QWebSocketServer(QStringLiteral("Serveur Simulation"),
                                               QWebSocketServer::NonSecureMode, this);
 
     bool isListening = m_pWebSocketServer->listen(QHostAddress::Any, 1234);
-
     if (isListening) {
         qDebug() << "Serveur de simulation DEMARRE sur le port 1234 !";
         connect(m_pWebSocketServer, &QWebSocketServer::newConnection,
@@ -73,231 +68,267 @@ void MainWindow::onNewConnection()
 {
     QWebSocket *pSocket = m_pWebSocketServer->nextPendingConnection();
 
-    connect(pSocket, &QWebSocket::binaryMessageReceived, this, &MainWindow::processBinaryMessage);
+    connect(pSocket, &QWebSocket::textMessageReceived, this, &MainWindow::processTextMessage);
     connect(pSocket, &QWebSocket::disconnected, this, &MainWindow::socketDisconnected);
 
     m_clients << pSocket;
-    qDebug() << "[SERVEUR] Un client mobile vient de se connecter !";
+    qDebug() << "[SERVEUR] Un client vient de se connecter !";
 }
 
-void MainWindow::processBinaryMessage(QByteArray message)
+void MainWindow::processTextMessage(const QString &message)
 {
     QWebSocket *pClient = qobject_cast<QWebSocket *>(sender());
 
-    bool isValid = (message.size() >= 2);
+    QJsonDocument doc = QJsonDocument::fromJson(message.toUtf8());
+    if (!doc.isObject()) {
+        qDebug() << "[SERVEUR] Message invalide :" << message;
+        return;
+    }
 
-    if (isValid) {
-        char cmd = message[1];
+    QJsonObject json = doc.object();
+    QString action = json["action"].toString();
 
-        // --- 1. DEMANDE DES BORNES ---
-        if (cmd == 'B') {
-            qDebug() << "[SERVEUR] Trame demande BORNES reçue.";
+    // ================================================================
+    // 0. IDENTIFICATION DU CLIENT
+    // ================================================================
+    if (action == "identify") {
+        QString role = json["client"].toString();
+        m_clientRoles[pClient] = role;
+        qDebug() << "[SERVEUR] Client identifié comme :" << role;
+        return;
+    }
 
-            // Envoi de la Borne 1
-            QByteArray rep1;
-            rep1.append(static_cast<char>(0x00));
-            rep1.append('b');
-            quint16 p1 = 22;
-            rep1.append(static_cast<char>((p1 >> 8) & 0xFF));
-            rep1.append(static_cast<char>(p1 & 0xFF));
-            rep1.append(QString("Borne Camille").toUtf8());
-            rep1.append('\0');
-            rep1.append(QString("Parking Nord").toUtf8());
-            rep1.append('\0');
-            rep1[0] = static_cast<char>(rep1.size());
-            if (pClient) { pClient->sendBinaryMessage(rep1); }
+    // Vérification du rôle du client
+    QString clientRole = m_clientRoles.value(pClient, "inconnu");
 
-            // Envoi de la Borne 2
-            QByteArray rep2;
-            rep2.append(static_cast<char>(0x00));
-            rep2.append('b');
-            quint16 p2 = 50;
-            rep2.append(static_cast<char>((p2 >> 8) & 0xFF));
-            rep2.append(static_cast<char>(p2 & 0xFF));
-            rep2.append(QString("Borne Direction").toUtf8());
-            rep2.append('\0');
-            rep2.append(QString("Parking Sud").toUtf8());
-            rep2.append('\0');
-            rep2[0] = static_cast<char>(rep2.size());
-            if (pClient) { pClient->sendBinaryMessage(rep2); }
+    // ================================================================
+    // 1. DEMANDE DES BORNES (Raspi uniquement)
+    // ================================================================
+    if (action == "getStations" && clientRole == "raspi") {
+        qDebug() << "[SERVEUR] Requête getStations reçue (client raspi).";
 
-            qDebug() << "[SERVEUR] Trames des bornes envoyées.";
+        QJsonObject borne1;
+        borne1["action"] = "station";
+        borne1["name"]   = "Borne Camille";
+        borne1["kwh"]    = "22 kW - Parking Nord";
+        borne1["status"] = "Disponible";
+        if (pClient) {
+            pClient->sendTextMessage(QJsonDocument(borne1).toJson(QJsonDocument::Compact));
         }
 
-        // --- 2. DEMANDE DES VÉHICULES ---
-        if (cmd == 'V') {
-            qDebug() << "[SERVEUR] Trame demande VEHICULES reçue.";
-            QFile fichier("vehicules.txt");
-            if (fichier.open(QIODevice::ReadOnly | QIODevice::Text)) {
-                QTextStream flux(&fichier);
-                while (!flux.atEnd()) {
-                    QString ligne = flux.readLine();
-                    QStringList parts = ligne.split(";");
-                    if (parts.size() == 2) {
-                        QString nom = parts[0];
-                        quint32 km = parts[1].toUInt();
+        QJsonObject borne2;
+        borne2["action"] = "station";
+        borne2["name"]   = "Borne Direction";
+        borne2["kwh"]    = "50 kW - Parking Sud";
+        borne2["status"] = "Disponible";
+        if (pClient) {
+            pClient->sendTextMessage(QJsonDocument(borne2).toJson(QJsonDocument::Compact));
+        }
 
-                        QByteArray repV;
-                        repV.append(static_cast<char>(0x00));
-                        repV.append('v');
-                        repV.append(static_cast<char>((km >> 24) & 0xFF));
-                        repV.append(static_cast<char>((km >> 16) & 0xFF));
-                        repV.append(static_cast<char>((km >> 8) & 0xFF));
-                        repV.append(static_cast<char>(km & 0xFF));
-                        repV.append(nom.toUtf8());
-                        repV.append('\0');
-                        repV[0] = static_cast<char>(repV.size());
+        qDebug() << "[SERVEUR] Bornes envoyées.";
+    }
 
-                        if (pClient) { pClient->sendBinaryMessage(repV); }
+    // ================================================================
+    // 2. DEMANDE DES VÉHICULES (Raspi uniquement)
+    // ================================================================
+    if (action == "getVehicles" && clientRole == "raspi") {
+        qDebug() << "[SERVEUR] Requête getVehicles reçue (client raspi).";
+
+        QFile fichier("vehicules.txt");
+        if (fichier.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            QTextStream flux(&fichier);
+            while (!flux.atEnd()) {
+                QString ligne = flux.readLine();
+                QStringList parts = ligne.split(";");
+                if (parts.size() == 2) {
+                    QJsonObject vehicule;
+                    vehicule["action"] = "vehicle";
+                    vehicule["name"]   = parts[0];
+                    vehicule["km"]     = parts[1].toInt();
+
+                    if (pClient) {
+                        pClient->sendTextMessage(QJsonDocument(vehicule).toJson(QJsonDocument::Compact));
                     }
                 }
-                fichier.close();
             }
-            qDebug() << "[SERVEUR] Liste des véhicules envoyée.";
+            fichier.close();
         }
 
-        // --- 3. AJOUT D'UN VÉHICULE ---
-        if (cmd == 'A') {
-            qDebug() << "[SERVEUR] Trame AJOUT VEHICULE reçue.";
-            quint8 b1 = static_cast<quint8>(message[2]);
-            quint8 b2 = static_cast<quint8>(message[3]);
-            quint8 b3 = static_cast<quint8>(message[4]);
-            quint8 b4 = static_cast<quint8>(message[5]);
-            quint32 kmRecu = (b1 << 24) | (b2 << 16) | (b3 << 8) | b4;
+        qDebug() << "[SERVEUR] Véhicules envoyés.";
+    }
 
-            int indexNom = 6;
-            int finNom = message.indexOf('\0', indexNom);
-            QString nomRecu = QString::fromUtf8(message.mid(indexNom, finNom - indexNom));
+    // ================================================================
+    // 3. AJOUT D'UN VÉHICULE (Raspi uniquement)
+    // ================================================================
+    if (action == "addVehicle" && clientRole == "raspi") {
+        qDebug() << "[SERVEUR] Requête addVehicle reçue (client raspi).";
 
-            QString texteLigne = "🚗 " + nomRecu + " — " + QString::number(kmRecu) + " km";
-            ui->listVehicules->addItem(texteLigne);
+        QString nom = json["name"].toString();
+        int km      = json["km"].toInt();
 
-            QFile fichier("vehicules.txt");
-            if (fichier.open(QIODevice::Append | QIODevice::Text)) {
-                QTextStream flux(&fichier);
-                flux << nomRecu << ";" << kmRecu << "\n";
-                fichier.close();
-            }
+        QString texteLigne = "🚗 " + nom + " — " + QString::number(km) + " km";
+        ui->listVehicules->addItem(texteLigne);
 
-            QByteArray confirmation;
-            confirmation.append(static_cast<char>(0x00));
-            confirmation.append('v');
-            confirmation.append(static_cast<char>((kmRecu >> 24) & 0xFF));
-            confirmation.append(static_cast<char>((kmRecu >> 16) & 0xFF));
-            confirmation.append(static_cast<char>((kmRecu >> 8) & 0xFF));
-            confirmation.append(static_cast<char>(kmRecu & 0xFF));
-            confirmation.append(nomRecu.toUtf8());
-            confirmation.append('\0');
-            confirmation[0] = static_cast<char>(confirmation.size());
-
-            if (pClient) { pClient->sendBinaryMessage(confirmation); }
+        QFile fichier("vehicules.txt");
+        if (fichier.open(QIODevice::Append | QIODevice::Text)) {
+            QTextStream flux(&fichier);
+            flux << nom << ";" << km << "\n";
+            fichier.close();
         }
 
-        // --- 4. DEMANDE DE L'HISTORIQUE DES SESSIONS ---
-        if (cmd == 'H') {
-            qDebug() << "[SERVEUR] Trame demande HISTORIQUE SESSIONS reçue.";
-            QFile fichierS("sessions.txt");
-            if (fichierS.open(QIODevice::ReadOnly | QIODevice::Text)) {
-                QTextStream fluxS(&fichierS);
-                while (!fluxS.atEnd()) {
-                    QString ligne = fluxS.readLine();
-                    QStringList parts = ligne.split(";");
-                    if (parts.size() == 5) {
-                        QByteArray repS;
-                        repS.append(static_cast<char>(0x00));
-                        repS.append('s');
-                        repS.append(parts[0].toUtf8()); repS.append('\0');
-                        repS.append(parts[1].toUtf8()); repS.append('\0');
-                        repS.append(parts[2].toUtf8()); repS.append('\0');
-                        repS.append(parts[3].toUtf8()); repS.append('\0');
-                        repS.append(parts[4].toUtf8()); repS.append('\0');
-                        repS[0] = static_cast<char>(repS.size());
+        QJsonObject confirmation;
+        confirmation["action"] = "vehicle";
+        confirmation["name"]   = nom;
+        confirmation["km"]     = km;
 
-                        if (pClient) { pClient->sendBinaryMessage(repS); }
+        if (pClient) {
+            pClient->sendTextMessage(QJsonDocument(confirmation).toJson(QJsonDocument::Compact));
+        }
+
+        qDebug() << "[SERVEUR] Véhicule ajouté :" << nom;
+    }
+
+    // ================================================================
+    // 4. DEMANDE DE L'HISTORIQUE DES SESSIONS (ESP uniquement)
+    // ================================================================
+    if (action == "getSessions" && clientRole == "esp") {
+        qDebug() << "[SERVEUR] Requête getSessions reçue (client esp).";
+
+        QFile fichierS("sessions.txt");
+        if (fichierS.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            QTextStream fluxS(&fichierS);
+            while (!fluxS.atEnd()) {
+                QString ligne = fluxS.readLine();
+                QStringList parts = ligne.split(";");
+                if (parts.size() == 5) {
+                    QJsonObject session;
+                    session["action"]   = "session";
+                    session["borne"]    = parts[0];
+                    session["vehicule"] = parts[1];
+                    session["jours"]    = parts[2];
+                    session["start"]    = parts[3];
+                    session["end"]      = parts[4];
+
+                    if (pClient) {
+                        pClient->sendTextMessage(QJsonDocument(session).toJson(QJsonDocument::Compact));
                     }
                 }
-                fichierS.close();
+            }
+            fichierS.close();
+        }
+
+        qDebug() << "[SERVEUR] Sessions envoyées.";
+    }
+
+    // ================================================================
+    // 5. PROGRAMMATION D'UNE SESSION (ESP uniquement)
+    // ================================================================
+    if (action == "programCharge" && clientRole == "esp") {
+        qDebug() << "[SERVEUR] Requête programCharge reçue (client esp).";
+
+        QString borne    = json["borne"].toString();
+        QString vehicule = json["vehicule"].toString();
+        QString jours    = json["jours"].toString();
+        QString start    = json["start"].toString();
+        QString end      = json["end"].toString();
+
+        QString texteLigne = "📅 " + jours + " (" + start + "-" + end + ") | " + vehicule;
+        if (borne == "Borne Camille") {
+            ui->listSessionsCamille->addItem(texteLigne);
+        }
+        if (borne == "Borne Direction") {
+            ui->listSessionsDirection->addItem(texteLigne);
+        }
+
+        QFile fichierS("sessions.txt");
+        if (fichierS.open(QIODevice::Append | QIODevice::Text)) {
+            QTextStream fluxS(&fichierS);
+            fluxS << borne << ";" << vehicule << ";" << jours << ";" << start << ";" << end << "\n";
+            fichierS.close();
+        }
+
+        QJsonObject confirmation;
+        confirmation["action"]   = "session";
+        confirmation["borne"]    = borne;
+        confirmation["vehicule"] = vehicule;
+        confirmation["jours"]    = jours;
+        confirmation["start"]    = start;
+        confirmation["end"]      = end;
+
+        if (pClient) {
+            pClient->sendTextMessage(QJsonDocument(confirmation).toJson(QJsonDocument::Compact));
+        }
+
+        qDebug() << "[SERVEUR] Session programmée :" << borne << vehicule;
+    }
+
+    // ================================================================
+    // 6. SUPPRESSION D'UNE SESSION (ESP uniquement)
+    // ================================================================
+    if (action == "deleteCharge" && clientRole == "esp") {
+        qDebug() << "[SERVEUR] Requête deleteCharge reçue (client esp).";
+
+        QString borne    = json["borne"].toString();
+        QString vehicule = json["vehicule"].toString();
+        QString jours    = json["jours"].toString();
+        QString start    = json["start"].toString();
+        QString end      = json["end"].toString();
+
+        QStringList lignesRestantes;
+        QFile fichierLecture("sessions.txt");
+        if (fichierLecture.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            QTextStream flux(&fichierLecture);
+            while (!flux.atEnd()) {
+                QString ligne = flux.readLine();
+                QStringList parts = ligne.split(";");
+                if (parts.size() == 5) {
+                    bool correspond = false;
+                    if (parts[0] == borne) {
+                        if (parts[1] == vehicule) {
+                            if (parts[2] == jours) {
+                                if (parts[3] == start) {
+                                    if (parts[4] == end) {
+                                        correspond = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (!correspond) {
+                        lignesRestantes.append(ligne);
+                    }
+                }
+            }
+            fichierLecture.close();
+        }
+
+        QFile fichierEcriture("sessions.txt");
+        if (fichierEcriture.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate)) {
+            QTextStream flux(&fichierEcriture);
+            for (int i = 0; i < lignesRestantes.size(); i++) {
+                flux << lignesRestantes[i] << "\n";
+            }
+            fichierEcriture.close();
+        }
+
+        QString texteLigne = "📅 " + jours + " (" + start + "-" + end + ") | " + vehicule;
+        if (borne == "Borne Camille") {
+            QList<QListWidgetItem*> items = ui->listSessionsCamille->findItems(texteLigne, Qt::MatchExactly);
+            for (int i = 0; i < items.size(); i++) {
+                delete ui->listSessionsCamille->takeItem(ui->listSessionsCamille->row(items[i]));
             }
         }
 
-        // --- 5. AJOUT D'UNE SESSION ('P') ---
-        if (cmd == 'P') {
-            qDebug() << "[SERVEUR] Trame PROGRAMMATION SESSION reçue.";
+        qDebug() << "[SERVEUR] Session supprimée :" << borne << vehicule;
+    }
 
-            int iBorne = 2;
-            int fBorne = message.indexOf('\0', iBorne);
-            QString borne = QString::fromUtf8(message.mid(iBorne, fBorne - iBorne));
-
-            int iVehicule = fBorne + 1;
-            int fVehicule = message.indexOf('\0', iVehicule);
-            QString vehicule = QString::fromUtf8(message.mid(iVehicule, fVehicule - iVehicule));
-
-            int iJours = fVehicule + 1;
-            int fJours = message.indexOf('\0', iJours);
-            QString jours = QString::fromUtf8(message.mid(iJours, fJours - iJours));
-
-            int iStart = fJours + 1;
-            int fStart = message.indexOf('\0', iStart);
-            QString start = QString::fromUtf8(message.mid(iStart, fStart - iStart));
-
-            int iEnd = fStart + 1;
-            int fEnd = message.indexOf('\0', iEnd);
-            QString end = QString::fromUtf8(message.mid(iEnd, fEnd - iEnd));
-
-            // --- AFFICHAGE SUR L'IHM DU SERVEUR (Avec Tri) ---
-            QString texteLigne = "📅 " + jours + " (" + start + "-" + end + ") | " + vehicule;
-
-            if (borne == "Borne Camille") {
-                ui->listSessionsCamille->addItem(texteLigne);
-            }
-            if (borne == "Borne Direction") {
-                ui->listSessionsDirection->addItem(texteLigne);
-            }
-
-            // --- SAUVEGARDE ---
-            QFile fichierS("sessions.txt");
-            if (fichierS.open(QIODevice::Append | QIODevice::Text)) {
-                QTextStream fluxS(&fichierS);
-                fluxS << borne << ";" << vehicule << ";" << jours << ";" << start << ";" << end << "\n";
-                fichierS.close();
-            }
-
-            // --- RENVOI AU MOBILE ---
-            QByteArray repS;
-            repS.append(static_cast<char>(0x00));
-            repS.append('s');
-            repS.append(borne.toUtf8()); repS.append('\0');
-            repS.append(vehicule.toUtf8()); repS.append('\0');
-            repS.append(jours.toUtf8()); repS.append('\0');
-            repS.append(start.toUtf8()); repS.append('\0');
-            repS.append(end.toUtf8()); repS.append('\0');
-            repS[0] = static_cast<char>(repS.size());
-
-            if (pClient) { pClient->sendBinaryMessage(repS); }
-        }
-
-        // --- 6. SIMULATION RÉCEPTION ESP ('C') ---
-        if (cmd == 'C') {
-            // On s'assure que la trame fait bien la taille attendue (7 octets)
-            bool isTrameComplete = (message.size() == 7);
-
-            if (isTrameComplete) {
-                // Extraction de chaque octet en entier non signé (quint8)
-                quint8 taille = static_cast<quint8>(message[0]);
-                quint8 masqueJours = static_cast<quint8>(message[2]);
-                quint8 hd = static_cast<quint8>(message[3]);
-                quint8 md = static_cast<quint8>(message[4]);
-                quint8 hf = static_cast<quint8>(message[5]);
-                quint8 mf = static_cast<quint8>(message[6]);
-
-                // Affichage détaillé dans la console pour ton test unitaire
-                qDebug() << "[SERVEUR-ESP] Trame 'C' reçue ! "
-                         << "Taille:" << taille
-                         << "| Jours (masque):" << masqueJours
-                         << "| Début:" << hd << "h" << md
-                         << "| Fin:" << hf << "h" << mf;
-            }
-        }
+    // ================================================================
+    // 7. MARCHE FORCÉE (ESP uniquement)
+    // ================================================================
+    if (action == "forceCharge" && clientRole == "esp") {
+        qDebug() << "[SERVEUR-ESP] Marche forcée reçue !";
+        qDebug() << "  Borne   :" << json["borne"].toString();
+        qDebug() << "  Activer :" << json["activer"].toBool();
     }
 }
 
@@ -305,8 +336,9 @@ void MainWindow::socketDisconnected()
 {
     QWebSocket *pClient = qobject_cast<QWebSocket *>(sender());
     if (pClient) {
+        m_clientRoles.remove(pClient);
         m_clients.removeAll(pClient);
         pClient->deleteLater();
-        qDebug() << "[SERVEUR] Client mobile déconnecté.";
+        qDebug() << "[SERVEUR] Client déconnecté.";
     }
 }

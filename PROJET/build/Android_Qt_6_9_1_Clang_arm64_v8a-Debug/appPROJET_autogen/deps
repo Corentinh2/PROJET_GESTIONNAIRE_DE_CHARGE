@@ -10,8 +10,6 @@ appPROJET_autogen/timestamp: \
 	/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/communicationesp.h \
 	/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/communicationraspi.cpp \
 	/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/communicationraspi.h \
-	/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/communicationtemp.cpp \
-	/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/communicationtemp.h \
 	/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/main.cpp \
 	/opt/Android/Sdk/ndk/27.2.12479018/build/cmake/abis.cmake \
 	/opt/Android/Sdk/ndk/27.2.12479018/build/cmake/adjust_api_level.cmake \
