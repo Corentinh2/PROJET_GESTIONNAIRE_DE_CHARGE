@@ -6,7 +6,6 @@
 
 #define PIN_ALARME 23
 
-
 class HorlogeTempsReel : public RTC_DS3231
 {
 private:
@@ -26,7 +25,6 @@ public:
   void configurerAlarmeMinute();
   void reinitialiserAlarme();
   bool getAlarme();
-  void setAlarme(bool _alarme);
   int obtenirJourSemaine();
 };
 

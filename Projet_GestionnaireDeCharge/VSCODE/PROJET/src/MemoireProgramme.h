@@ -17,11 +17,14 @@ class MemoireProgramme {
     MemoireProgramme();
     ~MemoireProgramme();
     bool obtenirEtat() const;
-    bool ajouterCalendrier(int _jours, int _hd, int _md, int _hf, int _mf);
+    bool ajouterEvenement(int _jours, int _hd, int _md, int _hf, int _mf);
+    bool insererCalendrier(int id, int jour, int hd, int md, int hf, int mf);
     bool lireCalendrier(int _jour, int _heure, int _minute, bool _debut);
     bool supprimerCalendrier(int _id); 
     bool decoderJoursTrame(int _joursRecu, int* _joursDecodes);
     void afficherCalendrierTestUnitaire();
+
+    String obtenirTrameOriginale();
 };
 
 #endif

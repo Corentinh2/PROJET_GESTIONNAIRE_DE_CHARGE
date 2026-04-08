@@ -105,6 +105,7 @@ void HorlogeTempsReel::reinitialiserAlarme()
   clearAlarm(1);
   // Replanifie l'alarme 60 secondes plus tard
   setAlarm1(now() + TimeSpan(60), DS3231_A1_Second);
+  alarmeDeclenchee = false;
 }
 
 bool HorlogeTempsReel::getAlarme()
@@ -112,10 +113,6 @@ bool HorlogeTempsReel::getAlarme()
   return alarmeDeclenchee;
 }
 
-void HorlogeTempsReel::setAlarme(bool _alarme)
-{
-  alarmeDeclenchee = _alarme;
-}
 
 int HorlogeTempsReel::obtenirJourSemaine()
 {
@@ -139,7 +136,6 @@ void HorlogeTempsReel::marshall()
 void IRAM_ATTR HorlogeTempsReel::onAlarme()
 {
   alarmeDeclenchee = true;
-  Serial.println("Interruption !");
 }
 
 HorlogeTempsReel *HorlogeTempsReel::anchor = NULL;

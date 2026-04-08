@@ -12,7 +12,7 @@ MemoireProgramme::MemoireProgramme()
   {
     if (sqlite3_open(CHEMIN_BDD, &db) == SQLITE_OK)
     {
-      
+
       if (creerTables())
       {
         estOuverte = true;
@@ -104,12 +104,10 @@ int MemoireProgramme::obtenirProchainIdCalendrier()
   return prochain;
 }
 
-bool MemoireProgramme::ajouterCalendrier(int _joursRecu, int _hd, int _md, int _hf, int _mf)
+bool MemoireProgramme::ajouterEvenement(int _joursRecu, int _hd, int _md, int _hf, int _mf)
 {
   bool succes = true;
   int joursDecodes[8];
-  char requete[256];
-  char *errMsg = nullptr;
   bool aCheval = (_hf < _hd);
 
   succes = decoderJoursTrame(_joursRecu, joursDecodes);
@@ -121,56 +119,55 @@ bool MemoireProgramme::ajouterCalendrier(int _joursRecu, int _hd, int _md, int _
     for (int i = 0; joursDecodes[i] != -1 && succes; i++)
     {
       int jourActuel = joursDecodes[i];
-      int jourSuivant = (jourActuel == 7) ? 1 : jourActuel + 1;
+      int jourSuivant = jourActuel + 1;
+
+      if (jourActuel == 7)
+      {
+        jourSuivant = 1;
+      }
 
       if (aCheval)
       {
-        snprintf(requete, sizeof(requete),
-                 "INSERT INTO CALENDRIER (id_calendrier, jours, hd, md, hf, mf) "
-                 "VALUES (%d, %d, %d, %d, 0, 0);",
-                 idCalendrier, jourActuel, _hd, _md);
-
-        if (sqlite3_exec(db, requete, nullptr, nullptr, &errMsg) != SQLITE_OK)
-        {
-          Serial.printf("Erreur ajout jour actuel : %s\n", errMsg);
-          sqlite3_free(errMsg);
-          succes = false;
-        }
+        succes = insererCalendrier(idCalendrier, jourActuel, _hd, _md, 23, 59);
 
         if (succes)
         {
-          snprintf(requete, sizeof(requete),
-                   "INSERT INTO CALENDRIER (id_calendrier, jours, hd, md, hf, mf) "
-                   "VALUES (%d, %d, 0, 0, %d, %d);",
-                   idCalendrier, jourSuivant, _hf, _mf);
-
-          if (sqlite3_exec(db, requete, nullptr, nullptr, &errMsg) != SQLITE_OK)
-          {
-            Serial.printf("Erreur ajout jour suivant : %s\n", errMsg);
-            sqlite3_free(errMsg);
-            succes = false;
-          }
+          succes = insererCalendrier(idCalendrier, jourSuivant, 0, 0, _hf, _mf);
         }
       }
-      else
-      {
-        snprintf(requete, sizeof(requete),
-                 "INSERT INTO CALENDRIER (id_calendrier, jours, hd, md, hf, mf) "
-                 "VALUES (%d, %d, %d, %d, %d, %d);",
-                 idCalendrier, jourActuel, _hd, _md, _hf, _mf);
 
-        if (sqlite3_exec(db, requete, nullptr, nullptr, &errMsg) != SQLITE_OK)
-        {
-          Serial.printf("Erreur ajout calendrier : %s\n", errMsg);
-          sqlite3_free(errMsg);
-          succes = false;
-        }
+      if (!aCheval)
+      {
+        succes = insererCalendrier(idCalendrier, jourActuel, _hd, _md, _hf, _mf);
       }
     }
   }
 
   if (succes)
+  {
     Serial.printf("Calendrier %d ajouté avec succès !\n", obtenirProchainIdCalendrier() - 1);
+  }
+
+  return succes;
+}
+
+bool MemoireProgramme::insererCalendrier(int id, int jour, int hd, int md, int hf, int mf)
+{
+  bool succes = true;
+  char *errMsg = nullptr;
+  char requete[256];
+
+  snprintf(requete, sizeof(requete),
+           "INSERT INTO CALENDRIER (id_calendrier, jours, hd, md, hf, mf) "
+           "VALUES (%d, %d, %d, %d, %d, %d);",
+           id, jour, hd, md, hf, mf);
+
+  if (sqlite3_exec(db, requete, nullptr, nullptr, &errMsg) != SQLITE_OK)
+  {
+    Serial.printf("Erreur insertion : %s\n", errMsg);
+    sqlite3_free(errMsg);
+    succes = false;
+  }
 
   return succes;
 }
@@ -281,4 +278,114 @@ void MemoireProgramme::afficherCalendrierTestUnitaire()
     Serial.printf("Erreur affichage calendrier : %s\n", errMsg);
     sqlite3_free(errMsg);
   }
+}
+
+String MemoireProgramme::obtenirTrameOriginale()
+{
+  String json = "";
+  sqlite3_stmt *stmt = nullptr;
+
+  const char *requete =
+      "SELECT id_calendrier, jours, hd, md, hf, mf "
+      "FROM CALENDRIER "
+      "ORDER BY id_calendrier, jours;";
+
+  if (sqlite3_prepare_v2(db, requete, -1, &stmt, nullptr) != SQLITE_OK)
+  {
+    Serial.printf("Erreur préparation : %s\n", sqlite3_errmsg(db));
+    return json;
+  }
+
+  int idCourant = -1;
+  int masqueJoursTous = 0;
+  int masqueJoursStart = 0;
+  int hd = 0, md = 0, hf = 0, mf = 0;
+  bool premiereLigne = true;
+
+  while (sqlite3_step(stmt) == SQLITE_ROW)
+  {
+    int idCalendrier = sqlite3_column_int(stmt, 0);
+    int jour = sqlite3_column_int(stmt, 1);
+    int hdLigne = sqlite3_column_int(stmt, 2);
+    int mdLigne = sqlite3_column_int(stmt, 3);
+    int hfLigne = sqlite3_column_int(stmt, 4);
+    int mfLigne = sqlite3_column_int(stmt, 5);
+
+    if (idCalendrier != idCourant)
+    {
+      if (idCourant != -1)
+      {
+        // Si hd > hf, c'est un créneau de nuit : on ne garde que les jours de départ (masqueJoursStart)
+        // Sinon, on garde tous les jours (masqueJoursTous)
+        int joursFinal;
+
+        if (hd > hf)
+        {
+          joursFinal = masqueJoursStart;
+        }
+        else
+        {
+          joursFinal = masqueJoursTous;
+        }
+
+        char ligne[256];
+        snprintf(ligne, sizeof(ligne),
+                 "{\"action\":\"calendrier\",\"id\":%d,\"jours\":%d,\"hd\":%d,\"md\":%d,\"hf\":%d,\"mf\":%d}",
+                 idCourant, joursFinal, hd, md, hf, mf);
+        json += String(ligne) + "\n";
+      }
+      idCourant = idCalendrier;
+      masqueJoursTous = 0;
+      masqueJoursStart = 0;
+      premiereLigne = true;
+    }
+
+    // On accumule tous les jours vus
+    masqueJoursTous = masqueJoursTous | (1 << (jour - 1));
+
+    // On isole les jours de "départ" (qui ne sont pas des restes de nuit commençant à 00h00)
+    if (hdLigne != 0 || mdLigne != 0)
+    {
+      masqueJoursStart |= (1 << (jour - 1));
+    }
+
+    // Initialisation avec la première ligne trouvée
+    if (premiereLigne)
+    {
+      hd = hdLigne;
+      md = mdLigne;
+      hf = hfLigne;
+      mf = mfLigne;
+      premiereLigne = false;
+    }
+
+    // Si on trouve la partie "début" d'un créneau à cheval, on récupère hd/md
+    if (hfLigne == 23 && mfLigne == 59)
+    {
+      hd = hdLigne;
+      md = mdLigne;
+    }
+
+    // Si on trouve la partie "fin" d'un créneau à cheval, on récupère hf/mf
+    if (hdLigne == 0 && mdLigne == 0)
+    {
+      hf = hfLigne;
+      mf = mfLigne;
+    }
+  }
+
+  // Ajout du tout dernier calendrier traité
+  if (idCourant != -1)
+  {
+    int joursFinal = (hd > hf) ? masqueJoursStart : masqueJoursTous;
+    char ligne[256];
+    snprintf(ligne, sizeof(ligne),
+             "{\"action\":\"calendrier\",\"id\":%d,\"jours\":%d,\"hd\":%d,\"md\":%d,\"hf\":%d,\"mf\":%d}",
+             idCourant, joursFinal, hd, md, hf, mf);
+    json += String(ligne) + "\n";
+  }
+
+  sqlite3_finalize(stmt);
+  Serial.println(json);
+  return json;
 }
