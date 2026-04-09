@@ -23,22 +23,19 @@ class Controleur {
             $id = $_POST['identifiant'] ?? '';
             $pass = $_POST['password'] ?? '';
 
-            // Vérification admin
-            if ($id === ADMIN_LOGIN && $pass === ADMIN_MDP) {
-                $_SESSION['user'] = $id;
-                $_SESSION['role'] = 'admin';
-                header('Location: http://172.18.59.133/index.php?action=GestionUtilisateurs');
-                exit();
-            }
-
-            // LoginVerify vérifie maintenant login ET mot de passe ensemble
-            $user = $this->modele->LoginVerify($id);
+            $user = $this->modele->LoginVerify($id, $pass);
 
             if ($user) {
                 $_SESSION['user'] = $id;
-                $_SESSION['role'] = 'user';
                 $this->journalisation->LogConnexion($id, date('Y-m-d H:i:s'));
-                header('Location: http://172.18.59.133/index.php?action=ChoixParam');
+
+                if ($id === 'admin') {
+                    $_SESSION['role'] = 'admin';
+                    header('Location: http://172.18.59.133/index.php?action=GestionUtilisateurs');
+                } else {
+                    $_SESSION['role'] = 'utilisateur';
+                    header('Location: http://172.18.59.133/index.php?action=ChoixParam');
+                }
                 exit();
             } else {
                 if (!$this->modele->UtilisateurExiste($id)) {
@@ -54,7 +51,7 @@ class Controleur {
     }
 
     public function GestionUtilisateurs() {
-        // Seul l'admin peut accéder
+// Seul l'admin peut accéder
         if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
             header('Location: http://172.18.59.133/index.php?action=Connexion');
             exit();
@@ -151,6 +148,26 @@ class Controleur {
         include __DIR__ . '/../Vues/choix_borne.php';
     }
 
+    public function AjouterBorne() {
+        if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+            header('Location: http://172.18.59.133/index.php?action=Connexion');
+            exit();
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $nom = $_POST['nom_borne'] ?? '';
+            $emplacement = $_POST['emplacement'] ?? '';
+            $puissance = $_POST['puissance'] ?? 0;
+            $ip = $_POST['ip_usine'] ?? '';
+
+            $this->modele->AjouterBorne($nom, $emplacement, $puissance, $ip);
+            $succes = "Borne \"$nom\" ajoutée avec succès !";
+            include __DIR__ . '/../Vues/ajouter_borne.php';
+        } else {
+            include __DIR__ . '/../Vues/ajouter_borne.php';
+        }
+    }
+
     public function EnregistreGraph() {
         if (!isset($_SESSION['user'])) {
             header('Location: http://172.18.59.133/index.php?action=Connexion');
@@ -159,7 +176,20 @@ class Controleur {
         $id_borne = $_GET['id'] ?? 1;
         $plage = $_GET['plage'] ?? 'jour';
         $mesures = $this->modele->GetMesuresParBorne($id_borne, $plage);
+        $derniereMesure = $this->modele->GetDerniereMesure($id_borne);
+        $nomBorne = $this->modele->GetNomBorne($id_borne);
         include __DIR__ . '/../Vues/graphique.php';
+    }
+
+    public function Historique() {
+        if (!isset($_SESSION['user'])) {
+            header('Location: http://172.18.59.133/index.php?action=Connexion');
+            exit();
+        }
+        $id_borne = $_GET['id'] ?? 1;
+        $nomBorne = $this->modele->GetNomBorne($id_borne);
+        $mesuresHistorique = $this->modele->GetHistorique($id_borne);
+        include __DIR__ . '/../Vues/historique.php';
     }
 
     public function Deconnexion() {

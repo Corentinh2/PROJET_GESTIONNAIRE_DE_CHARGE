@@ -2,7 +2,7 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>Gestion des utilisateurs</title>
+        <title>Historique MariaDB</title>
         <style>
             * {
                 margin: 0;
@@ -117,60 +117,19 @@
             tr:hover td {
                 background-color: #1e1e1e;
             }
-            .badge {
-                padding: 4px 10px;
-                border-radius: 20px;
-                font-size: 0.8em;
-                font-weight: bold;
-            }
-            .badge-actif {
-                background-color: #1a3a2a;
-                color: #2ecc71;
-                border: 1px solid #2ecc71;
-            }
-            .badge-suspendu {
-                background-color: #3a1a1a;
-                color: #e74c3c;
-                border: 1px solid #e74c3c;
-            }
-            .btn {
-                padding: 5px 12px;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                font-size: 0.8em;
-                margin-right: 4px;
-            }
-            .btn-modifier {
-                background-color: #f39c12;
-                color: black;
-            }
-            .btn-supprimer {
-                background-color: #e74c3c;
-                color: white;
-            }
-            .btn-suspendre {
-                background-color: #555;
-                color: white;
-            }
-            .btn-reactiver {
-                background-color: #2ecc71;
-                color: black;
-            }
-            .role-admin {
-                color: #f39c12;
-            }
-            .role-user {
+            .color-cyan {
                 color: #00d4ff;
             }
         </style>
     </head>
     <body>
         <div class="sidebar">
-            <div class="sidebar-title">BORNE</div>
-            <a href="/index.php?action=ChoixParam" class="nav-item">Tableau de bord</a>
-            <a href="/index.php?action=AjouterBorne" class="nav-item">Ajouter une borne</a>
-            <a href="/index.php?action=GestionUtilisateurs" class="nav-item active">Gestion utilisateurs</a>
+            <div class="sidebar-title">Borne #<?= str_pad($_GET['id'] ?? '', 2, '0', STR_PAD_LEFT) ?> - <?= htmlspecialchars($nomBorne ?? '') ?></div>
+            <a href="/index.php?action=EnregistreGraph&id=<?= $_GET['id'] ?>" class="nav-item">Tableau de bord</a>
+            <a href="/index.php?action=Historique&id=<?= $_GET['id'] ?>" class="nav-item active">Historique MariaDB</a>
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                <a href="/index.php?action=GestionUtilisateurs" class="nav-item">Gestion utilisateurs</a>
+            <?php endif; ?>
             <div class="sidebar-bottom">
                 <a href="/index.php?action=Deconnexion" class="btn-sidebar btn-deconnexion">🔴 Déconnexion</a>
                 <a href="/index.php?action=ChoixParam" class="btn-sidebar btn-retour">← Retour aux bornes</a>
@@ -179,37 +138,19 @@
 
         <div class="main-content">
             <div class="table-section">
-                <div class="section-title">Gestion des utilisateurs</div>
+                <div class="section-title">Dernières mesures enregistrées (MariaDB)</div>
                 <table>
                     <thead>
                         <tr>
-                            <th>Identifiant</th>
-                            <th>Rôle</th>
-                            <th>État</th>
-                            <th>Actions</th>
+                            <th>Horodatage</th>
+                            <th>Puissance (W)</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($listeUtilisateurs as $u): ?>
+                        <?php foreach ($mesuresHistorique as $m): ?>
                             <tr>
-                                <td><?= htmlspecialchars($u['login']) ?></td>
-                                <td class="role-user">Utilisateur</td>
-                                <td><span class="badge <?= $u['etat'] ? 'badge-actif' : 'badge-suspendu' ?>"><?= $u['etat'] ? 'Actif' : 'Suspendu' ?></span></td>
-                                <td>
-                                    <a href="/index.php?action=ModifierUtilisateur&id=<?= $u['id_utilisateur'] ?>">
-                                        <button class="btn btn-modifier">Modifier</button>
-                                    </a>
-                                    <a href="/index.php?action=SupprimerUtilisateur&id=<?= $u['id_utilisateur'] ?>"
-                                       onclick="return confirm('Supprimer cet utilisateur ?')">
-                                        <button class="btn btn-supprimer">Supprimer</button>
-                                    </a>
-                                    <a href="/index.php?action=SuspendreUtilisateur&id=<?= $u['id_utilisateur'] ?>">
-                                        <button class="btn btn-suspendre">Suspendre</button>
-                                    </a>
-                                    <a href="/index.php?action=ReactiverUtilisateur&id=<?= $u['id_utilisateur'] ?>">
-                                        <button class="btn btn-reactiver">Réactiver</button>
-                                    </a>
-                                </td>
+                                <td class="color-cyan"><?= date('H:i:s', strtotime($m['horodatage'])) ?></td>
+                                <td><?= number_format($m['puissance'], 0, ',', ' ') ?> kW</td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

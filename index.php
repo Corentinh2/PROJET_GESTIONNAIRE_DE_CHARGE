@@ -10,6 +10,7 @@ require_once 'Controleurs/controleur.php';
 $action = $_GET['action'] ?? 'Connexion';
 $ctrl = new Controleur();
 
+
 switch ($action) {
     case 'Connexion': $ctrl->Connexion();
         break;
@@ -31,6 +32,11 @@ switch ($action) {
         break;
     case 'Deconnexion': $ctrl->Deconnexion();
         break;
+    case 'Historique': $ctrl->Historique();
+        break;
+    case 'AjouterBorne': $ctrl->AjouterBorne();
+        break;
     default: echo "Action inconnue.";
         break;
 }
+
