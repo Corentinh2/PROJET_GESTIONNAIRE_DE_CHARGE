@@ -1,0 +1,5 @@
+<map id="communicationesp.h" name="communicationesp.h">
+<area shape="rect" id="Node000001" title="Gestion de la communication WebSocket entre l&#39;application mobile et le boîtier ESP32." alt="" coords="12,5,155,31"/>
+<area shape="rect" id="Node000002" href="$communicationesp_8cpp.html" title="Implémentation de la classe CommunicationEsp." alt="" coords="5,79,161,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="86,44,86,79,81,79,81,44"/>
+</map>

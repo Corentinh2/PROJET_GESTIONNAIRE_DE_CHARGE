@@ -1,0 +1,19 @@
+<map id="communicationraspi.cpp" name="communicationraspi.cpp">
+<area shape="rect" id="Node000001" title="Implémentation de la classe CommunicationRaspi." alt="" coords="385,5,547,31"/>
+<area shape="rect" id="Node000002" href="$communicationraspi_8h.html" title="Gestion de la communication WebSocket entre l&#39;application mobile et le Raspberry Pi." alt="" coords="197,79,346,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="436,33,317,76,315,71,434,28"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="371,79,441,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="458,33,427,70,422,66,454,29"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="466,79,586,104"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="478,29,510,66,505,70,474,33"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="610,79,709,104"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="498,28,616,71,614,76,496,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,76,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="235,107,90,151,88,146,233,101"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="100,152,291,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="261,106,220,144,216,141,257,102"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="315,152,382,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="286,102,328,141,324,144,282,106"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="407,152,472,177"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="299,102,400,144,398,149,297,106"/>
+</map>
