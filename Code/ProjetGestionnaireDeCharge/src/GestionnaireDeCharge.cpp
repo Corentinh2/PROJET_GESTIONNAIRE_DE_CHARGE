@@ -59,3 +59,12 @@ void GestionnaireDeCharge::envoyerMesures() {
     
 }
 
+void GestionnaireDeCharge::verifierSeuils(float courant, float tension) {
+    // Seuil de 18A (protection 20A ES-01)
+    if (courant > 18.0) {
+        Serial.printf("!!! ALERTE COURANT : %.2f A !!!\n", courant);
+        
+        // On utilise la nouvelle méthode de raspi (type 0 = courant)
+        raspi->EnvoyerAlerte(0, "Surcharge detectee : " + String(courant) + "A");
+    }
+}

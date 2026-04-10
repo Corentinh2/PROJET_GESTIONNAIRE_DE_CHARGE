@@ -4,7 +4,7 @@
 
 accesBdd::accesBdd(QObject *parent)
 {
-
+    
 }
 
 bool accesBdd::connecter()
@@ -17,18 +17,18 @@ bool accesBdd::connecter()
         bdd.setUserName("charge");
         bdd.setPassword("ciel");
         bdd.setPort(3306);
-
+        
         if (!bdd.open()) {
             throw std::runtime_error(bdd.lastError().text().toStdString());
         }
-
+        
         qDebug() << "Connecté à la base de données !";
         resultat = true;
     }
     catch (const std::exception& e) {
         qDebug() << "ERREUR FATALE BDD :" << e.what();
     }
-
+    
     return resultat;
 }
 
@@ -39,7 +39,7 @@ void accesBdd::insererMesure(float puissance)
         query.prepare("INSERT INTO MESURE (horodatage, puissance, id_charge) VALUES (NOW(), :p, :id)");
         query.bindValue(":p", puissance);
         query.bindValue(":id", 9);
-
+        
         if (!query.exec()) {
             throw std::runtime_error(query.lastError().text().toStdString());
         }
@@ -57,7 +57,7 @@ void accesBdd::ajouterVehicule(const QString &nom, int km)
         query.prepare("INSERT INTO VEHICULE (modele, kilometres) VALUES (:nom, :km)");
         query.bindValue(":nom", nom);
         query.bindValue(":km", km);
-
+        
         if (!query.exec()) {
             throw std::runtime_error(query.lastError().text().toStdString());
         }
@@ -74,12 +74,12 @@ void accesBdd::envoyerListeVehicules(QWebSocket *pClient)
         if (!pClient) {
             throw std::runtime_error("Client non valide");
         }
-
+        
         QSqlQuery query;
         if (!query.exec("SELECT id_vehicule, modele, kilometres FROM VEHICULE")) {
             throw std::runtime_error(query.lastError().text().toStdString());
         }
-
+        
         while (query.next()) {
             QJsonObject reponse;
             reponse["action"] = "vehicule";
@@ -101,12 +101,12 @@ void accesBdd::envoyerListeBornes(QWebSocket *pClient)
         if (!pClient) {
             throw std::runtime_error("Client non valide");
         }
-
+        
         QSqlQuery query;
         if (!query.exec("SELECT id_borne, nom_borne, puissance, emplacement, ip_usine FROM BORNE")) {
             throw std::runtime_error(query.lastError().text().toStdString());
         }
-
+        
         while (query.next()) {
             QJsonObject reponse;
             reponse["action"] = "station";
@@ -130,11 +130,11 @@ void accesBdd::supprimerVehicule(int id)
         QSqlQuery query;
         query.prepare("DELETE FROM VEHICULE WHERE id_vehicule = :id");
         query.bindValue(":id", id);
-
+        
         if (!query.exec()) {
             throw std::runtime_error(query.lastError().text().toStdString());
         }
-
+        
         qDebug() << "Véhicule ID" << id << "supprimé avec succès.";
     }
     catch (const std::exception& e) {
@@ -149,11 +149,11 @@ void accesBdd::modifierKilometrage(int id, int km)
         query.prepare("UPDATE VEHICULE SET kilometres = :km WHERE id_vehicule = :id");
         query.bindValue(":km", km);
         query.bindValue(":id", id);
-
+        
         if (!query.exec()) {
             throw std::runtime_error(query.lastError().text().toStdString());
         }
-
+        
         qDebug() << "Kilométrage mis à jour pour l'ID" << id << ":" << km << "km";
     }
     catch (const std::exception& e) {
@@ -164,24 +164,26 @@ void accesBdd::modifierKilometrage(int id, int km)
 void accesBdd::ajouterEvenement(bool typeAlerte, const QString &message, int idBorne)
 {
     try {
-            QSqlQuery query;
-            query.prepare("INSERT INTO EVENEMENT (type_alerte, message_erreur, id_borne) "
-                          "VALUES (:type, :msg, :borne)");
-
-            // typeAlerte sera envoyé comme 0 (courant) ou 1 (température)
-            query.bindValue(":type", typeAlerte);
-            query.bindValue(":msg", message);
-            query.bindValue(":borne", idBorne);
-
-            if (!query.exec()) {
-                throw std::runtime_error(query.lastError().text().toStdString());
-            }
-
+        QSqlQuery query;
+        query.prepare("INSERT INTO EVENEMENT (type_alerte, message_erreur, id_borne) "
+                      "VALUES (:type, :msg, :borne)");
+        
+        // typeAlerte sera envoyé comme 0 (courant) ou 1 (température)
+        query.bindValue(":type", typeAlerte ? 1 : 0);
+        query.bindValue(":msg", message);
+        query.bindValue(":borne", id_Borne);
+        
+        if (!query.exec()) {
+            throw std::runtime_error(query.lastError().text().toStdString());
+        } else {
+            
             // Pour le débug dans ta console Raspi
             QString label = (typeAlerte == 1) ? "TEMPÉRATURE (1)" : "COURANT (0)";
             qDebug() << "Succès : Événement enregistré -> Type:" << label;
+            
         }
-        catch (const std::exception& e) {
-            qDebug() << "Exception BDD Evenement :" << e.what();
-        }
+    }
+    catch (const std::exception& e) {
+        qDebug() << "Exception BDD Evenement :" << e.what();
+    }
 }

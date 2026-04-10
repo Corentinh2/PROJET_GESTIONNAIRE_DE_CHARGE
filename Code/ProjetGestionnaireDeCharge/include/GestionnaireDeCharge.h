@@ -22,6 +22,7 @@ public:
     GestionnaireDeCharge(CapteurTension* t, CapteurCourant* c, ConnectionRaspberryPi* r);
     void initialiser();
     void envoyerMesures();
+    void verifierSeuils(float courant, float tension);
 };
 
 #endif

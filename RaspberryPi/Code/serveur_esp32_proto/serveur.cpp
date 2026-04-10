@@ -81,28 +81,52 @@ void Serveur::onTextMessageReceived(const QString &message)
             if (action == "obtenirStation") {
                 maBdd.envoyerListeBornes(pClient);
             }
-
             // Action : obtenirVehicule
             if (action == "obtenirVehicule") {
                 maBdd.envoyerListeVehicules(pClient);
             }
-
             // Action : ajouterVehicule
             if (action == "ajouterVehicule") {
                 maBdd.ajouterVehicule(obj["name"].toString(), obj["km"].toInt());
                 maBdd.envoyerListeVehicules(pClient);
             }
-
             // Action : supprimerVehicule
             if (action == "supprimerVehicule") {
                 maBdd.supprimerVehicule(obj["id"].toInt());
                 maBdd.envoyerListeVehicules(pClient);
             }
-
             // Action : modifierKilometrage
             if (action == "modifierKilometrage") {
                 maBdd.modifierKilometrage(obj["id"].toInt(), obj["km"].toInt());
                 maBdd.envoyerListeVehicules(pClient);
+            }
+            // Action : envoyerAlerte
+            if (action == "alerte") {
+                int typeRecu = obj["type"].toInt(); // L'ESP32 envoie 0 ou 1
+                QString msg  = obj["message"].toString();
+                int idBorne  = obj["idBorne"].toInt();
+
+                // On traite le courant (0)
+                if (typeRecu == 0) {
+                    maBdd.ajouterEvenement(false, msg, idBorne); // false enverra 0 en BDD
+                    qDebug() << "Alerte COURANT enregistrée.";
+                }
+
+                // On traite la température (1)
+                if (typeRecu == 1) {
+                    maBdd.ajouterEvenement(true, msg, idBorne); // true enverra 1 en BDD
+                    qDebug() << "Alerte TEMPÉRATURE enregistrée.";
+                }
+
+                // --- Notification commune au mobile ---
+                QJsonObject notif;
+                notif["action"] = "alerteRecue";
+                notif["type"] = typeRecu;
+                notif["message"] = msg;
+
+                for (QWebSocket *client : listeClients) {
+                    client->sendTextMessage(QJsonDocument(notif).toJson(QJsonDocument::Compact));
+                }
             }
 
         }

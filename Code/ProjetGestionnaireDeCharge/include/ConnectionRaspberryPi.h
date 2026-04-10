@@ -4,6 +4,7 @@
 #include <WiFi.h>
 #include <WiFiClient.h>
 #include <WebSocketsClient.h>
+#include <ArduinoJson.h>
 
 class ConnectionRaspberryPi {
 private:
@@ -20,6 +21,7 @@ public:
     void EnvoyerNotification(String msg); // Présent sur ton diagramme
     void cloturerSession();
     void loop();
-    static void webSocketEvent(WStype_t type, uint8_t * payload, size_t length);           // Présent sur ton diagramme
+    static void webSocketEvent(WStype_t type, uint8_t * payload, size_t length);
+    void EnvoyerAlerte(int type, String texte);           // Présent sur ton diagramme
 };
 #endif

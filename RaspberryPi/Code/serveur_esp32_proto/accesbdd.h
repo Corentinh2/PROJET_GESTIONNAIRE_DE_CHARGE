@@ -11,6 +11,7 @@
 #include <QJsonDocument>
 #include <QtWebSockets/QWebSocket>
 #include <stdexcept> // Pour std::runtime_error
+#include <QString>
 #include "accesbdd.h"
 
 class accesBdd : public QObject
@@ -27,6 +28,8 @@ public:
     void envoyerListeBornes(QWebSocket *pClient);
     void supprimerVehicule(int id);
     void modifierKilometrage(int id, int km);
+
+    void ajouterEvenement(bool typeAlerte, const QString &message, int idBorne);
 
 private:
     QSqlDatabase bdd;

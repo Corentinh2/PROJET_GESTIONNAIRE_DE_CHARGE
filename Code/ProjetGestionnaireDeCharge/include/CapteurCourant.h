@@ -8,6 +8,7 @@ private:
     int brocheAnalogique;
     float sensibilite;
     EnergyMonitor emon;
+    const float SEUIL_MAX = 18.0;
 
 public:
     CapteurCourant(int pin, float sens);

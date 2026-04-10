@@ -56,3 +56,17 @@ void ConnectionRaspberryPi::webSocketEvent(WStype_t type, uint8_t * payload, siz
             break;
     }
 }
+
+void ConnectionRaspberryPi::EnvoyerAlerte(int type, String texte) {
+    StaticJsonDocument<200> doc;
+    doc["action"] = "alerte";
+    doc["type"] = type;      // 0 pour courant, 1 pour température
+    doc["message"] = texte;
+    doc["idBorne"] = 1;
+
+    String trame;
+    serializeJson(doc, trame);
+    
+    // On réutilise ta méthode sécurisée pour l'envoi
+    EnvoyerNotification(trame);
+}
