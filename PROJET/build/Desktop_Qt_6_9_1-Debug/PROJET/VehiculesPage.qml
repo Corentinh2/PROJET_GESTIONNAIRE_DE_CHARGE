@@ -6,7 +6,7 @@ Item {
     id: vehiclesRoot
 
     Component.onCompleted: {
-        vehiclesModel.clear();
+        window.attenteNouvelleListeVehicules = true;
         commRaspi.obtenirVehicule();
     }
 
@@ -112,7 +112,7 @@ Item {
 
                         Text {
                             anchors.centerIn: parent
-                            text: "✕"
+                            text: "\u2715"
                             color: "#E53935"
                             font.pixelSize: 14
                             font.bold: true
@@ -124,6 +124,7 @@ Item {
                                 if (name === window.selectedVehicle) {
                                     window.selectedVehicle = "";
                                 }
+                                window.attenteNouvelleListeVehicules = true;
                                 commRaspi.supprimerVehicule(vehicleId);
                                 vehiclesModel.remove(index);
                             }
@@ -189,6 +190,7 @@ Item {
                     AppButton {
                         text: "Enregistrer"; Layout.fillWidth: true
                         onClicked: {
+                            window.attenteNouvelleListeVehicules = true;
                             commRaspi.ajouterVehicule(vName.text, vKm.text);
                             stackView.pop();
                         }

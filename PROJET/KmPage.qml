@@ -135,6 +135,7 @@ Item {
                         var vItem = vehiclesModel.get(v);
                         if (vItem.name === window.selectedVehicle) {
                             vehiclesModel.setProperty(v, "km", kmSaisi.toString());
+                            commRaspi.modifierKilometrage(vItem.vehicleId, kmSaisi);
                         }
                     }
                     stackView.replace(null, "DashboardPage.qml");

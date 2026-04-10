@@ -6,82 +6,82 @@
                     {
                         "codegenSuccessful": false,
                         "column": 17,
-                        "durationMicroseconds": 141,
+                        "durationMicroseconds": 127,
                         "errorMessage": "Cannot load property radius from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/AppCard.qml)::parent with type QQuickItem.",
                         "functionName": "radius",
-                        "line": 24
+                        "line": 23
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 23,
-                        "durationMicroseconds": 115,
+                        "durationMicroseconds": 112,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 22
+                        "line": 21
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 17,
-                        "durationMicroseconds": 65,
+                        "durationMicroseconds": 64,
                         "errorMessage": "Cannot load property radius from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/AppCard.qml)::parent with type QQuickItem.",
                         "functionName": "radius",
-                        "line": 33
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 18,
-                        "durationMicroseconds": 167,
-                        "errorMessage": "",
-                        "functionName": "opacity",
-                        "line": 35
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 23,
-                        "durationMicroseconds": 57,
-                        "errorMessage": "",
-                        "functionName": "fill",
                         "line": 32
                     },
                     {
                         "codegenSuccessful": true,
-                        "column": 20,
-                        "durationMicroseconds": 129,
+                        "column": 18,
+                        "durationMicroseconds": 172,
                         "errorMessage": "",
-                        "functionName": "onClicked",
-                        "line": 41
+                        "functionName": "opacity",
+                        "line": 34
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 23,
-                        "durationMicroseconds": 84,
+                        "durationMicroseconds": 56,
                         "errorMessage": "",
                         "functionName": "fill",
+                        "line": 31
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 20,
+                        "durationMicroseconds": 126,
+                        "errorMessage": "",
+                        "functionName": "onClicked",
                         "line": 40
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 23,
-                        "durationMicroseconds": 59,
+                        "durationMicroseconds": 56,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 45
+                        "line": 39
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 23,
+                        "durationMicroseconds": 55,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 44
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 31,
-                        "durationMicroseconds": 83,
+                        "durationMicroseconds": 81,
                         "errorMessage": "",
                         "functionName": "alignment",
-                        "line": 56
+                        "line": 53
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 23,
-                        "durationMicroseconds": 38,
+                        "durationMicroseconds": 37,
                         "errorMessage": "Cannot access value for name iconChar",
                         "functionName": "text",
-                        "line": 60
+                        "line": 56
                     },
                     {
                         "codegenSuccessful": true,
@@ -89,15 +89,15 @@
                         "durationMicroseconds": 56,
                         "errorMessage": "",
                         "functionName": "centerIn",
-                        "line": 59
+                        "line": 55
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 31,
-                        "durationMicroseconds": 78,
+                        "durationMicroseconds": 76,
                         "errorMessage": "",
                         "functionName": "alignment",
-                        "line": 68
+                        "line": 64
                     },
                     {
                         "codegenSuccessful": false,
@@ -105,23 +105,55 @@
                         "durationMicroseconds": 32,
                         "errorMessage": "Cannot access value for name title",
                         "functionName": "text",
-                        "line": 72
+                        "line": 67
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 23,
-                        "durationMicroseconds": 29,
+                        "durationMicroseconds": 30,
                         "errorMessage": "Cannot access value for name subTitle",
                         "functionName": "text",
-                        "line": 79
+                        "line": 73
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 22,
+                        "durationMicroseconds": 34,
+                        "errorMessage": "Cannot access value for name badgeCount",
+                        "functionName": "visible",
+                        "line": 81
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 31,
-                        "durationMicroseconds": 77,
+                        "durationMicroseconds": 83,
                         "errorMessage": "",
                         "functionName": "alignment",
-                        "line": 91
+                        "line": 84
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 23,
+                        "durationMicroseconds": 30,
+                        "errorMessage": "Cannot access value for name badgeCount",
+                        "functionName": "text",
+                        "line": 87
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 35,
+                        "durationMicroseconds": 55,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 86
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 31,
+                        "durationMicroseconds": 75,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 99
                     }
                 ],
                 "filePath": "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/AppCard.qml"

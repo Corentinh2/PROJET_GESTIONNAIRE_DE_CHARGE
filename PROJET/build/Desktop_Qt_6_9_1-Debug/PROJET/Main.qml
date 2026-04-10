@@ -16,6 +16,7 @@ ApplicationWindow {
     property string activeStation: ""
     property string selectedVehicle: ""
     property bool isBookingFlow: false
+    property bool attenteNouvelleListeVehicules: false
     property int selectedMileage: 0
 
     // Synchronisation borne/véhicule avec commEsp
@@ -32,6 +33,19 @@ ApplicationWindow {
     property int sessionDurationSeconds: 0
     property double sessionEnergyKwh: 0.0
     property double sessionCostEuro: 0.0
+
+    // --- STATUTS DE CONNEXION ---
+    property string espStatus: "Déconnecté"
+    property string raspiStatus: "Déconnecté"
+
+    // --- COMPTEUR SESSIONS ACTIVES ---
+        property int activeSessionCount: {
+            var count = 0;
+            for (var i = 0; i < sessionsModel.count; i++) {
+                if (sessionsModel.get(i).station === window.activeStation) { count++; }
+            }
+            return count;
+        }
 
     function getSelectedStationStatus() {
         var status = "Inconnu";
@@ -80,13 +94,123 @@ ApplicationWindow {
             id: stackView
             anchors.fill: parent
             anchors.topMargin: 14
-            anchors.bottomMargin: 10
+            anchors.bottomMargin: 36
             anchors.leftMargin: 10
             anchors.rightMargin: 10
 
             initialItem: "BootPage.qml"
         }
-    }
+
+        // --- BARRE DE STATUT EN BAS ---
+        Rectangle {
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left
+            anchors.right: parent.right
+            height: 32
+            color: "#ECEFF1"
+            radius: 0
+
+            RowLayout {
+                anchors.fill: parent
+                anchors.leftMargin: 16
+                anchors.rightMargin: 16
+                spacing: 16
+
+                RowLayout {
+                    spacing: 5
+                    Rectangle {
+                        width: 8; height: 8; radius: 4
+                        color: window.espStatus === "Connecté" ? "#43A047" : "#E53935"
+                    }
+                    Text {
+                        text: "ESP32 • " + window.espStatus
+                        font.pixelSize: 11
+                        color: "#546E7A"
+                    }
+                }
+
+                Rectangle { width: 1; height: 16; color: "#B0BEC5" }
+
+                RowLayout {
+                    spacing: 5
+                    Rectangle {
+                        width: 8; height: 8; radius: 4
+                        color: window.raspiStatus === "Connecté" ? "#43A047" : "#E53935"
+                    }
+                    Text {
+                        text: "Raspi • " + window.raspiStatus
+                        font.pixelSize: 11
+                        color: "#546E7A"
+                    }
+                }
+
+                Item { Layout.fillWidth: true }
+            }
+        }
+
+        // --- POPUP ALERTE ---
+        Connections {
+            target: commEsp
+            function onAlerteRecue(type, message) {
+                alertPopup.visible = true;
+            }
+        }
+
+        Rectangle {
+            id: alertPopup
+            visible: false
+            anchors.fill: parent
+            color: "#AA000000"
+            z: 100
+
+            Rectangle {
+                anchors.centerIn: parent
+                width: parent.width - 40
+                radius: 20
+                color: "white"
+                height: alertCol.implicitHeight + 40
+
+                ColumnLayout {
+                    id: alertCol
+                    anchors.centerIn: parent
+                    width: parent.width - 40
+                    spacing: 16
+
+                    Rectangle {
+                        width: 64; height: 64; radius: 32
+                        color: "#FFEBEE"
+                        Layout.alignment: Qt.AlignHCenter
+                        Text { anchors.centerIn: parent; text: "⚠️"; font.pixelSize: 30 }
+                    }
+
+                    Text {
+                        text: "Alerte détectée"
+                        font.bold: true
+                        font.pixelSize: 18
+                        color: "#C62828"
+                        Layout.alignment: Qt.AlignHCenter
+                    }
+
+                    Text {
+                        text: notificationModel.count > 0 ? notificationModel.get(notificationModel.count - 1).message : ""
+                        font.pixelSize: 14
+                        color: "#546E7A"
+                        horizontalAlignment: Text.AlignHCenter
+                        wrapMode: Text.WordWrap
+                        Layout.fillWidth: true
+                        Layout.alignment: Qt.AlignHCenter
+                    }
+
+                    AppButton {
+                        text: "J'ai compris"
+                        Layout.fillWidth: true
+                        onClicked: alertPopup.visible = false
+                    }
+                }
+            }
+        }
+
+    } // fin appFrame
 
     // ============================================================
     // CONNEXIONS RASPBERRY PI (Stations + Véhicules)
@@ -94,21 +218,30 @@ ApplicationWindow {
     Connections {
         target: commRaspi
 
-        function onStationRecue(id, name, kwh, status) {
+        function onConnectionStatusChanged(status) {
+            window.raspiStatus = status;
+        }
+
+        function onStationRecue(id, name, kwh, status, ip) {
             stationsModelSource.append({
-                "stationId": id,
-                "name": name,
-                "kwh": kwh,
-                "status": status
-            });
+                                           "stationId": id,
+                                           "name": name,
+                                           "kwh": kwh,
+                                           "status": status,
+                                           "ip": ip
+                                       });
         }
 
         function onVehiculeRecu(id, name, km) {
+            if (window.attenteNouvelleListeVehicules) {
+                vehiclesModel.clear();
+                window.attenteNouvelleListeVehicules = false;
+            }
             vehiclesModel.append({
-                "vehicleId": id,
-                "name": name,
-                "km": String(km)
-            });
+                                     "vehicleId": id,
+                                     "name": name,
+                                     "km": String(km)
+                                 });
         }
     }
 
@@ -118,16 +251,25 @@ ApplicationWindow {
     Connections {
         target: commEsp
 
+        function onConnectionStatusChanged(status) {
+            window.espStatus = status;
+        }
+
+        function onClearCalendriers() {
+            sessionsModel.clear();
+            console.log("[MAIN] Liste des calendriers vidée (nouvelle liste en cours)");
+        }
+
         function onCalendrierRecu(id, borne, vehicule, jours, start, end) {
             console.log("[MAIN] Calendrier ajouté : id=" + id + " / " + borne + " / " + vehicule + " / " + jours);
             sessionsModel.append({
-                "sessionId": id,
-                "station": borne,
-                "vehicle": vehicule,
-                "days": jours,
-                "start": start,
-                "end": end
-            });
+                                     "sessionId": id,
+                                     "station": borne,
+                                     "vehicle": vehicule,
+                                     "days": jours,
+                                     "start": start,
+                                     "end": end
+                                 });
 
             for (var i = 0; i < stationsModelSource.count; i++) {
                 var item = stationsModelSource.get(i);
@@ -138,15 +280,18 @@ ApplicationWindow {
         }
 
         function onAlerteRecue(type, message) {
+            var msg = "";
+            if (type === "surchauffe") {
+                msg = "Température trop élevée !";
+            } else {
+                msg = "Tension trop élevée !";
+            }
             notificationModel.append({
-                "type": type,
-                "message": message
-            });
-            console.log("[ALERTE ESP32] " + type + " : " + message);
+                                         "type": type,
+                                         "message": msg
+                                     });
+            console.log("[ALERTE ESP32] " + type + " : " + msg);
         }
     }
 
-    Component.onCompleted: {
-        console.log("Application initialisée et prête.");
-    }
 }

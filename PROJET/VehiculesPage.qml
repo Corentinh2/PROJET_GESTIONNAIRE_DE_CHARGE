@@ -5,10 +5,10 @@ import QtQuick.Controls 2.15
 Item {
     id: vehiclesRoot
 
-    // Component.onCompleted: {
-    //     vehiclesModel.clear();
-    //     commRaspi.obtenirVehicule();
-    // }
+    Component.onCompleted: {
+        window.attenteNouvelleListeVehicules = true;
+        commRaspi.obtenirVehicule();
+    }
 
     ColumnLayout {
         anchors.fill: parent
@@ -112,7 +112,7 @@ Item {
 
                         Text {
                             anchors.centerIn: parent
-                            text: "✕"
+                            text: "🗑️"
                             color: "#E53935"
                             font.pixelSize: 14
                             font.bold: true
@@ -124,6 +124,7 @@ Item {
                                 if (name === window.selectedVehicle) {
                                     window.selectedVehicle = "";
                                 }
+                                window.attenteNouvelleListeVehicules = true;
                                 commRaspi.supprimerVehicule(vehicleId);
                                 vehiclesModel.remove(index);
                             }
@@ -189,6 +190,7 @@ Item {
                     AppButton {
                         text: "Enregistrer"; Layout.fillWidth: true
                         onClicked: {
+                            window.attenteNouvelleListeVehicules = true;
                             commRaspi.ajouterVehicule(vName.text, vKm.text);
                             stackView.pop();
                         }

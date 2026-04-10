@@ -14,7 +14,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 36,
-                        "durationMicroseconds": 191,
+                        "durationMicroseconds": 196,
                         "errorMessage": "Cannot access value for name window",
                         "functionName": "currentVehicleKm",
                         "line": 19
@@ -22,7 +22,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 23,
-                        "durationMicroseconds": 116,
+                        "durationMicroseconds": 92,
                         "errorMessage": "",
                         "functionName": "fill",
                         "line": 22
@@ -30,7 +30,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 25,
-                        "durationMicroseconds": 64,
+                        "durationMicroseconds": 78,
                         "errorMessage": "Cannot load property radius from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/KmPage.qml)::parent with type QQuickItem.",
                         "functionName": "radius",
                         "line": 47
@@ -38,7 +38,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 31,
-                        "durationMicroseconds": 76,
+                        "durationMicroseconds": 59,
                         "errorMessage": "",
                         "functionName": "fill",
                         "line": 45
@@ -46,7 +46,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 31,
-                        "durationMicroseconds": 64,
+                        "durationMicroseconds": 56,
                         "errorMessage": "",
                         "functionName": "fill",
                         "line": 54
@@ -54,7 +54,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 39,
-                        "durationMicroseconds": 84,
+                        "durationMicroseconds": 80,
                         "errorMessage": "",
                         "functionName": "alignment",
                         "line": 64
@@ -62,7 +62,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 43,
-                        "durationMicroseconds": 55,
+                        "durationMicroseconds": 56,
                         "errorMessage": "",
                         "functionName": "centerIn",
                         "line": 67
@@ -70,7 +70,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 27,
-                        "durationMicroseconds": 241,
+                        "durationMicroseconds": 258,
                         "errorMessage": "Cannot access value for name window",
                         "functionName": "text",
                         "line": 74
@@ -78,7 +78,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 39,
-                        "durationMicroseconds": 76,
+                        "durationMicroseconds": 77,
                         "errorMessage": "",
                         "functionName": "alignment",
                         "line": 78
@@ -86,7 +86,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 27,
-                        "durationMicroseconds": 193,
+                        "durationMicroseconds": 182,
                         "errorMessage": "",
                         "functionName": "text",
                         "line": 89
@@ -94,7 +94,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 39,
-                        "durationMicroseconds": 84,
+                        "durationMicroseconds": 75,
                         "errorMessage": "",
                         "functionName": "alignment",
                         "line": 93
@@ -110,7 +110,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 30,
-                        "durationMicroseconds": 123,
+                        "durationMicroseconds": 112,
                         "errorMessage": "Cannot retrieve a non-object type by ID: kmInput",
                         "functionName": "visible",
                         "line": 104

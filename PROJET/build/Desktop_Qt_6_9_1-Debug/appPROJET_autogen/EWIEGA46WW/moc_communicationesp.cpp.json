@@ -6,7 +6,19 @@
             "methods": [
                 {
                     "access": "public",
-                    "index": 8,
+                    "arguments": [
+                        {
+                            "name": "ip",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 10,
+                    "name": "setIp",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 11,
                     "name": "obtenirCalendrier",
                     "returnType": "void"
                 },
@@ -26,7 +38,7 @@
                             "type": "QString"
                         }
                     ],
-                    "index": 9,
+                    "index": 12,
                     "name": "ajouterCalendrier",
                     "returnType": "void"
                 },
@@ -38,7 +50,7 @@
                             "type": "int"
                         }
                     ],
-                    "index": 10,
+                    "index": 13,
                     "name": "supprimerCalendrier",
                     "returnType": "void"
                 },
@@ -50,7 +62,7 @@
                             "type": "bool"
                         }
                     ],
-                    "index": 11,
+                    "index": 14,
                     "name": "marcheForcee",
                     "returnType": "void"
                 }
@@ -153,12 +165,18 @@
                 {
                     "access": "public",
                     "index": 3,
-                    "name": "activeBorneChanged",
+                    "name": "clearCalendriers",
                     "returnType": "void"
                 },
                 {
                     "access": "public",
                     "index": 4,
+                    "name": "activeBorneChanged",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 5,
                     "name": "activeVehiculeChanged",
                     "returnType": "void"
                 }
@@ -166,13 +184,13 @@
             "slots": [
                 {
                     "access": "private",
-                    "index": 5,
+                    "index": 6,
                     "name": "onConnected",
                     "returnType": "void"
                 },
                 {
                     "access": "private",
-                    "index": 6,
+                    "index": 7,
                     "name": "onDisconnected",
                     "returnType": "void"
                 },
@@ -184,8 +202,14 @@
                             "type": "QString"
                         }
                     ],
-                    "index": 7,
+                    "index": 8,
                     "name": "onTextMessageReceived",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "index": 9,
+                    "name": "tenterReconnexion",
                     "returnType": "void"
                 }
             ],

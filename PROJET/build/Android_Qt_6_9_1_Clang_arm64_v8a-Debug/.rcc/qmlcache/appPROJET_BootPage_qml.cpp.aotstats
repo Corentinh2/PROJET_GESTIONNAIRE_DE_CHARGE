@@ -5,27 +5,115 @@
                 "entries": [
                     {
                         "codegenSuccessful": true,
-                        "column": 23,
-                        "durationMicroseconds": 155,
+                        "column": 16,
+                        "durationMicroseconds": 164,
                         "errorMessage": "",
-                        "functionName": "fill",
-                        "line": 9
+                        "functionName": "width",
+                        "line": 11
                     },
                     {
-                        "codegenSuccessful": true,
-                        "column": 31,
-                        "durationMicroseconds": 97,
-                        "errorMessage": "",
-                        "functionName": "alignment",
+                        "codegenSuccessful": false,
+                        "column": 16,
+                        "durationMicroseconds": 222,
+                        "errorMessage": "Cannot generate efficient code for call to untyped JavaScript function",
+                        "functionName": "color",
+                        "line": 15
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 9,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Functions without type annotations won't be compiled",
+                        "functionName": "alertTypeColor",
                         "line": 17
                     },
                     {
                         "codegenSuccessful": true,
-                        "column": 35,
-                        "durationMicroseconds": 77,
+                        "column": 27,
+                        "durationMicroseconds": 61,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 26
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 31,
+                        "durationMicroseconds": 81,
+                        "errorMessage": "",
+                        "functionName": "wrapMode",
+                        "line": 48
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 24,
+                        "durationMicroseconds": 120,
+                        "errorMessage": "",
+                        "functionName": "onClicked",
+                        "line": 56
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 27,
+                        "durationMicroseconds": 55,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 55
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 17,
+                        "durationMicroseconds": 66,
+                        "errorMessage": "Cannot access value for name commEsp",
+                        "functionName": "target",
+                        "line": 61
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 9,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Functions without type annotations won't be compiled",
+                        "functionName": "onAlerteRecue",
+                        "line": 62
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 23,
+                        "durationMicroseconds": 59,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 70
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 28,
+                        "durationMicroseconds": 8458,
+                        "errorMessage": "",
+                        "functionName": "topMargin",
+                        "line": 71
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 31,
+                        "durationMicroseconds": 113,
                         "errorMessage": "",
                         "functionName": "alignment",
-                        "line": 26
+                        "line": 82
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 35,
+                        "durationMicroseconds": 76,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 89
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 34,
+                        "durationMicroseconds": 77,
+                        "errorMessage": "",
+                        "functionName": "orientation",
+                        "line": 91
                     },
                     {
                         "codegenSuccessful": true,
@@ -33,55 +121,103 @@
                         "durationMicroseconds": 58,
                         "errorMessage": "",
                         "functionName": "centerIn",
-                        "line": 29
+                        "line": 97
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 35,
-                        "durationMicroseconds": 78,
+                        "durationMicroseconds": 75,
                         "errorMessage": "",
                         "functionName": "alignment",
-                        "line": 42
+                        "line": 110
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 35,
-                        "durationMicroseconds": 77,
+                        "durationMicroseconds": 72,
                         "errorMessage": "",
                         "functionName": "alignment",
-                        "line": 49
+                        "line": 117
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 23,
+                        "durationMicroseconds": 8547,
+                        "errorMessage": "Cannot access value for name stationsModelSource",
+                        "functionName": "text",
+                        "line": 139
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 20,
-                        "durationMicroseconds": 3940,
+                        "durationMicroseconds": 1006,
                         "errorMessage": "Cannot access value for name stationsModelSource",
                         "functionName": "model",
-                        "line": 74
+                        "line": 154
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 24,
-                        "durationMicroseconds": 60,
+                        "durationMicroseconds": 45,
                         "errorMessage": "Cannot access value for name stationList",
                         "functionName": "width",
-                        "line": 77
+                        "line": 157
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 17,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Functions without type annotations won't be compiled",
+                        "functionName": "statusBorderColor",
+                        "line": 164
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 17,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Functions without type annotations won't be compiled",
+                        "functionName": "statusDotColor",
+                        "line": 170
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 17,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Functions without type annotations won't be compiled",
+                        "functionName": "statusLabel",
+                        "line": 176
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 17,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Functions without type annotations won't be compiled",
+                        "functionName": "iconBgColor",
+                        "line": 182
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 31,
+                        "durationMicroseconds": 180,
+                        "errorMessage": "Cannot access value for name status",
+                        "functionName": "color",
+                        "line": 161
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 29,
-                        "durationMicroseconds": 72,
+                        "durationMicroseconds": 74,
                         "errorMessage": "Cannot load property radius from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/BootPage.qml)::parent with type QQuickItem.",
                         "functionName": "radius",
-                        "line": 88
+                        "line": 191
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 35,
-                        "durationMicroseconds": 94,
+                        "durationMicroseconds": 97,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 86
+                        "line": 189
                     },
                     {
                         "codegenSuccessful": false,
@@ -89,15 +225,15 @@
                         "durationMicroseconds": 64,
                         "errorMessage": "Cannot load property radius from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/BootPage.qml)::parent with type QQuickItem.",
                         "functionName": "radius",
-                        "line": 97
+                        "line": 199
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 30,
-                        "durationMicroseconds": 165,
+                        "durationMicroseconds": 145,
                         "errorMessage": "",
                         "functionName": "opacity",
-                        "line": 99
+                        "line": 201
                     },
                     {
                         "codegenSuccessful": true,
@@ -105,55 +241,39 @@
                         "durationMicroseconds": 56,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 96
+                        "line": 198
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 35,
-                        "durationMicroseconds": 56,
+                        "durationMicroseconds": 55,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 103
+                        "line": 208
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 32,
+                        "durationMicroseconds": 341,
+                        "errorMessage": "Cannot access value for name status",
+                        "functionName": "color",
+                        "line": 217
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 43,
-                        "durationMicroseconds": 5631,
+                        "durationMicroseconds": 183,
                         "errorMessage": "",
                         "functionName": "alignment",
-                        "line": 114
+                        "line": 218
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 47,
-                        "durationMicroseconds": 73,
+                        "durationMicroseconds": 67,
                         "errorMessage": "",
                         "functionName": "centerIn",
-                        "line": 117
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 43,
-                        "durationMicroseconds": 79,
-                        "errorMessage": "",
-                        "functionName": "alignment",
-                        "line": 125
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 35,
-                        "durationMicroseconds": 252,
-                        "errorMessage": "Cannot access value for name name",
-                        "functionName": "text",
-                        "line": 129
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 35,
-                        "durationMicroseconds": 207,
-                        "errorMessage": "Cannot access value for name kwh",
-                        "functionName": "text",
-                        "line": 136
+                        "line": 221
                     },
                     {
                         "codegenSuccessful": true,
@@ -161,23 +281,95 @@
                         "durationMicroseconds": 82,
                         "errorMessage": "",
                         "functionName": "alignment",
-                        "line": 146
+                        "line": 229
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 35,
+                        "durationMicroseconds": 257,
+                        "errorMessage": "Cannot access value for name name",
+                        "functionName": "text",
+                        "line": 233
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 39,
+                        "durationMicroseconds": 195,
+                        "errorMessage": "Cannot access value for name kwh",
+                        "functionName": "text",
+                        "line": 243
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 40,
+                        "durationMicroseconds": 171,
+                        "errorMessage": "",
+                        "functionName": "width",
+                        "line": 252
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 40,
+                        "durationMicroseconds": 376,
+                        "errorMessage": "Cannot access value for name status",
+                        "functionName": "color",
+                        "line": 254
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 55,
+                        "durationMicroseconds": 63,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 261
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 48,
+                        "durationMicroseconds": 381,
+                        "errorMessage": "Cannot access value for name status",
+                        "functionName": "color",
+                        "line": 266
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 47,
+                        "durationMicroseconds": 532,
+                        "errorMessage": "Cannot access value for name status",
+                        "functionName": "text",
+                        "line": 271
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 48,
+                        "durationMicroseconds": 14049,
+                        "errorMessage": "Cannot access value for name status",
+                        "functionName": "color",
+                        "line": 274
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 43,
+                        "durationMicroseconds": 104,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 285
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 32,
-                        "durationMicroseconds": 543,
+                        "durationMicroseconds": 813,
                         "errorMessage": "Cannot access value for name window",
                         "functionName": "onClicked",
-                        "line": 153
+                        "line": 292
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 35,
-                        "durationMicroseconds": 65,
+                        "durationMicroseconds": 76,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 152
+                        "line": 291
                     }
                 ],
                 "filePath": "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/BootPage.qml"

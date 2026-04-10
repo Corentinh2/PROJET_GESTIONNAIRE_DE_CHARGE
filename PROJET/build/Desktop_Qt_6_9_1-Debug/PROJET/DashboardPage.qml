@@ -5,6 +5,11 @@ import QtQuick.Controls 2.15
 Item {
     id: dashboardRoot
 
+    Component.onCompleted: {
+        sessionsModel.clear();
+        commEsp.obtenirCalendrier();
+    }
+
     ScrollView {
         anchors.fill: parent
         contentWidth: parent.width
@@ -17,7 +22,6 @@ Item {
 
             Item { height: 8 }
 
-            // En-tête avec infos borne
             Rectangle {
                 Layout.fillWidth: true
                 height: 80
@@ -32,14 +36,12 @@ Item {
                     ColumnLayout {
                         Layout.fillWidth: true
                         spacing: 2
-
                         Text {
                             text: window.activeStation
                             font.bold: true
                             font.pixelSize: 18
                             color: "#1565C0"
                         }
-
                         Text {
                             text: "Supervision active"
                             font.pixelSize: 13
@@ -47,20 +49,11 @@ Item {
                         }
                     }
 
-                    // Bouton paramètres
                     Rectangle {
-                        width: 42
-                        height: 42
-                        radius: 21
+                        width: 42; height: 42; radius: 21
                         color: "white"
                         Layout.alignment: Qt.AlignVCenter
-
-                        Text {
-                            anchors.centerIn: parent
-                            text: "⚙️"
-                            font.pixelSize: 18
-                        }
-
+                        Text { anchors.centerIn: parent; text: "⚙️"; font.pixelSize: 18 }
                         MouseArea {
                             anchors.fill: parent
                             onClicked: stackView.push("SettingsPage.qml")
@@ -69,7 +62,6 @@ Item {
                 }
             }
 
-            // Bouton déconnecter
             AppButton {
                 text: "Déconnecter la borne"
                 isPrimary: false
@@ -79,7 +71,6 @@ Item {
 
             Item { height: 4 }
 
-            // Label section
             Text {
                 text: "Navigation"
                 font.pixelSize: 12
@@ -89,7 +80,6 @@ Item {
                 Layout.leftMargin: 4
             }
 
-            // Section Cartes
             ColumnLayout {
                 Layout.fillWidth: true
                 spacing: 10
@@ -98,6 +88,7 @@ Item {
                     title: "Sessions"
                     subTitle: "Historique et planning"
                     iconChar: "📅"
+                    badgeCount: window.activeSessionCount
                     onClicked: stackView.push("SessionsPage.qml")
                 }
 

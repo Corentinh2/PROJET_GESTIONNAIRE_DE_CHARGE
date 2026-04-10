@@ -14,7 +14,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 36,
-                        "durationMicroseconds": 203,
+                        "durationMicroseconds": 198,
                         "errorMessage": "Cannot access value for name window",
                         "functionName": "currentVehicleKm",
                         "line": 19
@@ -22,7 +22,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 23,
-                        "durationMicroseconds": 115,
+                        "durationMicroseconds": 118,
                         "errorMessage": "",
                         "functionName": "fill",
                         "line": 22
@@ -38,7 +38,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 31,
-                        "durationMicroseconds": 59,
+                        "durationMicroseconds": 61,
                         "errorMessage": "",
                         "functionName": "fill",
                         "line": 45
@@ -46,7 +46,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 31,
-                        "durationMicroseconds": 55,
+                        "durationMicroseconds": 58,
                         "errorMessage": "",
                         "functionName": "fill",
                         "line": 54
@@ -54,7 +54,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 39,
-                        "durationMicroseconds": 86,
+                        "durationMicroseconds": 87,
                         "errorMessage": "",
                         "functionName": "alignment",
                         "line": 64
@@ -62,7 +62,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 43,
-                        "durationMicroseconds": 55,
+                        "durationMicroseconds": 64,
                         "errorMessage": "",
                         "functionName": "centerIn",
                         "line": 67
@@ -70,7 +70,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 27,
-                        "durationMicroseconds": 249,
+                        "durationMicroseconds": 246,
                         "errorMessage": "Cannot access value for name window",
                         "functionName": "text",
                         "line": 74
@@ -78,7 +78,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 39,
-                        "durationMicroseconds": 88,
+                        "durationMicroseconds": 80,
                         "errorMessage": "",
                         "functionName": "alignment",
                         "line": 78
@@ -94,7 +94,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 39,
-                        "durationMicroseconds": 78,
+                        "durationMicroseconds": 77,
                         "errorMessage": "",
                         "functionName": "alignment",
                         "line": 93
@@ -110,7 +110,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 30,
-                        "durationMicroseconds": 118,
+                        "durationMicroseconds": 119,
                         "errorMessage": "Cannot retrieve a non-object type by ID: kmInput",
                         "functionName": "visible",
                         "line": 104

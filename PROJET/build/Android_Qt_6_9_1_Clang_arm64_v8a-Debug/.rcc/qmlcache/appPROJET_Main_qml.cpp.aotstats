@@ -6,50 +6,58 @@
                     {
                         "codegenSuccessful": false,
                         "column": 29,
-                        "durationMicroseconds": 100,
+                        "durationMicroseconds": 128,
                         "errorMessage": "Cannot access value for name commEsp",
                         "functionName": "onActiveStationChanged",
-                        "line": 22
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 31,
-                        "durationMicroseconds": 59,
-                        "errorMessage": "Cannot access value for name commEsp",
-                        "functionName": "onSelectedVehicleChanged",
                         "line": 23
                     },
                     {
                         "codegenSuccessful": false,
+                        "column": 31,
+                        "durationMicroseconds": 70,
+                        "errorMessage": "Cannot access value for name commEsp",
+                        "functionName": "onSelectedVehicleChanged",
+                        "line": 24
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 42,
+                        "durationMicroseconds": 458,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: window",
+                        "functionName": "activeSessionCount",
+                        "line": 42
+                    },
+                    {
+                        "codegenSuccessful": false,
                         "column": 5,
-                        "durationMicroseconds": 1128,
+                        "durationMicroseconds": 5778,
                         "errorMessage": "Cannot retrieve a non-object type by ID: window",
                         "functionName": "getSelectedStationStatus",
-                        "line": 36
+                        "line": 50
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 18,
-                        "durationMicroseconds": 82,
+                        "durationMicroseconds": 72,
                         "errorMessage": "Cannot retrieve a non-object type by ID: window",
                         "functionName": "running",
-                        "line": 58
+                        "line": 72
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 22,
-                        "durationMicroseconds": 105,
+                        "durationMicroseconds": 106,
                         "errorMessage": "Cannot retrieve a non-object type by ID: window",
                         "functionName": "onTriggered",
-                        "line": 60
+                        "line": 74
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 23,
-                        "durationMicroseconds": 118,
+                        "durationMicroseconds": 99,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 71
+                        "line": 85
                     },
                     {
                         "codegenSuccessful": false,
@@ -57,15 +65,215 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find property \"fill\".",
                         "functionName": "fill",
-                        "line": 81
+                        "line": 95
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 29,
+                        "durationMicroseconds": 115,
+                        "errorMessage": "",
+                        "functionName": "bottom",
+                        "line": 106
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 27,
+                        "durationMicroseconds": 96,
+                        "errorMessage": "",
+                        "functionName": "left",
+                        "line": 107
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 28,
+                        "durationMicroseconds": 93,
+                        "errorMessage": "",
+                        "functionName": "right",
+                        "line": 108
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 31,
+                        "durationMicroseconds": 56,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 114
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 32,
+                        "durationMicroseconds": 3103,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: window",
+                        "functionName": "color",
+                        "line": 123
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 31,
+                        "durationMicroseconds": 55,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: window",
+                        "functionName": "text",
+                        "line": 126
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 32,
+                        "durationMicroseconds": 60,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: window",
+                        "functionName": "color",
+                        "line": 138
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 31,
+                        "durationMicroseconds": 28,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: window",
+                        "functionName": "text",
+                        "line": 141
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 21,
+                        "durationMicroseconds": 66,
+                        "errorMessage": "Cannot access value for name commEsp",
+                        "functionName": "target",
+                        "line": 153
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 13,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Functions without type annotations won't be compiled",
+                        "functionName": "onAlerteRecue",
+                        "line": 154
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 27,
+                        "durationMicroseconds": 95,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 162
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 24,
+                        "durationMicroseconds": 152,
+                        "errorMessage": "",
+                        "functionName": "width",
+                        "line": 168
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 25,
+                        "durationMicroseconds": 135,
+                        "errorMessage": "",
+                        "functionName": "height",
+                        "line": 171
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 35,
+                        "durationMicroseconds": 78,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 167
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 28,
+                        "durationMicroseconds": 131,
+                        "errorMessage": "",
+                        "functionName": "width",
+                        "line": 176
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 58,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 175
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 43,
+                        "durationMicroseconds": 3118,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 182
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 50,
+                        "durationMicroseconds": 70,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 183
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 43,
+                        "durationMicroseconds": 2904,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 191
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 31,
+                        "durationMicroseconds": 479,
+                        "errorMessage": "Cannot generate efficient code for lookup in QJSValue",
+                        "functionName": "text",
+                        "line": 195
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 46,
+                        "durationMicroseconds": 82,
+                        "errorMessage": "",
+                        "functionName": "horizontalAlignment",
+                        "line": 198
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 35,
+                        "durationMicroseconds": 70,
+                        "errorMessage": "",
+                        "functionName": "wrapMode",
+                        "line": 199
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 43,
+                        "durationMicroseconds": 245,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 201
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 36,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 207
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 17,
-                        "durationMicroseconds": 66,
+                        "durationMicroseconds": 78,
                         "errorMessage": "Cannot access value for name commRaspi",
                         "functionName": "target",
-                        "line": 95
+                        "line": 219
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 9,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Functions without type annotations won't be compiled",
+                        "functionName": "onConnectionStatusChanged",
+                        "line": 221
                     },
                     {
                         "codegenSuccessful": false,
@@ -73,7 +281,7 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Functions without type annotations won't be compiled",
                         "functionName": "onStationRecue",
-                        "line": 97
+                        "line": 225
                     },
                     {
                         "codegenSuccessful": false,
@@ -81,23 +289,31 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Functions without type annotations won't be compiled",
                         "functionName": "onVehiculeRecu",
-                        "line": 106
+                        "line": 235
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 17,
-                        "durationMicroseconds": 55,
+                        "durationMicroseconds": 60,
                         "errorMessage": "Cannot access value for name commEsp",
                         "functionName": "target",
-                        "line": 119
+                        "line": 252
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 9,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Functions without type annotations won't be compiled",
+                        "functionName": "onConnectionStatusChanged",
+                        "line": 254
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 9,
-                        "durationMicroseconds": 183,
+                        "durationMicroseconds": 191,
                         "errorMessage": "",
                         "functionName": "onClearCalendriers",
-                        "line": 121
+                        "line": 258
                     },
                     {
                         "codegenSuccessful": false,
@@ -105,7 +321,7 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Functions without type annotations won't be compiled",
                         "functionName": "onCalendrierRecu",
-                        "line": 126
+                        "line": 263
                     },
                     {
                         "codegenSuccessful": false,
@@ -113,15 +329,7 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Functions without type annotations won't be compiled",
                         "functionName": "onAlerteRecue",
-                        "line": 145
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 28,
-                        "durationMicroseconds": 4920,
-                        "errorMessage": "Cannot generate efficient code for call to untyped JavaScript function",
-                        "functionName": "onCompleted",
-                        "line": 154
+                        "line": 282
                     }
                 ],
                 "filePath": "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/Main.qml"

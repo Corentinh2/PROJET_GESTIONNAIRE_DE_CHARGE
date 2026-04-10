@@ -9,103 +9,183 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Functions without type annotations won't be compiled",
                         "functionName": "formatTime",
-                        "line": 15
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 22,
-                        "durationMicroseconds": 118,
-                        "errorMessage": "Cannot access value for name window",
-                        "functionName": "onTriggered",
                         "line": 12
                     },
                     {
-                        "codegenSuccessful": true,
-                        "column": 23,
-                        "durationMicroseconds": 115,
-                        "errorMessage": "",
-                        "functionName": "fill",
+                        "codegenSuccessful": false,
+                        "column": 5,
+                        "durationMicroseconds": 83,
+                        "errorMessage": "function without return type annotation returns QString. This may prevent proper compilation to Cpp.",
+                        "functionName": "statusColor",
                         "line": 22
                     },
                     {
-                        "codegenSuccessful": true,
-                        "column": 42,
-                        "durationMicroseconds": 58,
-                        "errorMessage": "",
-                        "functionName": "centerIn",
-                        "line": 33
+                        "codegenSuccessful": false,
+                        "column": 5,
+                        "durationMicroseconds": 37,
+                        "errorMessage": "function without return type annotation returns QString. This may prevent proper compilation to Cpp.",
+                        "functionName": "statusBgColor",
+                        "line": 28
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 62,
-                        "durationMicroseconds": 234,
-                        "errorMessage": "Cannot access value for name stackView",
-                        "functionName": "onClicked",
-                        "line": 34
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 43,
-                        "durationMicroseconds": 57,
-                        "errorMessage": "",
-                        "functionName": "fill",
+                        "column": 5,
+                        "durationMicroseconds": 37,
+                        "errorMessage": "function without return type annotation returns QString. This may prevent proper compilation to Cpp.",
+                        "functionName": "statusIcon",
                         "line": 34
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 20,
-                        "durationMicroseconds": 121,
-                        "errorMessage": "Cannot access value for name currentStatus",
-                        "functionName": "color",
-                        "line": 49
+                        "column": 5,
+                        "durationMicroseconds": 35,
+                        "errorMessage": "function without return type annotation returns QString. This may prevent proper compilation to Cpp.",
+                        "functionName": "statusBorderColor",
+                        "line": 40
                     },
                     {
-                        "codegenSuccessful": true,
-                        "column": 35,
-                        "durationMicroseconds": 58,
-                        "errorMessage": "",
-                        "functionName": "centerIn",
+                        "codegenSuccessful": false,
+                        "column": 5,
+                        "durationMicroseconds": 20,
+                        "errorMessage": "function without return type annotation returns QString. This may prevent proper compilation to Cpp.",
+                        "functionName": "statusMessage",
+                        "line": 46
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 5,
+                        "durationMicroseconds": 19,
+                        "errorMessage": "function without return type annotation returns QString. This may prevent proper compilation to Cpp.",
+                        "functionName": "buttonText",
+                        "line": 51
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 5,
+                        "durationMicroseconds": 17,
+                        "errorMessage": "function without return type annotation returns bool. This may prevent proper compilation to Cpp.",
+                        "functionName": "buttonPrimary",
                         "line": 56
                     },
                     {
                         "codegenSuccessful": false,
+                        "column": 5,
+                        "durationMicroseconds": 440,
+                        "errorMessage": "Cannot access value for name sessionsRoot",
+                        "functionName": "scheduleText",
+                        "line": 61
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 70,
+                        "durationMicroseconds": 87,
+                        "errorMessage": "Cannot access value for name window",
+                        "functionName": "onTriggered",
+                        "line": 10
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 23,
+                        "durationMicroseconds": 116,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 67
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 42,
+                        "durationMicroseconds": 59,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 74
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 62,
+                        "durationMicroseconds": 229,
+                        "errorMessage": "Cannot access value for name stackView",
+                        "functionName": "onClicked",
+                        "line": 75
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 43,
+                        "durationMicroseconds": 131,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 75
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 20,
+                        "durationMicroseconds": 256,
+                        "errorMessage": "method statusBgColor cannot be resolved.",
+                        "functionName": "color",
+                        "line": 84
+                    },
+                    {
+                        "codegenSuccessful": false,
                         "column": 27,
-                        "durationMicroseconds": 42,
-                        "errorMessage": "Cannot access value for name currentStatus",
-                        "functionName": "text",
-                        "line": 60
+                        "durationMicroseconds": 240,
+                        "errorMessage": "method statusBorderColor cannot be resolved.",
+                        "functionName": "color",
+                        "line": 85
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 35,
+                        "durationMicroseconds": 70,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 89
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 28,
-                        "durationMicroseconds": 113,
-                        "errorMessage": "Cannot access value for name currentStatus",
+                        "durationMicroseconds": 262,
+                        "errorMessage": "method statusBgColor cannot be resolved.",
                         "functionName": "color",
-                        "line": 63
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 39,
-                        "durationMicroseconds": 88,
-                        "errorMessage": "",
-                        "functionName": "alignment",
-                        "line": 62
+                        "line": 93
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 27,
-                        "durationMicroseconds": 244,
-                        "errorMessage": "Cannot access value for name window",
+                        "column": 60,
+                        "durationMicroseconds": 300,
+                        "errorMessage": "method statusIcon cannot be resolved.",
                         "functionName": "text",
-                        "line": 71
+                        "line": 94
                     },
                     {
                         "codegenSuccessful": true,
-                        "column": 39,
-                        "durationMicroseconds": 78,
+                        "column": 46,
+                        "durationMicroseconds": 71,
                         "errorMessage": "",
-                        "functionName": "alignment",
-                        "line": 73
+                        "functionName": "centerIn",
+                        "line": 94
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 31,
+                        "durationMicroseconds": 52,
+                        "errorMessage": "Cannot access value for name currentStatus",
+                        "functionName": "text",
+                        "line": 100
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 32,
+                        "durationMicroseconds": 313,
+                        "errorMessage": "method statusColor cannot be resolved.",
+                        "functionName": "color",
+                        "line": 102
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 34,
+                        "durationMicroseconds": 232,
+                        "errorMessage": "Cannot access value for name window",
+                        "functionName": "text",
+                        "line": 104
                     },
                     {
                         "codegenSuccessful": false,
@@ -113,15 +193,15 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find property \"text\".",
                         "functionName": "text",
-                        "line": 80
+                        "line": 112
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 24,
-                        "durationMicroseconds": 33,
-                        "errorMessage": "Cannot access value for name currentStatus",
+                        "durationMicroseconds": 38,
+                        "errorMessage": "method buttonPrimary cannot be resolved.",
                         "functionName": "isPrimary",
-                        "line": 81
+                        "line": 113
                     },
                     {
                         "codegenSuccessful": false,
@@ -129,44 +209,52 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find signal \"clicked\".",
                         "functionName": "onClicked",
-                        "line": 84
+                        "line": 115
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 22,
-                        "durationMicroseconds": 33,
+                        "durationMicroseconds": 37,
                         "errorMessage": "Cannot access value for name currentStatus",
                         "functionName": "visible",
-                        "line": 140
+                        "line": 147
                     },
                     {
-                        "codegenSuccessful": false,
-                        "column": 25,
-                        "durationMicroseconds": 69,
-                        "errorMessage": "Cannot load property radius from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/StatusPage.qml)::parent with type QQuickItem.",
-                        "functionName": "radius",
+                        "codegenSuccessful": true,
+                        "column": 56,
+                        "durationMicroseconds": 75,
+                        "errorMessage": "",
+                        "functionName": "fillHeight",
                         "line": 144
                     },
                     {
-                        "codegenSuccessful": true,
-                        "column": 31,
-                        "durationMicroseconds": 58,
-                        "errorMessage": "",
-                        "functionName": "fill",
-                        "line": 143
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 31,
-                        "durationMicroseconds": 56,
-                        "errorMessage": "",
-                        "functionName": "fill",
-                        "line": 148
+                        "codegenSuccessful": false,
+                        "column": 77,
+                        "durationMicroseconds": 67,
+                        "errorMessage": "Cannot load property radius from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/StatusPage.qml)::parent with type QQuickItem.",
+                        "functionName": "radius",
+                        "line": 149
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 39,
-                        "durationMicroseconds": 78,
+                        "durationMicroseconds": 60,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 149
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 31,
+                        "durationMicroseconds": 59,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 152
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 65,
+                        "durationMicroseconds": 86,
                         "errorMessage": "",
                         "functionName": "alignment",
                         "line": 154
@@ -174,50 +262,234 @@
                     {
                         "codegenSuccessful": false,
                         "column": 27,
-                        "durationMicroseconds": 513,
+                        "durationMicroseconds": 516,
                         "errorMessage": "Cannot access value for name window",
                         "functionName": "text",
-                        "line": 159
+                        "line": 157
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 39,
-                        "durationMicroseconds": 98,
+                        "durationMicroseconds": 80,
                         "errorMessage": "",
                         "functionName": "alignment",
-                        "line": 161
+                        "line": 159
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 35,
-                        "durationMicroseconds": 248,
+                        "column": 32,
+                        "durationMicroseconds": 210,
                         "errorMessage": "Cannot access value for name window",
-                        "functionName": "text",
-                        "line": 176
+                        "functionName": "width",
+                        "line": 165
                     },
                     {
                         "codegenSuccessful": true,
-                        "column": 55,
+                        "column": 33,
                         "durationMicroseconds": 80,
+                        "errorMessage": "",
+                        "functionName": "height",
+                        "line": 166
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 56,
+                        "durationMicroseconds": 62,
+                        "errorMessage": "Cannot load property radius from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/StatusPage.qml)::parent with type QQuickItem.",
+                        "functionName": "radius",
+                        "line": 166
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 42,
+                        "durationMicroseconds": 79,
+                        "errorMessage": "",
+                        "functionName": "orientation",
+                        "line": 168
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 47,
+                        "durationMicroseconds": 57,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 182
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 126,
+                        "durationMicroseconds": 76,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 183
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 42,
+                        "durationMicroseconds": 304,
+                        "errorMessage": "Cannot access value for name window",
+                        "functionName": "text",
+                        "line": 184
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 160,
+                        "durationMicroseconds": 79,
                         "errorMessage": "",
                         "functionName": "alignment",
                         "line": 184
                     },
                     {
+                        "codegenSuccessful": true,
+                        "column": 47,
+                        "durationMicroseconds": 56,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 191
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 130,
+                        "durationMicroseconds": 74,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 192
+                    },
+                    {
                         "codegenSuccessful": false,
-                        "column": 35,
-                        "durationMicroseconds": 244,
+                        "column": 42,
+                        "durationMicroseconds": 252,
                         "errorMessage": "Cannot access value for name window",
                         "functionName": "text",
-                        "line": 187
+                        "line": 193
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 157,
+                        "durationMicroseconds": 78,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 193
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 29,
+                        "durationMicroseconds": 137,
+                        "errorMessage": "",
+                        "functionName": "implicitHeight",
+                        "line": 205
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 22,
-                        "durationMicroseconds": 34,
+                        "durationMicroseconds": 42,
                         "errorMessage": "Cannot access value for name currentStatus",
                         "functionName": "visible",
-                        "line": 199
+                        "line": 206
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 56,
+                        "durationMicroseconds": 57,
+                        "errorMessage": "",
+                        "functionName": "fillHeight",
+                        "line": 204
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 77,
+                        "durationMicroseconds": 70,
+                        "errorMessage": "Cannot load property radius from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/StatusPage.qml)::parent with type QQuickItem.",
+                        "functionName": "radius",
+                        "line": 209
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 54,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 209
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 35,
+                        "durationMicroseconds": 54,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 212
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 28,
+                        "durationMicroseconds": 215,
+                        "errorMessage": "method statusBgColor cannot be resolved.",
+                        "functionName": "color",
+                        "line": 216
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 76,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 217
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 60,
+                        "durationMicroseconds": 304,
+                        "errorMessage": "method statusIcon cannot be resolved.",
+                        "functionName": "text",
+                        "line": 218
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 46,
+                        "durationMicroseconds": 58,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 218
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 27,
+                        "durationMicroseconds": 330,
+                        "errorMessage": "method statusMessage cannot be resolved.",
+                        "functionName": "text",
+                        "line": 222
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 65,
+                        "durationMicroseconds": 320,
+                        "errorMessage": "method statusColor cannot be resolved.",
+                        "functionName": "color",
+                        "line": 223
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 90,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 224
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 42,
+                        "durationMicroseconds": 79,
+                        "errorMessage": "",
+                        "functionName": "horizontalAlignment",
+                        "line": 230
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 76,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 231
                     }
                 ],
                 "filePath": "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/StatusPage.qml"

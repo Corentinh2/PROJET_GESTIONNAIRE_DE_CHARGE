@@ -6,7 +6,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 31,
-                        "durationMicroseconds": 368,
+                        "durationMicroseconds": 394,
                         "errorMessage": "",
                         "functionName": "textColor",
                         "line": 8
@@ -14,7 +14,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 15,
-                        "durationMicroseconds": 38,
+                        "durationMicroseconds": 40,
                         "errorMessage": "Cannot access value for name control",
                         "functionName": "text",
                         "line": 11
@@ -22,7 +22,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 16,
-                        "durationMicroseconds": 48,
+                        "durationMicroseconds": 127,
                         "errorMessage": "Cannot access value for name control",
                         "functionName": "color",
                         "line": 12
@@ -30,7 +30,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 30,
-                        "durationMicroseconds": 221,
+                        "durationMicroseconds": 241,
                         "errorMessage": "Cannot access value for name Text",
                         "functionName": "horizontalAlignment",
                         "line": 16
@@ -38,7 +38,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 28,
-                        "durationMicroseconds": 207,
+                        "durationMicroseconds": 197,
                         "errorMessage": "Cannot access value for name Text",
                         "functionName": "verticalAlignment",
                         "line": 17
@@ -46,7 +46,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 16,
-                        "durationMicroseconds": 135,
+                        "durationMicroseconds": 189,
                         "errorMessage": "Cannot access value for name control",
                         "functionName": "color",
                         "line": 24
@@ -54,7 +54,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 23,
-                        "durationMicroseconds": 31,
+                        "durationMicroseconds": 32,
                         "errorMessage": "Cannot access value for name isPrimary",
                         "functionName": "width",
                         "line": 34
@@ -62,7 +62,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 22,
-                        "durationMicroseconds": 46,
+                        "durationMicroseconds": 48,
                         "errorMessage": "Cannot access value for name isPrimary",
                         "functionName": "visible",
                         "line": 39

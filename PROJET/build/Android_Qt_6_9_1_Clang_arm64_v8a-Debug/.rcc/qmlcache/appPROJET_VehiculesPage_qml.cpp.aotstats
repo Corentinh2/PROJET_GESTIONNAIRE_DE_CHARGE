@@ -4,9 +4,17 @@
             {
                 "entries": [
                     {
+                        "codegenSuccessful": false,
+                        "column": 28,
+                        "durationMicroseconds": 295,
+                        "errorMessage": "Cannot access value for name window",
+                        "functionName": "onCompleted",
+                        "line": 8
+                    },
+                    {
                         "codegenSuccessful": true,
                         "column": 23,
-                        "durationMicroseconds": 146,
+                        "durationMicroseconds": 87,
                         "errorMessage": "",
                         "functionName": "fill",
                         "line": 14
@@ -14,7 +22,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 42,
-                        "durationMicroseconds": 63,
+                        "durationMicroseconds": 73,
                         "errorMessage": "",
                         "functionName": "centerIn",
                         "line": 25
@@ -22,7 +30,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 62,
-                        "durationMicroseconds": 294,
+                        "durationMicroseconds": 220,
                         "errorMessage": "Cannot access value for name stackView",
                         "functionName": "onClicked",
                         "line": 26
@@ -30,7 +38,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 43,
-                        "durationMicroseconds": 62,
+                        "durationMicroseconds": 57,
                         "errorMessage": "",
                         "functionName": "fill",
                         "line": 26
@@ -46,7 +54,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 20,
-                        "durationMicroseconds": 618,
+                        "durationMicroseconds": 6680,
                         "errorMessage": "Cannot access value for name vehiclesModel",
                         "functionName": "model",
                         "line": 47
@@ -54,7 +62,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 24,
-                        "durationMicroseconds": 87,
+                        "durationMicroseconds": 89,
                         "errorMessage": "",
                         "functionName": "width",
                         "line": 51
@@ -62,7 +70,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 29,
-                        "durationMicroseconds": 68,
+                        "durationMicroseconds": 74,
                         "errorMessage": "Cannot load property radius from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/VehiculesPage.qml)::parent with type QQuickItem.",
                         "functionName": "radius",
                         "line": 61
@@ -70,7 +78,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 35,
-                        "durationMicroseconds": 57,
+                        "durationMicroseconds": 56,
                         "errorMessage": "",
                         "functionName": "fill",
                         "line": 59
@@ -78,7 +86,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 32,
-                        "durationMicroseconds": 9853,
+                        "durationMicroseconds": 558,
                         "errorMessage": "Cannot access value for name window",
                         "functionName": "onClicked",
                         "line": 69
@@ -86,7 +94,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 35,
-                        "durationMicroseconds": 95,
+                        "durationMicroseconds": 61,
                         "errorMessage": "",
                         "functionName": "fill",
                         "line": 68
@@ -94,7 +102,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 35,
-                        "durationMicroseconds": 60,
+                        "durationMicroseconds": 56,
                         "errorMessage": "",
                         "functionName": "fill",
                         "line": 76
@@ -102,7 +110,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 43,
-                        "durationMicroseconds": 90,
+                        "durationMicroseconds": 83,
                         "errorMessage": "",
                         "functionName": "alignment",
                         "line": 84
@@ -110,7 +118,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 50,
-                        "durationMicroseconds": 62,
+                        "durationMicroseconds": 54,
                         "errorMessage": "",
                         "functionName": "centerIn",
                         "line": 85
@@ -118,7 +126,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 43,
-                        "durationMicroseconds": 79,
+                        "durationMicroseconds": 76,
                         "errorMessage": "",
                         "functionName": "alignment",
                         "line": 90
@@ -126,7 +134,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 35,
-                        "durationMicroseconds": 2629,
+                        "durationMicroseconds": 216,
                         "errorMessage": "Cannot access value for name name",
                         "functionName": "text",
                         "line": 94
@@ -134,7 +142,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 35,
-                        "durationMicroseconds": 211,
+                        "durationMicroseconds": 169,
                         "errorMessage": "Cannot access value for name km",
                         "functionName": "text",
                         "line": 101
@@ -142,7 +150,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 43,
-                        "durationMicroseconds": 117,
+                        "durationMicroseconds": 86,
                         "errorMessage": "",
                         "functionName": "alignment",
                         "line": 111
@@ -150,7 +158,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 47,
-                        "durationMicroseconds": 63,
+                        "durationMicroseconds": 57,
                         "errorMessage": "",
                         "functionName": "centerIn",
                         "line": 114
@@ -158,7 +166,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 40,
-                        "durationMicroseconds": 4807,
+                        "durationMicroseconds": 12654,
                         "errorMessage": "Cannot access value for name name",
                         "functionName": "onClicked",
                         "line": 123
@@ -166,7 +174,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 43,
-                        "durationMicroseconds": 100,
+                        "durationMicroseconds": 286,
                         "errorMessage": "",
                         "functionName": "fill",
                         "line": 122
@@ -174,34 +182,34 @@
                     {
                         "codegenSuccessful": true,
                         "column": 31,
-                        "durationMicroseconds": 2123,
+                        "durationMicroseconds": 64,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 141
+                        "line": 142
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 33,
-                        "durationMicroseconds": 96,
+                        "durationMicroseconds": 82,
                         "errorMessage": "Cannot load property radius from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/VehiculesPage.qml)::parent with type QQuickItem.",
                         "functionName": "radius",
+                        "line": 159
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 57,
+                        "errorMessage": "",
+                        "functionName": "fill",
                         "line": 158
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 39,
-                        "durationMicroseconds": 70,
+                        "durationMicroseconds": 56,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 157
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 39,
-                        "durationMicroseconds": 59,
-                        "errorMessage": "",
-                        "functionName": "fill",
-                        "line": 162
+                        "line": 163
                     },
                     {
                         "codegenSuccessful": false,
@@ -209,7 +217,7 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find property \"inputMethodHints\".",
                         "functionName": "inputMethodHints",
-                        "line": 173
+                        "line": 174
                     },
                     {
                         "codegenSuccessful": false,
@@ -217,7 +225,7 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find signal \"clicked\".",
                         "functionName": "onClicked",
-                        "line": 186
+                        "line": 187
                     },
                     {
                         "codegenSuccessful": false,
@@ -225,7 +233,7 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find signal \"clicked\".",
                         "functionName": "onClicked",
-                        "line": 191
+                        "line": 192
                     }
                 ],
                 "filePath": "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/VehiculesPage.qml"

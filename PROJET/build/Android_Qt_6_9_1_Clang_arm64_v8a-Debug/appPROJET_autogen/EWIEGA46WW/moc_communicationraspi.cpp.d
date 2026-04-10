@@ -834,6 +834,7 @@
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/QObject \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/QSharedDataPointer \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/QString \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/QTimer \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/QUrl \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/QVariant \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/q17memory.h \
@@ -844,6 +845,7 @@
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/q20utility.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/q23utility.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/q26numeric.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qabstracteventdispatcher.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qalgorithms.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qanystringview.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qarraydata.h \
@@ -853,6 +855,7 @@
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qatomic.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qatomic_cxx11.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qbasicatomic.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qbasictimer.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qbindingstorage.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qbytearray.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qbytearrayalgorithms.h \
@@ -874,7 +877,10 @@
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qdarwinhelpers.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qdatastream.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qdatetime.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qdeadlinetimer.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qdebug.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qelapsedtimer.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qeventloop.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qexceptionhandling.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qflags.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qfloat16.h \
@@ -945,6 +951,7 @@
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qtenvironmentvariables.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qtextstream.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qtformat_impl.h \
+  /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qtimer.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qtmetamacros.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qtnoop.h \
   /opt/Qt/6.9.1/android_arm64_v8a/include/QtCore/qtpreprocessorsupport.h \
