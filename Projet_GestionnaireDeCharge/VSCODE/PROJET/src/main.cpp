@@ -197,6 +197,5 @@ void setup()
 
 void loop()
 {
-  gestionnaire->interrogerCalendrier();
-  gestionnaire->gererCommunication();
+  gestionnaire->controler();
 }

@@ -4,24 +4,26 @@
 #include <ArduinoWebsockets.h>
 #include <ArduinoJson.h>
 #include "MemoireProgramme.h"
-#include "RelaisCommande.h"
+
+#define PORT 5555
 
 using namespace websockets;
 
-class CommunicationMobile {
-  private:
-    WebsocketsServer serveur;
-    WebsocketsClient client;
-    MemoireProgramme *memoire;
-    RelaisCommande *relais;
-    bool clientConnecte;
+class CommunicationMobile
+{
+private:
+  WebsocketsServer serveur;
+  WebsocketsClient client;
+  MemoireProgramme *memoire;
+  bool clientConnecte;
 
-    void traiterMessage(String message);
+  int relais;
+  void traiterMessage(String data);
 
-  public:
-    CommunicationMobile(MemoireProgramme *memoire, RelaisCommande *relais);
-    ~CommunicationMobile();
-    void gerer();
+public:
+  CommunicationMobile(MemoireProgramme *memoire);
+  ~CommunicationMobile();
+  int gererCommunication();
 };
 
 #endif

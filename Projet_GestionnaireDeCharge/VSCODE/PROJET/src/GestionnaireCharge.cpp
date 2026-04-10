@@ -24,13 +24,19 @@ GestionnaireCharge::GestionnaireCharge()
   }
 
   if (memoire->obtenirEtat() && horloge->obtenirEtat())
+  {
     etat = true;
+  }
   relais = new RelaisCommande;
-  communication = new CommunicationMobile(memoire, relais);
+  communication = new CommunicationMobile(memoire);
+
+  ds18s20 = new CapteurTemp(TEMPMAX);
 
   horloge->syncFromNTP();
   horloge->configurerAlarmeMinute();
 
+  chargeEnCourt = false;
+  marcheForceeActive = false;
 }
 
 GestionnaireCharge::~GestionnaireCharge()
@@ -39,18 +45,8 @@ GestionnaireCharge::~GestionnaireCharge()
   delete horloge;
   delete relais;
   delete communication;
+  delete ds18s20;
 }
-
-MemoireProgramme *GestionnaireCharge::obtenirMemoire()
-{
-  return memoire;
-}
-
-HorlogeTempsReel *GestionnaireCharge::obtenirHorloge()
-{
-  return horloge;
-}
-
 
 bool GestionnaireCharge::obtenirEtat() const
 {
@@ -62,36 +58,65 @@ void GestionnaireCharge::syncroniserHorloge()
   horloge->syncFromNTP();
 }
 
-void GestionnaireCharge::interrogerCalendrier()
+void GestionnaireCharge::controler()
 {
-  if (obtenirHorloge()->getAlarme())
+  if (horloge->getAlarme())
   {
-    obtenirHorloge()->reinitialiserAlarme();
+    horloge->reinitialiserAlarme();
 
-    DateTime maintenant = obtenirHorloge()->getTime();
-    int jour = obtenirHorloge()->obtenirJourSemaine();
+    DateTime maintenant = horloge->getTime();
+    int jour = horloge->obtenirJourSemaine();
     int heure = maintenant.hour();
     int minute = maintenant.minute();
-    bool debutTrouve = obtenirMemoire()->lireCalendrier(jour, heure, minute, true);
+    bool debutTrouve = memoire->lireCalendrier(jour, heure, minute, true);
 
-   obtenirHorloge()->printTime();
+    horloge->printTime();
     if (debutTrouve)
     {
       Serial.println("Début de créneau → action début !");
       relais->fermer();
+      chargeEnCourt = true;
     }
-
-    if (!debutTrouve)
+    else
     {
-      if (obtenirMemoire()->lireCalendrier(jour, heure, minute, false))
+      if (memoire->lireCalendrier(jour, heure, minute, false))
       {
         Serial.println("Fin de créneau → action fin !");
         relais->ouvrir();
+        chargeEnCourt = false;
       }
     }
   }
-}
 
-void GestionnaireCharge::gererCommunication() {
-  communication->gerer();
+  int marcheForcee = communication->gererCommunication();
+  if (marcheForcee == 1)
+  {
+    Serial.println("Marche forcée activée");
+    relais->fermer();
+    marcheForceeActive = true;
+    // chargeEnCourt = true;
+  }
+  if (marcheForcee == 0)
+  {
+    Serial.println("Marche forcée désactivée");
+    marcheForceeActive = false;
+    if (!chargeEnCourt)
+    {
+      relais->ouvrir();
+    }
+    else
+    {
+      Serial.println("Retour au cycle de charge planifié.");
+    }
+  }
+
+
+  if ((chargeEnCourt || marcheForceeActive) && ds18s20->surveillerTemperature())
+  {
+    Serial.println("ALERTE TEMP");
+    relais->ouvrir();
+    memoire->ajouterAlerte(true);
+    chargeEnCourt = false;
+    marcheForceeActive = false; 
+  }
 }

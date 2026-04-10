@@ -164,7 +164,7 @@ bool MemoireProgramme::insererCalendrier(int id, int jour, int hd, int md, int h
 
   if (sqlite3_exec(db, requete, nullptr, nullptr, &errMsg) != SQLITE_OK)
   {
-    Serial.printf("Erreur insertion : %s\n", errMsg);
+    Serial.printf("Erreur insertion calendrier : %s\n", errMsg);
     sqlite3_free(errMsg);
     succes = false;
   }
@@ -280,6 +280,49 @@ void MemoireProgramme::afficherCalendrierTestUnitaire()
   }
 }
 
+bool MemoireProgramme::ajouterAlerte(bool type)
+{
+  bool succes = true;
+  char *errMsg = nullptr;
+  char requete[256];
+
+  snprintf(requete, sizeof(requete),
+           "INSERT INTO ALERTE (type_alerte) "
+           "VALUES (%d);",
+           type);
+
+  if (sqlite3_exec(db, requete, nullptr, nullptr, &errMsg) != SQLITE_OK)
+  {
+    Serial.printf("Erreur insertion alerte : %s\n", errMsg);
+    sqlite3_free(errMsg);
+    succes = false;
+  }
+
+  return succes;
+}
+
+bool MemoireProgramme::supprimerAlerte()
+{
+  bool succes = true;
+  char *errMsg = nullptr;
+  char requete[128];
+
+  snprintf(requete, sizeof(requete),
+           "DELETE FROM ALERTE;");
+
+  if (sqlite3_exec(db, requete, nullptr, nullptr, &errMsg) != SQLITE_OK)
+  {
+    Serial.printf("Erreur suppression alerte : %s\n", errMsg);
+    sqlite3_free(errMsg);
+    succes = false;
+  }
+
+  if (succes)
+    Serial.println("table alerte vidée");
+
+  return succes;
+}
+
 String MemoireProgramme::obtenirTrameOriginale()
 {
   String json = "";
@@ -293,99 +336,150 @@ String MemoireProgramme::obtenirTrameOriginale()
   if (sqlite3_prepare_v2(db, requete, -1, &stmt, nullptr) != SQLITE_OK)
   {
     Serial.printf("Erreur préparation : %s\n", sqlite3_errmsg(db));
-    return json;
   }
-
-  int idCourant = -1;
-  int masqueJoursTous = 0;
-  int masqueJoursStart = 0;
-  int hd = 0, md = 0, hf = 0, mf = 0;
-  bool premiereLigne = true;
-
-  while (sqlite3_step(stmt) == SQLITE_ROW)
+  else
   {
-    int idCalendrier = sqlite3_column_int(stmt, 0);
-    int jour = sqlite3_column_int(stmt, 1);
-    int hdLigne = sqlite3_column_int(stmt, 2);
-    int mdLigne = sqlite3_column_int(stmt, 3);
-    int hfLigne = sqlite3_column_int(stmt, 4);
-    int mfLigne = sqlite3_column_int(stmt, 5);
+    int idCourant = -1;
+    int masqueJoursTous = 0;
+    int masqueJoursStart = 0;
+    int hd = 0, md = 0, hf = 0, mf = 0;
+    bool premiereLigne = true;
 
-    if (idCalendrier != idCourant)
+    while (sqlite3_step(stmt) == SQLITE_ROW)
     {
-      if (idCourant != -1)
+      int idCalendrier = sqlite3_column_int(stmt, 0);
+      int jour = sqlite3_column_int(stmt, 1);
+      int hdLigne = sqlite3_column_int(stmt, 2);
+      int mdLigne = sqlite3_column_int(stmt, 3);
+      int hfLigne = sqlite3_column_int(stmt, 4);
+      int mfLigne = sqlite3_column_int(stmt, 5);
+
+      if (idCalendrier != idCourant)
       {
-        // Si hd > hf, c'est un créneau de nuit : on ne garde que les jours de départ (masqueJoursStart)
-        // Sinon, on garde tous les jours (masqueJoursTous)
-        int joursFinal;
-
-        if (hd > hf)
+        if (idCourant != -1)
         {
-          joursFinal = masqueJoursStart;
-        }
-        else
-        {
-          joursFinal = masqueJoursTous;
-        }
+          // Si hd > hf, c'est un créneau de nuit : on ne garde que les jours de départ (masqueJoursStart)
+          // Sinon, on garde tous les jours (masqueJoursTous)
+          int joursFinal;
 
-        char ligne[256];
-        snprintf(ligne, sizeof(ligne),
-                 "{\"action\":\"calendrier\",\"id\":%d,\"jours\":%d,\"hd\":%d,\"md\":%d,\"hf\":%d,\"mf\":%d}",
-                 idCourant, joursFinal, hd, md, hf, mf);
-        json += String(ligne) + "\n";
+          if (hd > hf)
+          {
+            joursFinal = masqueJoursStart;
+          }
+          else
+          {
+            joursFinal = masqueJoursTous;
+          }
+
+          char ligne[256];
+          snprintf(ligne, sizeof(ligne),
+                   "{\"action\":\"calendrier\",\"id\":%d,\"jours\":%d,\"hd\":%d,\"md\":%d,\"hf\":%d,\"mf\":%d}",
+                   idCourant, joursFinal, hd, md, hf, mf);
+          json += String(ligne) + "\n";
+        }
+        idCourant = idCalendrier;
+        masqueJoursTous = 0;
+        masqueJoursStart = 0;
+        premiereLigne = true;
       }
-      idCourant = idCalendrier;
-      masqueJoursTous = 0;
-      masqueJoursStart = 0;
-      premiereLigne = true;
+
+      // On accumule tous les jours vus
+      masqueJoursTous = masqueJoursTous | (1 << (jour - 1));
+
+      // On isole les jours de "départ" (qui ne sont pas des restes de nuit commençant à 00h00)
+      if (hdLigne != 0 || mdLigne != 0)
+      {
+        masqueJoursStart |= (1 << (jour - 1));
+      }
+
+      // Initialisation avec la première ligne trouvée
+      if (premiereLigne)
+      {
+        hd = hdLigne;
+        md = mdLigne;
+        hf = hfLigne;
+        mf = mfLigne;
+        premiereLigne = false;
+      }
+
+      // Si on trouve la partie "début" d'un créneau à cheval, on récupère hd/md
+      if (hfLigne == 23 && mfLigne == 59)
+      {
+        hd = hdLigne;
+        md = mdLigne;
+      }
+
+      // Si on trouve la partie "fin" d'un créneau à cheval, on récupère hf/mf
+      if (hdLigne == 0 && mdLigne == 0)
+      {
+        hf = hfLigne;
+        mf = mfLigne;
+      }
     }
 
-    // On accumule tous les jours vus
-    masqueJoursTous = masqueJoursTous | (1 << (jour - 1));
-
-    // On isole les jours de "départ" (qui ne sont pas des restes de nuit commençant à 00h00)
-    if (hdLigne != 0 || mdLigne != 0)
+    // Ajout du tout dernier calendrier traité
+    if (idCourant != -1)
     {
-      masqueJoursStart |= (1 << (jour - 1));
+      int joursFinal = (hd > hf) ? masqueJoursStart : masqueJoursTous;
+      char ligne[256];
+      snprintf(ligne, sizeof(ligne),
+               "{\"action\":\"calendrier\",\"id\":%d,\"jours\":%d,\"hd\":%d,\"md\":%d,\"hf\":%d,\"mf\":%d}",
+               idCourant, joursFinal, hd, md, hf, mf);
+      json += String(ligne) + "\n";
     }
 
-    // Initialisation avec la première ligne trouvée
-    if (premiereLigne)
+    if (json.length() == 0)
     {
-      hd = hdLigne;
-      md = mdLigne;
-      hf = hfLigne;
-      mf = mfLigne;
-      premiereLigne = false;
+      json = "{\"action\":\"calendrier\",\"id\":0,\"jours\":0,\"hd\":0,\"md\":0,\"hf\":0,\"mf\":0}\n";
     }
-
-    // Si on trouve la partie "début" d'un créneau à cheval, on récupère hd/md
-    if (hfLigne == 23 && mfLigne == 59)
-    {
-      hd = hdLigne;
-      md = mdLigne;
-    }
-
-    // Si on trouve la partie "fin" d'un créneau à cheval, on récupère hf/mf
-    if (hdLigne == 0 && mdLigne == 0)
-    {
-      hf = hfLigne;
-      mf = mfLigne;
-    }
+    sqlite3_finalize(stmt);
+    Serial.println(json);
   }
+  return json;
+}
 
-  // Ajout du tout dernier calendrier traité
-  if (idCourant != -1)
+String MemoireProgramme::obtenirAlerte()
+{
+  String json = "";
+  sqlite3_stmt *stmt = nullptr;
+
+  const char *requete = "SELECT type_alerte FROM ALERTE;";
+
+  if (sqlite3_prepare_v2(db, requete, -1, &stmt, nullptr) != SQLITE_OK)
   {
-    int joursFinal = (hd > hf) ? masqueJoursStart : masqueJoursTous;
-    char ligne[256];
-    snprintf(ligne, sizeof(ligne),
-             "{\"action\":\"calendrier\",\"id\":%d,\"jours\":%d,\"hd\":%d,\"md\":%d,\"hf\":%d,\"mf\":%d}",
-             idCourant, joursFinal, hd, md, hf, mf);
-    json += String(ligne) + "\n";
+    Serial.printf("Erreur préparation ALERTE : %s\n", sqlite3_errmsg(db));
   }
+  else
+  {
+    while (sqlite3_step(stmt) == SQLITE_ROW)
+    {
+      int typeBrut = sqlite3_column_int(stmt, 0);
+      const char *typeAlerte;
 
-  sqlite3_finalize(stmt);
-  Serial.println(json);
+      if (typeBrut == 1)
+      {
+        typeAlerte = "surchauffe";
+      }
+      else
+      {
+        typeAlerte = "surtention";
+      }
+
+      char ligne[256];
+      snprintf(ligne, sizeof(ligne),
+               "{\"action\":\"alerte\",\"type\":\"%s\"}",
+               typeAlerte);
+
+      json += String(ligne) + "\n";
+    }
+
+    sqlite3_finalize(stmt);
+
+    if (json.length() > 0)
+    {
+      Serial.print("Alertes envoyées : ");
+      Serial.println(json);
+    }
+  }
   return json;
 }

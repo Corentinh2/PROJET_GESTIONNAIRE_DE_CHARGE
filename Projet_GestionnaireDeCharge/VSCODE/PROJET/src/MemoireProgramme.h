@@ -22,9 +22,15 @@ class MemoireProgramme {
     bool lireCalendrier(int _jour, int _heure, int _minute, bool _debut);
     bool supprimerCalendrier(int _id); 
     bool decoderJoursTrame(int _joursRecu, int* _joursDecodes);
-    void afficherCalendrierTestUnitaire();
+    bool ajouterAlerte(bool type);
+    bool supprimerAlerte();
 
     String obtenirTrameOriginale();
+    String obtenirAlerte();
+
+
+    void afficherCalendrierTestUnitaire();
+
 };
 
 #endif

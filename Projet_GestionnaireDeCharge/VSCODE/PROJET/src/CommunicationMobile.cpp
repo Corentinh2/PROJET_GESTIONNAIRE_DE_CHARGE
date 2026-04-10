@@ -1,27 +1,23 @@
 #include "CommunicationMobile.h"
 #include <Arduino.h>
 
-CommunicationMobile::CommunicationMobile(MemoireProgramme *_memoire, RelaisCommande *_relais)
+CommunicationMobile::CommunicationMobile(MemoireProgramme *_memoire)
 {
     memoire = _memoire;
-    relais = _relais;
     clientConnecte = false;
-
-    serveur.listen(81);
-    Serial.println("Serveur WebSocket démarré sur le port 81 !");
+    relais = -1;
+    serveur.listen(PORT);
+    Serial.println("Serveur WebSocket démarré sur le port 5555 !");
 }
 
 CommunicationMobile::~CommunicationMobile()
 {
 }
 
-void CommunicationMobile::traiterMessage(String message)
+void CommunicationMobile::traiterMessage(String data)
 {
-    StaticJsonDocument<1024> doc;
-    DeserializationError erreur = deserializeJson(doc, message);
-
-    String json = memoire->obtenirTrameOriginale();
-
+    JsonDocument doc;
+    DeserializationError erreur = deserializeJson(doc, data);
     if (erreur)
     {
         Serial.printf("Erreur JSON : %s\n", erreur.c_str());
@@ -29,59 +25,67 @@ void CommunicationMobile::traiterMessage(String message)
     }
 
     String action = doc["action"].as<String>();
-
     if (action == "obtenirCalendrier")
     {
-        client.send(json);
+        client.send(memoire->obtenirTrameOriginale());
+        client.send(memoire->obtenirAlerte());
+        memoire->supprimerAlerte();
     }
-
     if (action == "ajouterCalendrier")
     {
-        int jours = doc["jours"];
-        int hd = doc["hd"];
-        int md = doc["md"];
-        int hf = doc["hf"];
-        int mf = doc["mf"];
-        memoire->ajouterEvenement(jours, hd, md, hf, mf);
-        client.send(json);
+        memoire->ajouterEvenement(doc["jours"], doc["hd"], doc["md"], doc["hf"], doc["mf"]);
+        client.send(memoire->obtenirTrameOriginale());
     }
-
     if (action == "supprimerCalendrier")
     {
-        int id = doc["id"];
-        memoire->supprimerCalendrier(id);
-        client.send(json);
+        memoire->supprimerCalendrier(doc["id"]);
+        client.send(memoire->obtenirTrameOriginale());
     }
-
     if (action == "marcheForcee")
     {
-        bool activer = doc["activer"];
-        if (activer)
+        if (doc["activer"])
         {
-            Serial.println("Marche forcée activée !");
-            relais->fermer();
+            relais = 1;
         }
-        if (!activer)
+        else
         {
-            Serial.println("Marche forcée désactivée !");
-            relais->ouvrir();
+            relais = 0;
         }
     }
 }
 
-void CommunicationMobile::gerer()
+int CommunicationMobile::gererCommunication()
 {
+    relais = -1;
+
     if (serveur.poll())
     {
-        client = serveur.accept();
-        clientConnecte = true;
-        Serial.println("Client connecté !");
+        WebsocketsClient nouveau = serveur.accept();
+        if (nouveau.available())
+        {
+            client = nouveau;
+            clientConnecte = true;
+            Serial.println("Client connecté !");
+
+            client.onMessage([this](WebsocketsMessage msg) {
+                Serial.printf("Message reçu : %s\n", msg.data().c_str());
+                traiterMessage(msg.data());
+            });
+
+            client.onEvent([this](WebsocketsEvent event, String data) {
+                if (event == WebsocketsEvent::ConnectionClosed)
+                {
+                    clientConnecte = false;
+                    Serial.println("Client déconnecté !");
+                }
+            });
+        }
     }
 
     if (clientConnecte && client.available())
     {
-        WebsocketsMessage msg = client.readBlocking();
-        Serial.printf("Message reçu : %s\n", msg.data().c_str());
-        traiterMessage(msg.data());
+        client.poll();
     }
+
+    return relais;
 }
