@@ -1,0 +1,5 @@
+<map id="communicationraspi.h" name="communicationraspi.h">
+<area shape="rect" id="Node000001" title="Gestion de la communication WebSocket entre l&#39;application mobile et le Raspberry Pi." alt="" coords="12,5,161,31"/>
+<area shape="rect" id="Node000002" href="$communicationraspi_8cpp.html" title="Implémentation de la classe CommunicationRaspi." alt="" coords="5,79,168,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,44,89,79,84,79,84,44"/>
+</map>

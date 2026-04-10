@@ -1,0 +1,21 @@
+<map id="communicationesp.cpp" name="communicationesp.cpp">
+<area shape="rect" id="Node000001" title="Implémentation de la classe CommunicationEsp." alt="" coords="444,5,600,31"/>
+<area shape="rect" id="Node000002" href="$communicationesp_8h.html" title="Gestion de la communication WebSocket entre l&#39;application mobile et le boîtier ESP32." alt="" coords="200,79,343,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="482,33,326,77,324,72,481,28"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="367,79,437,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="504,33,435,74,432,69,501,28"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="462,79,582,104"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="525,31,525,65,519,65,519,31"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="606,79,705,104"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="545,28,623,70,620,74,542,33"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="729,79,816,104"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="563,28,720,72,718,77,562,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,76,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="235,107,90,151,88,146,233,101"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="100,152,291,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="261,106,220,144,216,141,257,102"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="315,152,382,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="286,102,328,141,324,144,282,106"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="407,152,472,177"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="299,102,400,144,398,149,297,106"/>
+</map>
