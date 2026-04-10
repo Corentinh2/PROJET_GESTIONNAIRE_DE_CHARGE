@@ -51,6 +51,16 @@
                 padding: 8px 16px;
                 border-radius: 4px;
             }
+            .btn-supprimer {
+                display: inline-block;
+                margin-top: 10px;
+                padding: 5px 12px;
+                background: #e74c3c;
+                color: white;
+                border-radius: 4px;
+                text-decoration: none;
+                font-size: 0.85em;
+            }
         </style>
     </head>
     <body>
@@ -64,6 +74,13 @@
                     <strong>Borne #<?= $borne['id_borne'] ?> - <?= htmlspecialchars($borne['nom_borne']) ?></strong>
                     <p><?= htmlspecialchars($borne['emplacement']) ?></p>
                     <div class="power"><?= $borne['puissance'] ?> W</div>
+                    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                        <a href="/index.php?action=SupprimerBorne&id=<?= $borne['id_borne'] ?>"
+                           class="btn-supprimer"
+                           onclick="event.stopPropagation(); return confirm('Supprimer cette borne et toutes ses données ?')">
+                            🗑 Supprimer
+                        </a>
+                    <?php endif; ?>
                 </div>
             <?php endforeach; ?>
         </div>

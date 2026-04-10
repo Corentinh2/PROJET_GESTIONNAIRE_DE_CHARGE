@@ -83,36 +83,8 @@ class Modele {
 
     public function SupprimerUtilisateur($id) {
         try {
-            $stmt = $this->pdo->prepare("SELECT id_conducteur FROM CONDUCTEUR WHERE id_utilisateur = :id");
-            $stmt->execute([':id' => $id]);
-            $conducteurs = $stmt->fetchAll(PDO::FETCH_COLUMN);
-
-            foreach ($conducteurs as $id_conducteur) {
-                $stmt = $this->pdo->prepare("SELECT id_vehicule FROM VEHICULE WHERE id_conducteur = :id_conducteur");
-                $stmt->execute([':id_conducteur' => $id_conducteur]);
-                $vehicules = $stmt->fetchAll(PDO::FETCH_COLUMN);
-
-                foreach ($vehicules as $id_vehicule) {
-                    $stmt = $this->pdo->prepare("SELECT id_charge FROM SESSION WHERE id_vehicule = :id_vehicule");
-                    $stmt->execute([':id_vehicule' => $id_vehicule]);
-                    $sessions = $stmt->fetchAll(PDO::FETCH_COLUMN);
-
-                    foreach ($sessions as $id_charge) {
-                        $stmt = $this->pdo->prepare("DELETE FROM MESURE WHERE id_charge = :id_charge");
-                        $stmt->execute([':id_charge' => $id_charge]);
-                    }
-
-                    $stmt = $this->pdo->prepare("DELETE FROM SESSION WHERE id_vehicule = :id_vehicule");
-                    $stmt->execute([':id_vehicule' => $id_vehicule]);
-                }
-
-                $stmt = $this->pdo->prepare("DELETE FROM VEHICULE WHERE id_conducteur = :id_conducteur");
-                $stmt->execute([':id_conducteur' => $id_conducteur]);
-            }
-
-            $stmt = $this->pdo->prepare("DELETE FROM CONDUCTEUR WHERE id_utilisateur = :id");
-            $stmt->execute([':id' => $id]);
-
+            // Plus besoin de supprimer les véhicules/sessions/mesures
+            // car les véhicules ne sont plus liés aux utilisateurs
             $stmt = $this->pdo->prepare("DELETE FROM UTILISATEUR WHERE id_utilisateur = :id");
             $stmt->execute([':id' => $id]);
             return true;
@@ -155,30 +127,63 @@ class Modele {
         }
     }
 
-    public function GetMesuresParBorne($id_borne, $plage = 'jour') {
+    public function GetMesuresParBorne($id_borne, $plage = 'jour', $semaine = null, $mois = null) {
         try {
             switch ($plage) {
-                case 'semaine': $interval = 'INTERVAL 7 DAY';
+                case 'semaine':
+                    $sql = "
+                    SELECT 
+                    DATE_FORMAT(m.horodatage, '%d-%m-%Y') as horodatage,
+                    AVG(m.puissance) as puissance
+                    FROM MESURE m
+                    JOIN SESSION s ON m.id_charge = s.id_charge
+                    WHERE s.id_borne = :id_borne
+                    AND WEEK(m.horodatage, 1) = :semaine
+                    AND YEAR(m.horodatage) = YEAR(NOW())
+                    GROUP BY DATE(m.horodatage)
+                    ORDER BY DATE(m.horodatage) ASC
+                ";
+                    $stmt = $this->pdo->prepare($sql);
+                    $stmt->execute([':id_borne' => $id_borne, ':semaine' => $semaine]);
                     break;
-                case 'mois': $interval = 'INTERVAL 1 MONTH';
+                    $stmt = $this->pdo->prepare($sql);
+                    $stmt->execute([':id_borne' => $id_borne, ':semaine' => $semaine]);
                     break;
-                default: $interval = 'INTERVAL 1 DAY';
+
+                case 'mois':
+                    $sql = "
+                     SELECT 
+                    DATE_FORMAT(m.horodatage, '%d-%m-%Y') as horodatage,
+                    AVG(m.puissance) as puissance
+                    FROM MESURE m
+                    JOIN SESSION s ON m.id_charge = s.id_charge
+                    WHERE s.id_borne = :id_borne
+                    AND MONTH(m.horodatage) = :mois
+                    AND YEAR(m.horodatage) = YEAR(NOW())
+                    GROUP BY DATE(m.horodatage)
+                    ORDER BY DATE(m.horodatage) ASC
+                ";
+                    $stmt = $this->pdo->prepare($sql);
+                    $stmt->execute([':id_borne' => $id_borne, ':mois' => $mois]);
+                    break;
+
+                default: // jour
+                    $sql = "
+                    SELECT 
+                    DATE_FORMAT(m.horodatage, '%d-%m-%Y %H:%i') as horodatage,
+                    AVG(m.puissance) as puissance
+                    FROM MESURE m
+                    JOIN SESSION s ON m.id_charge = s.id_charge
+                    WHERE s.id_borne = :id_borne
+                    AND DATE(m.horodatage) = CURDATE()
+                    GROUP BY DATE_FORMAT(m.horodatage, '%Y-%m-%d %H'),
+                    FLOOR(MINUTE(m.horodatage) / 30)
+                    ORDER BY horodatage ASC
+                ";
+                    $stmt = $this->pdo->prepare($sql);
+                    $stmt->execute([':id_borne' => $id_borne]);
                     break;
             }
-            $sql = "
-                SELECT 
-                    DATE_FORMAT(m.horodatage, '%Y-%m-%d %H:%i') as horodatage,
-                    (AVG(m.puissance) / 1000) as puissance
-                FROM MESURE m
-                JOIN SESSION s ON m.id_charge = s.id_charge
-                WHERE s.id_borne = :id_borne
-                AND m.horodatage >= NOW() - $interval
-                GROUP BY DATE_FORMAT(m.horodatage, '%Y-%m-%d %H'),
-                         FLOOR(MINUTE(m.horodatage) / 30)
-                ORDER BY horodatage ASC
-            ";
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute([':id_borne' => $id_borne]);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             error_log("Erreur GetMesuresParBorne : " . $e->getMessage());
@@ -186,10 +191,51 @@ class Modele {
         }
     }
 
+   /* public function GetEvenements($id_borne, $plage = 'jour', $semaine = null, $mois = null) {
+        try {
+            switch ($plage) {
+                case 'semaine':
+                    $where = "AND WEEK(e.horodatage, 1) = :semaine AND YEAR(e.horodatage) = YEAR(NOW())";
+                    break;
+                case 'mois':
+                    $where = "AND MONTH(e.horodatage) = :mois AND YEAR(e.horodatage) = YEAR(NOW())";
+                    break;
+                default:
+                    $where = "AND DATE(e.horodatage) = CURDATE()";
+                    break;
+            }
+
+            $sql = "
+            SELECT 
+                DATE_FORMAT(e.horodatage, '%d-%m-%Y %H:%i') as horodatage,
+                e.type_alerte,
+                e.message_erreur
+            FROM EVENEMENT e
+            WHERE e.id_borne = :id_borne
+            $where
+            ORDER BY e.horodatage ASC
+        ";
+
+            $stmt = $this->pdo->prepare($sql);
+            $params = [':id_borne' => $id_borne];
+
+            if ($plage === 'semaine')
+                $params[':semaine'] = $semaine;
+            if ($plage === 'mois')
+                $params[':mois'] = $mois;
+
+            $stmt->execute($params);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Erreur GetEvenements : " . $e->getMessage());
+            return [];
+        }
+    }*/
+
     public function GetDerniereMesure($id_borne) {
         try {
             $stmt = $this->pdo->prepare("
-                SELECT m.horodatage, (m.puissance / 1000) as puissance
+                SELECT m.horodatage, m.puissance as puissance
                 FROM MESURE m
                 JOIN SESSION s ON m.id_charge = s.id_charge
                 WHERE s.id_borne = :id_borne
@@ -218,7 +264,7 @@ class Modele {
     public function GetHistorique($id_borne) {
         try {
             $stmt = $this->pdo->prepare("
-                SELECT m.horodatage, (m.puissance / 1000) as puissance
+                SELECT m.horodatage, m.puissance as puissance
                 FROM MESURE m
                 JOIN SESSION s ON m.id_charge = s.id_charge
                 WHERE s.id_borne = :id_borne
@@ -258,5 +304,33 @@ class Modele {
         );
         $stmt->execute([':login' => $login]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function SupprimerBorne($id_borne) {
+        try {
+            // 1. Récupérer les id_charge liés à cette borne
+            $stmt = $this->pdo->prepare("SELECT id_charge FROM SESSION WHERE id_borne = :id_borne");
+            $stmt->execute([':id_borne' => $id_borne]);
+            $sessions = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+            // 2. Supprimer les MESURE liées à ces sessions
+            foreach ($sessions as $id_charge) {
+                $stmt = $this->pdo->prepare("DELETE FROM MESURE WHERE id_charge = :id_charge");
+                $stmt->execute([':id_charge' => $id_charge]);
+            }
+
+            // 3. Supprimer les SESSION liées à cette borne
+            $stmt = $this->pdo->prepare("DELETE FROM SESSION WHERE id_borne = :id_borne");
+            $stmt->execute([':id_borne' => $id_borne]);
+
+            // 4. Supprimer la BORNE
+            $stmt = $this->pdo->prepare("DELETE FROM BORNE WHERE id_borne = :id_borne");
+            $stmt->execute([':id_borne' => $id_borne]);
+
+            return true;
+        } catch (PDOException $e) {
+            error_log("Erreur SupprimerBorne : " . $e->getMessage());
+            return false;
+        }
     }
 }

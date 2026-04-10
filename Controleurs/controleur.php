@@ -36,7 +36,7 @@ class Controleur {
                     $_SESSION['role'] = 'utilisateur';
                     header('Location: http://172.18.59.133/index.php?action=ChoixParam');
                 }
-                exit();
+                //exit();
             } else {
                 if (!$this->modele->UtilisateurExiste($id)) {
                     header('Location: http://172.18.59.133/index.php?action=CreerCompte&identifiant=' . urlencode($id));
@@ -168,6 +168,19 @@ class Controleur {
         }
     }
 
+    public function SupprimerBorne() {
+        if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+            header('Location: http://172.18.59.133/index.php?action=Connexion');
+            exit();
+        }
+        $id = isset($_GET['id']) ? (int) $_GET['id'] : null;
+        if ($id) {
+            $this->modele->SupprimerBorne($id);
+        }
+        header('Location: http://172.18.59.133/index.php?action=ChoixParam');
+        exit();
+    }
+
     public function EnregistreGraph() {
         if (!isset($_SESSION['user'])) {
             header('Location: http://172.18.59.133/index.php?action=Connexion');
@@ -175,9 +188,18 @@ class Controleur {
         }
         $id_borne = $_GET['id'] ?? 1;
         $plage = $_GET['plage'] ?? 'jour';
-        $mesures = $this->modele->GetMesuresParBorne($id_borne, $plage);
+        $semaine = isset($_GET['semaine']) ? (int) $_GET['semaine'] : (int) date('W');
+        $mois = isset($_GET['mois']) ? (int) $_GET['mois'] : (int) date('m');
+        $mesures = $this->modele->GetMesuresParBorne($id_borne, $plage, $semaine, $mois);
+        
+
+        // DEBUG TEMPORAIRE
+        /*var_dump($id_borne, $plage, $semaine, $mois, $mesures);
+        die();*/
+
         $derniereMesure = $this->modele->GetDerniereMesure($id_borne);
         $nomBorne = $this->modele->GetNomBorne($id_borne);
+        //$evenements = $this->modele->GetEvenements($id_borne, $plage, $semaine, $mois);
         include __DIR__ . '/../Vues/graphique.php';
     }
 

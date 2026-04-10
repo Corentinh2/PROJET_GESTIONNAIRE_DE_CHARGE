@@ -201,6 +201,29 @@
             tr:hover td {
                 background-color: #1e1e1e;
             }
+
+            .selecteur {
+                margin-bottom: 15px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            .selecteur label {
+                color: #aaaaaa;
+                font-size: 0.9em;
+            }
+            .selecteur select {
+                background-color: #0f0f0f;
+                border: 1px solid #2a2a2a;
+                color: white;
+                padding: 8px 12px;
+                border-radius: 6px;
+                cursor: pointer;
+            }
+            .selecteur select:focus {
+                outline: none;
+                border-color: #00d4ff;
+            }
         </style>
     </head>
     <body>
@@ -251,12 +274,43 @@
                     <button class="btn-plage <?= (isset($_GET['plage']) && $_GET['plage'] === 'mois') ? 'active' : '' ?>"
                             onclick="window.location.href = '/index.php?action=EnregistreGraph&id=<?= $_GET['id'] ?>&plage=mois'">Mois</button>
                 </div>
+
+                <!-- Sélecteur dynamique selon la plage -->
+                <?php if (isset($_GET['plage']) && $_GET['plage'] === 'semaine'): ?>
+                    <div class="selecteur">
+                        <label>Choisir la semaine :</label>
+                        <select onchange="window.location.href = '/index.php?action=EnregistreGraph&id=<?= $_GET['id'] ?>&plage=semaine&semaine=' + this.value">
+                            <?php for ($i = 1; $i <= 52; $i++): ?>
+                                <option value="<?= $i ?>" <?= (isset($_GET['semaine']) && $_GET['semaine'] == $i) ? 'selected' : '' ?>>
+                                    Semaine <?= $i ?>
+                                </option>
+                            <?php endfor; ?>
+                        </select>
+                    </div>
+                <?php endif; ?>
+
+                <?php if (isset($_GET['plage']) && $_GET['plage'] === 'mois'): ?>
+                    <div class="selecteur">
+                        <label>Choisir le mois :</label>
+                        <select onchange="window.location.href = '/index.php?action=EnregistreGraph&id=<?= $_GET['id'] ?>&plage=mois&mois=' + this.value">
+                            <?php
+                            $mois = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+                            foreach ($mois as $num => $nom):
+                                ?>
+                                <option value="<?= $num + 1 ?>" <?= (isset($_GET['mois']) && $_GET['mois'] == $num + 1) ? 'selected' : '' ?>>
+                                    <?= $nom ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                <?php endif; ?>
                 <div id="chart-container"></div>
             </div>
         </div>
 
+        
         <script>
-            const categories = <?php echo json_encode(array_column($mesures, 'horodatage')); ?>;
+            const categories = <?php echo json_encode(array_column($mesures, 'horodatage')); ?>;   
             const data = <?php echo json_encode(array_map(fn($m) => round((float) $m['puissance'], 2), $mesures)); ?>;
 
             Highcharts.chart('chart-container', {
@@ -272,8 +326,13 @@
                     labels: {style: {color: '#aaaaaa'}},
                     gridLineColor: '#2a2a2a'
                 },
-                series: [{name: 'Puissance (kW)', data: data, color: '#00d4ff'}],
-                legend: {itemStyle: {color: '#aaaaaa'}},
+                series: [
+                    {
+                        name: 'Puissance (kW)',
+                        data: data,
+                        color: '#00d4ff'
+                    }], 
+                        legend: {itemStyle: {color: '#aaaaaa'}},
                 exporting: {
                     enabled: true,
                     buttons: {contextButton: {menuItems: ['downloadPNG', 'downloadCSV', 'downloadXLS']}}
