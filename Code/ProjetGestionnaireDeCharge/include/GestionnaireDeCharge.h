@@ -16,6 +16,7 @@ private:
     float energieCumuleeWh = 0;
     int nombreLectures = 0;
     unsigned long chronoMinute = 0;
+    unsigned long derniereMesure = 0;
 
 public:
     GestionnaireDeCharge(CapteurTension* t, CapteurCourant* c, ConnectionRaspberryPi* r);

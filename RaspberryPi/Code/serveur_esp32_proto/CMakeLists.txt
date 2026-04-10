@@ -15,12 +15,15 @@ set(CMAKE_AUTOUIC ON)
 # WebSockets : Pour la communication avec l'ESP32
 # Sql : Pour la connexion à MariaDB
 find_package(Qt6 REQUIRED COMPONENTS Core Network WebSockets Sql)
+find_package(Qt6 REQUIRED COMPONENTS Core)
+find_package(Qt6 REQUIRED COMPONENTS Core)
 
 # 2. On déclare l'exécutable et on liste TOUS les fichiers du projet
 # C'est cette ligne qui définit la "cible" (target) pour la suite
 add_executable(serveur_esp32_proto
     main.cpp
     serveur.h serveur.cpp
+    accesbdd.h accesbdd.cpp
 )
 
 # 3. On lie les bibliothèques Qt à ton exécutable
@@ -31,6 +34,8 @@ target_link_libraries(serveur_esp32_proto PRIVATE
     Qt6::WebSockets
     Qt6::Sql
 )
+target_link_libraries(serveur_esp32_proto PRIVATE Qt6::Core)
+target_link_libraries(serveur_esp32_proto PRIVATE Qt6::Core)
 
 # Optionnel : permet d'afficher les messages de debug dans la console
 if(WIN32)

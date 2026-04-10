@@ -2,7 +2,7 @@
 #include <Arduino.h>
 
 GestionnaireDeCharge::GestionnaireDeCharge(CapteurTension* t, CapteurCourant* c, ConnectionRaspberryPi* r)
-    : sensorTension(t), sensorCourant(c), sommeTension(0), sommeCourant(0),
+    : sensorTension(t), sensorCourant(c), raspi(r),sommeTension(0), sommeCourant(0),
       energieCumuleeWh(0), nombreLectures(0), chronoMinute(0) {}
 
 void GestionnaireDeCharge::initialiser() {
@@ -14,6 +14,10 @@ void GestionnaireDeCharge::initialiser() {
 
 
 void GestionnaireDeCharge::envoyerMesures() {
+
+    if (millis() - derniereMesure < 1000) return;
+    derniereMesure = millis();
+
     float V = sensorTension->lireValeurTension();
     float I = sensorCourant->lireValeurCourant();
     float P = V * I;
@@ -42,11 +46,16 @@ void GestionnaireDeCharge::envoyerMesures() {
         Serial.print(moyP, 1); Serial.print("\t| ");
         Serial.print(energieCumuleeWh, 3); Serial.println(" Wh");
 
+
+         String trame = "{\"puissance\":" + String(moyP, 2) + "}";
+        Serial.println("[WS] Envoi trame : " + trame);
+        raspi->EnvoyerNotification(trame);
+    
         sommeTension = sommeCourant = 0;
         nombreLectures = 0;
         chronoMinute = millis();
     }
 
-    delay(1000);
+    
 }
 

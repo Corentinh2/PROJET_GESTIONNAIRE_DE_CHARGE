@@ -73,6 +73,14 @@ build CMakeFiles/serveur_esp32_proto.dir/serveur.cpp.o: CXX_COMPILER__serveur_es
   OBJECT_DIR = CMakeFiles/serveur_esp32_proto.dir
   OBJECT_FILE_DIR = CMakeFiles/serveur_esp32_proto.dir
 
+build CMakeFiles/serveur_esp32_proto.dir/accesbdd.cpp.o: CXX_COMPILER__serveur_esp32_proto_unscanned_Debug /home/USERS/ELEVES/CIEL2024/vruelle/Documents/Projet_GIT/RaspberryPi/Code/serveur_esp32_proto/accesbdd.cpp || cmake_object_order_depends_target_serveur_esp32_proto
+  DEFINES = -DQT_CORE_LIB -DQT_NETWORK_LIB -DQT_SQL_LIB -DQT_WEBSOCKETS_LIB
+  DEP_FILE = CMakeFiles/serveur_esp32_proto.dir/accesbdd.cpp.o.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always -fPIC
+  INCLUDES = -I/home/USERS/ELEVES/CIEL2024/vruelle/Documents/Projet_GIT/RaspberryPi/Code/serveur_esp32_proto/build/Desktop_Qt_6_9_1-Debug/serveur_esp32_proto_autogen/include -isystem /opt/Qt/6.9.1/gcc_64/include/QtCore -isystem /opt/Qt/6.9.1/gcc_64/include -isystem /opt/Qt/6.9.1/gcc_64/mkspecs/linux-g++ -isystem /opt/Qt/6.9.1/gcc_64/include/QtNetwork -isystem /opt/Qt/6.9.1/gcc_64/include/QtWebSockets -isystem /opt/Qt/6.9.1/gcc_64/include/QtSql
+  OBJECT_DIR = CMakeFiles/serveur_esp32_proto.dir
+  OBJECT_FILE_DIR = CMakeFiles/serveur_esp32_proto.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target serveur_esp32_proto
@@ -81,7 +89,7 @@ build CMakeFiles/serveur_esp32_proto.dir/serveur.cpp.o: CXX_COMPILER__serveur_es
 #############################################
 # Link the executable serveur_esp32_proto
 
-build serveur_esp32_proto: CXX_EXECUTABLE_LINKER__serveur_esp32_proto_Debug CMakeFiles/serveur_esp32_proto.dir/serveur_esp32_proto_autogen/mocs_compilation.cpp.o CMakeFiles/serveur_esp32_proto.dir/main.cpp.o CMakeFiles/serveur_esp32_proto.dir/serveur.cpp.o | /opt/Qt/6.9.1/gcc_64/lib/libQt6WebSockets.so.6.9.1 /opt/Qt/6.9.1/gcc_64/lib/libQt6Sql.so.6.9.1 /opt/Qt/6.9.1/gcc_64/lib/libQt6Network.so.6.9.1 /opt/Qt/6.9.1/gcc_64/lib/libQt6Core.so.6.9.1 || serveur_esp32_proto_autogen serveur_esp32_proto_autogen_timestamp_deps
+build serveur_esp32_proto: CXX_EXECUTABLE_LINKER__serveur_esp32_proto_Debug CMakeFiles/serveur_esp32_proto.dir/serveur_esp32_proto_autogen/mocs_compilation.cpp.o CMakeFiles/serveur_esp32_proto.dir/main.cpp.o CMakeFiles/serveur_esp32_proto.dir/serveur.cpp.o CMakeFiles/serveur_esp32_proto.dir/accesbdd.cpp.o | /opt/Qt/6.9.1/gcc_64/lib/libQt6WebSockets.so.6.9.1 /opt/Qt/6.9.1/gcc_64/lib/libQt6Sql.so.6.9.1 /opt/Qt/6.9.1/gcc_64/lib/libQt6Network.so.6.9.1 /opt/Qt/6.9.1/gcc_64/lib/libQt6Core.so.6.9.1 || serveur_esp32_proto_autogen serveur_esp32_proto_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g
   LINK_LIBRARIES = -Wl,-rpath,/opt/Qt/6.9.1/gcc_64/lib  /opt/Qt/6.9.1/gcc_64/lib/libQt6WebSockets.so.6.9.1  /opt/Qt/6.9.1/gcc_64/lib/libQt6Sql.so.6.9.1  /opt/Qt/6.9.1/gcc_64/lib/libQt6Network.so.6.9.1  /opt/Qt/6.9.1/gcc_64/lib/libQt6Core.so.6.9.1
   OBJECT_DIR = CMakeFiles/serveur_esp32_proto.dir

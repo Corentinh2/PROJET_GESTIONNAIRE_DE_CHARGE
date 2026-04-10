@@ -19,6 +19,7 @@ public:
     void initialiserConnexion();      // Présent sur ton diagramme
     void EnvoyerNotification(String msg); // Présent sur ton diagramme
     void cloturerSession();
-    void loop();           // Présent sur ton diagramme
+    void loop();
+    static void webSocketEvent(WStype_t type, uint8_t * payload, size_t length);           // Présent sur ton diagramme
 };
 #endif

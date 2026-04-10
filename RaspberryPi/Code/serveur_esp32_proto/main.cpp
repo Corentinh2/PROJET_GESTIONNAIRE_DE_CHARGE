@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
     // C'est ici que l'écoute réseau commence
     Serveur monServeur(8080);
 
-    qDebug() << "VERSION FINALE TEST";
+    qDebug() << "VERSION FINALE TEST maj 09 04";
 
     // a.exec() lance la boucle d'événements de Qt.
     // Sans cette ligne, les signaux (onNewConnection, etc.) ne fonctionneraient pas.

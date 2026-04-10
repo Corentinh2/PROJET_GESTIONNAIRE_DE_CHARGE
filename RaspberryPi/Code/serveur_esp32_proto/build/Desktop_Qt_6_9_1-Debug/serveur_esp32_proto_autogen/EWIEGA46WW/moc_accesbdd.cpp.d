@@ -1,11 +1,10 @@
-/home/USERS/ELEVES/CIEL2024/vruelle/Documents/Projet_GIT/RaspberryPi/Code/serveur_esp32_proto/build/Desktop_Qt_6_9_1-Debug/serveur_esp32_proto_autogen/EWIEGA46WW/moc_serveur.cpp: /home/USERS/ELEVES/CIEL2024/vruelle/Documents/Projet_GIT/RaspberryPi/Code/serveur_esp32_proto/serveur.h \
+/home/USERS/ELEVES/CIEL2024/vruelle/Documents/Projet_GIT/RaspberryPi/Code/serveur_esp32_proto/build/Desktop_Qt_6_9_1-Debug/serveur_esp32_proto_autogen/EWIEGA46WW/moc_accesbdd.cpp: /home/USERS/ELEVES/CIEL2024/vruelle/Documents/Projet_GIT/RaspberryPi/Code/serveur_esp32_proto/accesbdd.h \
   /home/USERS/ELEVES/CIEL2024/vruelle/Documents/Projet_GIT/RaspberryPi/Code/serveur_esp32_proto/build/Desktop_Qt_6_9_1-Debug/serveur_esp32_proto_autogen/moc_predefs.h \
   /home/USERS/ELEVES/CIEL2024/vruelle/Documents/Projet_GIT/RaspberryPi/Code/serveur_esp32_proto/accesbdd.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/QDebug \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/QFlags \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/QJsonDocument \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/QJsonObject \
-  /opt/Qt/6.9.1/gcc_64/include/QtCore/QList \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/QObject \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/QSharedDataPointer \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/QString \
@@ -148,7 +147,6 @@
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qxptype_traits.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qyieldcpu.h \
   /opt/Qt/6.9.1/gcc_64/include/QtNetwork/QAbstractSocket \
-  /opt/Qt/6.9.1/gcc_64/include/QtNetwork/QHostAddress \
   /opt/Qt/6.9.1/gcc_64/include/QtNetwork/QNetworkProxy \
   /opt/Qt/6.9.1/gcc_64/include/QtNetwork/QNetworkRequest \
   /opt/Qt/6.9.1/gcc_64/include/QtNetwork/QSslConfiguration \
@@ -177,12 +175,10 @@
   /opt/Qt/6.9.1/gcc_64/include/QtSql/qtsqlexports.h \
   /opt/Qt/6.9.1/gcc_64/include/QtSql/qtsqlglobal.h \
   /opt/Qt/6.9.1/gcc_64/include/QtWebSockets/QWebSocket \
-  /opt/Qt/6.9.1/gcc_64/include/QtWebSockets/QWebSocketServer \
   /opt/Qt/6.9.1/gcc_64/include/QtWebSockets/qtwebsocketsexports.h \
   /opt/Qt/6.9.1/gcc_64/include/QtWebSockets/qwebsocket.h \
   /opt/Qt/6.9.1/gcc_64/include/QtWebSockets/qwebsocketprotocol.h \
   /opt/Qt/6.9.1/gcc_64/include/QtWebSockets/qwebsockets_global.h \
-  /opt/Qt/6.9.1/gcc_64/include/QtWebSockets/qwebsocketserver.h \
   /usr/include/c++/13/algorithm \
   /usr/include/c++/13/array \
   /usr/include/c++/13/atomic \

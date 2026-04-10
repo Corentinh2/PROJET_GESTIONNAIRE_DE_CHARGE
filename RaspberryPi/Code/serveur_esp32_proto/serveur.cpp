@@ -4,13 +4,16 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDateTime>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 Serveur::Serveur(quint16 port, QObject *parent) : QObject(parent)
 {
     socketServeur = new QWebSocketServer("Serveur ESP32 Proto", QWebSocketServer::NonSecureMode, this);
+    connecterAccesBDD();
 
     if (socketServeur->listen(QHostAddress::Any, port)) {
-        qDebug() << "SERVEUR VERSION 2.0 - TEST 15h42" << port;
+        qDebug() << "SERVEUR VERSION 2.0 - TEST 11h42" << port;
         connect(socketServeur, &QWebSocketServer::newConnection, this, &Serveur::onNewConnection);
     }
 }
@@ -19,6 +22,29 @@ Serveur::~Serveur()
 {
     socketServeur->close();
     qDeleteAll(listeClients.begin(), listeClients.end());
+}
+
+bool Serveur::connecterAccesBDD()
+{
+    bool resultat = false;
+    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+    db.setHostName("localhost");
+    db.setDatabaseName("gestionnaire_de_charge");
+    db.setUserName("charge");
+    db.setPassword("ciel");
+    db.setPort(3306);
+
+    if (!db.open()) {
+        qDebug() << "Erreur AccesBDD :" << db.lastError().text();
+        qDebug() << "Erreur driver :" << db.lastError().driverText();
+    }
+
+    if (db.isOpen()) {
+        qDebug() << "Connecté à GestionnaireDeCharge !";
+        resultat = true;
+    }
+
+    return resultat;
 }
 
 void Serveur::onNewConnection()
@@ -34,38 +60,68 @@ void Serveur::onNewConnection()
 
 void Serveur::onTextMessageReceived(const QString &message)
 {
-    // On reçoit la trame de l'ESP32 : "V;I;Wh"
-    QStringList liste = message.split(';');
+    QWebSocket *pClient = qobject_cast<QWebSocket *>(sender());
+    QJsonDocument doc = QJsonDocument::fromJson(message.toUtf8());
 
-    if (liste.size() >= 3) {
-        float U = liste[0].toFloat();
-        float I = liste[1].toFloat();
-        float Wh = liste[2].toFloat();
+    if (pClient && !doc.isNull()) {
+        qDebug() << "Trame reçue :" << message;
+        QJsonObject obj = doc.object();
+        QSqlQuery query;
 
-        qDebug() << "Données reçues -> U:" << U << "V, I:" << I << "A, E:" << Wh << "Wh";
+        // --- CAS 1 : Puissance (ESP32) ---
+        if (obj.contains("puissance")) {
+            insererEnBase(obj["puissance"].toDouble());
+        }
 
-        insererEnBase(U, I, Wh);
+        // --- CAS 2 : Actions (Mobile) ---
+        if (obj.contains("action")) {
+            QString action = obj["action"].toString();
+
+            // Action : obtenirStation
+            if (action == "obtenirStation") {
+                maBdd.envoyerListeBornes(pClient);
+            }
+
+            // Action : obtenirVehicule
+            if (action == "obtenirVehicule") {
+                maBdd.envoyerListeVehicules(pClient);
+            }
+
+            // Action : ajouterVehicule
+            if (action == "ajouterVehicule") {
+                maBdd.ajouterVehicule(obj["name"].toString(), obj["km"].toInt());
+                maBdd.envoyerListeVehicules(pClient);
+            }
+
+            // Action : supprimerVehicule
+            if (action == "supprimerVehicule") {
+                maBdd.supprimerVehicule(obj["id"].toInt());
+                maBdd.envoyerListeVehicules(pClient);
+            }
+
+            // Action : modifierKilometrage
+            if (action == "modifierKilometrage") {
+                maBdd.modifierKilometrage(obj["id"].toInt(), obj["km"].toInt());
+                maBdd.envoyerListeVehicules(pClient);
+            }
+
+        }
     }
 }
 
-void Serveur::insererEnBase(float u, float i, float e)
+void Serveur::insererEnBase(float puissance)
 {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
-    db.setHostName("localhost");
-    db.setDatabaseName("ma_base_borne"); // À adapter
-    db.setUserName("root");              // À adapter
-    db.setPassword("password");          // À adapter
+    QSqlQuery query;
+    query.prepare("INSERT INTO MESURE (horodatage, puissance, id_charge) VALUES (NOW(), :p, :id)");
+    query.bindValue(":p", puissance);
+    query.bindValue(":id", 9);
 
-    if (db.open()) {
-        QSqlQuery query;
-        query.prepare("INSERT INTO mesures (date_heure, tension, courant, energie) VALUES (:date, :u, :i, :e)");
-        query.bindValue(":date", QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss"));
-        query.bindValue(":u", u);
-        query.bindValue(":i", i);
-        query.bindValue(":e", e);
+    if (query.exec()) {
+        qDebug() << "Mesure insérée ! Puissance:" << puissance << "W";
+    }
 
-        if(!query.exec()) qDebug() << "Erreur SQL :" << query.lastError().text();
-        db.close();
+    if (!query.isActive()) {
+        qDebug() << "Erreur insertion :" << query.lastError().text();
     }
 }
 
@@ -78,3 +134,4 @@ void Serveur::onDisconnected()
         qDebug() << "[CLIENT DÉCONNECTÉ]";
     }
 }
+
