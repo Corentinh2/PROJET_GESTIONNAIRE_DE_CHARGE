@@ -121,7 +121,7 @@ Item {
                         }
                         Rectangle {
                             width: 34; height: 34; radius: 17; color: "#FFEBEE"; Layout.alignment: Qt.AlignVCenter
-                            Text { anchors.centerIn: parent; text: "\u2715"; color: "#E53935"; font.pixelSize: 14; font.bold: true }
+                            Text { anchors.centerIn: parent; text: "🗑️"; color: "#E53935"; font.pixelSize: 14; font.bold: true }
                             MouseArea {
                                 anchors.fill: parent; z: 2
                                 onClicked: { sessionsRoot.sessionIdASupprimer = sessionId; confirmPopup.visible = true; }

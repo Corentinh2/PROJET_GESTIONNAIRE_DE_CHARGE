@@ -68,7 +68,10 @@ Item {
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.topMargin: alertBanner.visible ? 60 : 0
+        anchors.topMargin: {
+            if (alertBanner.visible) { return 60; }
+            return 0;
+        }
         anchors.margins: 20
         spacing: 0
 
@@ -195,7 +198,10 @@ Item {
                     anchors.fill: parent
                     radius: parent.radius
                     color: "#000000"
-                    opacity: ma.pressed ? 0.04 : 0
+                    opacity: {
+                        if (ma.pressed) { return 0.04; }
+                        return 0;
+                    }
                 }
 
                 RowLayout {
@@ -234,7 +240,7 @@ Item {
                             spacing: 6
 
                             Text {
-                                text: kwh
+                                text: kwh + " W"
                                 font.pixelSize: 11
                                 color: "#90A4AE"
                             }

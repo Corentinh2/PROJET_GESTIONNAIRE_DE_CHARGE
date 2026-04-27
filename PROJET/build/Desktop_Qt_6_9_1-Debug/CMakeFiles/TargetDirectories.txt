@@ -20,3 +20,12 @@
 /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/CMakeFiles/install/strip.dir
 /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/CMakeFiles/appPROJET_autogen_timestamp_deps.dir
 /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/CMakeFiles/appPROJET_autogen.dir
+/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/tst_communicationesp/CMakeFiles/TestCommunicationEsp.dir
+/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/tst_communicationesp/CMakeFiles/edit_cache.dir
+/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/tst_communicationesp/CMakeFiles/rebuild_cache.dir
+/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/tst_communicationesp/CMakeFiles/list_install_components.dir
+/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/tst_communicationesp/CMakeFiles/install.dir
+/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/tst_communicationesp/CMakeFiles/install/local.dir
+/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/tst_communicationesp/CMakeFiles/install/strip.dir
+/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/tst_communicationesp/CMakeFiles/TestCommunicationEsp_autogen_timestamp_deps.dir
+/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/tst_communicationesp/CMakeFiles/TestCommunicationEsp_autogen.dir

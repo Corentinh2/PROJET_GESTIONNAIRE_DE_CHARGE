@@ -6,7 +6,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 16,
-                        "durationMicroseconds": 112,
+                        "durationMicroseconds": 106,
                         "errorMessage": "Cannot access value for name control",
                         "functionName": "color",
                         "line": 15
@@ -22,7 +22,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 23,
-                        "durationMicroseconds": 43,
+                        "durationMicroseconds": 42,
                         "errorMessage": "Cannot access value for name control",
                         "functionName": "color",
                         "line": 18

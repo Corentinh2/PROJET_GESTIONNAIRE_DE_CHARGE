@@ -1,0 +1,31 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"tst_communicationesp/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"folder" : 
+	{
+		"name" : "QtInternalTargets"
+	},
+	"id" : "TestCommunicationEsp_autogen_timestamp_deps::@aa15a46c74d029c8fd16",
+	"isGeneratorProvided" : true,
+	"name" : "TestCommunicationEsp_autogen_timestamp_deps",
+	"paths" : 
+	{
+		"build" : "tst_communicationesp",
+		"source" : "tst_communicationesp"
+	},
+	"sources" : [],
+	"type" : "UTILITY"
+}

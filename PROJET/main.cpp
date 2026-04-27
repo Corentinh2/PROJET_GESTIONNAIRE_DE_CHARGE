@@ -4,7 +4,7 @@
 
 #include "communicationraspi.h"
 #include "communicationesp.h"
-#include "communicationtemp.h"
+//#include "communicationtemp.h"
 
 int main(int argc, char *argv[])
 {

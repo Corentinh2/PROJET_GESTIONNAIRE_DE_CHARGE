@@ -6,8 +6,12 @@
 			[
 				{
 					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-05248eeca2f5beae3308.json",
+					"jsonFile" : "directory-.-Debug-bf14988cc5bc5c914760.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -16,9 +20,6 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0,
-						1,
-						2,
 						3,
 						4,
 						5,
@@ -42,7 +43,27 @@
 						23,
 						24,
 						25,
-						26
+						26,
+						27,
+						28,
+						29
+					]
+				},
+				{
+					"build" : "tst_communicationesp",
+					"jsonFile" : "directory-tst_communicationesp-Debug-224ac6ed2c49691a33e8.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "tst_communicationesp",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
 					]
 				}
 			],
@@ -50,6 +71,10 @@
 			"projects" : 
 			[
 				{
+					"childIndexes" : 
+					[
+						1
+					],
 					"directoryIndexes" : 
 					[
 						0
@@ -57,9 +82,6 @@
 					"name" : "PROJET",
 					"targetIndexes" : 
 					[
-						0,
-						1,
-						2,
 						3,
 						4,
 						5,
@@ -83,12 +105,50 @@
 						23,
 						24,
 						25,
-						26
+						26,
+						27,
+						28,
+						29
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "TestCommunicationEsp",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
 					]
 				}
 			],
 			"targets" : 
 			[
+				{
+					"directoryIndex" : 1,
+					"id" : "TestCommunicationEsp::@aa15a46c74d029c8fd16",
+					"jsonFile" : "target-TestCommunicationEsp-Debug-dbe5f847911ea3337c73.json",
+					"name" : "TestCommunicationEsp",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "TestCommunicationEsp_autogen::@aa15a46c74d029c8fd16",
+					"jsonFile" : "target-TestCommunicationEsp_autogen-Debug-09e7ad0fbc7cf6bb4be7.json",
+					"name" : "TestCommunicationEsp_autogen",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "TestCommunicationEsp_autogen_timestamp_deps::@aa15a46c74d029c8fd16",
+					"jsonFile" : "target-TestCommunicationEsp_autogen_timestamp_deps-Debug-3a5e54f6d76171b5707d.json",
+					"name" : "TestCommunicationEsp_autogen_timestamp_deps",
+					"projectIndex" : 1
+				},
 				{
 					"directoryIndex" : 0,
 					"id" : "_qt_internal_apk_dependencies::@6890427a1f51a3e7e1df",

@@ -27,13 +27,13 @@
 		{
 			"backtrace" : 1,
 			"component" : "Unspecified",
-			"destination" : "lib",
+			"destination" : "bin",
 			"paths" : 
 			[
-				"libappPROJET_arm64-v8a.so"
+				"appPROJET"
 			],
 			"targetId" : "appPROJET::@6890427a1f51a3e7e1df",
-			"targetIndex" : 10,
+			"targetIndex" : 8,
 			"type" : "target"
 		}
 	],

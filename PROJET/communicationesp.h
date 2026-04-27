@@ -68,8 +68,7 @@ public:
      * @param start Heure de début au format "HH:MM".
      * @param end Heure de fin au format "HH:MM" (peut contenir " (lendemain)").
      */
-    Q_INVOKABLE void ajouterCalendrier(const QString &jours, const QString &start, const QString &end);
-
+    Q_INVOKABLE void ajouterCalendrier(const QString &jours, const QString &start, const QString &end, bool resetListe = true);
     /**
      * @brief Envoie une requête à l'ESP32 pour supprimer un calendrier de charge.
      * @param id Identifiant du calendrier à supprimer.
@@ -208,6 +207,8 @@ private:
      * @return Chaîne formatée (ex : "08:05").
      */
     QString formaterHeure(int heure, int minute);
+
+    friend class TestCommunicationEsp;
 };
 
 #endif // COMMUNICATIONESP_H

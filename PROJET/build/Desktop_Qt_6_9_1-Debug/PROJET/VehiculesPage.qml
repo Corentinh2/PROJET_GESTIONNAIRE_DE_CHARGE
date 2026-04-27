@@ -112,7 +112,7 @@ Item {
 
                         Text {
                             anchors.centerIn: parent
-                            text: "\u2715"
+                            text: "🗑️"
                             color: "#E53935"
                             font.pixelSize: 14
                             font.bold: true

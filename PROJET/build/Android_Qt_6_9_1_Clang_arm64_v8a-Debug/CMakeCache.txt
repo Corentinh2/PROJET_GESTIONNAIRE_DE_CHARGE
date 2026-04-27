@@ -353,6 +353,9 @@ QT_CREATOR_SOURCE_GROUPS:BOOL=ON
 //The list of autodetected Qt for Android ABIs
 QT_DEFAULT_ANDROID_ABIS:STRING=armeabi-v7a;arm64-v8a;x86;x86_64
 
+//The directory containing a CMake configuration file for QT.
+QT_DIR:PATH=/opt/Qt/6.9.1/android_arm64_v8a/lib/cmake/Qt6
+
 //No help, variable specified on the command line.
 QT_HOST_PATH:PATH=/opt/Qt/6.9.1/gcc_64
 
@@ -463,6 +466,12 @@ Qt6SqlPrivate_DIR:PATH=/opt/Qt/6.9.1/android_arm64_v8a/lib/cmake/Qt6SqlPrivate
 //The directory containing a CMake configuration file for Qt6Sql.
 Qt6Sql_DIR:PATH=/opt/Qt/6.9.1/android_arm64_v8a/lib/cmake/Qt6Sql
 
+//The directory containing a CMake configuration file for Qt6TestPrivate.
+Qt6TestPrivate_DIR:PATH=/opt/Qt/6.9.1/android_arm64_v8a/lib/cmake/Qt6TestPrivate
+
+//The directory containing a CMake configuration file for Qt6Test.
+Qt6Test_DIR:PATH=/opt/Qt/6.9.1/android_arm64_v8a/lib/cmake/Qt6Test
+
 //The directory containing a CMake configuration file for Qt6WebSocketsPrivate.
 Qt6WebSocketsPrivate_DIR:PATH=/opt/Qt/6.9.1/android_arm64_v8a/lib/cmake/Qt6WebSocketsPrivate
 
@@ -471,6 +480,15 @@ Qt6WebSockets_DIR:PATH=/opt/Qt/6.9.1/android_arm64_v8a/lib/cmake/Qt6WebSockets
 
 //The directory containing a CMake configuration file for Qt6.
 Qt6_DIR:PATH=/opt/Qt/6.9.1/android_arm64_v8a/lib/cmake/Qt6
+
+//Value Computed by CMake
+TestCommunicationEsp_BINARY_DIR:STATIC=/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/tst_communicationesp
+
+//Value Computed by CMake
+TestCommunicationEsp_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+TestCommunicationEsp_SOURCE_DIR:STATIC=/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/tst_communicationesp
 
 //Path to a program.
 Vulkan_GLSLANG_VALIDATOR_EXECUTABLE:FILEPATH=Vulkan_GLSLANG_VALIDATOR_EXECUTABLE-NOTFOUND
@@ -758,6 +776,8 @@ QT_FEATURE_avx512vbmi2:INTERNAL=OFF
 QT_FEATURE_avx512vl:INTERNAL=OFF
 //Qt feature: backtrace (from target Qt6::Core)
 QT_FEATURE_backtrace:INTERNAL=OFF
+//Qt feature: batch_test_support (from target Qt6::Test)
+QT_FEATURE_batch_test_support:INTERNAL=OFF
 //Qt feature: broken_threadlocal_dtors (from target Qt6::Core)
 QT_FEATURE_broken_threadlocal_dtors:INTERNAL=OFF
 //Qt feature: brotli (from target Qt6::Network)
@@ -986,6 +1006,8 @@ QT_FEATURE_ipv6ifname:INTERNAL=ON
 QT_FEATURE_islamiccivilcalendar:INTERNAL=ON
 //Qt feature: itemmodel (from target Qt6::Core)
 QT_FEATURE_itemmodel:INTERNAL=ON
+//Qt feature: itemmodeltester (from target Qt6::Test)
+QT_FEATURE_itemmodeltester:INTERNAL=ON
 //Qt feature: jalalicalendar (from target Qt6::Core)
 QT_FEATURE_jalalicalendar:INTERNAL=ON
 //Qt feature: journald (from target Qt6::Core)
@@ -1351,6 +1373,8 @@ QT_FEATURE_temporaryfile:INTERNAL=ON
 QT_FEATURE_test_gui:INTERNAL=ON
 //Qt feature: testlib (from target Qt6::Core)
 QT_FEATURE_testlib:INTERNAL=ON
+//Qt feature: testlib_selfcover (from target Qt6::Test)
+QT_FEATURE_testlib_selfcover:INTERNAL=OFF
 //Qt feature: textdate (from target Qt6::Core)
 QT_FEATURE_textdate:INTERNAL=ON
 //Qt feature: texthtmlparser (from target Qt6::Gui)
@@ -1401,6 +1425,8 @@ QT_FEATURE_use_lld_linker:INTERNAL=OFF
 QT_FEATURE_use_mold_linker:INTERNAL=OFF
 //Qt feature: vaes (from target Qt6::Core)
 QT_FEATURE_vaes:INTERNAL=OFF
+//Qt feature: valgrind (from target Qt6::Test)
+QT_FEATURE_valgrind:INTERNAL=OFF
 //Qt feature: validator (from target Qt6::Gui)
 QT_FEATURE_validator:INTERNAL=ON
 //Qt feature: version_tagging (from target Qt6::Core)

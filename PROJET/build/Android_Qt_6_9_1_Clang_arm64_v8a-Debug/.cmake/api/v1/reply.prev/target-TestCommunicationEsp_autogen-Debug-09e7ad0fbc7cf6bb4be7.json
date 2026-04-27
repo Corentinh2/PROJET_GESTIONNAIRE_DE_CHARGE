@@ -1,0 +1,75 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"tst_communicationesp/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"id" : "TestCommunicationEsp_autogen_timestamp_deps::@aa15a46c74d029c8fd16"
+		}
+	],
+	"folder" : 
+	{
+		"name" : "QtInternalTargets"
+	},
+	"id" : "TestCommunicationEsp_autogen::@aa15a46c74d029c8fd16",
+	"isGeneratorProvided" : true,
+	"name" : "TestCommunicationEsp_autogen",
+	"paths" : 
+	{
+		"build" : "tst_communicationesp",
+		"source" : "tst_communicationesp"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				1,
+				2
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/tst_communicationesp/CMakeFiles/TestCommunicationEsp_autogen",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/tst_communicationesp/CMakeFiles/TestCommunicationEsp_autogen.rule",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/tst_communicationesp/TestCommunicationEsp_autogen/timestamp.rule",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "UTILITY"
+}

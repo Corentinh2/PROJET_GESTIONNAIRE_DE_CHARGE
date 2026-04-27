@@ -282,9 +282,9 @@ ApplicationWindow {
         function onAlerteRecue(type, message) {
             var msg = "";
             if (type === "surchauffe") {
-                msg = "Température trop élevée !";
+                msg = "La charge s'est arrêtée pour la raison suivante : Température trop élevée ! ";
             } else {
-                msg = "Tension trop élevée !";
+                msg = "La charge s'est arrêtée pour la raison suivante : Tension trop élevée !";
             }
             notificationModel.append({
                                          "type": type,

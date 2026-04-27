@@ -39,13 +39,13 @@ ApplicationWindow {
     property string raspiStatus: "Déconnecté"
 
     // --- COMPTEUR SESSIONS ACTIVES ---
-        property int activeSessionCount: {
-            var count = 0;
-            for (var i = 0; i < sessionsModel.count; i++) {
-                if (sessionsModel.get(i).station === window.activeStation) { count++; }
-            }
-            return count;
+    property int activeSessionCount: {
+        var count = 0;
+        for (var i = 0; i < sessionsModel.count; i++) {
+            if (sessionsModel.get(i).station === window.activeStation) { count++; }
         }
+        return count;
+    }
 
     function getSelectedStationStatus() {
         var status = "Inconnu";
@@ -220,6 +220,9 @@ ApplicationWindow {
 
         function onConnectionStatusChanged(status) {
             window.raspiStatus = status;
+            if (status === "Connecté") {
+                sessionsModel.clear();   // ← AJOUTER cette ligne
+            }
         }
 
         function onStationRecue(id, name, kwh, status, ip) {
@@ -253,6 +256,9 @@ ApplicationWindow {
 
         function onConnectionStatusChanged(status) {
             window.espStatus = status;
+            if (status === "Connecté") {
+                stationsModelSource.clear();
+            }
         }
 
         function onClearCalendriers() {

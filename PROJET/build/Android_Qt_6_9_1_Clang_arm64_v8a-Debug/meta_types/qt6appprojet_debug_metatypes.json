@@ -37,9 +37,34 @@
                             {
                                 "name": "end",
                                 "type": "QString"
+                            },
+                            {
+                                "name": "resetListe",
+                                "type": "bool"
                             }
                         ],
                         "index": 12,
+                        "name": "ajouterCalendrier",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "jours",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "start",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "end",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 13,
+                        "isCloned": true,
                         "name": "ajouterCalendrier",
                         "returnType": "void"
                     },
@@ -51,7 +76,7 @@
                                 "type": "int"
                             }
                         ],
-                        "index": 13,
+                        "index": 14,
                         "name": "supprimerCalendrier",
                         "returnType": "void"
                     },
@@ -63,7 +88,7 @@
                                 "type": "bool"
                             }
                         ],
-                        "index": 14,
+                        "index": 15,
                         "name": "marcheForcee",
                         "returnType": "void"
                     }

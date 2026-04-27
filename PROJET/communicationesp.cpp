@@ -276,9 +276,10 @@ void CommunicationEsp::obtenirCalendrier() {
  * @param start Heure de début au format "HH:MM".
  * @param end Heure de fin au format "HH:MM" (peut contenir " (lendemain)").
  */
-void CommunicationEsp::ajouterCalendrier(const QString &jours, const QString &start,
-                                         const QString &end) {
-    m_attenteNouveauListe = true;
+void CommunicationEsp::ajouterCalendrier(const QString &jours, const QString &start, const QString &end, bool resetListe) {
+    if (resetListe) { m_attenteNouveauListe = true; }
+
+
 
     int masqueJours = joursVersmasque(jours);
     int hd = 0, md = 0, hf = 0, mf = 0;
