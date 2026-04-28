@@ -161,27 +161,29 @@ void accesBdd::modifierKilometrage(int id, int km)
     }
 }
 
-void accesBdd::ajouterEvenement(bool typeAlerte, const QString &message, int idBorne)
+void accesBdd::ajouterEvenement(bool type_alerte, const QString &message_erreur, int id_borne)
 {
     try {
-            QSqlQuery query;
-            query.prepare("INSERT INTO EVENEMENT (type_alerte, message_erreur, id_borne) "
-                          "VALUES (:type, :msg, :borne)");
+        QSqlQuery query;
+        query.prepare("INSERT INTO EVENEMENT (type_alerte, message_erreur, id_borne) "
+                      "VALUES (:type, :msg, :borne)");
 
-            // typeAlerte sera envoyé comme 0 (courant) ou 1 (température)
-            query.bindValue(":type", typeAlerte);
-            query.bindValue(":msg", message);
-            query.bindValue(":borne", idBorne);
+        // typeAlerte sera envoyé comme 0 (courant) ou 1 (température)
+        query.bindValue(":type", type_alerte ? 1 : 0);
+        query.bindValue(":msg", message_erreur);
+        query.bindValue(":borne", id_borne);
 
-            if (!query.exec()) {
-                throw std::runtime_error(query.lastError().text().toStdString());
-            }
+        if (!query.exec()) {
+            throw std::runtime_error(query.lastError().text().toStdString());
+        } else {
 
             // Pour le débug dans ta console Raspi
             QString label = (typeAlerte == 1) ? "TEMPÉRATURE (1)" : "COURANT (0)";
             qDebug() << "Succès : Événement enregistré -> Type:" << label;
+
         }
-        catch (const std::exception& e) {
-            qDebug() << "Exception BDD Evenement :" << e.what();
-        }
+    }
+    catch (const std::exception& e) {
+        qDebug() << "Exception BDD Evenement :" << e.what();
+    }
 }

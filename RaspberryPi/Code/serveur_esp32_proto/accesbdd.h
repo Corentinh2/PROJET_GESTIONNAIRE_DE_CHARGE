@@ -29,7 +29,7 @@ public:
     void supprimerVehicule(int id);
     void modifierKilometrage(int id, int km);
 
-    void ajouterEvenement(bool typeAlerte, const QString &message, int idBorne);
+    void ajouterEvenement(bool type_alerte, const QString &message_erreur, int id_borne);
 
 private:
     QSqlDatabase bdd;

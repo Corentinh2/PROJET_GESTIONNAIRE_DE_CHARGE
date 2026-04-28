@@ -26,10 +26,10 @@ void loop() {
   systeme.envoyerMesures(); // Calcul et envoi automatique
   raspi.loop();
 
-  /*static unsigned long chronoTest = 0;
+   static unsigned long chronoTest = 0;
     if (millis() - chronoTest > 10000) {
         Serial.println("\n[TEST] Simulation d'une surcharge à 25A...");
         systeme.verifierSeuils(25.0, 230.0);
         chronoTest = millis();
-    }*/
+    }
 }
