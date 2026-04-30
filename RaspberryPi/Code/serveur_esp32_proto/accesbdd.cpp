@@ -32,13 +32,13 @@ bool accesBdd::connecter()
     return resultat;
 }
 
-void accesBdd::insererMesure(float puissance)
+/*void accesBdd::insererMesure(float puissance)
 {
     try {
         QSqlQuery query;
         query.prepare("INSERT INTO MESURE (horodatage, puissance, id_charge) VALUES (NOW(), :p, :id)");
         query.bindValue(":p", puissance);
-        query.bindValue(":id", 9);
+        query.bindValue(":id", 4);
 
         if (!query.exec()) {
             throw std::runtime_error(query.lastError().text().toStdString());
@@ -47,8 +47,7 @@ void accesBdd::insererMesure(float puissance)
     }
     catch (const std::exception& e) {
         qDebug() << "Exception Insertion :" << e.what();
-    }
-}
+  */
 
 void accesBdd::ajouterVehicule(const QString &nom, int km)
 {
@@ -178,7 +177,7 @@ void accesBdd::ajouterEvenement(bool type_alerte, const QString &message_erreur,
         } else {
 
             // Pour le débug dans ta console Raspi
-            QString label = (typeAlerte == 1) ? "TEMPÉRATURE (1)" : "COURANT (0)";
+            QString label = (type_alerte == 1) ? "TEMPÉRATURE (1)" : "COURANT (0)";
             qDebug() << "Succès : Événement enregistré -> Type:" << label;
 
         }

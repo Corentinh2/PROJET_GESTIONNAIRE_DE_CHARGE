@@ -138,7 +138,7 @@ void Serveur::insererEnBase(float puissance)
     QSqlQuery query;
     query.prepare("INSERT INTO MESURE (horodatage, puissance, id_charge) VALUES (NOW(), :p, :id)");
     query.bindValue(":p", puissance);
-    query.bindValue(":id", 9);
+    query.bindValue(":id", 4);
 
     if (query.exec()) {
         qDebug() << "Mesure insérée ! Puissance:" << puissance << "W";

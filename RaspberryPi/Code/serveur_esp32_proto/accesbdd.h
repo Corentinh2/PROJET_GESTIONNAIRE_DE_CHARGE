@@ -22,7 +22,7 @@ public:
     bool connecter();
 
     // Méthodes avec gestion d'exceptions
-    void insererMesure(float puissance);
+    //void insererMesure(float puissance);
     void ajouterVehicule(const QString &nom, int km);
     void envoyerListeVehicules(QWebSocket *pClient);
     void envoyerListeBornes(QWebSocket *pClient);
