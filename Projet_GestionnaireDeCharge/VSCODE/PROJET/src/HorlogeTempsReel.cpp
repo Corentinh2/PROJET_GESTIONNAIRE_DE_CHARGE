@@ -2,13 +2,16 @@
 #include <Arduino.h>
 #include <time.h>
 
+/**
+ * @brief Constructeur - initialise le DS3231, configure la broche d'alarme
+ *        et attache l'interruption sur front descendant
+ */
 HorlogeTempsReel::HorlogeTempsReel()
 {
   succes = false;
   alarmeDeclenchee = false;
   pinMode(PIN_ALARME, INPUT_PULLUP);
   anchor = this;
-
   if (RTC_DS3231::begin())
   {
     Serial.println("DS3231 initialisé.");
@@ -21,7 +24,12 @@ HorlogeTempsReel::HorlogeTempsReel()
   }
 }
 
-void HorlogeTempsReel::syncFromNTP()
+/**
+ * @brief Synchronise l'horloge temps réel avec un serveur NTP
+ *        Configure le fuseau horaire Europe/Paris (CET/CEST)
+ *        Effectue jusqu'à 20 tentatives de synchronisation
+ */
+void HorlogeTempsReel::synchroniserNTP()
 {
   bool ntpOk = false;
   struct tm timeinfo;
@@ -60,12 +68,20 @@ void HorlogeTempsReel::syncFromNTP()
   }
 }
 
-DateTime HorlogeTempsReel::getTime()
+/**
+ * @brief Retourne l'heure actuelle du DS3231
+ * @return Objet DateTime contenant la date et l'heure courantes
+ */
+DateTime HorlogeTempsReel::obtenirHeureActuelle()
 {
   return now();
 }
 
-void HorlogeTempsReel::printTime()
+/**
+ * @brief Affiche la date et l'heure actuelles sur le port série
+ *        Format : JJ/MM/AAAA HH:MM:SS
+ */
+void HorlogeTempsReel::afficherHeureAcutelle()
 {
   DateTime maintenant = now();
   Serial.printf("%02d/%02d/%04d %02d:%02d:%02d\n",
@@ -73,22 +89,26 @@ void HorlogeTempsReel::printTime()
                 maintenant.hour(), maintenant.minute(), maintenant.second());
 }
 
+/**
+ * @brief Retourne l'état d'initialisation de l'horloge
+ * @return true si le DS3231 est initialisé correctement, false sinon
+ */
 const bool HorlogeTempsReel::obtenirEtat()
 {
   return succes;
 }
 
+/**
+ * @brief Configure une alarme se déclenchant toutes les minutes
+ *        Désactive le signal carré et active l'interruption via INTCN
+ */
 void HorlogeTempsReel::configurerAlarmeMinute()
 {
   disable32K();
   clearAlarm(1);
   clearAlarm(2);
   disableAlarm(2);
-
-  // Ne pas mettre DS3231_OFF, la broche doit rester active
-  writeSqwPinMode(DS3231_OFF); // Désactive le signal carré
-  // Active l'interruption d'alarme via le registre de contrôle
-  // En mettant DS3231_OFF + setAlarm1, le DS3231 active automatiquement INTCN
+  writeSqwPinMode(DS3231_OFF);
 
   if (!setAlarm1(now() + TimeSpan(60), DS3231_A1_Second))
   {
@@ -100,42 +120,63 @@ void HorlogeTempsReel::configurerAlarmeMinute()
   }
 }
 
+/**
+ * @brief Réinitialise l'alarme et la replanifie 60 secondes plus tard
+ *        Remet également le drapeau alarmeDeclenchee à false
+ */
 void HorlogeTempsReel::reinitialiserAlarme()
 {
   clearAlarm(1);
-  // Replanifie l'alarme 60 secondes plus tard
   setAlarm1(now() + TimeSpan(60), DS3231_A1_Second);
   alarmeDeclenchee = false;
 }
 
+/**
+ * @brief Retourne l'état de déclenchement de l'alarme
+ * @return true si l'alarme a été déclenchée, false sinon
+ */
 bool HorlogeTempsReel::getAlarme()
 {
   return alarmeDeclenchee;
 }
 
-
+/**
+ * @brief Retourne le jour de la semaine au format 1 (lundi) à 7 (dimanche)
+ *        Convertit le format du DS3231 (0 = dimanche) vers le format ISO (7 = dimanche)
+ * @return Entier représentant le jour de la semaine
+ */
 int HorlogeTempsReel::obtenirJourSemaine()
 {
   int jourRTC = now().dayOfTheWeek();
   int jourConverti = 0;
-
-  if (jourRTC == 0) {
+  if (jourRTC == 0)
+  {
     jourConverti = 7;
-  } else {
-    jourConverti = jourRTC;  
   }
-
+  else
+  {
+    jourConverti = jourRTC;
+  }
   return jourConverti;
 }
 
+/**
+ * @brief Fonction statique intermédiaire pour router l'interruption vers l'instance courante
+ *        Nécessaire car attachInterrupt ne peut pas prendre une méthode non statique
+ */
 void HorlogeTempsReel::marshall()
 {
   anchor->onAlarme();
 }
 
+/**
+ * @brief Gestionnaire d'interruption déclenché sur front descendant de PIN_ALARME
+ *        Placé en RAM (IRAM_ATTR) pour une exécution rapide
+ */
 void IRAM_ATTR HorlogeTempsReel::onAlarme()
 {
   alarmeDeclenchee = true;
 }
 
+/** @brief Initialisation du pointeur statique vers l'instance courante */
 HorlogeTempsReel *HorlogeTempsReel::anchor = NULL;

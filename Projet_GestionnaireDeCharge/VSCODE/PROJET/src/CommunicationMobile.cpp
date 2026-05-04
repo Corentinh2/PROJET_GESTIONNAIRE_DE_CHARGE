@@ -1,6 +1,10 @@
 #include "CommunicationMobile.h"
 #include <Arduino.h>
 
+/**
+ * @brief Constructeur - initialise la mémoire, démarre le serveur WebSocket sur le port défini
+ * @param _memoire Pointeur vers la mémoire programme
+ */
 CommunicationMobile::CommunicationMobile(MemoireProgramme *_memoire)
 {
     memoire = _memoire;
@@ -10,10 +14,18 @@ CommunicationMobile::CommunicationMobile(MemoireProgramme *_memoire)
     Serial.println("Serveur WebSocket démarré sur le port 5555 !");
 }
 
+/**
+ * @brief Destructeur
+ */
 CommunicationMobile::~CommunicationMobile()
 {
+    delete memoire;
 }
 
+/**
+ * @brief Traite un message JSON reçu et exécute l'action correspondante
+ * @param data Message JSON reçu sous forme de String
+ */
 void CommunicationMobile::traiterMessage(String data)
 {
     JsonDocument doc;
@@ -34,12 +46,10 @@ void CommunicationMobile::traiterMessage(String data)
     if (action == "ajouterCalendrier")
     {
         memoire->ajouterEvenement(doc["jours"], doc["hd"], doc["md"], doc["hf"], doc["mf"]);
-        client.send(memoire->obtenirTrameOriginale());
     }
     if (action == "supprimerCalendrier")
     {
         memoire->supprimerCalendrier(doc["id"]);
-        client.send(memoire->obtenirTrameOriginale());
     }
     if (action == "marcheForcee")
     {
@@ -54,6 +64,10 @@ void CommunicationMobile::traiterMessage(String data)
     }
 }
 
+/**
+ * @brief Gère les connexions entrantes et les messages WebSocket de manière non bloquante
+ * @return 1 si marche forcée activée, 0 si désactivée, -1 si aucun message de marche forcée
+ */
 int CommunicationMobile::gererCommunication()
 {
     relais = -1;

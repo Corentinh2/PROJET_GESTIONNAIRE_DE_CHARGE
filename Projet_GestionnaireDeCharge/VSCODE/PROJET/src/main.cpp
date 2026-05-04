@@ -3,7 +3,7 @@
 #include "GestionnaireCharge.h"
 
 const char *ssid = "fortinet";
-const char *password = "Projet2026";
+const char *motDePasse = "Projet2026";
 
 GestionnaireCharge *gestionnaire;
 
@@ -16,7 +16,12 @@ void afficherMenuTest()
   Serial.println("=== MENU ===");
   Serial.println("1 - ajouterEvenement");
   Serial.println("2 - supprimerCalendrier");
-  Serial.println("3 - afficherCalendrierTestUnitaire");
+  Serial.println("3 - ajouterAlerte");
+  Serial.println("4 - supprimerAlerte");
+  Serial.println("5 - obtenirTrameOriginal");
+  Serial.println("6 - obtenirAlerte");
+  Serial.println("7 - affichercalendrier et alerte");
+
   Serial.println("Votre choix : ");
 
   while (!choixValide)
@@ -29,7 +34,7 @@ void afficherMenuTest()
       if (carLu == '\n' || carLu == '\r')
       {
         choix.trim();
-        if (choix == "1" || choix == "2" || choix == "3")
+        if (choix == "1" || choix == "2" || choix == "3" || choix == "4" || choix == "5" || choix == "6" || choix == "7" )
         {
           choixValide = true;
         }
@@ -48,6 +53,7 @@ void afficherMenuTest()
 
   switch (choix.toInt())
   {
+  break;
   case 1:
   {
     String trame = "";
@@ -166,8 +172,67 @@ void afficherMenuTest()
   }
   break;
   case 3:
+  {
+    Serial.println("\nSaisir le type d'alerte (1 = alerte température, 0 = alerte courant): ");
+
+    String saisie = "";
+    bool saisi = false;
+
+    while (!saisi)
+    {
+      if (Serial.available() > 0)
+      {
+        char carLu = Serial.read();
+        Serial.print(carLu);
+
+        if (carLu == '\n' || carLu == '\r')
+        {
+          saisie.trim();
+          if (saisie.length() > 0)
+          {
+            saisi = true;
+          }
+        }
+        else
+        {
+          saisie += carLu;
+        }
+      }
+    }
+    if (saisie.toInt() == 1)
+    {
+      gestionnaire->obtenirMemoire()->ajouterAlerte(true);
+      gestionnaire->obtenirMemoire()->afficherAlerteTestUnitaire();
+    }
+    else
+    {
+      gestionnaire->obtenirMemoire()->ajouterAlerte(false);
+      gestionnaire->obtenirMemoire()->afficherAlerteTestUnitaire();
+    }
+  }
+  break;
+  case 4:
+  {
+    gestionnaire->obtenirMemoire()->supprimerAlerte();
+    gestionnaire->obtenirMemoire()->afficherAlerteTestUnitaire();
+  }
+  break;
+  case 5:
+  {
+    String trameOriginale = gestionnaire->obtenirMemoire()->obtenirTrameOriginale();
+  }
+  break;
+  case 6:
+  {
+    String alerte = gestionnaire->obtenirMemoire()->obtenirAlerte();
+  }
+  break;
+  case 7:
+  {
     gestionnaire->obtenirMemoire()->afficherCalendrierTestUnitaire();
-    break;
+    gestionnaire->obtenirMemoire()->afficherAlerteTestUnitaire();
+  }
+  break;
   default:
     break;
   }
@@ -180,7 +245,7 @@ void setup()
   Serial.println("Démarrage...");
   Wire.begin();
 
-  WiFi.begin(ssid, password);
+  WiFi.begin(ssid, motDePasse);
   while (WiFi.status() != WL_CONNECTED)
   {
     delay(500);
@@ -189,11 +254,9 @@ void setup()
   Serial.println("\nWiFi connecté !");
   delay(1000);
 
-  gestionnaire = new GestionnaireCharge;
+  gestionnaire = new GestionnaireCharge(ssid, motDePasse);
   //afficherMenuTest();
 }
-
-
 
 void loop()
 {
