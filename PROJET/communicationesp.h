@@ -54,7 +54,7 @@ public:
      * @brief Définit l'adresse IP de l'ESP32 et ouvre la connexion WebSocket.
      * @param ip Adresse IP de l'ESP32 (ex : "192.168.1.50").
      */
-    Q_INVOKABLE void setIp(const QString &ip);
+    Q_INVOKABLE void connexion(const QString &ip);
 
     /**
      * @brief Envoie une requête à l'ESP32 pour obtenir la liste des calendriers de charge.
@@ -156,12 +156,15 @@ private slots:
      */
     void onTextMessageReceived(const QString &message);
 
+    void gererChangementEtat(QAbstractSocket::SocketState etat);
+
     /// @brief Tente de rouvrir la connexion WebSocket vers l'ESP32.
     void tenterReconnexion();
 
 private:
     /// @brief Socket WebSocket pour la communication avec l'ESP32.
     QWebSocket m_webSocket;
+    //enum QAbstractSocket::SocketState
 
     /// @brief Timer déclenchant les tentatives de reconnexion toutes les 5 secondes.
     QTimer m_reconnectTimer;

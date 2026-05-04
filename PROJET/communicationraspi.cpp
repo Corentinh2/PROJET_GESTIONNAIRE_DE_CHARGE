@@ -1,7 +1,7 @@
 /**
  * @file communicationraspi.cpp
  * @brief Implémentation de la classe CommunicationRaspi.
- * @author Coco
+ * @author Corentin
  * @version 1.0
  * @date Avril 2026
  */
@@ -33,6 +33,8 @@ CommunicationRaspi::CommunicationRaspi(QObject *parent) : QObject(parent) {
             this, &CommunicationRaspi::onDisconnected);
     connect(&m_webSocket, &QWebSocket::textMessageReceived,
             this, &CommunicationRaspi::onTextMessageReceived);
+    connect(&m_webSocket, &QWebSocket::stateChanged,
+            this, &CommunicationRaspi::gererChangementEtat);
 
     m_reconnectTimer.setInterval(5000);
     m_reconnectTimer.setSingleShot(false);
@@ -69,6 +71,20 @@ void CommunicationRaspi::onConnected() {
 }
 
 /**
+ * @brief Gère les changements d'état du socket WebSocket.
+ * Démarre le timer de reconnexion si déconnecté, l'arrête si connecté.
+ * @param etat Nouvel état du socket.
+ */
+void CommunicationRaspi::gererChangementEtat(QAbstractSocket::SocketState etat) {
+    if (etat == QAbstractSocket::UnconnectedState) {
+        m_reconnectTimer.start();
+    }
+    if (etat == QAbstractSocket::ConnectedState) {
+        m_reconnectTimer.stop();
+    }
+}
+
+/**
  * @brief Appelé lorsque la connexion WebSocket est perdue.
  *
  * Émet le signal de statut "Déconnecté" et démarre le timer
@@ -85,8 +101,10 @@ void CommunicationRaspi::onDisconnected() {
  * @brief Tente de rouvrir la connexion WebSocket vers le Raspberry Pi.
  */
 void CommunicationRaspi::tenterReconnexion() {
-    qDebug() << "[RASPI] Tentative de reconnexion à" << m_url;
-    m_webSocket.open(QUrl(m_url));
+    if (m_webSocket.state() == QAbstractSocket::UnconnectedState) {
+        qDebug() << "[RASPI] Tentative de reconnexion à" << m_url;
+        m_webSocket.open(QUrl(m_url));
+    }
 }
 
 // ============================================================
@@ -141,25 +159,22 @@ void CommunicationRaspi::obtenirVehicule() {
  * @param km Kilométrage actuel sous forme de chaîne (converti en entier avant envoi).
  */
 void CommunicationRaspi::ajouterVehicule(const QString &name, const QString &km) {
-    if (name.isEmpty()) {
+    if (!name.isEmpty()) {
+        QJsonObject json;
+        json["action"] = "ajouterVehicule";
+        json["name"]   = name;
+        json["km"]     = km.toInt();
+        QString trame = QJsonDocument(json).toJson(QJsonDocument::Compact);
+        m_webSocket.sendTextMessage(trame);
+        qDebug() << "----------------------------------------";
+        qDebug() << "[RASPI] TRAME ENVOYÉE — Ajout véhicule";
+        qDebug() << "[RASPI] Contenu JSON :" << trame;
+        qDebug() << "[RASPI]   name :" << name;
+        qDebug() << "[RASPI]   km   :" << km;
+        qDebug() << "----------------------------------------";
+    } else {
         qDebug() << "[RASPI] Erreur : nom du véhicule vide.";
-        return;
     }
-
-    QJsonObject json;
-    json["action"] = "ajouterVehicule";
-    json["name"]   = name;
-    json["km"]     = km.toInt();
-
-    QString trame = QJsonDocument(json).toJson(QJsonDocument::Compact);
-    m_webSocket.sendTextMessage(trame);
-
-    qDebug() << "----------------------------------------";
-    qDebug() << "[RASPI] TRAME ENVOYÉE — Ajout véhicule";
-    qDebug() << "[RASPI] Contenu JSON :" << trame;
-    qDebug() << "[RASPI]   name :" << name;
-    qDebug() << "[RASPI]   km   :" << km;
-    qDebug() << "----------------------------------------";
 }
 
 /**
@@ -227,42 +242,40 @@ void CommunicationRaspi::onTextMessageReceived(const QString &message) {
 
     QJsonDocument doc = QJsonDocument::fromJson(message.toUtf8());
 
-    if (!doc.isObject()) {
+    if (doc.isObject()) {
+        QJsonObject json = doc.object();
+        QString action = json["action"].toString();
+        qDebug() << "[RASPI] Action décodée :" << action;
+
+        if (action == "station") {
+            int id         = json["id"].toInt();
+            QString name   = json["name"].toString();
+            QString kwh    = json["kwh"].toString();
+            QString status = json["status"].toString();
+            QString ip     = json["ip"].toString();
+
+            qDebug() << "[RASPI]   id     :" << id;
+            qDebug() << "[RASPI]   name   :" << name;
+            qDebug() << "[RASPI]   kwh    :" << kwh;
+            qDebug() << "[RASPI]   status :" << status;
+            qDebug() << "[RASPI]   ip     :" << ip;
+
+            emit stationRecue(id, name, kwh, status, ip);
+        }
+
+        if (action == "vehicule") {
+            int id       = json["id"].toInt();
+            QString name = json["name"].toString();
+            QString km   = QString::number(json["km"].toInt());
+
+            qDebug() << "[RASPI]   id   :" << id;
+            qDebug() << "[RASPI]   name :" << name;
+            qDebug() << "[RASPI]   km   :" << km;
+
+            emit vehiculeRecu(id, name, km);
+        }
+    } else {
         qDebug() << "[RASPI] ERREUR : Message invalide (pas un objet JSON)";
-        qDebug() << "----------------------------------------";
-        return;
-    }
-
-    QJsonObject json = doc.object();
-    QString action = json["action"].toString();
-    qDebug() << "[RASPI] Action décodée :" << action;
-
-    if (action == "station") {
-        int id         = json["id"].toInt();
-        QString name   = json["name"].toString();
-        QString kwh    = json["kwh"].toString();
-        QString status = json["status"].toString();
-        QString ip     = json["ip"].toString();
-
-        qDebug() << "[RASPI]   id     :" << id;
-        qDebug() << "[RASPI]   name   :" << name;
-        qDebug() << "[RASPI]   kwh    :" << kwh;
-        qDebug() << "[RASPI]   status :" << status;
-        qDebug() << "[RASPI]   ip     :" << ip;
-
-        emit stationRecue(id, name, kwh, status, ip);
-    }
-
-    if (action == "vehicule") {
-        int id       = json["id"].toInt();
-        QString name = json["name"].toString();
-        QString km   = QString::number(json["km"].toInt());
-
-        qDebug() << "[RASPI]   id   :" << id;
-        qDebug() << "[RASPI]   name :" << name;
-        qDebug() << "[RASPI]   km   :" << km;
-
-        emit vehiculeRecu(id, name, km);
     }
 
     qDebug() << "----------------------------------------";

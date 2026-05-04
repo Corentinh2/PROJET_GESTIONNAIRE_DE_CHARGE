@@ -61,13 +61,6 @@ namespace _qt_qml_PROJET_DashboardPage_qml {
         reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
     };
 }
-namespace _qt_qml_PROJET_SettingsPage_qml { 
-    extern const unsigned char qmlData[];
-    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
-    const QQmlPrivate::CachedQmlUnit unit = {
-        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
-    };
-}
 namespace _qt_qml_PROJET_SessionsPage_qml { 
     extern const unsigned char qmlData[];
     extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
@@ -76,6 +69,41 @@ namespace _qt_qml_PROJET_SessionsPage_qml {
     };
 }
 namespace _qt_qml_PROJET_KmPage_qml { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
+namespace _qt_qml_PROJET_js_BootPage_js { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
+namespace _qt_qml_PROJET_js_KmPage_js { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
+namespace _qt_qml_PROJET_js_Main_js { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
+namespace _qt_qml_PROJET_js_SessionPage_js { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
+namespace _qt_qml_PROJET_js_StatusPage_js { 
     extern const unsigned char qmlData[];
     extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
     const QQmlPrivate::CachedQmlUnit unit = {
@@ -104,9 +132,13 @@ Registry::Registry() {
     resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/BootPage.qml"), &QmlCacheGeneratedCode::_qt_qml_PROJET_BootPage_qml::unit);
     resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/StatusPage.qml"), &QmlCacheGeneratedCode::_qt_qml_PROJET_StatusPage_qml::unit);
     resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/DashboardPage.qml"), &QmlCacheGeneratedCode::_qt_qml_PROJET_DashboardPage_qml::unit);
-    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/SettingsPage.qml"), &QmlCacheGeneratedCode::_qt_qml_PROJET_SettingsPage_qml::unit);
     resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/SessionsPage.qml"), &QmlCacheGeneratedCode::_qt_qml_PROJET_SessionsPage_qml::unit);
     resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/KmPage.qml"), &QmlCacheGeneratedCode::_qt_qml_PROJET_KmPage_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/js/BootPage.js"), &QmlCacheGeneratedCode::_qt_qml_PROJET_js_BootPage_js::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/js/KmPage.js"), &QmlCacheGeneratedCode::_qt_qml_PROJET_js_KmPage_js::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/js/Main.js"), &QmlCacheGeneratedCode::_qt_qml_PROJET_js_Main_js::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/js/SessionPage.js"), &QmlCacheGeneratedCode::_qt_qml_PROJET_js_SessionPage_js::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/js/StatusPage.js"), &QmlCacheGeneratedCode::_qt_qml_PROJET_js_StatusPage_js::unit);
     QQmlPrivate::RegisterQmlUnitCacheHook registration;
     registration.structVersion = 0;
     registration.lookupCachedQmlUnit = &lookupCachedUnit;

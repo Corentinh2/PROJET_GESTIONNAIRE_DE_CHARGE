@@ -7,6 +7,8 @@
 /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.qt/rcc/qmake_PROJET.qrc
 --resource
 /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.qt/rcc/appPROJET_raw_qml_0.qrc
+--resource
+/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.qt/rcc/appPROJET_raw_qml_0_extra_qmldirs.qrc
 /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/Main.qml
 /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/AppButton.qml
 /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/AppTextField.qml
@@ -15,8 +17,12 @@
 /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/BootPage.qml
 /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/StatusPage.qml
 /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/DashboardPage.qml
-/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/SettingsPage.qml
 /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/SessionsPage.qml
 /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/KmPage.qml
+/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/js/BootPage.js
+/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/js/KmPage.js
+/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/js/Main.js
+/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/js/SessionPage.js
+/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/js/StatusPage.js
 --json
 /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/appPROJET_qmllint.json

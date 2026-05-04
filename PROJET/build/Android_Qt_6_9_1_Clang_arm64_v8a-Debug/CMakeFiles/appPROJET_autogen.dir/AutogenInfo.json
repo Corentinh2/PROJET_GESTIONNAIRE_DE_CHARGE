@@ -984,6 +984,8 @@
 		"/opt/Qt/6.9.1/android_arm64_v8a/lib/cmake/Qt6Core/Qt6CoreConfigureFileTemplate.in",
 		"/opt/Qt/6.9.1/android_arm64_v8a/lib/cmake/Qt6Qml/Qt6QmlModuleDirMappingTemplate.qrc.in",
 		"/opt/Qt/6.9.1/android_arm64_v8a/lib/cmake/Qt6Core/Qt6CoreConfigureFileTemplate.in",
+		"/opt/Qt/6.9.1/android_arm64_v8a/lib/cmake/Qt6Qml/Qt6qmldirTemplate.cmake.in",
+		"/opt/Qt/6.9.1/android_arm64_v8a/lib/cmake/Qt6Core/Qt6CoreConfigureFileTemplate.in",
 		"/opt/Qt/Tools/CMake/share/cmake-3.30/Modules/GNUInstallDirs.cmake",
 		"/opt/Qt/6.9.1/android_arm64_v8a/lib/cmake/Qt6Qml/Qt6qmldirTemplate.cmake.in",
 		"/opt/Qt/6.9.1/android_arm64_v8a/lib/cmake/Qt6/QtInstallPaths.cmake",
@@ -1088,6 +1090,7 @@
 	"MOC_SKIP" : 
 	[
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.qt/rcc/qrc_appPROJET_raw_qml_0.cpp",
+		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.qt/rcc/qrc_appPROJET_raw_qml_0_extra_qmldirs.cpp",
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.qt/rcc/qrc_qmake_PROJET.cpp",
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_AppButton_qml.cpp",
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_AppCard_qml.cpp",
@@ -1097,9 +1100,13 @@
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_KmPage_qml.cpp",
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_Main_qml.cpp",
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_SessionsPage_qml.cpp",
-		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_SettingsPage_qml.cpp",
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_StatusPage_qml.cpp",
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_VehiculesPage_qml.cpp",
+		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_js/BootPage_js.cpp",
+		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_js/KmPage_js.cpp",
+		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_js/Main_js.cpp",
+		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_js/SessionPage_js.cpp",
+		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_js/StatusPage_js.cpp",
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_qmlcache_loader.cpp",
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/appprojet_qmltyperegistrations.cpp"
 	],
@@ -1134,6 +1141,7 @@
 	"UIC_SKIP" : 
 	[
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.qt/rcc/qrc_appPROJET_raw_qml_0.cpp",
+		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.qt/rcc/qrc_appPROJET_raw_qml_0_extra_qmldirs.cpp",
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.qt/rcc/qrc_qmake_PROJET.cpp",
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_AppButton_qml.cpp",
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_AppCard_qml.cpp",
@@ -1143,9 +1151,13 @@
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_KmPage_qml.cpp",
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_Main_qml.cpp",
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_SessionsPage_qml.cpp",
-		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_SettingsPage_qml.cpp",
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_StatusPage_qml.cpp",
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_VehiculesPage_qml.cpp",
+		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_js/BootPage_js.cpp",
+		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_js/KmPage_js.cpp",
+		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_js/Main_js.cpp",
+		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_js/SessionPage_js.cpp",
+		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_js/StatusPage_js.cpp",
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.rcc/qmlcache/appPROJET_qmlcache_loader.cpp",
 		"/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/appprojet_qmltyperegistrations.cpp"
 	],

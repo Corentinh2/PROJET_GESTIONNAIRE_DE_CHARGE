@@ -6,7 +6,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 17,
-                        "durationMicroseconds": 138,
+                        "durationMicroseconds": 147,
                         "errorMessage": "Cannot load property radius from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/AppCard.qml)::parent with type QQuickItem.",
                         "functionName": "radius",
                         "line": 23
@@ -14,7 +14,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 23,
-                        "durationMicroseconds": 154,
+                        "durationMicroseconds": 116,
                         "errorMessage": "",
                         "functionName": "fill",
                         "line": 21
@@ -22,7 +22,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 17,
-                        "durationMicroseconds": 66,
+                        "durationMicroseconds": 68,
                         "errorMessage": "Cannot load property radius from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/AppCard.qml)::parent with type QQuickItem.",
                         "functionName": "radius",
                         "line": 32
@@ -30,7 +30,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 18,
-                        "durationMicroseconds": 186,
+                        "durationMicroseconds": 166,
                         "errorMessage": "",
                         "functionName": "opacity",
                         "line": 34
@@ -38,7 +38,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 23,
-                        "durationMicroseconds": 58,
+                        "durationMicroseconds": 59,
                         "errorMessage": "",
                         "functionName": "fill",
                         "line": 31
@@ -46,7 +46,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 20,
-                        "durationMicroseconds": 126,
+                        "durationMicroseconds": 129,
                         "errorMessage": "",
                         "functionName": "onClicked",
                         "line": 40
@@ -54,7 +54,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 23,
-                        "durationMicroseconds": 56,
+                        "durationMicroseconds": 77,
                         "errorMessage": "",
                         "functionName": "fill",
                         "line": 39
@@ -62,7 +62,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 23,
-                        "durationMicroseconds": 56,
+                        "durationMicroseconds": 59,
                         "errorMessage": "",
                         "functionName": "fill",
                         "line": 44
@@ -70,7 +70,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 31,
-                        "durationMicroseconds": 82,
+                        "durationMicroseconds": 86,
                         "errorMessage": "",
                         "functionName": "alignment",
                         "line": 53
@@ -78,7 +78,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 23,
-                        "durationMicroseconds": 37,
+                        "durationMicroseconds": 50,
                         "errorMessage": "Cannot access value for name iconChar",
                         "functionName": "text",
                         "line": 56
@@ -86,7 +86,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 35,
-                        "durationMicroseconds": 55,
+                        "durationMicroseconds": 57,
                         "errorMessage": "",
                         "functionName": "centerIn",
                         "line": 55
@@ -94,7 +94,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 31,
-                        "durationMicroseconds": 77,
+                        "durationMicroseconds": 78,
                         "errorMessage": "",
                         "functionName": "alignment",
                         "line": 64
@@ -102,7 +102,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 23,
-                        "durationMicroseconds": 34,
+                        "durationMicroseconds": 33,
                         "errorMessage": "Cannot access value for name title",
                         "functionName": "text",
                         "line": 67
@@ -110,7 +110,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 23,
-                        "durationMicroseconds": 29,
+                        "durationMicroseconds": 82,
                         "errorMessage": "Cannot access value for name subTitle",
                         "functionName": "text",
                         "line": 73
@@ -126,7 +126,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 31,
-                        "durationMicroseconds": 864,
+                        "durationMicroseconds": 87,
                         "errorMessage": "",
                         "functionName": "alignment",
                         "line": 84
@@ -134,7 +134,7 @@
                     {
                         "codegenSuccessful": false,
                         "column": 23,
-                        "durationMicroseconds": 51,
+                        "durationMicroseconds": 31,
                         "errorMessage": "Cannot access value for name badgeCount",
                         "functionName": "text",
                         "line": 87
@@ -142,7 +142,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 35,
-                        "durationMicroseconds": 1772,
+                        "durationMicroseconds": 56,
                         "errorMessage": "",
                         "functionName": "centerIn",
                         "line": 86
@@ -150,7 +150,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 31,
-                        "durationMicroseconds": 94,
+                        "durationMicroseconds": 103,
                         "errorMessage": "",
                         "functionName": "alignment",
                         "line": 99

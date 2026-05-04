@@ -12,13 +12,13 @@
                             "type": "QString"
                         }
                     ],
-                    "index": 10,
-                    "name": "setIp",
+                    "index": 11,
+                    "name": "connexion",
                     "returnType": "void"
                 },
                 {
                     "access": "public",
-                    "index": 11,
+                    "index": 12,
                     "name": "obtenirCalendrier",
                     "returnType": "void"
                 },
@@ -42,7 +42,7 @@
                             "type": "bool"
                         }
                     ],
-                    "index": 12,
+                    "index": 13,
                     "name": "ajouterCalendrier",
                     "returnType": "void"
                 },
@@ -62,7 +62,7 @@
                             "type": "QString"
                         }
                     ],
-                    "index": 13,
+                    "index": 14,
                     "isCloned": true,
                     "name": "ajouterCalendrier",
                     "returnType": "void"
@@ -75,7 +75,7 @@
                             "type": "int"
                         }
                     ],
-                    "index": 14,
+                    "index": 15,
                     "name": "supprimerCalendrier",
                     "returnType": "void"
                 },
@@ -87,7 +87,7 @@
                             "type": "bool"
                         }
                     ],
-                    "index": 15,
+                    "index": 16,
                     "name": "marcheForcee",
                     "returnType": "void"
                 }
@@ -233,7 +233,19 @@
                 },
                 {
                     "access": "private",
+                    "arguments": [
+                        {
+                            "name": "etat",
+                            "type": "QAbstractSocket::SocketState"
+                        }
+                    ],
                     "index": 9,
+                    "name": "gererChangementEtat",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "index": 10,
                     "name": "tenterReconnexion",
                     "returnType": "void"
                 }

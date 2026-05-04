@@ -1,66 +1,18 @@
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
+import "js/StatusPage.js" as StatusJS
 
 Item {
     id: statusRoot
 
     property string currentStatus: "Inconnu"
 
-    Timer { interval: 500; running: true; repeat: true; onTriggered: statusRoot.currentStatus = window.getSelectedStationStatus() }
-
-    function formatTime(totalSeconds) {
-        var m = Math.floor(totalSeconds / 60);
-        var s = totalSeconds % 60;
-        var mm = "";
-        var ss = "";
-        if (m < 10) { mm = "0" + m; } else { mm = String(m); }
-        if (s < 10) { ss = "0" + s; } else { ss = String(s); }
-        return mm + ":" + ss;
-    }
-
-    function statusColor() {
-        if (currentStatus === "En Charge") return "#2E7D32";
-        if (currentStatus === "Programmé") return "#1565C0";
-        return "#546E7A";
-    }
-
-    function statusBgColor() {
-        if (currentStatus === "En Charge") return "#E8F5E9";
-        if (currentStatus === "Programmé") return "#E3F2FD";
-        return "#ECEFF1";
-    }
-
-    function statusIcon() {
-        if (currentStatus === "En Charge") return "⚡";
-        if (currentStatus === "Programmé") return "📅";
-        return "🔌";
-    }
-
-    function statusBorderColor() {
-        if (currentStatus === "En Charge") return "#A5D6A7";
-        if (currentStatus === "Programmé") return "#90CAF9";
-        return "#B0BEC5";
-    }
-
-    function statusMessage() {
-        if (currentStatus === "Programmé") return "Charge programmée";
-        return "Borne disponible";
-    }
-
-    function buttonText() {
-        if (currentStatus === "En Charge") return "⏹  Arrêter la charge";
-        return "▶  Lancer la charge";
-    }
-
-    function buttonPrimary() {
-        if (currentStatus === "En Charge") return false;
-        return true;
-    }
-
-    function scheduleText() {
-        if (sessionsRoot !== null && sessionsRoot !== undefined) return "Programmer ✓";
-        return "Enregistrer ✓";
+    Timer {
+        interval: 500
+        running: true
+        repeat: true
+        onTriggered: statusRoot.currentStatus = window.getSelectedStationStatus()
     }
 
     ColumnLayout {
@@ -81,8 +33,8 @@ Item {
         Rectangle {
             Layout.fillWidth: true
             height: 100; radius: 20
-            color: statusBgColor()
-            border.color: statusBorderColor()
+            color: StatusJS.statusBgColor(currentStatus)
+            border.color: StatusJS.statusBorderColor(currentStatus)
             border.width: 1
 
             RowLayout {
@@ -90,8 +42,8 @@ Item {
 
                 Rectangle {
                     width: 56; height: 56; radius: 28
-                    color: Qt.darker(statusBgColor(), 1.08)
-                    Text { anchors.centerIn: parent; text: statusIcon(); font.pixelSize: 26 }
+                    color: Qt.darker(StatusJS.statusBgColor(currentStatus), 1.08)
+                    Text { anchors.centerIn: parent; text: StatusJS.statusIcon(currentStatus); font.pixelSize: 26 }
                 }
 
                 ColumnLayout {
@@ -99,7 +51,8 @@ Item {
                     Text {
                         text: currentStatus.toUpperCase()
                         font.pixelSize: 20; font.bold: true
-                        color: statusColor(); font.letterSpacing: 1
+                        color: StatusJS.statusColor(currentStatus)
+                        font.letterSpacing: 1
                     }
                     Text { text: window.activeStation; font.pixelSize: 13; color: "#78909C" }
                 }
@@ -109,8 +62,8 @@ Item {
         // Bouton lancer/arrêter
         AppButton {
             id: toggleBtn
-            text: buttonText()
-            isPrimary: buttonPrimary()
+            text: StatusJS.buttonText(currentStatus)
+            isPrimary: StatusJS.buttonPrimary(currentStatus)
             Layout.fillWidth: true
             onClicked: {
                 var nouvelEtat = false;
@@ -118,11 +71,7 @@ Item {
                     var item = stationsModelSource.get(i);
                     if (item.name === window.activeStation) {
                         if (item.status === "En Charge") {
-                            var hasSessions = false;
-                            for (var k = 0; k < sessionsModel.count; k++) {
-                                if (sessionsModel.get(k).station === window.activeStation) hasSessions = true;
-                            }
-                            if (hasSessions) {
+                            if (StatusJS.verifierSessions()) {
                                 stationsModelSource.setProperty(i, "status", "Programmé");
                             } else {
                                 stationsModelSource.setProperty(i, "status", "Disponible");
@@ -154,7 +103,7 @@ Item {
                 Text { text: "Durée écoulée"; Layout.alignment: Qt.AlignHCenter; color: "#90A4AE"; font.pixelSize: 13 }
 
                 Text {
-                    text: formatTime(window.sessionDurationSeconds)
+                    text: StatusJS.formaterTemps(window.sessionDurationSeconds)
                     font.pixelSize: 52; font.bold: true; color: "#263238"
                     Layout.alignment: Qt.AlignHCenter
                 }
@@ -213,14 +162,15 @@ Item {
 
                 Rectangle {
                     width: 64; height: 64; radius: 32
-                    color: statusBgColor()
+                    color: StatusJS.statusBgColor(currentStatus)
                     Layout.alignment: Qt.AlignHCenter
-                    Text { anchors.centerIn: parent; text: statusIcon(); font.pixelSize: 30 }
+                    Text { anchors.centerIn: parent; text: StatusJS.statusIcon(currentStatus); font.pixelSize: 30 }
                 }
 
                 Text {
-                    text: statusMessage()
-                    font.pixelSize: 15; font.bold: true; color: statusColor()
+                    text: StatusJS.statusMessage(currentStatus)
+                    font.pixelSize: 15; font.bold: true
+                    color: StatusJS.statusColor(currentStatus)
                     Layout.alignment: Qt.AlignHCenter
                 }
 

@@ -1,7 +1,7 @@
 /**
  * @file communicationesp.cpp
  * @brief Implémentation de la classe CommunicationEsp.
- * @author Coco
+ * @author Corentin
  * @version 1.0
  * @date Avril 2026
  */
@@ -34,11 +34,29 @@ CommunicationEsp::CommunicationEsp(QObject *parent) : QObject(parent) {
             this, &CommunicationEsp::onDisconnected);
     connect(&m_webSocket, &QWebSocket::textMessageReceived,
             this, &CommunicationEsp::onTextMessageReceived);
+    connect(&m_webSocket, &QWebSocket::stateChanged,
+            this, &CommunicationEsp::gererChangementEtat);
 
     m_reconnectTimer.setInterval(5000);
     m_reconnectTimer.setSingleShot(false);
     connect(&m_reconnectTimer, &QTimer::timeout,
             this, &CommunicationEsp::tenterReconnexion);
+}
+
+/**
+ * @brief Gère les changements d'état du socket WebSocket.
+ * Démarre le timer de reconnexion si déconnecté, l'arrête si connecté.
+ * @param etat Nouvel état du socket.
+ */
+void CommunicationEsp::gererChangementEtat(QAbstractSocket::SocketState etat) {
+    if (etat == QAbstractSocket::UnconnectedState) {
+        if (!m_url.isEmpty()) {
+            m_reconnectTimer.start();
+        }
+    }
+    if (etat == QAbstractSocket::ConnectedState) {
+        m_reconnectTimer.stop();
+    }
 }
 
 /**
@@ -69,7 +87,7 @@ QString CommunicationEsp::activeBorne() const {
  *
  * @param ip Adresse IP de l'ESP32 (ex : "192.168.1.50").
  */
-void CommunicationEsp::setIp(const QString &ip) {
+void CommunicationEsp::connexion(const QString &ip) { //connecter plutot que setIp
     m_url = QString("ws://%1:%2").arg(ip).arg(ESP_PORT);
     qDebug() << "[ESP32] Changement IP →" << m_url;
     m_webSocket.close();
@@ -83,6 +101,7 @@ void CommunicationEsp::setIp(const QString &ip) {
 void CommunicationEsp::setActiveBorne(const QString &borne) {
     if (m_activeBorne != borne) {
         m_activeBorne = borne;
+        qDebug() << "[ESP32] Borne choisie →" << borne;
         emit activeBorneChanged();
     }
 }
@@ -102,6 +121,7 @@ QString CommunicationEsp::activeVehicule() const {
 void CommunicationEsp::setActiveVehicule(const QString &vehicule) {
     if (m_activeVehicule != vehicule) {
         m_activeVehicule = vehicule;
+        qDebug() << "[ESP32] Vehicule choisie →" << vehicule;
         emit activeVehiculeChanged();
     }
 }
@@ -233,9 +253,9 @@ void CommunicationEsp::onDisconnected() {
  * Ne fait rien si l'URL n'a pas encore été définie via setIp().
  */
 void CommunicationEsp::tenterReconnexion() {
-    if (m_url.isEmpty()) { return; }
-    qDebug() << "[ESP32] Tentative de reconnexion à" << m_url;
-    m_webSocket.open(QUrl(m_url));
+    if (!m_url.isEmpty() && m_webSocket.state() == QAbstractSocket::UnconnectedState) {
+        m_webSocket.open(QUrl(m_url));
+    }
 }
 
 // ============================================================
@@ -277,9 +297,9 @@ void CommunicationEsp::obtenirCalendrier() {
  * @param end Heure de fin au format "HH:MM" (peut contenir " (lendemain)").
  */
 void CommunicationEsp::ajouterCalendrier(const QString &jours, const QString &start, const QString &end, bool resetListe) {
-    if (resetListe) { m_attenteNouveauListe = true; }
-
-
+    if (resetListe) {
+        m_attenteNouveauListe = true;
+    }
 
     int masqueJours = joursVersmasque(jours);
     int hd = 0, md = 0, hf = 0, mf = 0;

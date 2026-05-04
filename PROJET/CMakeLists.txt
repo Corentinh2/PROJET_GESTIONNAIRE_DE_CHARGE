@@ -34,10 +34,16 @@ qt_add_qml_module(appPROJET
         QML_FILES BootPage.qml
         QML_FILES StatusPage.qml
         QML_FILES DashboardPage.qml
-        QML_FILES SettingsPage.qml
+        QML_FILES
         QML_FILES SessionsPage.qml
         RESOURCES android/AndroidManifest.xml android/build.gradle android/res/values/libs.xml android/res/xml/qtprovider_paths.xml
         QML_FILES KmPage.qml
+        QML_FILES js/BootPage.js
+        QML_FILES js/KmPage.js
+        QML_FILES js/Main.js
+        QML_FILES js/SessionPage.js
+        QML_FILES
+        QML_FILES js/StatusPage.js
 )
 
 set_target_properties(appPROJET PROPERTIES

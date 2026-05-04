@@ -1,22 +1,12 @@
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
+import "js/KmPage.js" as KmJS
 
 Item {
     id: mileageRootStep
 
-    function getMileage(vName) {
-        var kmVal = 0;
-        for (var i = 0; i < vehiclesModel.count; i++) {
-            var item = vehiclesModel.get(i);
-            if (item.name === vName) {
-                kmVal = parseInt(item.km);
-            }
-        }
-        return kmVal;
-    }
-
-    property int currentVehicleKm: getMileage(window.selectedVehicle)
+    property int currentVehicleKm: KmJS.getMileage(window.selectedVehicle)
 
     ColumnLayout {
         anchors.fill: parent
@@ -131,13 +121,7 @@ Item {
                 onClicked: {
                     var kmSaisi = parseInt(kmInput.text);
                     window.selectedMileage = kmSaisi;
-                    for (var v = 0; v < vehiclesModel.count; v++) {
-                        var vItem = vehiclesModel.get(v);
-                        if (vItem.name === window.selectedVehicle) {
-                            vehiclesModel.setProperty(v, "km", kmSaisi.toString());
-                            commRaspi.modifierKilometrage(vItem.vehicleId, kmSaisi);
-                        }
-                    }
+                    KmJS.validerKilometrage(kmSaisi);
                     stackView.replace(null, "DashboardPage.qml");
                 }
             }

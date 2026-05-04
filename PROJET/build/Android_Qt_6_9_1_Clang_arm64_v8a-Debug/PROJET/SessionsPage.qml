@@ -1,14 +1,13 @@
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
+import "js/SessionPage.js" as SessionsJS
 
 Item {
     id: sessionsRoot
 
     Component.onCompleted: {
         console.log("[SESSIONS] Borne active : " + window.activeStation);
-        sessionsModel.clear();
-        commEsp.obtenirCalendrier();
     }
 
     property int editingIndex: -1
@@ -19,13 +18,6 @@ Item {
             if (sessionsModel.get(i).station === window.activeStation) { count++; }
         }
         return count;
-    }
-
-    function findIndexInArray(array, value) {
-        for (var i = 0; i < array.length; i++) {
-            if (array[i] === value) { return i; }
-        }
-        return 0;
     }
 
     function showToast(msg) {
@@ -53,12 +45,18 @@ Item {
 
             Rectangle {
                 width: 28; height: 28; radius: 14
-                color: sessionsRoot.activeSessionCount > 0 ? "#E3F2FD" : "#F5F5F5"
+                color: {
+                    if (sessionsRoot.activeSessionCount > 0) { return "#E3F2FD"; }
+                    return "#F5F5F5";
+                }
                 Text {
                     anchors.centerIn: parent
                     text: sessionsRoot.activeSessionCount
                     font.pixelSize: 13; font.bold: true
-                    color: sessionsRoot.activeSessionCount > 0 ? "#1E88E5" : "#B0BEC5"
+                    color: {
+                        if (sessionsRoot.activeSessionCount > 0) { return "#1E88E5"; }
+                        return "#B0BEC5";
+                    }
                 }
             }
         }
@@ -187,28 +185,36 @@ Item {
                 property var tempDaysList: []
                 property string initialStart: "08:00"
                 property string initialEnd: "17:00"
-                property var timeModelData: ["07:00", "08:00", "09:00", "17:00", "18:00", "20:00", "21:00", "22:00", "23:00", "00:00"]
+                property var timeModelData: ["00:00","01:00","02:00","03:00","04:00","05:00",
+                    "06:00","07:00","08:00","09:00","10:00","11:00",
+                    "12:00","13:00","14:00","15:00","16:00","17:00",
+                    "18:00","19:00","20:00","21:00","22:00","23:00"]
 
                 Component.onCompleted: {
-                    sTime.currentIndex = sessionsRoot.findIndexInArray(timeModelData, initialStart);
-                    eTime.currentIndex = sessionsRoot.findIndexInArray(timeModelData, initialEnd);
+                    sTime.currentIndex = SessionsJS.findIndexInArray(timeModelData, initialStart);
+                    eTime.currentIndex = SessionsJS.findIndexInArray(timeModelData, initialEnd);
                 }
 
                 function toggleDay(dayStr) {
-                    var list = tempDaysList.slice();
-                    var idx = list.indexOf(dayStr);
-                    if (idx !== -1) { list.splice(idx, 1); } else { list.push(dayStr); }
-                    tempDaysList = list;
+                    tempDaysList = SessionsJS.toggleDay(tempDaysList, dayStr);
                 }
 
-                function isDaySelected(dayStr) { return tempDaysList.indexOf(dayStr) !== -1; }
-                function getDaysString() { return tempDaysList.join(", "); }
+                function isDaySelected(dayStr) {
+                    return SessionsJS.isDaySelected(tempDaysList, dayStr);
+                }
+
+                function getDaysString() {
+                    return SessionsJS.getDaysString(tempDaysList);
+                }
 
                 ColumnLayout {
                     anchors.fill: parent; anchors.margins: 20; spacing: 20
 
                     Text {
-                        text: sessionsRoot.editingIndex === -1 ? "Programmer une charge" : "Modifier la charge"
+                        text: {
+                            if (sessionsRoot.editingIndex === -1) { return "Programmer une charge"; }
+                            return "Modifier la charge";
+                        }
                         font.bold: true; font.pixelSize: 20; color: "#263238"
                     }
 
@@ -233,13 +239,24 @@ Item {
                             delegate: Rectangle {
                                 property bool isSelected: schedulePageItem.isDaySelected(modelData)
                                 Layout.fillWidth: true; height: 44; radius: 12
-                                color: isSelected ? "#1E88E5" : "#F5F5F5"
-                                border.color: isSelected ? "#1565C0" : "#E0E0E0"; border.width: 1
+                                color: {
+                                    if (isSelected) { return "#1E88E5"; }
+                                    return "#F5F5F5";
+                                }
+                                border.color: {
+                                    if (isSelected) { return "#1565C0"; }
+                                    return "#E0E0E0";
+                                }
+                                border.width: 1
 
                                 Text {
                                     anchors.centerIn: parent; text: modelData
-                                    color: parent.isSelected ? "white" : "#546E7A"
-                                    font.bold: parent.isSelected; font.pixelSize: 13
+                                    color: {
+                                        if (parent.isSelected) { return "white"; }
+                                        return "#546E7A";
+                                    }
+                                    font.bold: parent.isSelected
+                                    font.pixelSize: 13
                                 }
 
                                 MouseArea { anchors.fill: parent; onClicked: schedulePageItem.toggleDay(modelData) }
@@ -271,32 +288,28 @@ Item {
                         }
 
                         AppButton {
-                            text: sessionsRoot.editingIndex === -1 ? "Programmer ✓" : "Enregistrer ✓"
+                            text: {
+                                if (sessionsRoot.editingIndex === -1) { return "Programmer ✓"; }
+                                return "Enregistrer ✓";
+                            }
                             Layout.fillWidth: true
                             enabled: schedulePageItem.tempDaysList.length > 0
 
                             onClicked: {
-                                var startStr = sTime.currentText;
-                                var endStr = eTime.currentText;
                                 window.bookingDays = schedulePageItem.getDaysString();
-                                window.bookingStart = startStr;
-                                var startHour = parseInt(startStr.substring(0, 2));
-                                var endHour = parseInt(endStr.substring(0, 2));
-                                var finalEndStr = endStr;
-                                if (endHour < startHour) { finalEndStr = endStr + " (lendemain)"; }
-                                window.bookingEnd = finalEndStr;
+                                window.bookingStart = sTime.currentText;
+                                window.bookingEnd = SessionsJS.calculerHeureFin(sTime.currentText, eTime.currentText);
 
                                 if (sessionsRoot.editingIndex !== -1) {
+                                    window.attenteAjoutApresSuppr = true;
                                     commEsp.supprimerCalendrier(sessionsModel.get(sessionsRoot.editingIndex).sessionId);
-                                    commEsp.ajouterCalendrier(window.bookingDays, window.bookingStart, window.bookingEnd, false);
+                                    commEsp.obtenirCalendrier();
+                                    stackView.pop(null);
                                 } else {
                                     commEsp.ajouterCalendrier(window.bookingDays, window.bookingStart, window.bookingEnd);
+                                    stackView.pop(null);
+                                    sessionsRoot.showToast("Session enregistrée ✓");
                                 }
-
-
-                                var msg = sessionsRoot.editingIndex === -1 ? "Session enregistrée ✓" : "Session modifiée ✓";
-                                stackView.pop();
-                                sessionsRoot.showToast(msg);
                             }
                         }
                     }
@@ -348,6 +361,7 @@ Item {
                         onClicked: {
                             commEsp.supprimerCalendrier(sessionsRoot.sessionIdASupprimer);
                             confirmPopup.visible = false;
+                            stackView.pop(null);
                         }
                     }
                 }

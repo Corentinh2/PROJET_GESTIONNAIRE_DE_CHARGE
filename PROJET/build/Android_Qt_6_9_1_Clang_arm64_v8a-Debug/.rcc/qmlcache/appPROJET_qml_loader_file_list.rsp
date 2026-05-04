@@ -2,6 +2,8 @@
 /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.qt/rcc/qmake_PROJET.qrc
 --resource
 /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.qt/rcc/appPROJET_raw_qml_0.qrc
+--resource
+/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Android_Qt_6_9_1_Clang_arm64_v8a-Debug/.qt/rcc/appPROJET_raw_qml_0_extra_qmldirs.qrc
 /qt/qml/PROJET/Main.qml
 /qt/qml/PROJET/AppButton.qml
 /qt/qml/PROJET/AppTextField.qml
@@ -10,6 +12,10 @@
 /qt/qml/PROJET/BootPage.qml
 /qt/qml/PROJET/StatusPage.qml
 /qt/qml/PROJET/DashboardPage.qml
-/qt/qml/PROJET/SettingsPage.qml
 /qt/qml/PROJET/SessionsPage.qml
 /qt/qml/PROJET/KmPage.qml
+/qt/qml/PROJET/js/BootPage.js
+/qt/qml/PROJET/js/KmPage.js
+/qt/qml/PROJET/js/Main.js
+/qt/qml/PROJET/js/SessionPage.js
+/qt/qml/PROJET/js/StatusPage.js

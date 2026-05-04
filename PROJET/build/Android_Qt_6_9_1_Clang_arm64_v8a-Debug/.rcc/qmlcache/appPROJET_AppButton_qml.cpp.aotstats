@@ -6,74 +6,74 @@
                     {
                         "codegenSuccessful": true,
                         "column": 31,
-                        "durationMicroseconds": 380,
+                        "durationMicroseconds": 308,
                         "errorMessage": "",
                         "functionName": "textColor",
-                        "line": 8
+                        "line": 9
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 15,
-                        "durationMicroseconds": 38,
+                        "durationMicroseconds": 39,
                         "errorMessage": "Cannot access value for name control",
                         "functionName": "text",
-                        "line": 11
+                        "line": 15
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 16,
-                        "durationMicroseconds": 50,
+                        "durationMicroseconds": 60,
                         "errorMessage": "Cannot access value for name control",
                         "functionName": "color",
-                        "line": 12
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 30,
-                        "durationMicroseconds": 220,
-                        "errorMessage": "Cannot access value for name Text",
-                        "functionName": "horizontalAlignment",
                         "line": 16
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 28,
-                        "durationMicroseconds": 184,
+                        "column": 30,
+                        "durationMicroseconds": 237,
                         "errorMessage": "Cannot access value for name Text",
-                        "functionName": "verticalAlignment",
-                        "line": 17
+                        "functionName": "horizontalAlignment",
+                        "line": 23
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 16,
-                        "durationMicroseconds": 149,
-                        "errorMessage": "Cannot access value for name control",
-                        "functionName": "color",
+                        "column": 28,
+                        "durationMicroseconds": 187,
+                        "errorMessage": "Cannot access value for name Text",
+                        "functionName": "verticalAlignment",
                         "line": 24
                     },
                     {
                         "codegenSuccessful": false,
+                        "column": 16,
+                        "durationMicroseconds": 168,
+                        "errorMessage": "Cannot access value for name control",
+                        "functionName": "color",
+                        "line": 31
+                    },
+                    {
+                        "codegenSuccessful": false,
                         "column": 23,
-                        "durationMicroseconds": 31,
+                        "durationMicroseconds": 32,
                         "errorMessage": "Cannot access value for name isPrimary",
                         "functionName": "width",
-                        "line": 34
+                        "line": 41
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 22,
-                        "durationMicroseconds": 46,
+                        "durationMicroseconds": 47,
                         "errorMessage": "Cannot access value for name isPrimary",
                         "functionName": "visible",
-                        "line": 39
+                        "line": 49
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 21,
-                        "durationMicroseconds": 15,
+                        "durationMicroseconds": 14,
                         "errorMessage": "Cannot access value for name parent",
                         "functionName": "radius",
-                        "line": 42
+                        "line": 52
                     },
                     {
                         "codegenSuccessful": false,
@@ -81,7 +81,7 @@
                         "durationMicroseconds": 10,
                         "errorMessage": "Cannot access value for name parent",
                         "functionName": "fill",
-                        "line": 40
+                        "line": 50
                     }
                 ],
                 "filePath": "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/AppButton.qml"

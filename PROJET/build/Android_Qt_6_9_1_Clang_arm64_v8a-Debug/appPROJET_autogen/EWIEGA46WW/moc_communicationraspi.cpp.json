@@ -6,13 +6,13 @@
             "methods": [
                 {
                     "access": "public",
-                    "index": 7,
+                    "index": 8,
                     "name": "obtenirStation",
                     "returnType": "void"
                 },
                 {
                     "access": "public",
-                    "index": 8,
+                    "index": 9,
                     "name": "obtenirVehicule",
                     "returnType": "void"
                 },
@@ -28,7 +28,7 @@
                             "type": "QString"
                         }
                     ],
-                    "index": 9,
+                    "index": 10,
                     "name": "ajouterVehicule",
                     "returnType": "void"
                 },
@@ -44,7 +44,7 @@
                             "type": "int"
                         }
                     ],
-                    "index": 10,
+                    "index": 11,
                     "name": "modifierKilometrage",
                     "returnType": "void"
                 },
@@ -56,7 +56,7 @@
                             "type": "int"
                         }
                     ],
-                    "index": 11,
+                    "index": 12,
                     "name": "supprimerVehicule",
                     "returnType": "void"
                 }
@@ -142,17 +142,29 @@
                     "access": "private",
                     "arguments": [
                         {
+                            "name": "etat",
+                            "type": "QAbstractSocket::SocketState"
+                        }
+                    ],
+                    "index": 5,
+                    "name": "gererChangementEtat",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "arguments": [
+                        {
                             "name": "message",
                             "type": "QString"
                         }
                     ],
-                    "index": 5,
+                    "index": 6,
                     "name": "onTextMessageReceived",
                     "returnType": "void"
                 },
                 {
                     "access": "private",
-                    "index": 6,
+                    "index": 7,
                     "name": "tenterReconnexion",
                     "returnType": "void"
                 }

@@ -138,6 +138,14 @@ private slots:
     void onDisconnected();
 
     /**
+     * @brief Gère les changements d'état du socket WebSocket.
+     * Démarre le timer de reconnexion automatique si le socket passe à l'état
+     * déconnecté, et l'arrête si le socket passe à l'état connecté.
+     * @param etat Nouvel état du socket WebSocket.
+     */
+    void gererChangementEtat(QAbstractSocket::SocketState etat);
+
+    /**
      * @brief Appelé à la réception d'un message WebSocket depuis le Raspberry Pi.
      * @param message Trame JSON brute reçue.
      */
@@ -145,6 +153,8 @@ private slots:
 
     /**
      * @brief Tente de rouvrir la connexion WebSocket vers le Raspberry Pi.
+     * Ne fait rien si le socket n'est pas dans l'état déconnecté,
+     * évitant ainsi les tentatives de connexion multiples.
      */
     void tenterReconnexion();
 

@@ -5,7 +5,7 @@ import QtQuick.Controls 2.15
 Item {
     id: dashboardRoot
 
-    Component.onCompleted: {
+    StackView.onActivated: {
         sessionsModel.clear();
         commEsp.obtenirCalendrier();
     }
@@ -34,13 +34,6 @@ Item {
                         Layout.fillWidth: true; spacing: 2
                         Text { text: window.activeStation; font.bold: true; font.pixelSize: 18; color: "#1565C0" }
                         Text { text: "Supervision active"; font.pixelSize: 13; color: "#42A5F5" }
-                    }
-
-                    Rectangle {
-                        width: 42; height: 42; radius: 21; color: "white"
-                        Layout.alignment: Qt.AlignVCenter
-                        Text { anchors.centerIn: parent; text: "⚙️"; font.pixelSize: 18 }
-                        MouseArea { anchors.fill: parent; onClicked: stackView.push("SettingsPage.qml") }
                     }
                 }
             }

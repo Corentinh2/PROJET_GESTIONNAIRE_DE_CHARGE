@@ -6,18 +6,10 @@
                     {
                         "codegenSuccessful": false,
                         "column": 38,
-                        "durationMicroseconds": 1748,
+                        "durationMicroseconds": 3571,
                         "errorMessage": "Cannot access value for name sessionsModel",
                         "functionName": "activeSessionCount",
-                        "line": 16
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 5,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Functions without type annotations won't be compiled",
-                        "functionName": "findIndexInArray",
-                        "line": 24
+                        "line": 15
                     },
                     {
                         "codegenSuccessful": false,
@@ -25,79 +17,79 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Functions without type annotations won't be compiled",
                         "functionName": "showToast",
-                        "line": 31
+                        "line": 23
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 28,
-                        "durationMicroseconds": 451,
+                        "durationMicroseconds": 170,
                         "errorMessage": "Cannot access value for name window",
                         "functionName": "onCompleted",
-                        "line": 8
+                        "line": 9
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 23,
-                        "durationMicroseconds": 114,
+                        "durationMicroseconds": 125,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 38
+                        "line": 30
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 42,
-                        "durationMicroseconds": 66,
+                        "durationMicroseconds": 64,
                         "errorMessage": "",
                         "functionName": "centerIn",
-                        "line": 46
+                        "line": 38
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 62,
-                        "durationMicroseconds": 231,
+                        "durationMicroseconds": 251,
                         "errorMessage": "Cannot access value for name stackView",
                         "functionName": "onClicked",
-                        "line": 47
+                        "line": 39
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 43,
-                        "durationMicroseconds": 66,
+                        "durationMicroseconds": 63,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 47
+                        "line": 39
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 24,
-                        "durationMicroseconds": 338,
+                        "durationMicroseconds": 356,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 48
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 27,
+                        "durationMicroseconds": 106,
+                        "errorMessage": "",
+                        "functionName": "text",
+                        "line": 54
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 28,
+                        "durationMicroseconds": 1161,
                         "errorMessage": "",
                         "functionName": "color",
                         "line": 56
                     },
                     {
                         "codegenSuccessful": true,
-                        "column": 27,
-                        "durationMicroseconds": 108,
-                        "errorMessage": "",
-                        "functionName": "text",
-                        "line": 59
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 28,
-                        "durationMicroseconds": 319,
-                        "errorMessage": "",
-                        "functionName": "color",
-                        "line": 61
-                    },
-                    {
-                        "codegenSuccessful": true,
                         "column": 39,
-                        "durationMicroseconds": 56,
+                        "durationMicroseconds": 88,
                         "errorMessage": "",
                         "functionName": "centerIn",
-                        "line": 58
+                        "line": 53
                     },
                     {
                         "codegenSuccessful": false,
@@ -105,239 +97,239 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find signal \"clicked\".",
                         "functionName": "onClicked",
-                        "line": 68
+                        "line": 66
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 22,
-                        "durationMicroseconds": 122,
+                        "durationMicroseconds": 134,
                         "errorMessage": "",
                         "functionName": "visible",
-                        "line": 84
+                        "line": 82
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 35,
-                        "durationMicroseconds": 57,
+                        "durationMicroseconds": 62,
                         "errorMessage": "",
                         "functionName": "centerIn",
-                        "line": 87
+                        "line": 85
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 39,
-                        "durationMicroseconds": 82,
+                        "durationMicroseconds": 84,
                         "errorMessage": "",
                         "functionName": "alignment",
-                        "line": 91
+                        "line": 89
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 46,
-                        "durationMicroseconds": 54,
+                        "durationMicroseconds": 1349,
                         "errorMessage": "",
                         "functionName": "centerIn",
-                        "line": 92
+                        "line": 90
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 39,
-                        "durationMicroseconds": 82,
+                        "durationMicroseconds": 117,
                         "errorMessage": "",
                         "functionName": "alignment",
-                        "line": 98
+                        "line": 96
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 42,
-                        "durationMicroseconds": 72,
+                        "durationMicroseconds": 79,
                         "errorMessage": "",
                         "functionName": "horizontalAlignment",
-                        "line": 104
+                        "line": 102
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 39,
-                        "durationMicroseconds": 74,
+                        "durationMicroseconds": 79,
                         "errorMessage": "",
                         "functionName": "alignment",
-                        "line": 105
+                        "line": 103
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 22,
-                        "durationMicroseconds": 135,
+                        "durationMicroseconds": 150,
                         "errorMessage": "",
                         "functionName": "visible",
-                        "line": 114
+                        "line": 112
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 20,
-                        "durationMicroseconds": 635,
+                        "durationMicroseconds": 789,
                         "errorMessage": "Cannot access value for name sessionsModel",
                         "functionName": "model",
-                        "line": 115
+                        "line": 113
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 24,
-                        "durationMicroseconds": 37,
+                        "durationMicroseconds": 52,
                         "errorMessage": "Cannot access value for name sessionList",
                         "functionName": "width",
-                        "line": 118
+                        "line": 116
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 46,
-                        "durationMicroseconds": 255,
+                        "durationMicroseconds": 285,
                         "errorMessage": "Cannot access value for name station",
                         "functionName": "isGoodStation",
-                        "line": 119
+                        "line": 117
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 25,
-                        "durationMicroseconds": 120,
+                        "durationMicroseconds": 161,
                         "errorMessage": "",
                         "functionName": "height",
-                        "line": 120
+                        "line": 118
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 26,
-                        "durationMicroseconds": 54,
+                        "durationMicroseconds": 60,
                         "errorMessage": "",
                         "functionName": "visible",
-                        "line": 121
+                        "line": 119
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 28,
-                        "durationMicroseconds": 77,
+                        "durationMicroseconds": 83,
                         "errorMessage": "",
                         "functionName": "width",
-                        "line": 124
+                        "line": 122
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 33,
-                        "durationMicroseconds": 65,
+                        "durationMicroseconds": 73,
                         "errorMessage": "Cannot load property radius from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/SessionsPage.qml)::parent with type QQuickItem.",
                         "functionName": "radius",
-                        "line": 129
+                        "line": 127
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 39,
-                        "durationMicroseconds": 57,
+                        "durationMicroseconds": 61,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 128
+                        "line": 126
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 36,
-                        "durationMicroseconds": 875,
+                        "durationMicroseconds": 4355,
                         "errorMessage": "Cannot access value for name sessionsRoot",
                         "functionName": "onClicked",
-                        "line": 134
+                        "line": 132
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 39,
-                        "durationMicroseconds": 60,
+                        "durationMicroseconds": 114,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 133
+                        "line": 131
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 39,
-                        "durationMicroseconds": 57,
+                        "durationMicroseconds": 67,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 145
+                        "line": 143
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 106,
-                        "durationMicroseconds": 80,
+                        "durationMicroseconds": 93,
                         "errorMessage": "",
                         "functionName": "alignment",
-                        "line": 147
+                        "line": 145
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 42,
-                        "durationMicroseconds": 253,
+                        "durationMicroseconds": 289,
                         "errorMessage": "Cannot access value for name vehicle",
                         "functionName": "text",
-                        "line": 151
+                        "line": 149
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 42,
-                        "durationMicroseconds": 195,
+                        "durationMicroseconds": 233,
                         "errorMessage": "Cannot access value for name days",
                         "functionName": "text",
-                        "line": 152
+                        "line": 150
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 46,
-                        "durationMicroseconds": 410,
+                        "durationMicroseconds": 429,
                         "errorMessage": "Cannot access value for name start",
                         "functionName": "text",
-                        "line": 156
+                        "line": 154
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 47,
-                        "durationMicroseconds": 83,
+                        "durationMicroseconds": 103,
                         "errorMessage": "",
                         "functionName": "alignment",
-                        "line": 162
+                        "line": 160
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 51,
-                        "durationMicroseconds": 58,
+                        "durationMicroseconds": 66,
                         "errorMessage": "",
                         "functionName": "centerIn",
-                        "line": 165
+                        "line": 163
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 44,
-                        "durationMicroseconds": 293,
+                        "durationMicroseconds": 344,
                         "errorMessage": "Cannot access value for name sessionsRoot",
                         "functionName": "onClicked",
-                        "line": 171
+                        "line": 169
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 47,
-                        "durationMicroseconds": 65,
+                        "durationMicroseconds": 66,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 170
+                        "line": 168
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 44,
-                        "durationMicroseconds": 74,
+                        "durationMicroseconds": 69,
                         "errorMessage": "Cannot generate efficient code for storing an array in a non-sequence type",
                         "functionName": "tempDaysList",
-                        "line": 187
+                        "line": 185
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 45,
-                        "durationMicroseconds": 352,
+                        "durationMicroseconds": 853,
                         "errorMessage": "Cannot generate efficient code for storing an array in a non-sequence type",
                         "functionName": "timeModelData",
-                        "line": 190
+                        "line": 188
                     },
                     {
                         "codegenSuccessful": false,
@@ -345,7 +337,7 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Functions without type annotations won't be compiled",
                         "functionName": "toggleDay",
-                        "line": 197
+                        "line": 198
                     },
                     {
                         "codegenSuccessful": false,
@@ -353,151 +345,151 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Functions without type annotations won't be compiled",
                         "functionName": "isDaySelected",
-                        "line": 204
+                        "line": 202
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 17,
-                        "durationMicroseconds": 29,
-                        "errorMessage": "function without return type annotation returns call to method join, returning QJSValue. This may prevent proper compilation to Cpp.",
+                        "durationMicroseconds": 1003,
+                        "errorMessage": "function without return type annotation returns call to method getDaysString, returning QJSValue. This may prevent proper compilation to Cpp.",
                         "functionName": "getDaysString",
-                        "line": 205
+                        "line": 206
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 40,
-                        "durationMicroseconds": 125,
+                        "durationMicroseconds": 107,
                         "errorMessage": "Cannot retrieve a non-object type by ID: sTime",
                         "functionName": "onCompleted",
-                        "line": 192
+                        "line": 193
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 35,
-                        "durationMicroseconds": 63,
+                        "durationMicroseconds": 82,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 208
+                        "line": 211
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 31,
-                        "durationMicroseconds": 73,
+                        "durationMicroseconds": 65,
                         "errorMessage": "Cannot access value for name sessionsRoot",
                         "functionName": "text",
-                        "line": 211
+                        "line": 214
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 42,
-                        "durationMicroseconds": 82,
+                        "durationMicroseconds": 103,
                         "errorMessage": "",
                         "functionName": "orientation",
-                        "line": 218
+                        "line": 224
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 35,
-                        "durationMicroseconds": 252,
+                        "durationMicroseconds": 306,
                         "errorMessage": "Cannot access value for name window",
                         "functionName": "text",
-                        "line": 224
+                        "line": 230
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 47,
-                        "durationMicroseconds": 56,
+                        "durationMicroseconds": 122,
                         "errorMessage": "",
                         "functionName": "centerIn",
-                        "line": 223
+                        "line": 229
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 36,
-                        "durationMicroseconds": 251,
+                        "durationMicroseconds": 308,
                         "errorMessage": "Cannot generate efficient code for storing an array in a non-sequence type",
                         "functionName": "model",
-                        "line": 232
+                        "line": 238
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 59,
-                        "durationMicroseconds": 231,
+                        "durationMicroseconds": 276,
                         "errorMessage": "Cannot access value for name schedulePageItem",
                         "functionName": "isSelected",
-                        "line": 234
+                        "line": 240
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 40,
-                        "durationMicroseconds": 241,
+                        "durationMicroseconds": 245,
                         "errorMessage": "",
                         "functionName": "color",
-                        "line": 236
+                        "line": 242
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 47,
-                        "durationMicroseconds": 229,
+                        "durationMicroseconds": 2251,
                         "errorMessage": "",
                         "functionName": "color",
-                        "line": 237
+                        "line": 246
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 69,
-                        "durationMicroseconds": 276,
+                        "durationMicroseconds": 388,
                         "errorMessage": "Cannot access value for name modelData",
                         "functionName": "text",
-                        "line": 240
+                        "line": 253
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 44,
-                        "durationMicroseconds": 94,
+                        "durationMicroseconds": 133,
                         "errorMessage": "Cannot load property isSelected from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/SessionsPage.qml)::parent with type QQuickItem.",
                         "functionName": "color",
-                        "line": 241
+                        "line": 254
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 55,
-                        "durationMicroseconds": 57,
+                        "durationMicroseconds": 96,
                         "errorMessage": "",
                         "functionName": "centerIn",
-                        "line": 240
+                        "line": 253
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 48,
-                        "durationMicroseconds": 73,
+                        "durationMicroseconds": 103,
                         "errorMessage": "Cannot load property isSelected from (component in /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/SessionsPage.qml)::parent with type QQuickItem.",
                         "functionName": "bold",
-                        "line": 242
+                        "line": 258
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 78,
-                        "durationMicroseconds": 249,
+                        "durationMicroseconds": 306,
                         "errorMessage": "Cannot access value for name schedulePageItem",
                         "functionName": "onClicked",
-                        "line": 245
+                        "line": 262
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 59,
-                        "durationMicroseconds": 58,
+                        "durationMicroseconds": 74,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 245
+                        "line": 262
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 43,
-                        "durationMicroseconds": 55,
+                        "durationMicroseconds": 65,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 255
+                        "line": 272
                     },
                     {
                         "codegenSuccessful": false,
@@ -505,38 +497,14 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find property \"model\".",
                         "functionName": "model",
-                        "line": 257
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 82,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find property \"model\".",
-                        "functionName": "model",
-                        "line": 259
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 40,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find signal \"clicked\".",
-                        "functionName": "onClicked",
-                        "line": 270
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 35,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find property \"text\".",
-                        "functionName": "text",
                         "line": 274
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 38,
+                        "column": 82,
                         "durationMicroseconds": 0,
-                        "errorMessage": "Could not find property \"enabled\".",
-                        "functionName": "enabled",
+                        "errorMessage": "Could not find property \"model\".",
+                        "functionName": "model",
                         "line": 276
                     },
                     {
@@ -545,31 +513,55 @@
                         "durationMicroseconds": 0,
                         "errorMessage": "Could not find signal \"clicked\".",
                         "functionName": "onClicked",
-                        "line": 278
+                        "line": 287
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 35,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find property \"text\".",
+                        "functionName": "text",
+                        "line": 291
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 38,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find property \"enabled\".",
+                        "functionName": "enabled",
+                        "line": 296
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 40,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 298
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 39,
-                        "durationMicroseconds": 59,
+                        "durationMicroseconds": 65,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 311
+                        "line": 324
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 46,
-                        "durationMicroseconds": 131,
+                        "durationMicroseconds": 146,
                         "errorMessage": "",
                         "functionName": "width",
-                        "line": 314
+                        "line": 327
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 21,
-                        "durationMicroseconds": 127,
+                        "durationMicroseconds": 134,
                         "errorMessage": "",
                         "functionName": "height",
-                        "line": 315
+                        "line": 328
                     },
                     {
                         "codegenSuccessful": true,
@@ -577,111 +569,111 @@
                         "durationMicroseconds": 55,
                         "errorMessage": "",
                         "functionName": "centerIn",
-                        "line": 314
+                        "line": 327
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 66,
-                        "durationMicroseconds": 132,
+                        "durationMicroseconds": 126,
                         "errorMessage": "",
                         "functionName": "width",
-                        "line": 318
+                        "line": 331
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 51,
-                        "durationMicroseconds": 53,
+                        "durationMicroseconds": 55,
                         "errorMessage": "",
                         "functionName": "centerIn",
-                        "line": 318
+                        "line": 331
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 39,
-                        "durationMicroseconds": 76,
+                        "durationMicroseconds": 87,
                         "errorMessage": "",
                         "functionName": "alignment",
-                        "line": 322
+                        "line": 335
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 46,
-                        "durationMicroseconds": 52,
+                        "durationMicroseconds": 57,
                         "errorMessage": "",
                         "functionName": "centerIn",
-                        "line": 323
+                        "line": 336
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 39,
-                        "durationMicroseconds": 73,
+                        "durationMicroseconds": 79,
                         "errorMessage": "",
                         "functionName": "alignment",
-                        "line": 329
+                        "line": 342
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 42,
-                        "durationMicroseconds": 71,
+                        "durationMicroseconds": 76,
                         "errorMessage": "",
                         "functionName": "horizontalAlignment",
-                        "line": 335
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 36,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find signal \"clicked\".",
-                        "functionName": "onClicked",
-                        "line": 343
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 36,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find signal \"clicked\".",
-                        "functionName": "onClicked",
                         "line": 348
                     },
                     {
-                        "codegenSuccessful": true,
-                        "column": 16,
-                        "durationMicroseconds": 123,
-                        "errorMessage": "",
-                        "functionName": "width",
-                        "line": 363
+                        "codegenSuccessful": false,
+                        "column": 36,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 356
                     },
                     {
-                        "codegenSuccessful": true,
-                        "column": 25,
-                        "durationMicroseconds": 115,
-                        "errorMessage": "",
-                        "functionName": "bottom",
+                        "codegenSuccessful": false,
+                        "column": 36,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
                         "line": 361
                     },
                     {
                         "codegenSuccessful": true,
+                        "column": 16,
+                        "durationMicroseconds": 136,
+                        "errorMessage": "",
+                        "functionName": "width",
+                        "line": 377
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 25,
+                        "durationMicroseconds": 111,
+                        "errorMessage": "",
+                        "functionName": "bottom",
+                        "line": 375
+                    },
+                    {
+                        "codegenSuccessful": true,
                         "column": 35,
-                        "durationMicroseconds": 91,
+                        "durationMicroseconds": 93,
                         "errorMessage": "",
                         "functionName": "horizontalCenter",
-                        "line": 362
+                        "line": 376
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 49,
-                        "durationMicroseconds": 51,
+                        "durationMicroseconds": 54,
                         "errorMessage": "",
                         "functionName": "centerIn",
-                        "line": 368
+                        "line": 382
                     },
                     {
                         "codegenSuccessful": true,
                         "column": 62,
-                        "durationMicroseconds": 105,
+                        "durationMicroseconds": 116,
                         "errorMessage": "",
                         "functionName": "onTriggered",
-                        "line": 370
+                        "line": 384
                     }
                 ],
                 "filePath": "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/SessionsPage.qml"
