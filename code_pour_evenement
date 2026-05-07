@@ -1,0 +1,32 @@
+const categories = <?php echo json_encode($categories); ?>; ( dans graphique ).
+
+<?php $categories = array_column($mesures, 'horodatage'); ?> ( dans graphique au dessus de <script> )
+
+
+                            {
+                             name: 'Alertes',
+                             type: 'scatter',
+                             data: <?php
+        $alertes = [];
+        foreach ($evenements as $e) {
+            $index = array_search($e['horodatage'], $categories);
+            if ($index !== false) {
+                $alertes[] = [
+                    'x' => (int) $index,
+                    'y' => 0,
+                    'type_alerte' => $e['type_alerte'],
+                    'message' => $e['message_erreur']
+                ];
+            }
+        }
+        echo json_encode(array_values($alertes));
+        ?>,
+                             color: '#e74c3c',
+                             marker: {symbol: 'triangle', radius: 8},
+                             tooltip: {
+                             pointFormatter: function () {
+                             return '<b>⚠️ ' + this.type_alerte + '</b><br>' + this.message;
+                             }
+                             }
+                             }
+                ( CODE A METTRE DANS graphique A LA SUITE DE series  ET EN DESSOUS DE name , data , color etcc )
