@@ -20,7 +20,7 @@ public:
     void initialiserConnexion();      // Présent sur ton diagramme
     void EnvoyerNotification(String msg); // Présent sur ton diagramme
     void cloturerSession();
-    void loop();
+    void maintenirConnexion();
     static void webSocketEvent(WStype_t type, uint8_t * payload, size_t length);
     void EnvoyerAlerte(int type, String texte);           // Présent sur ton diagramme
 };

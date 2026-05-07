@@ -12,6 +12,7 @@
 #include <QtWebSockets/QWebSocket>
 #include <stdexcept> // Pour std::runtime_error
 #include <QString>
+#include <QTimer>
 #include "accesbdd.h"
 
 class accesBdd : public QObject
@@ -28,11 +29,13 @@ public:
     void envoyerListeBornes(QWebSocket *pClient);
     void supprimerVehicule(int id);
     void modifierKilometrage(int id, int km);
+    void resterConnecter();
 
     void ajouterEvenement(bool type_alerte, const QString &message_erreur, int id_borne);
 
 private:
     QSqlDatabase bdd;
+    QTimer *timerResterConnecter;
 };
 
 #endif // ACCESBDD_H

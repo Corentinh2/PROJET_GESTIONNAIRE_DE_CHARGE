@@ -11,9 +11,11 @@ private:
     const float SEUIL_MAX = 18.0;
 
 public:
+CapteurCourant() {} 
     CapteurCourant(int pin, float sens);
     void initialiser();
     float lireValeurCourant();
+    void begin();
 };
 
 #endif

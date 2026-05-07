@@ -87,7 +87,7 @@ void ConnectionRaspberryPi::cloturerSession() {
  * Doit être appelée à chaque itération de la boucle principale (loop()) pour
  * traiter les événements WebSocket entrants et maintenir la connexion vivante.
  */
-void ConnectionRaspberryPi::loop() {
+void ConnectionRaspberryPi::maintenirConnexion() {
     _webSocket.loop();
 }
 

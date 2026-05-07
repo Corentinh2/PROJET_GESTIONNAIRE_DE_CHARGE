@@ -9,6 +9,7 @@
   /opt/Qt/6.9.1/gcc_64/include/QtCore/QObject \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/QSharedDataPointer \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/QString \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/QTimer \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/QUrl \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/QVariant \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/q17memory.h \
@@ -19,6 +20,7 @@
   /opt/Qt/6.9.1/gcc_64/include/QtCore/q20utility.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/q23utility.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/q26numeric.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/qabstracteventdispatcher.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qalgorithms.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qanystringview.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qarraydata.h \
@@ -28,6 +30,7 @@
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qatomic.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qatomic_cxx11.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qbasicatomic.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/qbasictimer.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qbindingstorage.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qbytearray.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qbytearrayalgorithms.h \
@@ -51,8 +54,11 @@
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qdarwinhelpers.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qdatastream.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qdatetime.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/qdeadlinetimer.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qdebug.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/qelapsedtimer.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qendian.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/qeventloop.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qexceptionhandling.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qflags.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qfloat16.h \
@@ -129,6 +135,7 @@
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qtenvironmentvariables.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qtextstream.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qtformat_impl.h \
+  /opt/Qt/6.9.1/gcc_64/include/QtCore/qtimer.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qtmetamacros.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qtnoop.h \
   /opt/Qt/6.9.1/gcc_64/include/QtCore/qtpreprocessorsupport.h \

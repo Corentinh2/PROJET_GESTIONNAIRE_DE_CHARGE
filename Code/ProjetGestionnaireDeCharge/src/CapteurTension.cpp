@@ -38,7 +38,7 @@ void CapteurTension::initialiser() {
     int zero = capteur->calibrate();
     Serial.print("Point zero detecte : ");
     Serial.println(zero);
-    capteur->setSensitivity(0.0129);
+    capteur->setSensitivity(0.0157232);
 }
 
 /**
@@ -52,6 +52,25 @@ void CapteurTension::initialiser() {
  *         mesurée est inférieure à 15 V.
  */
 float CapteurTension::lireValeurTension() {
-    float V = capteur->getVoltageAC();
-    return (V < 15.0) ? 0.0 : V;
+    
+    float vAc = capteur->getVoltageAC();
+
+    // On retourne directement la valeur lue par le capteur 
+    // sans filtrage de seuil
+    return vAc;
+    
+    
+    
+    /*float tensionFinale = 0.0;
+    float vAc = capteur->getVoltageAC();
+
+    // On n'utilise qu'un seul IF simple
+    // Si la tension est significative, on l'assigne
+    if (vAc >= 15.0) {
+        tensionFinale = vAc;
+    }
+
+    // Un seul point de sortie à la fin de la fonction
+    return tensionFinale;
+    */
 }

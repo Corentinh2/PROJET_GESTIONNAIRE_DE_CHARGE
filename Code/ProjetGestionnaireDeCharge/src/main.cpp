@@ -9,7 +9,7 @@
 
 // 1. Création des objets
 CapteurTension capteurTension(32); 
-CapteurCourant capteurCourant(33, 12.0);
+CapteurCourant capteurCourant;
 ConnectionRaspberryPi raspi; // Ton nouvel objet réseau
 GestionnaireDeCharge systeme(&capteurTension, &capteurCourant, &raspi);
 
@@ -19,13 +19,15 @@ void setup() {
     Serial.println("--- DEMARRAGE DU SYSTEME ---");
     raspi.initialiserConnexion(); // Nom de ton diagramme
     systeme.initialiser();
+    capteurCourant.begin();
+    
 }
 
 void loop() {
   // 4. On appelle la méthode qui traite et envoie si besoin
   systeme.envoyerMesures(); // Calcul et envoi automatique
-  raspi.loop();
-
+  raspi.maintenirConnexion();
+  
    /*static unsigned long chronoTest = 0;
     if (millis() - chronoTest > 10000) {
         Serial.println("\n[TEST] Simulation d'une surcharge à 25A...");

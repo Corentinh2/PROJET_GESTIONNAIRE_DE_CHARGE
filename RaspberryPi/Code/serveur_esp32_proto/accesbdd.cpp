@@ -4,7 +4,9 @@
 
 accesBdd::accesBdd(QObject *parent)
 {
-
+    timerResterConnecter = new QTimer(this);
+    connect(timerResterConnecter, &QTimer::timeout, this, &accesBdd::resterConnecter);
+    timerResterConnecter->start(3600000); // ping toutes les heures
 }
 
 bool accesBdd::connecter()
@@ -157,6 +159,16 @@ void accesBdd::modifierKilometrage(int id, int km)
     }
     catch (const std::exception& e) {
         qDebug() << "Exception Modification KM :" << e.what();
+    }
+}
+
+void accesBdd::resterConnecter()
+{
+    QSqlQuery ping(bdd);
+    if (!ping.exec("SELECT 1")) {
+        qDebug() << "Keep-alive : reconnexion...";
+        bdd.close();
+        bdd.open();
     }
 }
 

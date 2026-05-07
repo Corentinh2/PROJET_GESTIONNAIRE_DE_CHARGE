@@ -40,6 +40,21 @@ void CapteurCourant::initialiser() {
  *
  * @return Valeur efficace du courant en ampères (A).
  */
+
 float CapteurCourant::lireValeurCourant() {
-    return emon.calcIrms(1480);
+    
+   
+    emon.calcVI(20,2000);         // Calculate all. No.of half wavelengths (crossings), time-out
+            // Print out all variables (realpower, apparent power, Vrms, Irms, power factor)
+
+  float Irms            = emon.Irms;             //extract Irms into Variable
+
+  return Irms;
+}
+
+void CapteurCourant::begin() {
+    
+
+  emon.voltage(32, 234.26, 1.7);  // Voltage: input pin, calibration, phase_shift
+  emon.current(35, 20.35);
 }

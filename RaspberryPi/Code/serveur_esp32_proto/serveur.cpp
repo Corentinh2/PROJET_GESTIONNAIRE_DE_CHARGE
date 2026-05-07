@@ -155,7 +155,7 @@ void Serveur::onDisconnected()
     if (client) {
         listeClients.removeAll(client);
         client->deleteLater();
-        qDebug() << "[CLIENT DÉCONNECTÉ]";
+        qDebug() << "[CLIENT DÉCONNECTÉ]" << client->peerAddress().toString();
     }
 }
 
