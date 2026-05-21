@@ -6,9 +6,9 @@
                     {
                         "codegenSuccessful": false,
                         "column": 28,
-                        "durationMicroseconds": 1111,
-                        "errorMessage": "Cannot access value for name sessionsModel",
-                        "functionName": "onCompleted",
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"activated\".",
+                        "functionName": "onActivated",
                         "line": 8
                     },
                     {
@@ -30,7 +30,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 20,
-                        "durationMicroseconds": 205,
+                        "durationMicroseconds": 209,
                         "errorMessage": "",
                         "functionName": "width",
                         "line": 19
@@ -38,7 +38,7 @@
                     {
                         "codegenSuccessful": true,
                         "column": 39,
-                        "durationMicroseconds": 116,
+                        "durationMicroseconds": 113,
                         "errorMessage": "",
                         "functionName": "horizontalCenter",
                         "line": 20
@@ -49,63 +49,31 @@
                         "durationMicroseconds": 58,
                         "errorMessage": "",
                         "functionName": "fill",
-                        "line": 32
+                        "line": 30
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 35,
-                        "durationMicroseconds": 247,
+                        "column": 38,
+                        "durationMicroseconds": 268,
                         "errorMessage": "Cannot access value for name window",
                         "functionName": "text",
-                        "line": 40
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 43,
-                        "durationMicroseconds": 95,
-                        "errorMessage": "",
-                        "functionName": "alignment",
-                        "line": 55
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 50,
-                        "durationMicroseconds": 57,
-                        "errorMessage": "",
-                        "functionName": "centerIn",
-                        "line": 56
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 40,
-                        "durationMicroseconds": 228,
-                        "errorMessage": "Cannot access value for name stackView",
-                        "functionName": "onClicked",
-                        "line": 59
-                    },
-                    {
-                        "codegenSuccessful": true,
-                        "column": 43,
-                        "durationMicroseconds": 57,
-                        "errorMessage": "",
-                        "functionName": "fill",
-                        "line": 58
-                    },
-                    {
-                        "codegenSuccessful": false,
-                        "column": 28,
-                        "durationMicroseconds": 0,
-                        "errorMessage": "Could not find signal \"clicked\".",
-                        "functionName": "onClicked",
-                        "line": 69
+                        "line": 35
                     },
                     {
                         "codegenSuccessful": false,
                         "column": 33,
-                        "durationMicroseconds": 169,
+                        "durationMicroseconds": 178,
                         "errorMessage": "Cannot access value for name window",
                         "functionName": "badgeCount",
-                        "line": 91
+                        "line": 56
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 32,
+                        "durationMicroseconds": 196,
+                        "errorMessage": "Cannot access value for name stackView",
+                        "functionName": "onClicked",
+                        "line": 57
                     },
                     {
                         "codegenSuccessful": false,
@@ -113,15 +81,15 @@
                         "durationMicroseconds": 192,
                         "errorMessage": "Cannot access value for name stackView",
                         "functionName": "onClicked",
-                        "line": 92
+                        "line": 64
                     },
                     {
                         "codegenSuccessful": false,
-                        "column": 32,
-                        "durationMicroseconds": 217,
-                        "errorMessage": "Cannot access value for name stackView",
+                        "column": 28,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
                         "functionName": "onClicked",
-                        "line": 99
+                        "line": 74
                     }
                 ],
                 "filePath": "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/DashboardPage.qml"

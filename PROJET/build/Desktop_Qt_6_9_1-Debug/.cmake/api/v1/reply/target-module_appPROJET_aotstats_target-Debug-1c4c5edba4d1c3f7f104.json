@@ -5,7 +5,8 @@
 		"commands" : 
 		[
 			"add_custom_target",
-			"_qt_internal_deferred_aotstats_setup"
+			"_qt_internal_deferred_aotstats_setup",
+			"add_dependencies"
 		],
 		"files" : 
 		[
@@ -32,7 +33,13 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 1210,
+				"line" : 1149,
+				"parent" : 2
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 1154,
 				"parent" : 2
 			}
 		]
@@ -40,11 +47,16 @@
 	"dependencies" : 
 	[
 		{
-			"id" : "module_appPROJET_aotstats_target::@6890427a1f51a3e7e1df"
+			"backtrace" : 4,
+			"id" : "appPROJET_qmltyperegistration::@6890427a1f51a3e7e1df"
 		}
 	],
-	"id" : "all_aotstats::@6890427a1f51a3e7e1df",
-	"name" : "all_aotstats",
+	"folder" : 
+	{
+		"name" : "QtInternalTargets"
+	},
+	"id" : "module_appPROJET_aotstats_target::@6890427a1f51a3e7e1df",
+	"name" : "module_appPROJET_aotstats_target",
 	"paths" : 
 	{
 		"build" : ".",
@@ -75,9 +87,7 @@
 				10,
 				11,
 				12,
-				13,
-				14,
-				15
+				13
 			]
 		}
 	],
@@ -86,19 +96,13 @@
 		{
 			"backtrace" : 3,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_9_1-Debug/CMakeFiles/all_aotstats",
+			"path" : "build/Desktop_Qt_6_9_1-Debug/CMakeFiles/module_appPROJET_aotstats_target",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_9_1-Debug/CMakeFiles/all_aotstats.rule",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 0,
-			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_9_1-Debug/.rcc/qmlcache/all_aotstats.aotstats.rule",
+			"path" : "build/Desktop_Qt_6_9_1-Debug/CMakeFiles/module_appPROJET_aotstats_target.rule",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -153,12 +157,6 @@
 			"backtrace" : 0,
 			"isGenerated" : true,
 			"path" : "build/Desktop_Qt_6_9_1-Debug/.rcc/qmlcache/appPROJET_SessionsPage_qml.cpp.rule",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 0,
-			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_9_1-Debug/.rcc/qmlcache/appPROJET_SettingsPage_qml.cpp.rule",
 			"sourceGroupIndex" : 1
 		},
 		{

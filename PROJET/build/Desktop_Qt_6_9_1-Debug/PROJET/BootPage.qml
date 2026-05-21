@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
+import "js/BootPage.js" as BootJS
 
 Item {
     id: bootRoot
@@ -12,14 +13,7 @@ Item {
         height: 56
         z: 10
         visible: false
-        color: alertBanner.alertTypeColor(alertTypeText.text)
-
-        function alertTypeColor(type) {
-            if (type === "surcharge")   { return "#FFCDD2"; }
-            if (type === "temperature") { return "#FFE0B2"; }
-            return "#E3F2FD";
-        }
-
+        color: BootJS.alertTypeColor(alertTypeText.text)
         radius: 12
 
         RowLayout {
@@ -158,32 +152,8 @@ Item {
                 height: 76
                 radius: 16
                 color: "white"
-                border.color: statusBorderColor(status)
+                border.color: BootJS.statusBorderColor(status)
                 border.width: 2
-
-                function statusBorderColor(s) {
-                    if (s === "En Charge") { return "#EF9A9A"; }
-                    if (s === "Programmé") { return "#90CAF9"; }
-                    return "#C8E6C9";
-                }
-
-                function statusDotColor(s) {
-                    if (s === "En Charge") { return "#E53935"; }
-                    if (s === "Programmé") { return "#1E88E5"; }
-                    return "#43A047";
-                }
-
-                function statusLabel(s) {
-                    if (s === "En Charge") { return "En charge"; }
-                    if (s === "Programmé") { return "Programmé"; }
-                    return "Disponible";
-                }
-
-                function iconBgColor(s) {
-                    if (s === "En Charge") { return "#FFEBEE"; }
-                    if (s === "Programmé") { return "#E3F2FD"; }
-                    return "#E8F5E9";
-                }
 
                 Rectangle {
                     anchors.fill: parent
@@ -214,7 +184,7 @@ Item {
                         width: 46
                         height: 46
                         radius: 23
-                        color: iconBgColor(status)
+                        color: BootJS.iconBgColor(status)
                         Layout.alignment: Qt.AlignVCenter
 
                         Text {
@@ -251,11 +221,7 @@ Item {
                                 height: 18
                                 width: statusTxt.implicitWidth + 14
                                 radius: 9
-                                color: {
-                                    if (status === "En Charge") { return "#FFEBEE"; }
-                                    if (status === "Programmé") { return "#E3F2FD"; }
-                                    return "#E8F5E9";
-                                }
+                                color: BootJS.statusBadgeColor(status)
 
                                 RowLayout {
                                     anchors.centerIn: parent
@@ -263,15 +229,15 @@ Item {
 
                                     Rectangle {
                                         width: 6; height: 6; radius: 3
-                                        color: statusDotColor(status)
+                                        color: BootJS.statusDotColor(status)
                                     }
 
                                     Text {
                                         id: statusTxt
-                                        text: statusLabel(status)
+                                        text: BootJS.statusLabel(status)
                                         font.pixelSize: 10
                                         font.bold: true
-                                        color: statusDotColor(status)
+                                        color: BootJS.statusDotColor(status)
                                     }
                                 }
                             }
@@ -291,7 +257,7 @@ Item {
                     anchors.fill: parent
                     onClicked: {
                         window.activeStation = name;
-                        commEsp.setIp(ip);
+                        commEsp.connexion(ip);
                         stackView.push("VehiculesPage.qml");
                     }
                 }

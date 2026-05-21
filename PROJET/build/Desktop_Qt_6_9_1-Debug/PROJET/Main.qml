@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
+import "js/Main.js" as MainJS
 
 ApplicationWindow {
     id: window
@@ -17,6 +18,7 @@ ApplicationWindow {
     property string selectedVehicle: ""
     property bool isBookingFlow: false
     property bool attenteNouvelleListeVehicules: false
+    property bool attenteAjoutApresSuppr: false
     property int selectedMileage: 0
 
     // Synchronisation borne/véhicule avec commEsp
@@ -39,23 +41,10 @@ ApplicationWindow {
     property string raspiStatus: "Déconnecté"
 
     // --- COMPTEUR SESSIONS ACTIVES ---
-        property int activeSessionCount: {
-            var count = 0;
-            for (var i = 0; i < sessionsModel.count; i++) {
-                if (sessionsModel.get(i).station === window.activeStation) { count++; }
-            }
-            return count;
-        }
+    property int activeSessionCount: MainJS.compterSessionsActives()
 
     function getSelectedStationStatus() {
-        var status = "Inconnu";
-        for (var i = 0; i < stationsModelSource.count; i++) {
-            var item = stationsModelSource.get(i);
-            if (item.name === window.activeStation) {
-                status = item.status;
-            }
-        }
-        return status;
+        return MainJS.getSelectedStationStatus();
     }
 
     // --- MODÈLES DE DONNÉES ---
@@ -73,9 +62,8 @@ ApplicationWindow {
 
         onTriggered: {
             window.sessionDurationSeconds += 1;
-            var energyAdded = window.userMaxPower / 3600.0;
-            window.sessionEnergyKwh += energyAdded;
-            window.sessionCostEuro = window.sessionEnergyKwh * window.userCostPerKwh;
+            window.sessionEnergyKwh += MainJS.calculerEnergieAjoutee();
+            window.sessionCostEuro = MainJS.calculerCout();
         }
     }
 
@@ -120,7 +108,10 @@ ApplicationWindow {
                     spacing: 5
                     Rectangle {
                         width: 8; height: 8; radius: 4
-                        color: window.espStatus === "Connecté" ? "#43A047" : "#E53935"
+                        color: {
+                            if (window.espStatus === "Connecté") { return "#43A047"; }
+                            return "#E53935";
+                        }
                     }
                     Text {
                         text: "ESP32 • " + window.espStatus
@@ -135,7 +126,10 @@ ApplicationWindow {
                     spacing: 5
                     Rectangle {
                         width: 8; height: 8; radius: 4
-                        color: window.raspiStatus === "Connecté" ? "#43A047" : "#E53935"
+                        color: {
+                            if (window.raspiStatus === "Connecté") { return "#43A047"; }
+                            return "#E53935";
+                        }
                     }
                     Text {
                         text: "Raspi • " + window.raspiStatus
@@ -192,7 +186,10 @@ ApplicationWindow {
                     }
 
                     Text {
-                        text: notificationModel.count > 0 ? notificationModel.get(notificationModel.count - 1).message : ""
+                        text: {
+                            if (notificationModel.count > 0) { return notificationModel.get(notificationModel.count - 1).message; }
+                            return "";
+                        }
                         font.pixelSize: 14
                         color: "#546E7A"
                         horizontalAlignment: Text.AlignHCenter
@@ -220,6 +217,9 @@ ApplicationWindow {
 
         function onConnectionStatusChanged(status) {
             window.raspiStatus = status;
+            if (status === "Connecté") {
+                stationsModelSource.clear();
+            }
         }
 
         function onStationRecue(id, name, kwh, status, ip) {
@@ -253,11 +253,21 @@ ApplicationWindow {
 
         function onConnectionStatusChanged(status) {
             window.espStatus = status;
+            if (status === "Connecté") {
+                sessionsModel.clear();
+            }
         }
 
         function onClearCalendriers() {
             sessionsModel.clear();
-            console.log("[MAIN] Liste des calendriers vidée (nouvelle liste en cours)");
+            console.log("[MAIN] Liste des calendriers vidée");
+
+            if (window.attenteAjoutApresSuppr) {
+                window.attenteAjoutApresSuppr = false;
+                commEsp.ajouterCalendrier(window.bookingDays, window.bookingStart, window.bookingEnd);
+                commEsp.obtenirCalendrier();
+                console.log("[MAIN] Ajout du nouveau calendrier après suppression");
+            }
         }
 
         function onCalendrierRecu(id, borne, vehicule, jours, start, end) {
@@ -280,12 +290,7 @@ ApplicationWindow {
         }
 
         function onAlerteRecue(type, message) {
-            var msg = "";
-            if (type === "surchauffe") {
-                msg = "La charge s'est arrêtée pour la raison suivante : Température trop élevée ! ";
-            } else {
-                msg = "La charge s'est arrêtée pour la raison suivante : Tension trop élevée !";
-            }
+            var msg = MainJS.construireMessageAlerte(type);
             notificationModel.append({
                                          "type": type,
                                          "message": msg

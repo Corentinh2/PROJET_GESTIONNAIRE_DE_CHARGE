@@ -6,12 +6,8 @@
 			[
 				{
 					"build" : ".",
-					"childIndexes" : 
-					[
-						1
-					],
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-ac3477cd033af9914095.json",
+					"jsonFile" : "directory-.-Debug-e9045191393235682704.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -20,6 +16,9 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
+						0,
+						1,
+						2,
 						3,
 						4,
 						5,
@@ -32,27 +31,7 @@
 						12,
 						13,
 						14,
-						15,
-						16,
-						17,
-						18
-					]
-				},
-				{
-					"build" : "tst_communicationesp",
-					"jsonFile" : "directory-tst_communicationesp-Debug-224ac6ed2c49691a33e8.json",
-					"minimumCMakeVersion" : 
-					{
-						"string" : "3.16"
-					},
-					"parentIndex" : 0,
-					"projectIndex" : 1,
-					"source" : "tst_communicationesp",
-					"targetIndexes" : 
-					[
-						0,
-						1,
-						2
+						15
 					]
 				}
 			],
@@ -60,10 +39,6 @@
 			"projects" : 
 			[
 				{
-					"childIndexes" : 
-					[
-						1
-					],
 					"directoryIndexes" : 
 					[
 						0
@@ -71,6 +46,9 @@
 					"name" : "PROJET",
 					"targetIndexes" : 
 					[
+						0,
+						1,
+						2,
 						3,
 						4,
 						5,
@@ -83,54 +61,16 @@
 						12,
 						13,
 						14,
-						15,
-						16,
-						17,
-						18
-					]
-				},
-				{
-					"directoryIndexes" : 
-					[
-						1
-					],
-					"name" : "TestCommunicationEsp",
-					"parentIndex" : 0,
-					"targetIndexes" : 
-					[
-						0,
-						1,
-						2
+						15
 					]
 				}
 			],
 			"targets" : 
 			[
 				{
-					"directoryIndex" : 1,
-					"id" : "TestCommunicationEsp::@aa15a46c74d029c8fd16",
-					"jsonFile" : "target-TestCommunicationEsp-Debug-1b191986a45e34fb4b06.json",
-					"name" : "TestCommunicationEsp",
-					"projectIndex" : 1
-				},
-				{
-					"directoryIndex" : 1,
-					"id" : "TestCommunicationEsp_autogen::@aa15a46c74d029c8fd16",
-					"jsonFile" : "target-TestCommunicationEsp_autogen-Debug-1b99125bca4dfafb8f15.json",
-					"name" : "TestCommunicationEsp_autogen",
-					"projectIndex" : 1
-				},
-				{
-					"directoryIndex" : 1,
-					"id" : "TestCommunicationEsp_autogen_timestamp_deps::@aa15a46c74d029c8fd16",
-					"jsonFile" : "target-TestCommunicationEsp_autogen_timestamp_deps-Debug-3a5e54f6d76171b5707d.json",
-					"name" : "TestCommunicationEsp_autogen_timestamp_deps",
-					"projectIndex" : 1
-				},
-				{
 					"directoryIndex" : 0,
 					"id" : "all_aotstats::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-all_aotstats-Debug-1d5132aa268546d630da.json",
+					"jsonFile" : "target-all_aotstats-Debug-435548ed848cbeda011d.json",
 					"name" : "all_aotstats",
 					"projectIndex" : 0
 				},
@@ -165,7 +105,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "appPROJET::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-appPROJET-Debug-583644add491e0940911.json",
+					"jsonFile" : "target-appPROJET-Debug-8658bcbe0a553411eef5.json",
 					"name" : "appPROJET",
 					"projectIndex" : 0
 				},
@@ -235,7 +175,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "module_appPROJET_aotstats_target::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-module_appPROJET_aotstats_target-Debug-bb056f4613394df5e3e9.json",
+					"jsonFile" : "target-module_appPROJET_aotstats_target-Debug-1c4c5edba4d1c3f7f104.json",
 					"name" : "module_appPROJET_aotstats_target",
 					"projectIndex" : 0
 				}

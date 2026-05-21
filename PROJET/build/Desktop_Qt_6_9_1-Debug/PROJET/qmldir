@@ -9,7 +9,11 @@ VehiculesPage 1.0 VehiculesPage.qml
 BootPage 1.0 BootPage.qml
 StatusPage 1.0 StatusPage.qml
 DashboardPage 1.0 DashboardPage.qml
-SettingsPage 1.0 SettingsPage.qml
 SessionsPage 1.0 SessionsPage.qml
 KmPage 1.0 KmPage.qml
+BootPage 1.0 js/BootPage.js
+KmPage 1.0 js/KmPage.js
+Main 1.0 js/Main.js
+SessionPage 1.0 js/SessionPage.js
+StatusPage 1.0 js/StatusPage.js
 

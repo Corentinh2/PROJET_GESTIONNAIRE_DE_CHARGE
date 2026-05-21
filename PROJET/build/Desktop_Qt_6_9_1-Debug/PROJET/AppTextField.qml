@@ -12,9 +12,18 @@ TextField {
 
     background: Rectangle {
         implicitHeight: 48
-        color: control.activeFocus ? "#FFFFFF" : "#F5F7FA"
+        color: {
+            if (control.activeFocus) { return "#FFFFFF"; }
+            return "#F5F7FA";
+        }
         radius: 10
-        border.width: control.activeFocus ? 2 : 1
-        border.color: control.activeFocus ? "#1E88E5" : "#E0E0E0"
+        border.width: {
+            if (control.activeFocus) { return 2; }
+            return 1;
+        }
+        border.color: {
+            if (control.activeFocus) { return "#1E88E5"; }
+            return "#E0E0E0";
+        }
     }
 }

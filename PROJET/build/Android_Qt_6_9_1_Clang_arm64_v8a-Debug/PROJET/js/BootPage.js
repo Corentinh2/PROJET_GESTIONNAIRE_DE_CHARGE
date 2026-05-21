@@ -12,9 +12,10 @@
  * @return Couleur hexadécimale.
  */
 function alertTypeColor(type) {
-    if (type === "surcharge")   { return "#FFCDD2"; }
-    if (type === "temperature") { return "#FFE0B2"; }
-    return "#E3F2FD";
+    var couleur = "#E3F2FD";
+    if (type === "surcharge")   { couleur = "#FFCDD2"; }
+    if (type === "temperature") { couleur = "#FFE0B2"; }
+    return couleur;
 }
 
 /**
@@ -23,9 +24,10 @@ function alertTypeColor(type) {
  * @return Couleur hexadécimale.
  */
 function statusBorderColor(statut) {
-    if (statut === "En Charge") { return "#EF9A9A"; }
-    if (statut === "Programmé") { return "#90CAF9"; }
-    return "#C8E6C9";
+    var couleur = "#C8E6C9";
+    if (statut === "En Charge") { couleur = "#EF9A9A"; }
+    if (statut === "Programmé") { couleur = "#90CAF9"; }
+    return couleur;
 }
 
 /**
@@ -34,9 +36,10 @@ function statusBorderColor(statut) {
  * @return Couleur hexadécimale.
  */
 function statusDotColor(statut) {
-    if (statut === "En Charge") { return "#E53935"; }
-    if (statut === "Programmé") { return "#1E88E5"; }
-    return "#43A047";
+    var couleur = "#43A047";
+    if (statut === "En Charge") { couleur = "#E53935"; }
+    if (statut === "Programmé") { couleur = "#1E88E5"; }
+    return couleur;
 }
 
 /**
@@ -45,9 +48,10 @@ function statusDotColor(statut) {
  * @return Libellé du statut.
  */
 function statusLabel(statut) {
-    if (statut === "En Charge") { return "En charge"; }
-    if (statut === "Programmé") { return "Programmé"; }
-    return "Disponible";
+    var label = "Disponible";
+    if (statut === "En Charge") { label = "En charge"; }
+    if (statut === "Programmé") { label = "Programmé"; }
+    return label;
 }
 
 /**
@@ -56,9 +60,10 @@ function statusLabel(statut) {
  * @return Couleur hexadécimale.
  */
 function iconBgColor(statut) {
-    if (statut === "En Charge") { return "#FFEBEE"; }
-    if (statut === "Programmé") { return "#E3F2FD"; }
-    return "#E8F5E9";
+    var couleur = "#E8F5E9";
+    if (statut === "En Charge") { couleur = "#FFEBEE"; }
+    if (statut === "Programmé") { couleur = "#E3F2FD"; }
+    return couleur;
 }
 
 /**
@@ -67,7 +72,8 @@ function iconBgColor(statut) {
  * @return Couleur hexadécimale.
  */
 function statusBadgeColor(statut) {
-    if (statut === "En Charge") { return "#FFEBEE"; }
-    if (statut === "Programmé") { return "#E3F2FD"; }
-    return "#E8F5E9";
+    var couleur = "#E8F5E9";
+    if (statut === "En Charge") { couleur = "#FFEBEE"; }
+    if (statut === "Programmé") { couleur = "#E3F2FD"; }
+    return couleur;
 }

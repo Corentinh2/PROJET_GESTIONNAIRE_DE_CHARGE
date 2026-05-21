@@ -1,4 +1,2 @@
-set(__QT_DEPLOY_TARGET_TestCommunicationEsp_FILE /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/tst_communicationesp/TestCommunicationEsp)
-set(__QT_DEPLOY_TARGET_TestCommunicationEsp_TYPE EXECUTABLE)
 set(__QT_DEPLOY_TARGET_appPROJET_FILE /home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/appPROJET)
 set(__QT_DEPLOY_TARGET_appPROJET_TYPE EXECUTABLE)

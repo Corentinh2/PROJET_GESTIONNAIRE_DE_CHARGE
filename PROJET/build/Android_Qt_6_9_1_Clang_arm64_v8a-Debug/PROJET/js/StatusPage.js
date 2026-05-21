@@ -27,9 +27,10 @@ function formaterTemps(totalSeconds) {
  * @return Couleur hexadécimale.
  */
 function statusColor(statut) {
-    if (statut === "En Charge") { return "#2E7D32"; }
-    if (statut === "Programmé") { return "#1565C0"; }
-    return "#546E7A";
+    var couleur = "#546E7A";
+    if (statut === "En Charge") { couleur = "#2E7D32"; }
+    if (statut === "Programmé") { couleur = "#1565C0"; }
+    return couleur;
 }
 
 /**
@@ -38,9 +39,10 @@ function statusColor(statut) {
  * @return Couleur hexadécimale.
  */
 function statusBgColor(statut) {
-    if (statut === "En Charge") { return "#E8F5E9"; }
-    if (statut === "Programmé") { return "#E3F2FD"; }
-    return "#ECEFF1";
+    var couleur = "#ECEFF1";
+    if (statut === "En Charge") { couleur = "#E8F5E9"; }
+    if (statut === "Programmé") { couleur = "#E3F2FD"; }
+    return couleur;
 }
 
 /**
@@ -49,9 +51,10 @@ function statusBgColor(statut) {
  * @return Caractère emoji représentant le statut.
  */
 function statusIcon(statut) {
-    if (statut === "En Charge") { return "⚡"; }
-    if (statut === "Programmé") { return "📅"; }
-    return "🔌";
+    var icone = "🔌";
+    if (statut === "En Charge") { icone = "⚡"; }
+    if (statut === "Programmé") { icone = "📅"; }
+    return icone;
 }
 
 /**
@@ -60,9 +63,10 @@ function statusIcon(statut) {
  * @return Couleur hexadécimale.
  */
 function statusBorderColor(statut) {
-    if (statut === "En Charge") { return "#A5D6A7"; }
-    if (statut === "Programmé") { return "#90CAF9"; }
-    return "#B0BEC5";
+    var couleur = "#B0BEC5";
+    if (statut === "En Charge") { couleur = "#A5D6A7"; }
+    if (statut === "Programmé") { couleur = "#90CAF9"; }
+    return couleur;
 }
 
 /**
@@ -71,8 +75,9 @@ function statusBorderColor(statut) {
  * @return Message descriptif du statut.
  */
 function statusMessage(statut) {
-    if (statut === "Programmé") { return "Charge programmée"; }
-    return "Borne disponible";
+    var message = "Borne disponible";
+    if (statut === "Programmé") { message = "Charge programmée"; }
+    return message;
 }
 
 /**
@@ -81,8 +86,9 @@ function statusMessage(statut) {
  * @return Texte du bouton d'action.
  */
 function buttonText(statut) {
-    if (statut === "En Charge") { return "⏹  Arrêter la charge"; }
-    return "▶  Lancer la charge";
+    var texte = "▶  Lancer la charge";
+    if (statut === "En Charge") { texte = "⏹  Arrêter la charge"; }
+    return texte;
 }
 
 /**
@@ -91,8 +97,9 @@ function buttonText(statut) {
  * @return false si en charge, true sinon.
  */
 function buttonPrimary(statut) {
-    if (statut === "En Charge") { return false; }
-    return true;
+    var primary = true;
+    if (statut === "En Charge") { primary = false; }
+    return primary;
 }
 
 /**

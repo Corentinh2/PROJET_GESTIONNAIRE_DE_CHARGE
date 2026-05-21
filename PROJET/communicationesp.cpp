@@ -87,7 +87,7 @@ QString CommunicationEsp::activeBorne() const {
  *
  * @param ip Adresse IP de l'ESP32 (ex : "192.168.1.50").
  */
-void CommunicationEsp::connexion(const QString &ip) { //connecter plutot que setIp
+void CommunicationEsp::connexion(const QString &ip) {
     m_url = QString("ws://%1:%2").arg(ip).arg(ESP_PORT);
     qDebug() << "[ESP32] Changement IP →" << m_url;
     m_webSocket.close();

@@ -58,11 +58,15 @@ template <> constexpr inline auto CommunicationEsp::qt_create_metaobjectdata<qt_
         "onConnected",
         "onDisconnected",
         "onTextMessageReceived",
+        "gererChangementEtat",
+        "QAbstractSocket::SocketState",
+        "etat",
         "tenterReconnexion",
-        "setIp",
+        "connexion",
         "ip",
         "obtenirCalendrier",
         "ajouterCalendrier",
+        "resetListe",
         "supprimerCalendrier",
         "marcheForcee",
         "activer",
@@ -98,32 +102,40 @@ template <> constexpr inline auto CommunicationEsp::qt_create_metaobjectdata<qt_
         QtMocHelpers::SlotData<void(const QString &)>(19, 2, QMC::AccessPrivate, QMetaType::Void, {{
             { QMetaType::QString, 13 },
         }}),
+        // Slot 'gererChangementEtat'
+        QtMocHelpers::SlotData<void(QAbstractSocket::SocketState)>(20, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 21, 22 },
+        }}),
         // Slot 'tenterReconnexion'
-        QtMocHelpers::SlotData<void()>(20, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Method 'setIp'
-        QtMocHelpers::MethodData<void(const QString &)>(21, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 22 },
+        QtMocHelpers::SlotData<void()>(23, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Method 'connexion'
+        QtMocHelpers::MethodData<void(const QString &)>(24, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 25 },
         }}),
         // Method 'obtenirCalendrier'
-        QtMocHelpers::MethodData<void()>(23, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::MethodData<void()>(26, 2, QMC::AccessPublic, QMetaType::Void),
         // Method 'ajouterCalendrier'
-        QtMocHelpers::MethodData<void(const QString &, const QString &, const QString &)>(24, 2, QMC::AccessPublic, QMetaType::Void, {{
+        QtMocHelpers::MethodData<void(const QString &, const QString &, const QString &, bool)>(27, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 8 }, { QMetaType::QString, 9 }, { QMetaType::QString, 10 }, { QMetaType::Bool, 28 },
+        }}),
+        // Method 'ajouterCalendrier'
+        QtMocHelpers::MethodData<void(const QString &, const QString &, const QString &)>(27, 2, QMC::AccessPublic | QMC::MethodCloned, QMetaType::Void, {{
             { QMetaType::QString, 8 }, { QMetaType::QString, 9 }, { QMetaType::QString, 10 },
         }}),
         // Method 'supprimerCalendrier'
-        QtMocHelpers::MethodData<void(int)>(25, 2, QMC::AccessPublic, QMetaType::Void, {{
+        QtMocHelpers::MethodData<void(int)>(29, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::Int, 5 },
         }}),
         // Method 'marcheForcee'
-        QtMocHelpers::MethodData<void(bool)>(26, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Bool, 27 },
+        QtMocHelpers::MethodData<void(bool)>(30, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Bool, 31 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
         // property 'activeBorne'
-        QtMocHelpers::PropertyData<QString>(28, QMetaType::QString, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 4),
+        QtMocHelpers::PropertyData<QString>(32, QMetaType::QString, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 4),
         // property 'activeVehicule'
-        QtMocHelpers::PropertyData<QString>(29, QMetaType::QString, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 5),
+        QtMocHelpers::PropertyData<QString>(33, QMetaType::QString, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 5),
     };
     QtMocHelpers::UintData qt_enums {
     };
@@ -154,13 +166,27 @@ void CommunicationEsp::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
         case 6: _t->onConnected(); break;
         case 7: _t->onDisconnected(); break;
         case 8: _t->onTextMessageReceived((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 9: _t->tenterReconnexion(); break;
-        case 10: _t->setIp((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 11: _t->obtenirCalendrier(); break;
-        case 12: _t->ajouterCalendrier((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3]))); break;
-        case 13: _t->supprimerCalendrier((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 14: _t->marcheForcee((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 9: _t->gererChangementEtat((*reinterpret_cast< std::add_pointer_t<QAbstractSocket::SocketState>>(_a[1]))); break;
+        case 10: _t->tenterReconnexion(); break;
+        case 11: _t->connexion((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 12: _t->obtenirCalendrier(); break;
+        case 13: _t->ajouterCalendrier((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<bool>>(_a[4]))); break;
+        case 14: _t->ajouterCalendrier((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3]))); break;
+        case 15: _t->supprimerCalendrier((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 16: _t->marcheForcee((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         default: ;
+        }
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        switch (_id) {
+        default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+        case 9:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QAbstractSocket::SocketState >(); break;
+            }
+            break;
         }
     }
     if (_c == QMetaObject::IndexOfMethod) {
@@ -214,14 +240,14 @@ int CommunicationEsp::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 15)
+        if (_id < 17)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 15;
+        _id -= 17;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 15)
-            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 15;
+        if (_id < 17)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 17;
     }
     if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::BindableProperty

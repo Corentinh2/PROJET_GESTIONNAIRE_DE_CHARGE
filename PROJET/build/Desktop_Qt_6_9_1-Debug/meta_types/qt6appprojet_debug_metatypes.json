@@ -3,7 +3,7 @@
         "classes": [
             {
                 "className": "CommunicationEsp",
-                "lineNumber": 15,
+                "lineNumber": 32,
                 "methods": [
                     {
                         "access": "public",
@@ -13,14 +13,38 @@
                                 "type": "QString"
                             }
                         ],
-                        "index": 10,
-                        "name": "setIp",
+                        "index": 11,
+                        "name": "connexion",
                         "returnType": "void"
                     },
                     {
                         "access": "public",
-                        "index": 11,
+                        "index": 12,
                         "name": "obtenirCalendrier",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "jours",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "start",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "end",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "resetListe",
+                                "type": "bool"
+                            }
+                        ],
+                        "index": 13,
+                        "name": "ajouterCalendrier",
                         "returnType": "void"
                     },
                     {
@@ -39,7 +63,8 @@
                                 "type": "QString"
                             }
                         ],
-                        "index": 12,
+                        "index": 14,
+                        "isCloned": true,
                         "name": "ajouterCalendrier",
                         "returnType": "void"
                     },
@@ -51,7 +76,7 @@
                                 "type": "int"
                             }
                         ],
-                        "index": 13,
+                        "index": 15,
                         "name": "supprimerCalendrier",
                         "returnType": "void"
                     },
@@ -63,7 +88,7 @@
                                 "type": "bool"
                             }
                         ],
-                        "index": 14,
+                        "index": 16,
                         "name": "marcheForcee",
                         "returnType": "void"
                     }
@@ -209,7 +234,19 @@
                     },
                     {
                         "access": "private",
+                        "arguments": [
+                            {
+                                "name": "etat",
+                                "type": "QAbstractSocket::SocketState"
+                            }
+                        ],
                         "index": 9,
+                        "name": "gererChangementEtat",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 10,
                         "name": "tenterReconnexion",
                         "returnType": "void"
                     }
@@ -229,17 +266,17 @@
         "classes": [
             {
                 "className": "CommunicationRaspi",
-                "lineNumber": 15,
+                "lineNumber": 35,
                 "methods": [
                     {
                         "access": "public",
-                        "index": 7,
+                        "index": 8,
                         "name": "obtenirStation",
                         "returnType": "void"
                     },
                     {
                         "access": "public",
-                        "index": 8,
+                        "index": 9,
                         "name": "obtenirVehicule",
                         "returnType": "void"
                     },
@@ -255,7 +292,7 @@
                                 "type": "QString"
                             }
                         ],
-                        "index": 9,
+                        "index": 10,
                         "name": "ajouterVehicule",
                         "returnType": "void"
                     },
@@ -271,7 +308,7 @@
                                 "type": "int"
                             }
                         ],
-                        "index": 10,
+                        "index": 11,
                         "name": "modifierKilometrage",
                         "returnType": "void"
                     },
@@ -283,7 +320,7 @@
                                 "type": "int"
                             }
                         ],
-                        "index": 11,
+                        "index": 12,
                         "name": "supprimerVehicule",
                         "returnType": "void"
                     }
@@ -369,17 +406,29 @@
                         "access": "private",
                         "arguments": [
                             {
+                                "name": "etat",
+                                "type": "QAbstractSocket::SocketState"
+                            }
+                        ],
+                        "index": 5,
+                        "name": "gererChangementEtat",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "arguments": [
+                            {
                                 "name": "message",
                                 "type": "QString"
                             }
                         ],
-                        "index": 5,
+                        "index": 6,
                         "name": "onTextMessageReceived",
                         "returnType": "void"
                     },
                     {
                         "access": "private",
-                        "index": 6,
+                        "index": 7,
                         "name": "tenterReconnexion",
                         "returnType": "void"
                     }

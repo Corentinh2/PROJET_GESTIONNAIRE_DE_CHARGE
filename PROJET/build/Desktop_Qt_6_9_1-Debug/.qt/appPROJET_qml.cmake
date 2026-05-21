@@ -18,12 +18,20 @@ set(src_and_dest_list
     "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/PROJET/StatusPage.qml"
     "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/DashboardPage.qml"
     "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/PROJET/DashboardPage.qml"
-    "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/SettingsPage.qml"
-    "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/PROJET/SettingsPage.qml"
     "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/SessionsPage.qml"
     "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/PROJET/SessionsPage.qml"
     "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/KmPage.qml"
     "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/PROJET/KmPage.qml"
+    "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/js/BootPage.js"
+    "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/PROJET/js/BootPage.js"
+    "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/js/KmPage.js"
+    "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/PROJET/js/KmPage.js"
+    "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/js/Main.js"
+    "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/PROJET/js/Main.js"
+    "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/js/SessionPage.js"
+    "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/PROJET/js/SessionPage.js"
+    "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/js/StatusPage.js"
+    "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/PROJET/js/StatusPage.js"
 
 )
 set(timestamp_file "/home/USERS/ELEVES/CIEL2024/chubert/Documents/2eme_annee/PROJET/PROJET/build/Desktop_Qt_6_9_1-Debug/.qt/appPROJET_qml.txt")
