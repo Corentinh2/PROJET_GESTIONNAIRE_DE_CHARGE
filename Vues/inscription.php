@@ -13,8 +13,8 @@ if (isset($_SESSION['connecte']) && $_SESSION['connecte'] === true) {
         <title>Inscription</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="../js/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-        <script src="../js/libs/jquery/jquery.min.js"></script>
+        <link href="js/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="js/libs/jquery/jquery.min.js"></script>
         <script src="inscription.js"></script>
     </head>
     <body>

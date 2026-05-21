@@ -11,9 +11,9 @@ if (!isset($_SESSION['connecte']) || $_SESSION['connecte'] !== true) {
         <title>Détail de la borne</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="../js/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-        <script src="../js/libs/jquery/jquery.min.js"></script>
-        <script src="../js/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <link href="js/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <script src="js/libs/jquery/jquery.min.js"></script>
+        <script src="js/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="borne.js"></script>
         <style>
@@ -46,7 +46,7 @@ if (!isset($_SESSION['connecte']) || $_SESSION['connecte'] !== true) {
                             <a class="nav-link" href="jeu.php" id="navJeu">Jeu</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="login.php" id="navDeconnexion">Deconnexion</a>
+                            <a class="nav-link" href="#" id="navDeconnexion">Deconnexion</a>
                         </li>
                     </ul>
                 </div>

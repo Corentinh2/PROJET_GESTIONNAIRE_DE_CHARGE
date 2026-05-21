@@ -60,6 +60,7 @@ function GetNomBorne(idBorne) {
 }
 
 function Deconnexion() {
+    console.log("deconn");
     $.ajax({
         url: '../Controleurs/controleur.php',
         data: {
