@@ -1,222 +1,123 @@
 <?php
 
-require_once __DIR__ . '/../Modeles/modele.php';
-require_once __DIR__ . '/../Modeles/journalisation.php';
-require_once __DIR__ . '/../Vues/VueClient.php';
+session_start();
+require_once __DIR__ . '/../Modeles/modele.inc.php';
+require_once __DIR__ . '/../Modeles/modele_utilisateurs.inc.php';
+require_once __DIR__ . '/../Modeles/modele_bornes.inc.php';
+require_once __DIR__ . '/../Modeles/modele_mesures.inc.php';
 
-// Identifiants admin fixes
-define('ADMIN_LOGIN', 'admin');
-define('ADMIN_MDP', 'admin1234');
+header('Content-Type: application/json');
 
-class Controleur {
+if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
+    $commande = filter_input(INPUT_POST, 'commande');
 
-    private $modele;
-    private $journalisation;
+    switch ($commande) {
 
-    public function __construct() {
-        $this->modele = new Modele();
-        $this->journalisation = new Journalisation();
-    }
+        case 'Connexion':
+            $login = filter_input(INPUT_POST, 'login');
+            $mdp = filter_input(INPUT_POST, 'mdp');
+            $reponse = Connexion($login, $mdp);
+            echo json_encode(['statut' => $reponse]);
+            break;
 
-    public function Connexion() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $id = $_POST['identifiant'] ?? '';
-            $pass = $_POST['password'] ?? '';
+        case 'CreerCompte':
+            $login = filter_input(INPUT_POST, 'login');
+            $mdp = filter_input(INPUT_POST, 'mdp');
+            $reponse = CreerUtilisateur($login, $mdp);
+            echo json_encode(['statut' => $reponse]);
+            break;
 
-            $user = $this->modele->LoginVerify($id, $pass);
+        case 'Deconnexion':
+            Deconnexion();
+            break;
 
-            if ($user) {
-                $_SESSION['user'] = $id;
-                $this->journalisation->LogConnexion($id, date('Y-m-d H:i:s'));
+        case 'RecupererListeBorne':
+            $lstBornes = RecupererListeBorne();
+            echo json_encode($lstBornes);
+            break;
 
-                if ($id === 'admin') {
-                    $_SESSION['role'] = 'admin';
-                    header('Location: http://172.18.59.133/index.php?action=GestionUtilisateurs');
-                } else {
-                    $_SESSION['role'] = 'utilisateur';
-                    header('Location: http://172.18.59.133/index.php?action=ChoixParam');
-                }
-                //exit();
-            } else {
-                if (!$this->modele->UtilisateurExiste($id)) {
-                    header('Location: http://172.18.59.133/index.php?action=CreerCompte&identifiant=' . urlencode($id));
-                    exit();
-                }
-                $erreur = "Mot de passe incorrect.";
-                include __DIR__ . '/../Vues/login.php';
+        case 'GetMesuresParBorne':
+            $idBorne = filter_input(INPUT_POST, 'id_borne', FILTER_VALIDATE_INT);
+            $debut = filter_input(INPUT_POST, 'date_debut');
+            $fin = filter_input(INPUT_POST, 'date_fin');
+            $date = new DateTime();
+// si l'une des dates est vide
+// debut et fin sont la date du jour
+            if ($debut == "" || $fin == "") {
+                $debut = $date->format('Y-m-d H:i:s');
+                $fin = $date->format('Y-m-d H:i:s');
             }
-        } else {
-            include __DIR__ . '/../Vues/login.php';
-        }
-    }
+            echo json_encode(GetMesuresParBorne($idBorne, $debut, $fin), JSON_NUMERIC_CHECK);
+            break;
 
-    public function GestionUtilisateurs() {
-// Seul l'admin peut accéder
-        if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-            header('Location: http://172.18.59.133/index.php?action=Connexion');
-            exit();
-        }
-        $listeUtilisateurs = $this->modele->RecupererUtilisateurs();
-        include __DIR__ . '/../Vues/gestion_utilisateurs.php';
-    }
+        case 'GetNomBorne':
+            $idBorne = filter_input(INPUT_POST, 'id_borne', FILTER_VALIDATE_INT);
+            echo json_encode(GetNomBorne($idBorne));
+            break;
 
-    public function SupprimerUtilisateur() {
-        if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-            header('Location: http://172.18.59.133/index.php?action=Connexion');
-            exit();
-        }
-        $id = $_GET['id'] ?? null;
-        if ($id)
-            $this->modele->SupprimerUtilisateur($id);
-        header('Location: http://172.18.59.133/index.php?action=GestionUtilisateurs');
-        exit();
-    }
-
-    public function SuspendreUtilisateur() {
-        if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-            header('Location: http://172.18.59.133/index.php?action=Connexion');
-            exit();
-        }
-        $id = $_GET['id'] ?? null;
-        if ($id)
-            $this->modele->ChangerEtatUtilisateur($id, 0);
-        header('Location: http://172.18.59.133/index.php?action=GestionUtilisateurs');
-        exit();
-    }
-
-    public function ReactiverUtilisateur() {
-        if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-            header('Location: http://172.18.59.133/index.php?action=Connexion');
-            exit();
-        }
-        $id = $_GET['id'] ?? null;
-        if ($id)
-            $this->modele->ChangerEtatUtilisateur($id, 1);
-        header('Location: http://172.18.59.133/index.php?action=GestionUtilisateurs');
-        exit();
-    }
-
-    public function ModifierUtilisateur() {
-        if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-            header('Location: http://172.18.59.133/index.php?action=Connexion');
-            exit();
-        }
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $id = $_POST['id'] ?? null;
-            $login = $_POST['login'] ?? '';
-            $mdp = $_POST['mdp'] ?? '';
-            if ($id)
-                $this->modele->ModifierUtilisateur($id, $login, $mdp);
-            header('Location: http://172.18.59.133/index.php?action=GestionUtilisateurs');
-            exit();
-        }
-        $id = $_GET['id'] ?? null;
-        $utilisateur = $id ? $this->modele->RecupererUtilisateurParId($id) : null;
-        include __DIR__ . '/../Vues/modifier_utilisateur.php';
-    }
-
-    public function CreerCompte() {
-        $identifiant = $_GET['identifiant'] ?? '';
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $login = $_POST['identifiant'] ?? '';
-            $mdp = $_POST['password'] ?? '';
-            $mdp_confirm = $_POST['password_confirm'] ?? '';
-            if ($mdp !== $mdp_confirm) {
-                $erreur = "Les mots de passe ne correspondent pas.";
-                include __DIR__ . '/../Vues/creer_compte.php';
-                return;
-            }
-            if ($this->modele->UtilisateurExiste($login)) {
-                $erreur = "Cet identifiant existe déjà.";
-                include __DIR__ . '/../Vues/creer_compte.php';
-                return;
-            }
-            $this->modele->CreerUtilisateur($login, $mdp);
-            $succes = "Compte créé ! Vous pouvez vous connecter.";
-            include __DIR__ . '/../Vues/login.php';
-        } else {
-            include __DIR__ . '/../Vues/creer_compte.php';
-        }
-    }
-
-    public function ChoixParam() {
-        if (!isset($_SESSION['user'])) {
-            header('Location: http://172.18.59.133/index.php?action=Connexion');
-            exit();
-        }
-        $listeBornes = $this->modele->RecupererListeBorne();
-        include __DIR__ . '/../Vues/choix_borne.php';
-    }
-
-    public function AjouterBorne() {
-        if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-            header('Location: http://172.18.59.133/index.php?action=Connexion');
-            exit();
-        }
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $nom = $_POST['nom_borne'] ?? '';
-            $emplacement = $_POST['emplacement'] ?? '';
-            $puissance = $_POST['puissance'] ?? 0;
-            $ip = $_POST['ip_usine'] ?? '';
-
-            $this->modele->AjouterBorne($nom, $emplacement, $puissance, $ip);
-            $succes = "Borne \"$nom\" ajoutée avec succès !";
-            include __DIR__ . '/../Vues/ajouter_borne.php';
-        } else {
-            include __DIR__ . '/../Vues/ajouter_borne.php';
-        }
-    }
-
-    public function SupprimerBorne() {
-        if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-            header('Location: http://172.18.59.133/index.php?action=Connexion');
-            exit();
-        }
-        $id = isset($_GET['id']) ? (int) $_GET['id'] : null;
-        if ($id) {
-            $this->modele->SupprimerBorne($id);
-        }
-        header('Location: http://172.18.59.133/index.php?action=ChoixParam');
-        exit();
-    }
-
-    public function EnregistreGraph() {
-        if (!isset($_SESSION['user'])) {
-            header('Location: http://172.18.59.133/index.php?action=Connexion');
-            exit();
-        }
-        $id_borne = $_GET['id'] ?? 1;
-        $plage = $_GET['plage'] ?? 'jour';
-        $semaine = isset($_GET['semaine']) ? (int) $_GET['semaine'] : (int) date('W');
-        $mois = isset($_GET['mois']) ? (int) $_GET['mois'] : (int) date('m');
-        $mesures = $this->modele->GetMesuresParBorne($id_borne, $plage, $semaine, $mois);
         
 
-        // DEBUG TEMPORAIRE
-        /*var_dump($id_borne, $plage, $semaine, $mois, $mesures);
-        die();*/
+        case 'RecupererListeUtilisateur':
+            $lsUtilisateurs = RecupererListeUtilisateur();
+            echo json_encode($lsUtilisateurs);
+            break;
 
-        $derniereMesure = $this->modele->GetDerniereMesure($id_borne);
-        $nomBorne = $this->modele->GetNomBorne($id_borne);
-        //$evenements = $this->modele->GetEvenements($id_borne, $plage, $semaine, $mois);
-        include __DIR__ . '/../Vues/graphique.php';
+        case 'SupprimerUtilisateur':
+            $id = filter_input(INPUT_POST, 'id_utilisateur', FILTER_VALIDATE_INT);
+            $reponse = SupprimerUtilisateur($id);
+            echo json_encode(['statut' => $reponse]);
+            break;
+
+        case 'ModifierUtilisateur':
+            $id = filter_input(INPUT_POST, 'id_utilisateur', FILTER_VALIDATE_INT);
+            $login = filter_input(INPUT_POST, 'login');
+            $reponse = ModifierUtilisateur($id, $mdp);
+            echo json_encode(['statut' => $reponse]);
+            break;
+
+        case 'ActiverUtilisateur':
+            $id = filter_input(INPUT_POST, 'id_utilisateur', FILTER_VALIDATE_INT);
+            $reponse = ChangerEtatUtilisateur($id, 1);
+            echo json_encode(['statut' => $reponse]);
+            break;
+
+        case 'SuspendreUtilisateur':
+            $id = filter_input(INPUT_POST, 'id_utilisateur', FILTER_VALIDATE_INT);
+            $reponse = ChangerEtatUtilisateur($id, 0);
+            echo json_encode(['statut' => $reponse]);
+            break;
+
+        default:
+            echo json_encode('commande inconnue');
+            break;
+    }
+}
+
+if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET') {
+    $commande = filter_input(INPUT_GET, 'commande');
+
+    switch ($commande) {
+
+        case 'Index':
+            Index();
+            break;
+
+        default:
+            echo json_encode('commande inconnue');
+            break;
+    }
+}
+
+function Deconnexion() {
+    $_SESSION = [];
+
+    if (ini_get("session.use_cookies")) {
+        $parametres = session_get_cookie_params();
+        setcookie(session_name(), '', time() - 42000,
+                $parametres["path"], $parametres["domain"]
+        );
     }
 
-    public function Historique() {
-        if (!isset($_SESSION['user'])) {
-            header('Location: http://172.18.59.133/index.php?action=Connexion');
-            exit();
-        }
-        $id_borne = $_GET['id'] ?? 1;
-        $nomBorne = $this->modele->GetNomBorne($id_borne);
-        $mesuresHistorique = $this->modele->GetHistorique($id_borne);
-        include __DIR__ . '/../Vues/historique.php';
-    }
-
-    public function Deconnexion() {
-        session_destroy();
-        header('Location: http://172.18.59.133/index.php?action=Connexion');
-        exit();
-    }
+    session_destroy();
+    echo json_encode(['statut' => 'ok']);
 }

@@ -1,55 +1,48 @@
+<?php
+session_start();
+if (isset($_SESSION['connecte']) && $_SESSION['connecte'] === true) {
+    if ($_SESSION['utilisateur']=='admin'){
+        header("Location: admin.php");
+    }else
+    {
+        header("Location: choix_bornes.php");
+    }    
+    exit();
+}
+?>
 <!DOCTYPE html>
-<html lang="fr">
+<html>
     <head>
+        <title>Login</title>
         <meta charset="UTF-8">
-        <title>Connexion</title>
-        <style>
-            body {
-                background-color: #121212;
-                color: white;
-                font-family: sans-serif;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                margin: 0;
-            }
-            .login-container {
-                background-color: #1e1e1e;
-                padding: 40px;
-                border-radius: 8px;
-                width: 350px;
-                text-align: center;
-            }
-            input {
-                width: 100%;
-                padding: 12px;
-                margin: 10px 0;
-                border: none;
-                border-radius: 4px;
-            }
-            button {
-                width: 100%;
-                background-color: #00d4ff;
-                color: black;
-                padding: 12px;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                font-weight: bold;
-            }
-        </style>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../js/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="../js/libs/jquery/jquery.min.js"></script>
+        <script src="login.js"></script>
     </head>
     <body>
-        <div class="login-container">
-            <h2>Connexion</h2>
-            <?php if (isset($erreur)) echo "<p style='color:red'>$erreur</p>"; ?>
-            <form action="/index.php?action=Connexion" method="POST">
-                <input type="text" name="identifiant" placeholder="Identifiant" required>
-                <input type="password" name="password" placeholder="Mot de passe" required>
-                <button type="submit">SE CONNECTER</button>
-            </form>
-
+        <div class="container m-5">
+            <h1>Connexion</h1>
+            <div class="row mt-4">
+                <div class="col-6">
+                    <form id="formulaireLogin">
+                        <div class="input-group">
+                            <input class="form-control me-3" type="text" id="login" name="login" placeholder="Login" required/>
+                            <input class="form-control" type="password" id="mdp" name="mdp" placeholder="Mot de passe" required/>
+                        </div>
+                        <div class="btn-group mt-3 border border-black w-100">
+                            <input class="btn btn-primary me-2" type="button" value="Identification" id="verifLogin"/>
+                            <input class="btn btn-primary me-2" type="reset" id="reset"/>
+                            <button class="bg-body btn" type="button"> Résultat
+                                <span id="pastille" class="badge text-bg-light">&nbsp;&nbsp;</span>
+                            </button>
+                        </div>
+                    </form>
+                    <div class="mt-3">
+                        <a href="inscription.php" class="btn btn-secondary">S'inscrire</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>

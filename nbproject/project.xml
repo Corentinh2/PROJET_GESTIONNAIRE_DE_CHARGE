@@ -3,7 +3,15 @@
     <type>org.netbeans.modules.php.project</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/php-project/1">
-            <name>gestionCharge</name>
+            <name>gestGood</name>
         </data>
+        <libraries xmlns="http://www.netbeans.org/ns/cdnjs-libraries/1">
+            <library name="bootstrap" version="5.3.8">
+                <file localPath="js/libs/bootstrap/js/bootstrap.bundle.min.js" path="js/bootstrap.bundle.min.js"/>
+            </library>
+            <library name="jquery" version="3.7.1">
+                <file localPath="js/libs/jquery/jquery.min.js" path="jquery.min.js"/>
+            </library>
+        </libraries>
     </configuration>
 </project>
