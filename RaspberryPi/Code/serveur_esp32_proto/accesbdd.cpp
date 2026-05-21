@@ -38,7 +38,7 @@ bool accesBdd::connecter()
 {
     try {
         QSqlQuery query;
-        query.prepare("INSERT INTO MESURE (horodatage, puissance, id_charge) VALUES (NOW(), :p, :id)");
+        query.prepare("INSERT INTO MESURE (horodatage, puissance, id_session) VALUES (NOW(), :p, :id)");
         query.bindValue(":p", puissance);
         query.bindValue(":id", 4);
 
@@ -55,7 +55,7 @@ void accesBdd::ajouterVehicule(const QString &nom, int km)
 {
     try {
         QSqlQuery query;
-        query.prepare("INSERT INTO VEHICULE (modele, kilometres) VALUES (:nom, :km)");
+        query.prepare("INSERT INTO VEHICULES (modele, kilometres) VALUES (:nom, :km)");
         query.bindValue(":nom", nom);
         query.bindValue(":km", km);
 
@@ -77,7 +77,7 @@ void accesBdd::envoyerListeVehicules(QWebSocket *pClient)
         }
 
         QSqlQuery query;
-        if (!query.exec("SELECT id_vehicule, modele, kilometres FROM VEHICULE")) {
+        if (!query.exec("SELECT id_vehicule, modele, kilometres FROM VEHICULES")) {
             throw std::runtime_error(query.lastError().text().toStdString());
         }
 
@@ -104,7 +104,7 @@ void accesBdd::envoyerListeBornes(QWebSocket *pClient)
         }
 
         QSqlQuery query;
-        if (!query.exec("SELECT id_borne, nom_borne, puissance, emplacement, ip_usine FROM BORNE")) {
+        if (!query.exec("SELECT id_borne, nom_borne, puissance, emplacement, ip_usine FROM BORNES")) {
             throw std::runtime_error(query.lastError().text().toStdString());
         }
 
@@ -129,7 +129,7 @@ void accesBdd::supprimerVehicule(int id)
 {
     try {
         QSqlQuery query;
-        query.prepare("DELETE FROM VEHICULE WHERE id_vehicule = :id");
+        query.prepare("DELETE FROM VEHICULES WHERE id_vehicule = :id");
         query.bindValue(":id", id);
 
         if (!query.exec()) {
@@ -147,7 +147,7 @@ void accesBdd::modifierKilometrage(int id, int km)
 {
     try {
         QSqlQuery query;
-        query.prepare("UPDATE VEHICULE SET kilometres = :km WHERE id_vehicule = :id");
+        query.prepare("UPDATE VEHICULES SET kilometres = :km WHERE id_vehicule = :id");
         query.bindValue(":km", km);
         query.bindValue(":id", id);
 
@@ -172,17 +172,17 @@ void accesBdd::resterConnecter()
     }
 }
 
-void accesBdd::ajouterEvenement(bool type_alerte, const QString &message_erreur, int id_borne)
+void accesBdd::ajouterEvenement(bool type_alerte, const QString &message_erreur, int id_session)
 {
     try {
         QSqlQuery query;
-        query.prepare("INSERT INTO EVENEMENT (type_alerte, message_erreur, id_borne) "
-                      "VALUES (:type, :msg, :borne)");
+        query.prepare("INSERT INTO EVENEMENTS (type_alerte, message_erreur, id_session) "
+                      "VALUES (:type, :msg, :session)");
 
         // typeAlerte sera envoyé comme 0 (courant) ou 1 (température)
         query.bindValue(":type", type_alerte ? 1 : 0);
         query.bindValue(":msg", message_erreur);
-        query.bindValue(":borne", id_borne);
+        query.bindValue(":session", id_session);
 
         if (!query.exec()) {
             throw std::runtime_error(query.lastError().text().toStdString());

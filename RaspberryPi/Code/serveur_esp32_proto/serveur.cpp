@@ -136,7 +136,7 @@ void Serveur::onTextMessageReceived(const QString &message)
 void Serveur::insererEnBase(float puissance)
 {
     QSqlQuery query;
-    query.prepare("INSERT INTO MESURE (horodatage, puissance, id_charge) VALUES (NOW(), :p, :id)");
+    query.prepare("INSERT INTO MESURES (horodatage, puissance, id_session) VALUES (NOW(), :p, :id)");
     query.bindValue(":p", puissance);
     query.bindValue(":id", 4);
 

@@ -112,7 +112,7 @@ void GestionnaireDeCharge::envoyerMesures() {
  */
 void GestionnaireDeCharge::verifierSeuils(float courant) {
     // Seuil de 18A (protection 20A ES-01)
-    if (courant > 1) {
+    if (courant > 0.01) {
         Serial.printf("!!! ALERTE COURANT : %.2f A !!!\n", courant);
         
         // On utilise la nouvelle méthode de raspi (type 0 = courant)
