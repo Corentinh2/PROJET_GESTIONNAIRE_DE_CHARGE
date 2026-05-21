@@ -13,30 +13,19 @@ GestionnaireCharge::GestionnaireCharge(const char *_ssid, const char *_motDePass
   derniereTentativeWifi = 0;
 
   horloge = new HorlogeTempsReel;
-  if (horloge->obtenirEtat())
+  if (DEBUGETTEST)
   {
-    Serial.println("HorlogeTempsReel : OK");
-  }
-  else
-  {
-    Serial.println("HorlogeTempsReel : PASOK");
+    if (horloge->obtenirEtat())
+    {
+      Serial.println("HorlogeTempsReel : OK");
+    }
+    else
+    {
+      Serial.println("HorlogeTempsReel : PASOK");
+    }
   }
 
   memoire = new MemoireProgramme;
-  if (memoire->obtenirEtat())
-  {
-    Serial.println("memoire : OK");
-  }
-  else
-  {
-    Serial.println("memoire : PASOK");
-  }
-
-  if (memoire->obtenirEtat() && horloge->obtenirEtat())
-  {
-    etat = true;
-  }
-
   relais = new RelaisCommande;
   communication = new CommunicationMobile(memoire);
   ds18s20 = new CapteurTemp(TEMPMAX);
@@ -61,15 +50,6 @@ GestionnaireCharge::~GestionnaireCharge()
 }
 
 /**
- * @brief Retourne l'état d'initialisation du gestionnaire
- * @return true si tous les composants sont initialisés correctement, false sinon
- */
-bool GestionnaireCharge::obtenirEtat() const
-{
-  return etat;
-}
-
-/**
  * @brief Synchronise l'horloge temps réel avec un serveur NTP
  */
 void GestionnaireCharge::synchroniserHorloge()
@@ -89,12 +69,13 @@ void GestionnaireCharge::controler()
     unsigned long maintenant = millis();
     if (maintenant - derniereTentativeWifi >= 10000)
     {
-      Serial.println("WiFi perdu, tentative de reconnexion...");
+      if (DEBUGETTEST) Serial.println("WiFi perdu, tentative de reconnexion...");
       WiFi.disconnect();
       WiFi.begin(ssid, motDePasse);
       derniereTentativeWifi = maintenant;
     }
   }
+
   if (horloge->getAlarme())
   {
     horloge->reinitialiserAlarme();
@@ -103,19 +84,20 @@ void GestionnaireCharge::controler()
     int heure = maintenant.hour();
     int minute = maintenant.minute();
     bool debutTrouve = memoire->rechercherSession(jour, heure, minute, true);
-    horloge->afficherHeureAcutelle();
+    if (DEBUGETTEST) horloge->afficherHeureAcutelle();
 
     if (debutTrouve)
     {
-      Serial.println("Début de créneau → action début !");
+      if (DEBUGETTEST) Serial.println("Début de créneau → action début !");
       relais->fermer();
       chargeEnCourt = true;
     }
     else
     {
-      if (memoire->rechercherSession(jour, heure, minute, false))
+      bool finTrouve = memoire->rechercherSession(jour, heure, minute, false);
+      if (finTrouve)
       {
-        Serial.println("Fin de créneau → action fin !");
+        if (DEBUGETTEST) Serial.println("Fin de créneau → action fin !");
         relais->ouvrir();
         chargeEnCourt = false;
       }
@@ -125,13 +107,13 @@ void GestionnaireCharge::controler()
   int marcheForcee = communication->gererCommunication();
   if (marcheForcee == 1)
   {
-    Serial.println("Marche forcée activée");
+    if (DEBUGETTEST) Serial.println("Marche forcée activée");
     relais->fermer();
     marcheForceeActive = true;
   }
   if (marcheForcee == 0)
   {
-    Serial.println("Marche forcée désactivée");
+    if (DEBUGETTEST) Serial.println("Marche forcée désactivée");
     marcheForceeActive = false;
     if (!chargeEnCourt)
     {
@@ -139,19 +121,20 @@ void GestionnaireCharge::controler()
     }
     else
     {
-      Serial.println("Retour au cycle de charge planifié.");
+      if (DEBUGETTEST) Serial.println("Retour au cycle de charge planifié.");
     }
   }
 
   if ((chargeEnCourt || marcheForceeActive) && ds18s20->surveillerTemperature())
   {
-    Serial.println("ALERTE TEMP");
+    if (DEBUGETTEST) Serial.println("ALERTE TEMP");
     relais->ouvrir();
     memoire->ajouterAlerte(true);
     chargeEnCourt = false;
     marcheForceeActive = false;
   }
 }
+
 
 // JUSTE POUR LE TEST UNITAIRE
 MemoireProgramme *GestionnaireCharge::obtenirMemoire()

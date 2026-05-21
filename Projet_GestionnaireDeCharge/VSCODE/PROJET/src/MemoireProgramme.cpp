@@ -9,31 +9,31 @@
  */
 MemoireProgramme::MemoireProgramme()
 {
-    db = nullptr;
-    estOuverte = false;
+  db = nullptr;
+  estOuverte = false;
 
-    if (LittleFS.begin(true))
+  if (LittleFS.begin(true))
+  {
+    if (sqlite3_open(CHEMIN_BDD, &db) == SQLITE_OK)
     {
-        if (sqlite3_open(CHEMIN_BDD, &db) == SQLITE_OK)
-        {
-            if (creerTables())
-            {
-                estOuverte = true;
-            }
-            else
-            {
-                Serial.println("MemoireProgramme : Erreur création tables !");
-            }
-        }
-        else
-        {
-            Serial.printf("MemoireProgramme : Erreur BDD : %s\n", sqlite3_errmsg(db));
-        }
+      if (creerTables())
+      {
+        estOuverte = true;
+      }
+      else
+      {
+        if (DEBUGETTEST) Serial.println("MemoireProgramme : Erreur création tables !");
+      }
     }
     else
     {
-        Serial.println("MemoireProgramme : Erreur montage LittleFS !");
+      if (DEBUGETTEST) Serial.printf("MemoireProgramme : Erreur BDD : %s\n", sqlite3_errmsg(db));
     }
+  }
+  else
+  {
+    if (DEBUGETTEST) Serial.println("MemoireProgramme : Erreur montage LittleFS !");
+  }
 }
 
 /**
@@ -41,21 +41,11 @@ MemoireProgramme::MemoireProgramme()
  */
 MemoireProgramme::~MemoireProgramme()
 {
-    if (estOuverte)
-    {
-        sqlite3_close(db);
-        estOuverte = false;
-        Serial.println("MemoireProgramme : fermée.");
-    }
-}
-
-/**
- * @brief Retourne l'état d'ouverture de la base de données
- * @return true si la base de données est ouverte et opérationnelle, false sinon
- */
-bool MemoireProgramme::obtenirEtat() const
-{
-    return estOuverte;
+  if (estOuverte)
+  {
+    sqlite3_close(db);
+    estOuverte = false;
+  }
 }
 
 /**
@@ -64,41 +54,41 @@ bool MemoireProgramme::obtenirEtat() const
  */
 bool MemoireProgramme::creerTables()
 {
-    bool succes = true;
-    char *errMsg = nullptr;
+  bool succes = true;
+  char *errMsg = nullptr;
 
-    const char *requeteCalendrier =
-        "CREATE TABLE IF NOT EXISTS CALENDRIER ("
-        "id_ligne      INTEGER PRIMARY KEY AUTOINCREMENT,"
-        "id_calendrier INTEGER,"
-        "jours         INTEGER,"
-        "hd            INTEGER,"
-        "md            INTEGER,"
-        "hf            INTEGER,"
-        "mf            INTEGER"
-        ");";
+  const char *requeteCalendrier =
+      "CREATE TABLE IF NOT EXISTS CALENDRIER ("
+      "id_ligne      INTEGER PRIMARY KEY AUTOINCREMENT,"
+      "id_calendrier INTEGER,"
+      "jours         INTEGER,"
+      "hd            INTEGER,"
+      "md            INTEGER,"
+      "hf            INTEGER,"
+      "mf            INTEGER"
+      ");";
 
-    const char *requeteAlerte =
-        "CREATE TABLE IF NOT EXISTS ALERTE ("
-        "id_alerte   INTEGER PRIMARY KEY,"
-        "type_alerte BOOLEAN"
-        ");";
+  const char *requeteAlerte =
+      "CREATE TABLE IF NOT EXISTS ALERTE ("
+      "id_alerte   INTEGER PRIMARY KEY,"
+      "type_alerte BOOLEAN"
+      ");";
 
-    if (sqlite3_exec(db, requeteCalendrier, nullptr, nullptr, &errMsg) != SQLITE_OK)
-    {
-        Serial.printf("Erreur table CALENDRIER : %s\n", errMsg);
-        sqlite3_free(errMsg);
-        succes = false;
-    }
+  if (sqlite3_exec(db, requeteCalendrier, nullptr, nullptr, &errMsg) != SQLITE_OK)
+  {
+    if (DEBUGETTEST) Serial.printf("Erreur table CALENDRIER : %s\n", errMsg);
+    sqlite3_free(errMsg);
+    succes = false;
+  }
 
-    if (succes && sqlite3_exec(db, requeteAlerte, nullptr, nullptr, &errMsg) != SQLITE_OK)
-    {
-        Serial.printf("Erreur table ALERTE : %s\n", errMsg);
-        sqlite3_free(errMsg);
-        succes = false;
-    }
+  if (succes && sqlite3_exec(db, requeteAlerte, nullptr, nullptr, &errMsg) != SQLITE_OK)
+  {
+    if (DEBUGETTEST) Serial.printf("Erreur table ALERTE : %s\n", errMsg);
+    sqlite3_free(errMsg);
+    succes = false;
+  }
 
-    return succes;
+  return succes;
 }
 
 /**
@@ -107,21 +97,21 @@ bool MemoireProgramme::creerTables()
  */
 int MemoireProgramme::obtenirProchainIdCalendrier()
 {
-    sqlite3_stmt *stmt = nullptr;
-    int prochain = 1;
+  sqlite3_stmt *stmt = nullptr;
+  int prochain = 1;
 
-    const char *requete = "SELECT COALESCE(MAX(id_calendrier), 0) + 1 FROM CALENDRIER;";
+  const char *requete = "SELECT COALESCE(MAX(id_calendrier), 0) + 1 FROM CALENDRIER;";
 
-    if (sqlite3_prepare_v2(db, requete, -1, &stmt, nullptr) == SQLITE_OK)
+  if (sqlite3_prepare_v2(db, requete, -1, &stmt, nullptr) == SQLITE_OK)
+  {
+    if (sqlite3_step(stmt) == SQLITE_ROW)
     {
-        if (sqlite3_step(stmt) == SQLITE_ROW)
-        {
-            prochain = sqlite3_column_int(stmt, 0);
-        }
+      prochain = sqlite3_column_int(stmt, 0);
     }
+  }
 
-    sqlite3_finalize(stmt);
-    return prochain;
+  sqlite3_finalize(stmt);
+  return prochain;
 }
 
 /**
@@ -136,48 +126,50 @@ int MemoireProgramme::obtenirProchainIdCalendrier()
  */
 bool MemoireProgramme::ajouterEvenement(int _joursRecu, int _hd, int _md, int _hf, int _mf)
 {
-    bool succes = true;
-    int joursDecodes[8];
-    bool aCheval = (_hf < _hd);
+  bool succes = true;
+  int joursDecodes[8];
+  bool aCheval = (_hf < _hd);
 
-    succes = decoderJoursTrame(_joursRecu, joursDecodes);
+  succes = decoderJoursTrame(_joursRecu, joursDecodes);
 
-    if (succes)
+  if (succes)
+  {
+    int idCalendrier = obtenirProchainIdCalendrier();
+
+    for (int i = 0; joursDecodes[i] != -1 && succes; i++)
     {
-        int idCalendrier = obtenirProchainIdCalendrier();
+      int jourActuel = joursDecodes[i];
+      int jourSuivant = jourActuel + 1;
 
-        for (int i = 0; joursDecodes[i] != -1 && succes; i++)
+      if (jourActuel == 7)
+      {
+        jourSuivant = 1;
+      }
+
+      if (aCheval)
+      {
+        succes = insererCalendrier(idCalendrier, jourActuel, _hd, _md, 23, 59);
+        if (succes)
         {
-            int jourActuel = joursDecodes[i];
-            int jourSuivant = jourActuel + 1;
-
-            if (jourActuel == 7)
-            {
-                jourSuivant = 1;
-            }
-
-            if (aCheval)
-            {
-                succes = insererCalendrier(idCalendrier, jourActuel, _hd, _md, 23, 59);
-                if (succes)
-                {
-                    succes = insererCalendrier(idCalendrier, jourSuivant, 0, 0, _hf, _mf);
-                }
-            }
-
-            if (!aCheval)
-            {
-                succes = insererCalendrier(idCalendrier, jourActuel, _hd, _md, _hf, _mf);
-            }
+          succes = insererCalendrier(idCalendrier, jourSuivant, 0, 0, _hf, _mf);
         }
-    }
+      }
 
+      if (!aCheval)
+      {
+        succes = insererCalendrier(idCalendrier, jourActuel, _hd, _md, _hf, _mf);
+      }
+    }
+  }
+
+  if (DEBUGETTEST)
+  {
     if (succes)
     {
-        Serial.printf("Calendrier %d ajouté avec succès !\n", obtenirProchainIdCalendrier() - 1);
+      Serial.printf("Calendrier %d ajouté avec succès !\n", obtenirProchainIdCalendrier() - 1);
     }
-
-    return succes;
+  }
+  return succes;
 }
 
 /**
@@ -192,31 +184,30 @@ bool MemoireProgramme::ajouterEvenement(int _joursRecu, int _hd, int _md, int _h
  */
 bool MemoireProgramme::insererCalendrier(int _id, int _jours, int _hd, int _md, int _hf, int _mf)
 {
-    bool succes = true;
-    char *errMsg = nullptr;
-    char requete[256];
+  bool succes = true;
+  char *errMsg = nullptr;
+  char requete[256];
 
-    snprintf(requete, sizeof(requete),
-             "INSERT INTO CALENDRIER (id_calendrier, jours, hd, md, hf, mf) "
-             "VALUES (%d, %d, %d, %d, %d, %d);",
-             _id, _jours, _hd, _md, _hf, _mf);
+  snprintf(requete, sizeof(requete),
+           "INSERT INTO CALENDRIER (id_calendrier, jours, hd, md, hf, mf) "
+           "VALUES (%d, %d, %d, %d, %d, %d);",
+           _id, _jours, _hd, _md, _hf, _mf);
 
-    if (sqlite3_exec(db, requete, nullptr, nullptr, &errMsg) != SQLITE_OK)
-    {
-        Serial.printf("Erreur insertion calendrier : %s\n", errMsg);
-        sqlite3_free(errMsg);
-        succes = false;
-    }
+  if (sqlite3_exec(db, requete, nullptr, nullptr, &errMsg) != SQLITE_OK)
+  {
+    if (DEBUGETTEST) Serial.printf("Erreur insertion calendrier : %s\n", errMsg);
+    sqlite3_free(errMsg);
+    succes = false;
+  }
 
-    return succes;
+  return succes;
 }
-
 
 static int callbackCalendrier(void *data, int nbColonnes, char **valeurs, char **nomColonnes)
 {
-    bool *trouve = (bool *)data;
-    *trouve = true;
-    return 0;
+  bool *trouve = (bool *)data;
+  *trouve = true;
+  return 0;
 }
 
 /**
@@ -229,37 +220,37 @@ static int callbackCalendrier(void *data, int nbColonnes, char **valeurs, char *
  */
 bool MemoireProgramme::rechercherSession(int _jours, int _heure, int _minute, bool _debut)
 {
-    bool succes = true;
-    bool trouve = false;
-    char *errMsg = nullptr;
-    char requete[256];
+  bool succes = true;
+  bool trouve = false;
+  char *errMsg = nullptr;
+  char requete[256];
 
-    if (_debut)
-    {
-        snprintf(requete, sizeof(requete),
-                 "SELECT * FROM CALENDRIER WHERE jours = %d AND hd = %d AND md = %d;",
-                 _jours, _heure, _minute);
-    }
-    else
-    {
-        snprintf(requete, sizeof(requete),
-                 "SELECT * FROM CALENDRIER WHERE jours = %d AND hf = %d AND mf = %d;",
-                 _jours, _heure, _minute);
-    }
+  if (_debut)
+  {
+    snprintf(requete, sizeof(requete),
+             "SELECT * FROM CALENDRIER WHERE jours = %d AND hd = %d AND md = %d;",
+             _jours, _heure, _minute);
+  }
+  else
+  {
+    snprintf(requete, sizeof(requete),
+             "SELECT * FROM CALENDRIER WHERE jours = %d AND hf = %d AND mf = %d;",
+             _jours, _heure, _minute);
+  }
 
-    if (sqlite3_exec(db, requete, callbackCalendrier, &trouve, &errMsg) != SQLITE_OK)
-    {
-        Serial.printf("Erreur lecture calendrier : %s\n", errMsg);
-        sqlite3_free(errMsg);
-        succes = false;
-    }
+  if (sqlite3_exec(db, requete, callbackCalendrier, &trouve, &errMsg) != SQLITE_OK)
+  {
+    if (DEBUGETTEST) Serial.printf("Erreur lecture calendrier : %s\n", errMsg);
+    sqlite3_free(errMsg);
+    succes = false;
+  }
 
-    if (succes)
-    {
-        succes = trouve;
-    }
+  if (succes)
+  {
+    succes = trouve;
+  }
 
-    return succes;
+  return succes;
 }
 
 /**
@@ -269,26 +260,28 @@ bool MemoireProgramme::rechercherSession(int _jours, int _heure, int _minute, bo
  */
 bool MemoireProgramme::supprimerCalendrier(int _id)
 {
-    bool succes = true;
-    char *errMsg = nullptr;
-    char requete[128];
+  bool succes = true;
+  char *errMsg = nullptr;
+  char requete[128];
 
-    snprintf(requete, sizeof(requete),
-             "DELETE FROM CALENDRIER WHERE id_calendrier = %d;", _id);
+  snprintf(requete, sizeof(requete),
+           "DELETE FROM CALENDRIER WHERE id_calendrier = %d;", _id);
 
-    if (sqlite3_exec(db, requete, nullptr, nullptr, &errMsg) != SQLITE_OK)
-    {
-        Serial.printf("Erreur suppression CALENDRIER : %s\n", errMsg);
-        sqlite3_free(errMsg);
-        succes = false;
-    }
+  if (sqlite3_exec(db, requete, nullptr, nullptr, &errMsg) != SQLITE_OK)
+  {
+    if (DEBUGETTEST) Serial.printf("Erreur suppression CALENDRIER : %s\n", errMsg);
+    sqlite3_free(errMsg);
+    succes = false;
+  }
 
+  if (DEBUGETTEST) 
+  {
     if (succes)
     {
-        Serial.printf("Calendrier %d supprimé !\n", _id);
+      Serial.printf("Calendrier %d supprimé !\n", _id);
     }
-
-    return succes;
+  }
+  return succes;
 }
 
 /**
@@ -299,29 +292,28 @@ bool MemoireProgramme::supprimerCalendrier(int _id)
  */
 bool MemoireProgramme::decoderJoursTrame(int _joursRecu, int *_joursDecodes)
 {
-    bool succes = true;
-    int index = 0;
+  bool succes = true;
+  int index = 0;
 
-    for (int i = 0; i < 7; i++)
+  for (int i = 0; i < 7; i++)
+  {
+    if (_joursRecu & (1 << i))
     {
-        if (_joursRecu & (1 << i))
-        {
-            _joursDecodes[index] = i + 1;
-            index++;
-        }
+      _joursDecodes[index] = i + 1;
+      index++;
     }
+  }
 
-    _joursDecodes[index] = -1;
+  _joursDecodes[index] = -1;
 
-    if (index == 0)
-    {
-        Serial.println("Aucun jour valide recu !");
-        succes = false;
-    }
+  if (index == 0)
+  {
+    if (DEBUGETTEST) Serial.println("Aucun jour valide recu !");
+    succes = false;
+  }
 
-    return succes;
+  return succes;
 }
-
 
 /**
  * @brief Ajoute une alerte dans la table ALERTE
@@ -330,21 +322,21 @@ bool MemoireProgramme::decoderJoursTrame(int _joursRecu, int *_joursDecodes)
  */
 bool MemoireProgramme::ajouterAlerte(bool _type)
 {
-    bool succes = true;
-    char *errMsg = nullptr;
-    char requete[256];
+  bool succes = true;
+  char *errMsg = nullptr;
+  char requete[256];
 
-    snprintf(requete, sizeof(requete),
-             "INSERT INTO ALERTE (type_alerte) VALUES (%d);", _type);
+  snprintf(requete, sizeof(requete),
+           "INSERT INTO ALERTE (type_alerte) VALUES (%d);", _type);
 
-    if (sqlite3_exec(db, requete, nullptr, nullptr, &errMsg) != SQLITE_OK)
-    {
-        Serial.printf("Erreur insertion alerte : %s\n", errMsg);
-        sqlite3_free(errMsg);
-        succes = false;
-    }
+  if (sqlite3_exec(db, requete, nullptr, nullptr, &errMsg) != SQLITE_OK)
+  {
+    if (DEBUGETTEST) Serial.printf("Erreur insertion alerte : %s\n", errMsg);
+    sqlite3_free(errMsg);
+    succes = false;
+  }
 
-    return succes;
+  return succes;
 }
 
 /**
@@ -353,25 +345,28 @@ bool MemoireProgramme::ajouterAlerte(bool _type)
  */
 bool MemoireProgramme::supprimerAlerte()
 {
-    bool succes = true;
-    char *errMsg = nullptr;
-    char requete[128];
+  bool succes = true;
+  char *errMsg = nullptr;
+  char requete[128];
 
-    snprintf(requete, sizeof(requete), "DELETE FROM ALERTE;");
+  snprintf(requete, sizeof(requete), "DELETE FROM ALERTE;");
 
-    if (sqlite3_exec(db, requete, nullptr, nullptr, &errMsg) != SQLITE_OK)
-    {
-        Serial.printf("Erreur suppression alerte : %s\n", errMsg);
-        sqlite3_free(errMsg);
-        succes = false;
-    }
+  if (sqlite3_exec(db, requete, nullptr, nullptr, &errMsg) != SQLITE_OK)
+  {
+    if (DEBUGETTEST) Serial.printf("Erreur suppression alerte : %s\n", errMsg);
+    sqlite3_free(errMsg);
+    succes = false;
+  }
 
+  if (DEBUGETTEST) 
+  {
     if (succes)
     {
-        Serial.println("table alerte vidée");
+      Serial.println("table alerte vidée");
     }
+  }
 
-    return succes;
+  return succes;
 }
 
 /**
@@ -381,120 +376,120 @@ bool MemoireProgramme::supprimerAlerte()
  */
 String MemoireProgramme::obtenirTrameOriginale()
 {
-    String json = "";
-    sqlite3_stmt *stmt = nullptr;
+  String json = "";
+  sqlite3_stmt *stmt = nullptr;
 
-    const char *requete =
-        "SELECT id_calendrier, jours, hd, md, hf, mf "
-        "FROM CALENDRIER "
-        "ORDER BY id_calendrier, jours;";
+  const char *requete =
+      "SELECT id_calendrier, jours, hd, md, hf, mf "
+      "FROM CALENDRIER "
+      "ORDER BY id_calendrier, jours;";
 
-    if (sqlite3_prepare_v2(db, requete, -1, &stmt, nullptr) != SQLITE_OK)
+  if (sqlite3_prepare_v2(db, requete, -1, &stmt, nullptr) != SQLITE_OK)
+  {
+    if (DEBUGETTEST) Serial.printf("Erreur préparation : %s\n", sqlite3_errmsg(db));
+  }
+  else
+  {
+    int idCourant = -1;
+    int masqueJoursTous = 0;
+    int masqueJoursStart = 0;
+    int hd = 0, md = 0, hf = 0, mf = 0;
+    bool premiereLigne = true;
+
+    while (sqlite3_step(stmt) == SQLITE_ROW)
     {
-        Serial.printf("Erreur préparation : %s\n", sqlite3_errmsg(db));
-    }
-    else
-    {
-        int idCourant = -1;
-        int masqueJoursTous = 0;
-        int masqueJoursStart = 0;
-        int hd = 0, md = 0, hf = 0, mf = 0;
-        bool premiereLigne = true;
+      int idCalendrier = sqlite3_column_int(stmt, 0);
+      int jour = sqlite3_column_int(stmt, 1);
+      int hdLigne = sqlite3_column_int(stmt, 2);
+      int mdLigne = sqlite3_column_int(stmt, 3);
+      int hfLigne = sqlite3_column_int(stmt, 4);
+      int mfLigne = sqlite3_column_int(stmt, 5);
 
-        while (sqlite3_step(stmt) == SQLITE_ROW)
-        {
-            int idCalendrier = sqlite3_column_int(stmt, 0);
-            int jour         = sqlite3_column_int(stmt, 1);
-            int hdLigne      = sqlite3_column_int(stmt, 2);
-            int mdLigne      = sqlite3_column_int(stmt, 3);
-            int hfLigne      = sqlite3_column_int(stmt, 4);
-            int mfLigne      = sqlite3_column_int(stmt, 5);
-
-            if (idCalendrier != idCourant)
-            {
-                if (idCourant != -1)
-                {
-                    int joursFinal;
-                    if (hd > hf)
-                    {
-                        joursFinal = masqueJoursStart;
-                    }
-                    else
-                    {
-                        joursFinal = masqueJoursTous;
-                    }
-
-                    char ligne[256];
-                    snprintf(ligne, sizeof(ligne),
-                             "{\"action\":\"calendrier\",\"id\":%d,\"jours\":%d,\"hd\":%d,\"md\":%d,\"hf\":%d,\"mf\":%d}",
-                             idCourant, joursFinal, hd, md, hf, mf);
-                    json += String(ligne) + "\n";
-                }
-
-                idCourant = idCalendrier;
-                masqueJoursTous = 0;
-                masqueJoursStart = 0;
-                premiereLigne = true;
-            }
-
-            masqueJoursTous = masqueJoursTous | (1 << (jour - 1));
-
-            if (hdLigne != 0 || mdLigne != 0)
-            {
-                masqueJoursStart |= (1 << (jour - 1));
-            }
-
-            if (premiereLigne)
-            {
-                hd = hdLigne;
-                md = mdLigne;
-                hf = hfLigne;
-                mf = mfLigne;
-                premiereLigne = false;
-            }
-
-            if (hfLigne == 23 && mfLigne == 59)
-            {
-                hd = hdLigne;
-                md = mdLigne;
-            }
-
-            if (hdLigne == 0 && mdLigne == 0)
-            {
-                hf = hfLigne;
-                mf = mfLigne;
-            }
-        }
-
+      if (idCalendrier != idCourant)
+      {
         if (idCourant != -1)
         {
-            int joursFinal;
-            if (hd > hf)
-            {
-                joursFinal = masqueJoursStart;
-            }
-            else
-            {
-                joursFinal = masqueJoursTous;
-            }
+          int joursFinal;
+          if (hd > hf)
+          {
+            joursFinal = masqueJoursStart;
+          }
+          else
+          {
+            joursFinal = masqueJoursTous;
+          }
 
-            char ligne[256];
-            snprintf(ligne, sizeof(ligne),
-                     "{\"action\":\"calendrier\",\"id\":%d,\"jours\":%d,\"hd\":%d,\"md\":%d,\"hf\":%d,\"mf\":%d}",
-                     idCourant, joursFinal, hd, md, hf, mf);
-            json += String(ligne) + "\n";
+          char ligne[256];
+          snprintf(ligne, sizeof(ligne),
+                   "{\"action\":\"calendrier\",\"id\":%d,\"jours\":%d,\"hd\":%d,\"md\":%d,\"hf\":%d,\"mf\":%d}",
+                   idCourant, joursFinal, hd, md, hf, mf);
+          json += String(ligne) + "\n";
         }
 
-        if (json.length() == 0)
-        {
-            json = "{\"action\":\"calendrier\",\"id\":0,\"jours\":0,\"hd\":0,\"md\":0,\"hf\":0,\"mf\":0}\n";
-        }
+        idCourant = idCalendrier;
+        masqueJoursTous = 0;
+        masqueJoursStart = 0;
+        premiereLigne = true;
+      }
 
-        sqlite3_finalize(stmt);
-        Serial.println(json);
+      masqueJoursTous = masqueJoursTous | (1 << (jour - 1));
+
+      if (hdLigne != 0 || mdLigne != 0)
+      {
+        masqueJoursStart |= (1 << (jour - 1));
+      }
+
+      if (premiereLigne)
+      {
+        hd = hdLigne;
+        md = mdLigne;
+        hf = hfLigne;
+        mf = mfLigne;
+        premiereLigne = false;
+      }
+
+      if (hfLigne == 23 && mfLigne == 59)
+      {
+        hd = hdLigne;
+        md = mdLigne;
+      }
+
+      if (hdLigne == 0 && mdLigne == 0)
+      {
+        hf = hfLigne;
+        mf = mfLigne;
+      }
     }
 
-    return json;
+    if (idCourant != -1)
+    {
+      int joursFinal;
+      if (hd > hf)
+      {
+        joursFinal = masqueJoursStart;
+      }
+      else
+      {
+        joursFinal = masqueJoursTous;
+      }
+
+      char ligne[256];
+      snprintf(ligne, sizeof(ligne),
+               "{\"action\":\"calendrier\",\"id\":%d,\"jours\":%d,\"hd\":%d,\"md\":%d,\"hf\":%d,\"mf\":%d}",
+               idCourant, joursFinal, hd, md, hf, mf);
+      json += String(ligne) + "\n";
+    }
+
+    if (json.length() == 0)
+    {
+      json = "{\"action\":\"calendrier\",\"id\":0,\"jours\":0,\"hd\":0,\"md\":0,\"hf\":0,\"mf\":0}\n";
+    }
+
+    sqlite3_finalize(stmt);
+    if (DEBUGETTEST) Serial.println(json);
+  }
+
+  return json;
 }
 
 /**
@@ -504,84 +499,85 @@ String MemoireProgramme::obtenirTrameOriginale()
  */
 String MemoireProgramme::obtenirAlerte()
 {
-    String json = "";
-    sqlite3_stmt *stmt = nullptr;
+  String json = "";
+  sqlite3_stmt *stmt = nullptr;
 
-    const char *requete = "SELECT type_alerte FROM ALERTE;";
+  const char *requete = "SELECT type_alerte FROM ALERTE;";
 
-    if (sqlite3_prepare_v2(db, requete, -1, &stmt, nullptr) != SQLITE_OK)
+  if (sqlite3_prepare_v2(db, requete, -1, &stmt, nullptr) != SQLITE_OK)
+  {
+    if (DEBUGETTEST) Serial.printf("Erreur préparation ALERTE : %s\n", sqlite3_errmsg(db));
+  }
+  else
+  {
+    while (sqlite3_step(stmt) == SQLITE_ROW)
     {
-        Serial.printf("Erreur préparation ALERTE : %s\n", sqlite3_errmsg(db));
-    }
-    else
-    {
-        while (sqlite3_step(stmt) == SQLITE_ROW)
-        {
-            int typeBrut = sqlite3_column_int(stmt, 0);
-            const char *typeAlerte;
+      int typeBrut = sqlite3_column_int(stmt, 0);
+      const char *typeAlerte;
 
-            if (typeBrut == 1)
-            {
-                typeAlerte = "surchauffe";
-            }
-            else
-            {
-                typeAlerte = "surtension";
-            }
+      if (typeBrut == 1)
+      {
+        typeAlerte = "surchauffe";
+      }
+      else
+      {
+        typeAlerte = "surtension";
+      }
 
-            char ligne[256];
-            snprintf(ligne, sizeof(ligne),
-                     "{\"action\":\"alerte\",\"type\":\"%s\"}",
-                     typeAlerte);
+      char ligne[256];
+      snprintf(ligne, sizeof(ligne),
+               "{\"action\":\"alerte\",\"type\":\"%s\"}",
+               typeAlerte);
 
-            json += String(ligne) + "\n";
-        }
-
-        sqlite3_finalize(stmt);
-
-        if (json.length() > 0)
-        {
-            Serial.print("Alertes envoyées : ");
-            Serial.println(json);
-        }
+      json += String(ligne) + "\n";
     }
 
-    return json;
+    sqlite3_finalize(stmt);
+
+    if (DEBUGETTEST) 
+    {
+      if (json.length() > 0)
+      {
+        Serial.print("Alertes envoyées : ");
+        Serial.println(json);
+      }
+    }
+  }
+
+  return json;
 }
-
-
 
 // JUSTE POUR LE TEST UNITAIRE
 static int callbackAfficherTestUnitaire(void *data, int nbColonnes, char **valeurs, char **nomColonnes)
 {
-    for (int i = 0; i < nbColonnes; i++)
-    {
-        Serial.printf("%s = %s\n", nomColonnes[i], valeurs[i] ? valeurs[i] : "NULL");
-    }
-    Serial.println("---");
-    return 0;
+  for (int i = 0; i < nbColonnes; i++)
+  {
+    Serial.printf("%s = %s\n", nomColonnes[i], valeurs[i] ? valeurs[i] : "NULL");
+  }
+  Serial.println("---");
+  return 0;
 }
 
 // JUSTE POUR LE TEST UNITAIRE
 void MemoireProgramme::afficherCalendrierTestUnitaire()
 {
-    char *errMsg = nullptr;
+  char *errMsg = nullptr;
 
-    if (sqlite3_exec(db, "SELECT * FROM CALENDRIER;", callbackAfficherTestUnitaire, nullptr, &errMsg) != SQLITE_OK)
-    {
-        Serial.printf("Erreur affichage calendrier : %s\n", errMsg);
-        sqlite3_free(errMsg);
-    }
+  if (sqlite3_exec(db, "SELECT * FROM CALENDRIER;", callbackAfficherTestUnitaire, nullptr, &errMsg) != SQLITE_OK)
+  {
+    Serial.printf("Erreur affichage calendrier : %s\n", errMsg);
+    sqlite3_free(errMsg);
+  }
 }
 
 // JUSTE POUR LE TEST UNITAIRE
 void MemoireProgramme::afficherAlerteTestUnitaire()
 {
-    char *errMsg = nullptr;
+  char *errMsg = nullptr;
 
-    if (sqlite3_exec(db, "SELECT * FROM alerte;", callbackAfficherTestUnitaire, nullptr, &errMsg) != SQLITE_OK)
-    {
-        Serial.printf("Erreur affichage alerte : %s\n", errMsg);
-        sqlite3_free(errMsg);
-    }
+  if (sqlite3_exec(db, "SELECT * FROM alerte;", callbackAfficherTestUnitaire, nullptr, &errMsg) != SQLITE_OK)
+  {
+    Serial.printf("Erreur affichage alerte : %s\n", errMsg);
+    sqlite3_free(errMsg);
+  }
 }

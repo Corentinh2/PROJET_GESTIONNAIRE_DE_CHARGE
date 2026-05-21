@@ -1,12 +1,11 @@
 #include "RelaisCommande.h"
-#include <Arduino.h>
 
 /**
  * @brief Constructeur - configure la broche du relais en sortie
  */
 RelaisCommande::RelaisCommande()
 {
-    pinMode(D1, OUTPUT);
+    pinMode(PIN_RELAIS, OUTPUT);
 }
 
 /**
@@ -15,7 +14,7 @@ RelaisCommande::RelaisCommande()
  */
 void RelaisCommande::ouvrir()
 {
-    digitalWrite(D1, LOW);
+    digitalWrite(PIN_RELAIS, LOW);
 }
 
 /**
@@ -24,5 +23,5 @@ void RelaisCommande::ouvrir()
  */
 void RelaisCommande::fermer()
 {
-    digitalWrite(D1, HIGH);
+    digitalWrite(PIN_RELAIS, HIGH);
 }

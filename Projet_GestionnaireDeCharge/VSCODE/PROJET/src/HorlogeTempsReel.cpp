@@ -14,13 +14,13 @@ HorlogeTempsReel::HorlogeTempsReel()
   anchor = this;
   if (RTC_DS3231::begin())
   {
-    Serial.println("DS3231 initialisé.");
+    if (DEBUGETTEST) Serial.println("DS3231 initialisé.");
     succes = true;
     attachInterrupt(digitalPinToInterrupt(PIN_ALARME), HorlogeTempsReel::marshall, FALLING);
   }
   else
   {
-    Serial.println("DS3231 introuvable !");
+    if (DEBUGETTEST) Serial.println("DS3231 introuvable !");
   }
 }
 
@@ -60,11 +60,11 @@ void HorlogeTempsReel::synchroniserNTP()
         timeinfo.tm_hour,
         timeinfo.tm_min,
         timeinfo.tm_sec));
-    Serial.println("\nDS3231 synchronisé !");
+    if (DEBUGETTEST) Serial.println("\nDS3231 synchronisé !");
   }
   else
   {
-    Serial.println("\nÉchec NTP !");
+    if (DEBUGETTEST) Serial.println("\nÉchec NTP !");
   }
 }
 
@@ -112,11 +112,11 @@ void HorlogeTempsReel::configurerAlarmeMinute()
 
   if (!setAlarm1(now() + TimeSpan(60), DS3231_A1_Second))
   {
-    Serial.println("Erreur configuration alarme !");
+    if (DEBUGETTEST) Serial.println("Erreur configuration alarme !");
   }
   else
   {
-    Serial.println("Alarme minute configurée !");
+    if (DEBUGETTEST) Serial.println("Alarme minute configurée !");
   }
 }
 
