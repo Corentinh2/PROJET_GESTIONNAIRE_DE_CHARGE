@@ -9,6 +9,7 @@
 
 #include "CapteurCourant.h"
 
+
 /**
  * @brief Constructeur de la classe CapteurCourant.
  *
@@ -29,6 +30,10 @@ CapteurCourant::CapteurCourant(int pin, float sens)
  * définies à la construction. Doit être appelée avant toute lecture de courant.
  */
 void CapteurCourant::initialiser() {
+
+    analogReadResolution(12);
+    analogSetAttenuation(ADC_11db);
+
     emon.current(brocheAnalogique, sensibilite);
 }
 
@@ -47,14 +52,15 @@ float CapteurCourant::lireValeurCourant() {
     emon.calcVI(20,2000);         // Calculate all. No.of half wavelengths (crossings), time-out
             // Print out all variables (realpower, apparent power, Vrms, Irms, power factor)
 
-  float Irms            = emon.Irms;             //extract Irms into Variable
+            //extract Irms into Variable
 
-  return Irms;
+  return emon.Irms;
 }
 
-void CapteurCourant::begin() {
+/*void CapteurCourant::begin() {
     
 
-  emon.voltage(32, 234.26, 1.7);  // Voltage: input pin, calibration, phase_shift
-  emon.current(35, 20.35);
-}
+  emon.voltage(TENSION, 234.26, 1.7);  // Voltage: input pin, calibration, phase_shift
+  emon.current(COURANT, 20.35);
+
+}*/

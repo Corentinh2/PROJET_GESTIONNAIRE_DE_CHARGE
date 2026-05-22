@@ -1,0 +1,49 @@
+emon.calcVI(20,2000);
+// 1. Récupération des valeurs instantanées via les classes dédiées
+    float tensionInstantanee = emon.Vrms;
+    float courantInstantane = emon.Irms;
+    float puissanceInstantanee = emon.realPower;
+
+    // 2. Accumulation pour le calcul de la moyenne future
+    sommeTension += tensionInstantanee;
+    sommeCourant += courantInstantane;
+    sommePuissance += puissanceInstantanee;
+    nombreLectures++;
+
+    // 3. Affichage sur le moniteur série toutes les secondes
+    Serial.println("--- Mesures Instantanées ---");
+    Serial.print("Tension (V) : ");
+    Serial.println(tensionInstantanee);
+    Serial.print("Courant (A) : ");
+    Serial.println(courantInstantane);
+    Serial.print("Puissance (W) : ");
+    Serial.println(puissanceInstantanee);
+    Serial.println("----------------------------");
+
+    // 4. Vérification et traitement du palier des 60 secondes (moyenne)
+    if (nombreLectures >= 60) {
+        float moyenneTension = sommeTension / nombreLectures;
+        float moyenneCourant = sommeCourant / nombreLectures;
+        float moyennePuissance = somme / nombreLectures;
+
+        Serial.println("=========================================");
+        Serial.println("     MOYENNE DES DE LA MINUTE ÉCOULÉE    ");
+        Serial.print("Moyenne Tension : ");
+        Serial.print(moyenneTension);
+        Serial.println(" V");
+        Serial.print("Moyenne Courant : ");
+        Serial.print(moyenneCourant);
+        Serial.println(" A");
+        Serial.print("Moyenne Puissance : ");
+        Serial.print(moyennePuissance);
+        Serial.println(" W");
+        Serial.println("=========================================");
+
+        // Optionnel : Envoi vers la Raspberry Pi si les seuils sont OK
+        // raspi->EnvoyerMesures(moyenneTension, moyenneCourant, moyennePuissance);
+
+        // Réinitialisation des accumulateurs pour la minute suivante
+        sommeTension = 0.0;
+        sommeCourant = 0.0;
+        nombreLectures = 0;
+    }

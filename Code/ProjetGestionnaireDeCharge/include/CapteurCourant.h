@@ -2,20 +2,20 @@
 #define CAPTEUR_COURANT_H
 
 #include <EmonLib.h>
+#include "eps32_snir.h"
+#define SENSI 16.59
+#define SEUIL_MAX 18.0
 
 class CapteurCourant {
 private:
     int brocheAnalogique;
     float sensibilite;
-    EnergyMonitor emon;
-    const float SEUIL_MAX = 18.0;
 
 public:
-CapteurCourant() {} 
+    EnergyMonitor emon;
     CapteurCourant(int pin, float sens);
     void initialiser();
     float lireValeurCourant();
-    void begin();
 };
 
 #endif

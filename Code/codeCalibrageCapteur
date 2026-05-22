@@ -1,0 +1,34 @@
+#include <Arduino.h>
+#include <EmonLib.h>
+
+EnergyMonitor emon;
+
+void setup()
+{
+    Serial.begin(115200);
+    
+    pinMode(26,OUTPUT);
+    digitalWrite(26,HIGH);
+
+    analogReadResolution(12);
+    analogSetAttenuation(ADC_11db);
+   
+    emon.voltage(32, 300.78, 1.7);
+    emon.current(33, 16.59);
+}
+
+void loop()
+{
+    emon.calcVI(20, 2000);
+
+    Serial.print("Vrms: ");
+    Serial.println(emon.Vrms);
+
+    Serial.print("Irms: ");
+    Serial.println(emon.Irms);
+
+    Serial.print("Puissance: ");
+    Serial.println(emon.realPower);
+
+    delay(1000);
+}

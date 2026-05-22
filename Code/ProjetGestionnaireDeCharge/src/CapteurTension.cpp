@@ -18,8 +18,7 @@
  *
  * @param pin  Numéro de la broche analogique sur laquelle est branché le capteur ZMPT101B.
  */
-CapteurTension::CapteurTension(int pin) : brocheAnalogique(pin) {
-    capteur = new ZMPT101B(pin);
+CapteurTension::CapteurTension(int pin, float calib, float phase) : brocheAnalogique(pin),calibration(calib), dephasage(phase) {
 }
 
 /**
@@ -34,11 +33,8 @@ CapteurTension::CapteurTension(int pin) : brocheAnalogique(pin) {
  */
 void CapteurTension::initialiser() {
     Serial.println("--- Initialisation du Capteur ZMPT101B ---");
-    capteur->setVref(3.3);
-    int zero = capteur->calibrate();
-    Serial.print("Point zero detecte : ");
-    Serial.println(zero);
-    capteur->setSensitivity(0.0157232);
+    emon.voltage(brocheAnalogique, calibration, dephasage);
+    emon.current(32, 16.59);
 }
 
 /**
@@ -53,11 +49,8 @@ void CapteurTension::initialiser() {
  */
 float CapteurTension::lireValeurTension() {
     
-    float vAc = capteur->getVoltageAC();
-
-    // On retourne directement la valeur lue par le capteur 
-    // sans filtrage de seuil
-    return vAc;
+   emon.calcVI(20, 2000);
+    return emon.Vrms;
     
     
     
