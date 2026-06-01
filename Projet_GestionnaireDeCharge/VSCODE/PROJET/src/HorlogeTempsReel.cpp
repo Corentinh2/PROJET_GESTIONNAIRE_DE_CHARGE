@@ -77,17 +77,6 @@ DateTime HorlogeTempsReel::obtenirHeureActuelle()
   return now();
 }
 
-/**
- * @brief Affiche la date et l'heure actuelles sur le port série
- *        Format : JJ/MM/AAAA HH:MM:SS
- */
-void HorlogeTempsReel::afficherHeureAcutelle()
-{
-  DateTime maintenant = now();
-  Serial.printf("%02d/%02d/%04d %02d:%02d:%02d\n",
-                maintenant.day(), maintenant.month(), maintenant.year(),
-                maintenant.hour(), maintenant.minute(), maintenant.second());
-}
 
 /**
  * @brief Retourne l'état d'initialisation de l'horloge
@@ -180,3 +169,12 @@ void IRAM_ATTR HorlogeTempsReel::onAlarme()
 
 /** @brief Initialisation du pointeur statique vers l'instance courante */
 HorlogeTempsReel *HorlogeTempsReel::anchor = NULL;
+
+//DEBUGETTEST
+void HorlogeTempsReel::afficherHeureAcutelle()
+{
+  DateTime maintenant = now();
+  Serial.printf("%02d/%02d/%04d %02d:%02d:%02d\n",
+                maintenant.day(), maintenant.month(), maintenant.year(),
+                maintenant.hour(), maintenant.minute(), maintenant.second());
+}

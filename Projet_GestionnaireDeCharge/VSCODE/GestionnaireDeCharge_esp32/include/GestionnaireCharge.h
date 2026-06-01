@@ -6,13 +6,9 @@
 #include "RelaisCommande.h"
 #include "CommunicationMobile.h"
 #include "CapteurTemp.h"
-
-#include "CapteurTension.h"
-#include "CapteurCourant.h"
 #include "ConnectionRaspberryPi.h"
-
-/** @brief Température maximale en degrés Celsius avant déclenchement de l'alarme */
-#define TEMPMAX 50
+#include "CapteurCourantTension.h"
+#include "constantes.h"
 
 /**
  * @brief Classe principale de gestion de la charge du véhicule électrique
@@ -20,10 +16,6 @@
 class GestionnaireCharge
 {
 private:
-  CapteurTension *capteurTension;
-  CapteurCourant *capteurCourant;
-  ConnectionRaspberryPi *raspi;
-
   /** @brief Pointeur vers l'horloge temps réel DS3231 */
   HorlogeTempsReel *horloge;
 
@@ -38,6 +30,9 @@ private:
 
   /** @brief Pointeur vers le capteur de température DS18B20 */
   CapteurTemp *ds18s20;
+
+  ConnectionRaspberryPi  *raspi;
+  CapteurCourantTension  *capteur;
 
   /** @brief Indique si tous les composants sont initialisés correctement */
   bool etat;
@@ -57,12 +52,7 @@ private:
   /** @brief Timestamp de la dernière tentative de reconnexion WiFi */
   unsigned long derniereTentativeWifi;
 
-  float sommeTension = 0;
-  float sommeCourant = 0;
-  float energieCumuleeWh = 0;
-  int nombreLectures = 0;
-  unsigned long chronoMinute = 0;
-  unsigned long derniereMesure = 0;
+  float energieCumuleeWh;
 
 public:
   /**
@@ -76,23 +66,9 @@ public:
   ~GestionnaireCharge();
 
   /**
-   * @brief Retourne l'état d'initialisation du gestionnaire
-   * @return true si tous les composants sont initialisés correctement, false sinon
-   */
-  bool obtenirEtat() const;
-
-  /**
-   * @brief Synchronise l'horloge temps réel avec un serveur NTP
-   */
-  void synchroniserHorloge();
-
-  /**
    * @brief Contrôle la charge en fonction du calendrier, de la marche forcée et de la température
    */
   void controler();
-
-  void initialiserCapteurs();
-  void envoyerMesures();
 
   // JUSTE POUR LE TEST UNITAIRE
   MemoireProgramme *obtenirMemoire();

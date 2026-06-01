@@ -11,7 +11,7 @@ CommunicationMobile::CommunicationMobile(MemoireProgramme *_memoire)
     clientConnecte = false;
     relais = -1;
     serveur.listen(PORT);
-    Serial.println("Serveur WebSocket démarré sur le port 5555 !");
+    if (DEBUGETTEST) Serial.println("Serveur WebSocket démarré sur le port 5555 !");
 }
 
 /**
@@ -32,8 +32,8 @@ void CommunicationMobile::traiterMessage(String data)
     DeserializationError erreur = deserializeJson(doc, data);
     if (erreur)
     {
-        Serial.printf("Erreur JSON : %s\n", erreur.c_str());
-        return;
+        if (DEBUGETTEST) Serial.printf("Erreur JSON : %s\n", erreur.c_str());
+        relais = -1;
     }
 
     String action = doc["action"].as<String>();
@@ -45,7 +45,7 @@ void CommunicationMobile::traiterMessage(String data)
     }
     if (action == "ajouterCalendrier")
     {
-        memoire->ajouterEvenement(doc["jours"], doc["hd"], doc["md"], doc["hf"], doc["mf"]);
+        memoire->ajouterCalendrier(doc["jours"], doc["hd"], doc["md"], doc["hf"], doc["mf"]);
     }
     if (action == "supprimerCalendrier")
     {
@@ -79,10 +79,10 @@ int CommunicationMobile::gererCommunication()
         {
             client = nouveau;
             clientConnecte = true;
-            Serial.println("Client connecté !");
+            if (DEBUGETTEST) Serial.println("Client connecté !");
 
             client.onMessage([this](WebsocketsMessage msg) {
-                Serial.printf("Message reçu : %s\n", msg.data().c_str());
+                if (DEBUGETTEST) Serial.printf("Message reçu : %s\n", msg.data().c_str());
                 traiterMessage(msg.data());
             });
 
@@ -90,7 +90,7 @@ int CommunicationMobile::gererCommunication()
                 if (event == WebsocketsEvent::ConnectionClosed)
                 {
                     clientConnecte = false;
-                    Serial.println("Client déconnecté !");
+                    if (DEBUGETTEST) Serial.println("Client déconnecté !");
                 }
             });
         }

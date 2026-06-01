@@ -4,9 +4,7 @@
 #include <ArduinoWebsockets.h>
 #include <ArduinoJson.h>
 #include "MemoireProgramme.h"
-
-/** @brief Port d'écoute du serveur WebSocket */
-#define PORT 5555
+#include "constantes.h"
 
 using namespace websockets;
 

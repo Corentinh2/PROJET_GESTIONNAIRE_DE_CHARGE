@@ -4,9 +4,7 @@
 #include <Arduino.h>
 #include <OneWire.h>
 #include <DallasTemperature.h>
-
-/** @brief Broche de données du capteur DS18B20 */
-#define PIN_DS18S20 18
+#include "constantes.h"
 
 /**
  * @brief Classe de gestion du capteur de température DS18B20

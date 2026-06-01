@@ -16,4 +16,13 @@
 /** @brief Broche de commande du relais */
 #define PIN_RELAIS 26
 
+#define TENSION     34      // Pin ADC tension
+#define COURANT     35      // Pin ADC courant
+#define CALIB       234.26  // Calibration tension
+#define DEPHASAGE   1.7     // Déphasage tension
+#define SENSI       60.6    // Sensibilité capteur courant
+
+
+
+
 #define DEBUGETTEST true

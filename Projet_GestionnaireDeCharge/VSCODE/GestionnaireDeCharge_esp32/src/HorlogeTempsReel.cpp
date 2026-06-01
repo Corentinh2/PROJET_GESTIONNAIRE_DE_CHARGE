@@ -14,13 +14,13 @@ HorlogeTempsReel::HorlogeTempsReel()
   anchor = this;
   if (RTC_DS3231::begin())
   {
-    Serial.println("DS3231 initialisé.");
+    if (DEBUGETTEST) Serial.println("DS3231 initialisé.");
     succes = true;
     attachInterrupt(digitalPinToInterrupt(PIN_ALARME), HorlogeTempsReel::marshall, FALLING);
   }
   else
   {
-    Serial.println("DS3231 introuvable !");
+    if (DEBUGETTEST) Serial.println("DS3231 introuvable !");
   }
 }
 
@@ -33,20 +33,20 @@ void HorlogeTempsReel::synchroniserNTP()
 {
   bool ntpOk = false;
   struct tm timeinfo;
-  int essaies = 0;
+  int retries = 0;
 
   configTime(0, 0, "pool.ntp.org", "time.nist.gov");
   setenv("TZ", "CET-1CEST,M3.5.0,M10.5.0/3", 1);
   tzset();
 
-  while (!getLocalTime(&timeinfo) && essaies < 20)
+  while (!getLocalTime(&timeinfo) && retries < 20)
   {
     Serial.print(".");
     delay(500);
-    essaies++;
+    retries++;
   }
 
-  if (essaies < 20)
+  if (retries < 20)
   {
     ntpOk = true;
   }
@@ -60,11 +60,11 @@ void HorlogeTempsReel::synchroniserNTP()
         timeinfo.tm_hour,
         timeinfo.tm_min,
         timeinfo.tm_sec));
-    Serial.println("\nDS3231 synchronisé !");
+    if (DEBUGETTEST) Serial.println("\nDS3231 synchronisé !");
   }
   else
   {
-    Serial.println("\nÉchec NTP !");
+    if (DEBUGETTEST) Serial.println("\nÉchec NTP !");
   }
 }
 
@@ -77,17 +77,6 @@ DateTime HorlogeTempsReel::obtenirHeureActuelle()
   return now();
 }
 
-/**
- * @brief Affiche la date et l'heure actuelles sur le port série
- *        Format : JJ/MM/AAAA HH:MM:SS
- */
-void HorlogeTempsReel::afficherHeureAcutelle()
-{
-  DateTime maintenant = now();
-  Serial.printf("%02d/%02d/%04d %02d:%02d:%02d\n",
-                maintenant.day(), maintenant.month(), maintenant.year(),
-                maintenant.hour(), maintenant.minute(), maintenant.second());
-}
 
 /**
  * @brief Retourne l'état d'initialisation de l'horloge
@@ -112,11 +101,11 @@ void HorlogeTempsReel::configurerAlarmeMinute()
 
   if (!setAlarm1(now() + TimeSpan(60), DS3231_A1_Second))
   {
-    Serial.println("Erreur configuration alarme !");
+    if (DEBUGETTEST) Serial.println("Erreur configuration alarme !");
   }
   else
   {
-    Serial.println("Alarme minute configurée !");
+    if (DEBUGETTEST) Serial.println("Alarme minute configurée !");
   }
 }
 
@@ -180,3 +169,12 @@ void IRAM_ATTR HorlogeTempsReel::onAlarme()
 
 /** @brief Initialisation du pointeur statique vers l'instance courante */
 HorlogeTempsReel *HorlogeTempsReel::anchor = NULL;
+
+//DEBUGETTEST
+void HorlogeTempsReel::afficherHeureAcutelle()
+{
+  DateTime maintenant = now();
+  Serial.printf("%02d/%02d/%04d %02d:%02d:%02d\n",
+                maintenant.day(), maintenant.month(), maintenant.year(),
+                maintenant.hour(), maintenant.minute(), maintenant.second());
+}

@@ -10,7 +10,7 @@ CapteurTemp::CapteurTemp(int8_t seuilMax)
     capteur.begin();
     if (capteur.getDeviceCount() == 0)
     {
-        Serial.println("CapteurTemp : aucun capteur détecté !");
+        if (DEBUGETTEST) Serial.println("CapteurTemp : aucun capteur détecté !");
     }
     else
     {
@@ -21,7 +21,7 @@ CapteurTemp::CapteurTemp(int8_t seuilMax)
         }
         else
         {
-            Serial.println("CapteurTemp : erreur lecture adresse !");
+            if (DEBUGETTEST) Serial.println("CapteurTemp : erreur lecture adresse !");
         }
     }
 }

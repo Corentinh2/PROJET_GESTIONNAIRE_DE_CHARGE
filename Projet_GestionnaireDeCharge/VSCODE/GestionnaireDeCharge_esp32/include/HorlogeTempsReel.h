@@ -3,9 +3,8 @@
 
 #include <Wire.h>
 #include <RTClib.h>
+#include "constantes.h"
 
-/** @brief Broche de réception du signal d'alarme du DS3231 */
-#define PIN_ALARME 23
 
 /**
  * @brief Classe de gestion de l'horloge temps réel DS3231
@@ -52,11 +51,6 @@ public:
   DateTime obtenirHeureActuelle();
 
   /**
-   * @brief Affiche la date et l'heure actuelles sur le port série
-   */
-  void afficherHeureAcutelle();
-
-  /**
    * @brief Retourne l'état d'initialisation de l'horloge
    * @return true si le DS3231 est initialisé correctement, false sinon
    */
@@ -83,6 +77,9 @@ public:
    * @return Entier représentant le jour de la semaine
    */
   int obtenirJourSemaine();
+
+  //DEBUGETTEST
+  void afficherHeureAcutelle();
 };
 
 #endif

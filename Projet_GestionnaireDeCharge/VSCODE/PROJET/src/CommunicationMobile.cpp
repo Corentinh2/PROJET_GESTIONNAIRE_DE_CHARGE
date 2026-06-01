@@ -45,7 +45,7 @@ void CommunicationMobile::traiterMessage(String data)
     }
     if (action == "ajouterCalendrier")
     {
-        memoire->ajouterEvenement(doc["jours"], doc["hd"], doc["md"], doc["hf"], doc["mf"]);
+        memoire->ajouterCalendrier(doc["jours"], doc["hd"], doc["md"], doc["hf"], doc["mf"]);
     }
     if (action == "supprimerCalendrier")
     {

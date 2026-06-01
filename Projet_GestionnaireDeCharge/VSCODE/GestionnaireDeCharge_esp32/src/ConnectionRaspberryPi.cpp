@@ -1,67 +1,67 @@
+/**
+ * @file ConnectionRaspberryPi.cpp
+ * @brief Implémentation de la classe ConnectionRaspberryPi pour la communication
+ *        Wi-Fi et WebSocket entre l'ESP32 et le serveur Qt du Raspberry Pi.
+ *
+ * Utilise la bibliothèque ArduinoWebsockets (gilmaimon).
+ */
+
 #include "ConnectionRaspberryPi.h"
 
+/**
+ * @brief Constructeur par défaut.
+ */
 ConnectionRaspberryPi::ConnectionRaspberryPi()
 {
     // Constructeur vide
 }
 
+/**
+ * @brief Initialise la connexion Wi-Fi et établit la connexion WebSocket.
+ */
 void ConnectionRaspberryPi::initialiserConnexion()
 {
+    // Enregistrement du callback de réception de messages
+    _webSocket.onMessage([](WebsocketsMessage message) {
+        Serial.println("[WS] Message reçu : " + message.data());
+    });
 
-#if 0
-    // Connexion Wi-Fi
-    WiFi.begin(ssid, password);
-    Serial.print("Connexion au Wi-Fi");
-    while (WiFi.status() != WL_CONNECTED) {
-        delay(500);
-        Serial.print(".");
-    }
-    Serial.println("\nConnecté !");
-    Serial.print("Adresse IP de l'ESP32 : ");
-    Serial.println(WiFi.localIP());
-#endif
+    // Enregistrement du callback d'événements (connexion / déconnexion)
+    _webSocket.onEvent([](WebsocketsEvent event, String data) {
+        switch (event)
+        {
+        case WebsocketsEvent::ConnectionOpened:
+            Serial.println("[WS] Connecté au serveur Qt !");
+            break;
+        case WebsocketsEvent::ConnectionClosed:
+            Serial.println("[WS] Déconnecté du serveur Qt !");
+            break;
+        case WebsocketsEvent::GotPing:
+            Serial.println("[WS] Ping reçu.");
+            break;
+        default:
+            break;
+        }
+    });
 
-    // Callback déclenché à chaque message reçu
-    _webSocket.onMessage([](WebsocketsMessage message)
-                         { Serial.println("[WS] Message reçu : " + message.data()); });
-
-    // Callback déclenché sur les événements de connexion/déconnexion
-    _webSocket.onEvent([this](WebsocketsEvent event, String data)
-                       {
-        switch (event) {
-            case WebsocketsEvent::ConnectionOpened:
-                Serial.println("[WS] Connecté au serveur Qt !");
-                _connecte = true;
-                break;
-            case WebsocketsEvent::ConnectionClosed:
-                Serial.println("[WS] Déconnecté du serveur Qt !");
-                _connecte = false;
-                break;
-            case WebsocketsEvent::GotPing:
-                Serial.println("[WS] Ping reçu");
-                break;
-            default:
-                break;
-        } });
-
-    // Construction de l'URL WebSocket et tentative de connexion
+    // Connexion au serveur WebSocket du Raspberry Pi
     String url = "ws://" + String(adresseRaspi) + ":" + String(portRaspi) + "/";
-    Serial.println("[WS] Tentative de connexion au serveur Qt...");
-    _connecte = _webSocket.connect(url);
+    bool connected = _webSocket.connect(url);
 
-    if (_connecte)
-    {
-        Serial.println("[WS] Connexion WebSocket établie.");
-    }
+    if (connected)
+        Serial.println("[WS] Connexion au serveur Qt établie.");
     else
-    {
-        Serial.println("[WS] Échec de la connexion WebSocket.");
-    }
+        Serial.println("[WS] Échec de connexion au serveur Qt.");
 }
 
+/**
+ * @brief Envoie un message texte au serveur Qt via WebSocket.
+ *
+ * @param msg  Chaîne de caractères à envoyer.
+ */
 void ConnectionRaspberryPi::EnvoyerNotification(String msg)
 {
-    if (_connecte && _webSocket.available())
+    if (_webSocket.available())
     {
         _webSocket.send(msg);
         Serial.println("[WS] Message envoyé : " + msg);
@@ -72,29 +72,51 @@ void ConnectionRaspberryPi::EnvoyerNotification(String msg)
     }
 }
 
+/**
+ * @brief Clôture la session en notifiant le serveur Qt et en fermant la connexion.
+ */
 void ConnectionRaspberryPi::cloturerSession()
 {
     EnvoyerNotification("STOP;0;0");
     _webSocket.close();
-    _connecte = false;
-    client.stop();
 }
 
+/**
+ * @brief Maintient la connexion WebSocket active (à appeler dans loop()).
+ */
 void ConnectionRaspberryPi::maintenirConnexion()
 {
-    // Traite les messages et événements entrants
     _webSocket.poll();
 }
 
+/**
+ * @brief Construit et envoie une alerte structurée en JSON.
+ *
+ * @param type   0 = alerte courant, 1 = alerte température.
+ * @param texte  Message descriptif de l'alerte.
+ */
 void ConnectionRaspberryPi::EnvoyerAlerte(int type, String texte)
 {
     JsonDocument doc;
-    doc["action"] = "alerte";
-    doc["type"] = type;
+    doc["action"]  = "alerte";
+    doc["type"]    = type;
     doc["message"] = texte;
     doc["idBorne"] = 1;
 
     String trame;
     serializeJson(doc, trame);
+
+    EnvoyerNotification(trame);
+}
+
+/**
+ * @brief Construit et envoie la puissance moyenne en JSON.
+ *
+ * @param moyennePuissance  Moyenne de la puissance (W).
+ */
+void ConnectionRaspberryPi::EnvoyerMesures(float moyennePuissance)
+{
+    String trame = "{\"puissance\":" + String(moyennePuissance, 2) + "}";
+    Serial.println("[WS] Envoi trame : " + trame);
     EnvoyerNotification(trame);
 }

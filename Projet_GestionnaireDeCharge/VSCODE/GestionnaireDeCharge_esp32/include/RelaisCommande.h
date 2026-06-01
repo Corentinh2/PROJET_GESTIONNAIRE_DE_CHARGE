@@ -1,8 +1,9 @@
 #ifndef RELAIS_COMMANDE_H
 #define RELAIS_COMMANDE_H
 
-/** @brief Broche de commande du relais (LED rouge en test) */
-#define D1 13
+#include <Arduino.h>
+#include <Wire.h>
+#include "constantes.h"
 
 /**
  * @brief Classe de gestion du relais de commande de la charge

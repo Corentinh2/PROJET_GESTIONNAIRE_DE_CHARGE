@@ -8,7 +8,7 @@ typedef struct sqlite3 sqlite3;
 
 /**
  * @brief Classe de gestion de la mémoire programme via une base de données SQLite
- *        Stocke les créneaux de charge (calendrier) et les alertes sur LittleFS
+ *        Stocke les sessions de charge et les alertes sur LittleFS
  */
 class MemoireProgramme
 {
@@ -20,16 +20,16 @@ private:
   bool estOuverte;
 
   /**
-   * @brief Crée les tables CALENDRIER et ALERTE si elles n'existent pas
+   * @brief Crée les tables SESSIONS et ALERTE si elles n'existent pas
    * @return true si la création des tables a réussi, false sinon
    */
   bool creerTables();
 
   /**
-   * @brief Calcule le prochain identifiant de calendrier disponible
+   * @brief Calcule le prochain numéro de calendrier disponible
    * @return Prochain identifiant entier disponible
    */
-  int obtenirProchainIdCalendrier();
+  int obtenirProchainNumCalendrier();
 
 public:
   /**
@@ -43,7 +43,7 @@ public:
   ~MemoireProgramme();
 
   /**
-   * @brief Ajoute un événement de charge dans le calendrier
+   * @brief Ajoute un calendrier dans la table SESSIONS
    *        Gère automatiquement les créneaux à cheval sur minuit
    * @param _jours Masque de bits des jours de la semaine (bits 0 à 6 = lundi à dimanche)
    * @param _hd Heure de début (0-23)
@@ -52,11 +52,11 @@ public:
    * @param _mf Minute de fin (0 ou 30)
    * @return true si l'ajout a réussi, false sinon
    */
-  bool ajouterEvenement(int _jours, int _hd, int _md, int _hf, int _mf);
+  bool ajouterCalendrier(int _jours, int _hd, int _md, int _hf, int _mf);
 
   /**
-   * @brief Insère une ligne dans la table CALENDRIER
-   * @param _id Identifiant du calendrier
+   * @brief Insère une session de charge dans la table SESSIONS
+   * @param _num Numéro du calendrier
    * @param _jours Jour de la semaine (1 à 7)
    * @param _hd Heure de début (0-23)
    * @param _md Minute de début (0 ou 30)
@@ -64,7 +64,7 @@ public:
    * @param _mf Minute de fin (0 ou 30)
    * @return true si l'insertion a réussi, false sinon
    */
-  bool insererCalendrier(int _id, int _jours, int _hd, int _md, int _hf, int _mf);
+  bool insererSession(int _num, int _jours, int _hd, int _md, int _hf, int _mf);
 
   /**
    * @brief Vérifie si un créneau correspond à l'heure actuelle
@@ -77,11 +77,11 @@ public:
   bool rechercherSession(int _jours, int _heure, int _minute, bool _debut);
 
   /**
-   * @brief Supprime tous les enregistrements d'un calendrier par son identifiant
-   * @param _id Identifiant du calendrier à supprimer
+   * @brief Supprime toutes les sessions d'un calendrier par son numéro
+   * @param _num Identifiant du calendrier à supprimer
    * @return true si la suppression a réussi, false sinon
    */
-  bool supprimerCalendrier(int _id);
+  bool supprimerCalendrier(int _num);
 
   /**
    * @brief Décode un masque de bits de jours en tableau de jours individuels

@@ -134,7 +134,7 @@ void afficherMenuTest()
         }
       }
     }
-    gestionnaire->obtenirMemoire()->ajouterEvenement(jours, hd, md, hf, mf);
+    gestionnaire->obtenirMemoire()->ajouterCalendrier(jours, hd, md, hf, mf);
     Serial.printf("\nCalendrier ajouté : %d,%d,%d,%d,%d\n", jours, hd, md, hf, mf);
     break;
   }

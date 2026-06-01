@@ -59,11 +59,6 @@ public:
   ~GestionnaireCharge();
 
   /**
-   * @brief Synchronise l'horloge temps réel avec un serveur NTP
-   */
-  void synchroniserHorloge();
-
-  /**
    * @brief Contrôle la charge en fonction du calendrier, de la marche forcée et de la température
    */
   void controler();

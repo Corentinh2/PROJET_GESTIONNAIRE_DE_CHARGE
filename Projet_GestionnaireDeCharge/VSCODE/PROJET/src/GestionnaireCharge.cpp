@@ -49,13 +49,6 @@ GestionnaireCharge::~GestionnaireCharge()
   delete ds18s20;
 }
 
-/**
- * @brief Synchronise l'horloge temps réel avec un serveur NTP
- */
-void GestionnaireCharge::synchroniserHorloge()
-{
-  horloge->synchroniserNTP();
-}
 
 /**
  * @brief Contrôle la charge en fonction du calendrier, de la marche forcée et de la température.

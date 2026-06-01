@@ -2,6 +2,8 @@
 #include <WiFi.h>
 #include "GestionnaireCharge.h"
 
+#define BP1 39
+
 const char *ssid = "fortinet";
 const char *motDePasse = "Projet2026";
 
@@ -34,7 +36,7 @@ void afficherMenuTest()
       if (carLu == '\n' || carLu == '\r')
       {
         choix.trim();
-        if (choix == "1" || choix == "2" || choix == "3" || choix == "4" || choix == "5" || choix == "6" || choix == "7" )
+        if (choix == "1" || choix == "2" || choix == "3" || choix == "4" || choix == "5" || choix == "6" || choix == "7")
         {
           choixValide = true;
         }
@@ -53,7 +55,7 @@ void afficherMenuTest()
 
   switch (choix.toInt())
   {
-  break;
+    break;
   case 1:
   {
     String trame = "";
@@ -132,7 +134,7 @@ void afficherMenuTest()
         }
       }
     }
-    gestionnaire->obtenirMemoire()->ajouterEvenement(jours, hd, md, hf, mf);
+    gestionnaire->obtenirMemoire()->ajouterCalendrier(jours, hd, md, hf, mf);
     Serial.printf("\nCalendrier ajouté : %d,%d,%d,%d,%d\n", jours, hd, md, hf, mf);
     break;
   }
@@ -241,24 +243,42 @@ void afficherMenuTest()
 void setup()
 {
   Serial.begin(115200);
-  delay(2000);
-  Serial.println("Démarrage...");
-  Wire.begin();
+
+  if (DEBUGETTEST)
+  {
+    delay(2000);
+    Serial.println("Démarrage...");
+  }
+
+  Wire.begin(); 
 
   WiFi.begin(ssid, motDePasse);
   while (WiFi.status() != WL_CONNECTED)
   {
     delay(500);
-    Serial.print(".");
+    if (DEBUGETTEST) Serial.print(".");
   }
-  Serial.println("\nWiFi connecté !");
-  delay(1000);
+
+  if (DEBUGETTEST)
+  {
+    Serial.println("\nWiFi connecté !");
+    delay(1000);
+  }
 
   gestionnaire = new GestionnaireCharge(ssid, motDePasse);
-  //afficherMenuTest();
+
+  if (DEBUGETTEST) pinMode(BP1, INPUT);
 }
 
 void loop()
 {
+  if (DEBUGETTEST)
+  {
+    if (digitalRead(BP1) == LOW)
+    {
+      afficherMenuTest();
+      delay(1000);
+    }
+  }
   gestionnaire->controler();
 }
