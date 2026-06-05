@@ -1,0 +1,65 @@
+@startuml Consulter_historique_charge
+
+title Consulter l'historique de la charge
+
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+
+actor Admin
+
+box "Front-end" #LightBlue
+    participant "IHM : VueAdmin\n(mesures.php / mesures.js)" as VUE
+end box
+
+box "Back-end" #LightGreen
+    participant "Raspberry : Controleur\n(controleur.php)" as CTRL
+end box
+
+box "Base de données" #LightYellow
+    participant "laBdd : Modele\n(modele_mesures_inc.php)" as MODELE
+end box
+
+== Choisir critères ==
+
+Admin -> VUE : choisirCriteres\n(accès mesures.php)
+activate VUE
+
+== Récupération du nom de la borne ==
+
+VUE -> CTRL : $.ajax — commande:'GetNomBorne'\n($_SESSION['idBorne'])
+activate CTRL
+
+CTRL -> MODELE : GetNomBorne()
+activate MODELE
+
+MODELE --> CTRL : $nom
+deactivate MODELE
+
+CTRL --> VUE : json_encode($nom)
+deactivate CTRL
+
+VUE -> VUE : $("#titreBorne").text(donnees)\n$("#titreMesures").text(\n"30 dernières mesures - " + donnees)
+
+== getHistorique (période) ==
+
+VUE -> CTRL : $.ajax — commande:'GetDernieresMesuresParBorne'\n($_SESSION['idBorne'])
+activate CTRL
+
+CTRL -> MODELE : GetDernieresMesuresParBorne()
+activate MODELE
+
+MODELE --> CTRL : $liste_mesures\n(30 dernières mesures)
+deactivate MODELE
+
+CTRL --> VUE : json_encode($liste_mesures,\nJSON_NUMERIC_CHECK)
+deactivate CTRL
+
+== dessinerGraphique() ==
+
+VUE -> VUE : $('#table_mesures').DataTable({\n  data: donnees)
+
+VUE --> Admin : tableau des 30 dernières\nmesures affiché
+
+deactivate VUE
+
+@enduml

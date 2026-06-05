@@ -1,0 +1,99 @@
+@startuml GestioBorne
+
+skinparam classAttributeIconSize 0
+skinparam classFontStyle bold
+skinparam shadowing false
+skinparam backgroundColor #FFFFFF
+skinparam class {
+    BackgroundColor #FFFFFF
+    BorderColor #495057
+    HeaderBackgroundColor #FFFFFF
+    HeaderFontColor #000000
+    ArrowColor #495057
+}
+
+' ─────────────────────────────────────────
+'  CONTROLEUR
+' ─────────────────────────────────────────
+class Controleur {
+    + SauveMajIdBorne(id : int) : json
+    + Connexion(login : string, mdp : string) : json
+    + CreerCompte(login : string, mdp : string) : json
+    + Deconnexion() : json
+    + RecupererListeBorne() : json
+    + GetMesuresParBorne(debut : string, fin : string) : json
+    + GetNomBorne() : json
+    + RecupererListeUtilisateur() : json
+    + SupprimerUtilisateur(id : int) : json
+    + ModifierUtilisateur(id : int, mdp : string) : json
+    + ActiverUtilisateur(id : int) : json
+    + SuspendreUtilisateur(id : int) : json
+    + GetDernieresMesuresParBorne() : json
+    + AjouterBorne(nom : string, emplacement : string, puissance : float, ip : string) : json
+    + ModifierBorne(id : int, nom : string, emplacement : string, puissance : float, ip : string) : json
+    + SupprimerBorne(id : int) : json
+}
+
+' ─────────────────────────────────────────
+'  VUE
+' ─────────────────────────────────────────
+class Vue {
+    + Connexion() : void
+    + CreerCompte() : void
+    + RecupererListeBorne() : void
+    + SelectionnerBorne(id : int) : void
+    + GetMesuresParBorne(deb : string, fin : string) : void
+    + GetNomBorne() : void
+    + GetDernieresMesuresParBorne() : void
+    + chargerTableauBornes() : void
+    + ajouterBorne() : void
+    + modifierBorne() : void
+    + supprimerBorne() : void
+    + Deconnexion() : void
+}
+
+' ─────────────────────────────────────────
+'  MODELE UTILISATEUR
+' ─────────────────────────────────────────
+class modele_utilisateur {
+    + connexionBdd() : PDO
+    + LoginVerify(login : string) : bool
+    + Connexion(login : string, mdp : string) : string
+    + CreerUtilisateur(login : string, mdp : string) : string
+    + RecupererListeUtilisateur() : array
+    + SupprimerUtilisateur(id : int) : string
+    + ModifierUtilisateur(id : int, mdp : string) : string
+    + ChangerEtatUtilisateur(id : int, etat : int) : string
+}
+
+' ─────────────────────────────────────────
+'  MODELE BORNES
+' ─────────────────────────────────────────
+class modele_bornes {
+    + connexionBdd() : PDO
+    + RecupererListeBorne() : array
+    + GetNomBorne(idBorne : int) : string
+    + GetBorneParId(idBorne : int) : array
+    + AjouterBorne(nom : string, emplacement : string, puissance : float, ip : string, ssid : string, mdp : string) : string
+    + ModifierBorne(id : int, nom : string, emplacement : string, puissance : float, ip : string) : string
+    + SupprimerBorne(idBorne : int) : string
+}
+
+' ─────────────────────────────────────────
+'  MODELE MESURE
+' ─────────────────────────────────────────
+class modele_mesure {
+    + connexionBdd() : PDO
+    + GetMesuresParBorne(idBorne : int, debut : string, fin : string) : array
+    + GetDernieresMesuresParBorne(idBorne : int) : array
+}
+
+' ─────────────────────────────────────────
+'  RELATIONS
+' ─────────────────────────────────────────
+Vue              ..> Controleur        : <<AJAX POST>>
+Controleur       --> modele_utilisateur : appelle
+Controleur       --> modele_bornes      : appelle
+Controleur       --> modele_mesure      : appelle
+
+@enduml

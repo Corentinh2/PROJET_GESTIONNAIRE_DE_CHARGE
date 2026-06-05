@@ -1,0 +1,88 @@
+@startuml Affichage_Graphique_Plage_Horaire
+
+title Parametrer a distance le syteme
+
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+
+actor Admin
+
+box "Front-end" #LightBlue
+    participant "IHM : VueAdmin\n(borne.php / borne.js)" as VUE
+end box
+
+box "Back-end" #LightGreen
+    participant "Raspberry : Controleur\n(controleur.php)" as CTRL
+end box
+
+box "Base de données" #LightYellow
+    participant "laBdd : Modele\n(modele_mesures_inc.php)" as MODELE
+end box
+
+== Chargement initial de la page ==
+
+Admin -> VUE : accès borne.php
+activate VUE
+
+VUE -> CTRL : $.ajax — commande:'GetNomBorne'\n(id_borne depuis $_SESSION['idBorne'])
+activate CTRL
+
+CTRL -> MODELE : GetNomBorne($idBorne)\nSELECT nom_borne FROM BORNES\nWHERE id_borne = :idBorne
+activate MODELE
+
+MODELE --> CTRL : $nom
+deactivate MODELE
+
+CTRL --> VUE : json_encode($nom)
+deactivate CTRL
+
+VUE -> VUE : $("#titreBorne").text(donnees)
+
+VUE -> CTRL : $.ajax — commande:'GetMesuresParBorne'\n(date_debut=now, date_fin=now)
+activate CTRL
+
+CTRL -> MODELE : GetMesuresParBorne($idBorne, $debut, $fin)\nSELECT horodatage, puissance FROM MESURES\nINNER JOIN SESSIONS ON id_borne=:idBorne\nWHERE horodatage BETWEEN :debut AND :fin\nORDER BY horodatage ASC
+activate MODELE
+
+MODELE --> CTRL : $tabDonnees\n(categories[], series[])
+deactivate MODELE
+
+CTRL --> VUE : json_encode($tabDonnees, JSON_NUMERIC_CHECK)
+deactivate CTRL
+
+VUE -> VUE : Highcharts.chart('graphe', {...})\naffichage histogramme initial
+
+VUE --> Admin : graphique affiché\n(type column, axe X=horodatage, axe Y=puissance kW)
+
+== Choix de la plage horaire ==
+
+Admin -> VUE : saisit #dateDebut et #datefin\nclic bouton #btnAfficher
+activate VUE
+
+VUE -> VUE : let deb = $("#dateDebut").val()\nlet fin = $("#datefin").val()
+
+VUE -> CTRL : $.ajax — commande:'GetMesuresParBorne'\n(date_debut=deb, date_fin=fin)
+activate CTRL
+
+CTRL -> CTRL : filter_input(date_debut)\nfilter_input(date_fin)\n$idBorne = $_SESSION['idBorne']
+
+alt date_debut == "" OU date_fin == ""
+    CTRL -> CTRL : $debut = $date->format('Y-m-d H:i:s')\n$fin   = $date->format('Y-m-d H:i:s')
+end
+
+CTRL -> MODELE : GetMesuresParBorne($idBorne, $debut, $fin)\nSELECT horodatage, puissance FROM MESURES\nINNER JOIN SESSIONS ON id_borne=:idBorne\nWHERE horodatage BETWEEN :debut AND :fin\nORDER BY horodatage ASC
+activate MODELE
+
+MODELE --> CTRL : $tabDonnees\n(categories[horodatage], series[puissance])
+deactivate MODELE
+
+CTRL --> VUE : json_encode($tabDonnees, JSON_NUMERIC_CHECK)
+deactivate CTRL
+
+VUE -> VUE : Highcharts.chart('graphe', {\n  type: 'column',\n  xAxis: categories (horodatage),\n  yAxis: puissance (kW),\n  series: donnees.series\n})
+
+VUE --> Admin : graphique mis à jour\npour la plage sélectionnée
+
+deactivate VUE
+
+@enduml

@@ -1,0 +1,114 @@
+@startuml Parametrer_a_distance
+
+title Paramétrer à distance le système
+
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+
+actor Admin
+
+box "Front-end" #LightBlue
+    participant "IHM : VueAdmin\n(gerer_bornes.php / gerer_bornes.js)" as VUE
+end box
+
+box "Back-end" #LightGreen
+    participant "Raspberry : Controleur\n(controleur.php)" as CTRL
+end box
+
+box "Base de données" #LightYellow
+    participant "laBdd : Modele\n(modele_bornes_inc.php)" as MODELE
+end box
+
+== Chargement de la configuration actuelle ==
+
+Admin -> VUE : accès interface paramétrage\n(choix plage horaire / puissance / priorité)
+activate VUE
+
+VUE -> CTRL : $.ajax — commande:'RecupererListeBorne'
+activate CTRL
+
+CTRL -> MODELE : RecupererListeBorne()
+activate MODELE
+
+MODELE --> CTRL : $lstBornes (id_borne, nom_borne,\nemplacement, puissance, ip_usine)
+deactivate MODELE
+
+CTRL --> VUE : json_encode($lstBornes)
+deactivate CTRL
+
+VUE --> Admin : affichage tableau DataTable\ndes bornes (chargerTableauBornes)
+
+== Modification des paramètres d'une borne ==
+
+Admin -> VUE : clic icône modifier (.mod)\nsur une borne
+
+VUE -> VUE : récupère donneesLigne\n(id_borne, nom_borne, emplacement,\npuissance, ip_usine)\nouvre modal modBorneModal
+
+Admin -> VUE : saisit nouveaux paramètres\net valide (#modifBorne)
+
+VUE -> CTRL : $.ajax — commande:'ModifierBorne'\n(id_borne, nom_borne, emplacement,\npuissance, ip_usine)
+activate CTRL
+
+CTRL -> MODELE : ModifierBorne($idBorne, $nomBorne,\n$emplacement, $puissance, $ipUsine)
+activate MODELE
+
+MODELE --> CTRL : 'ok' / 'erreur'
+deactivate MODELE
+
+alt statut = 'ok'
+    CTRL --> VUE : json_encode(['statut' => 'ok'])
+    deactivate CTRL
+    VUE -> VUE : mise à jour ligne DataTable\n(row.data(rowData).draw)\nfermeture modal modBorneModal
+    VUE --> Admin : confirmation visuelle\n(tableau mis à jour)
+else statut = 'erreur'
+    CTRL --> VUE : json_encode(['statut' => 'erreur'])
+    VUE --> Admin : affichage message erreur\n(#modBorneError)
+end
+
+== Ajout d'une nouvelle borne ==
+
+Admin -> VUE : clic bouton + (#ajouterBorne)\nouvre modal addBorneModal
+
+Admin -> VUE : saisit (nom, emplacement,\npuissance, ip_usine)\net valide (#ajoutBorne)
+
+VUE -> CTRL : $.ajax — commande:'AjouterBorne'\n(nom_borne, emplacement,\npuissance, ip_usine)
+activate CTRL
+
+CTRL -> MODELE : modele_AjoutBorne($nomBorne,\n$emplacement, $puissance,\n$ipUsine, 'fortinet', 'Projet2026')
+activate MODELE
+
+MODELE --> CTRL : 'ok' / 'erreur'
+deactivate MODELE
+
+alt statut = 'ok'
+    CTRL --> VUE : json_encode(['statut' => 'ok'])
+    deactivate CTRL
+    VUE -> VUE : table.row.add({...}).draw()\nfermeture modal addBorneModal
+    VUE --> Admin : nouvelle borne visible\ndans le tableau
+else statut = 'erreur'
+    CTRL --> VUE : json_encode(['statut' => 'erreur'])
+    VUE --> Admin : affichage message erreur\n(#addBorneError)
+end
+
+== Suppression d'une borne ==
+
+Admin -> VUE : clic icône supprimer (.supp)\nconfirme dans modal delBorneModal
+
+VUE -> CTRL : $.ajax — commande:'SupprimerBorne'\n(id_borne)
+activate CTRL
+
+CTRL -> MODELE : SupprimerBorne($idBorne)
+activate MODELE
+
+MODELE --> CTRL : 'ok' / 'erreur'
+deactivate MODELE
+
+CTRL --> VUE : json_encode(['statut' => 'ok'])
+deactivate CTRL
+
+VUE -> VUE : row.remove().draw()\nfermeture modal delBorneModal
+VUE --> Admin : borne supprimée du tableau
+
+deactivate VUE
+
+@enduml

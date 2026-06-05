@@ -1,0 +1,94 @@
+@startuml Gerer_les_utilisateurs
+
+title Gérer les utilisateurs
+
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+
+actor Admin
+
+box "Front-end" #LightBlue
+    participant "utilisateur : VueUtilisateur\n(login.php / login.js)" as VUE
+end box
+
+box "Back-end" #LightGreen
+    participant "Php : Controleur\n(controleur.php)" as CTRL
+end box
+
+box "Base de données" #LightYellow
+    participant "Users : Modele\n(modele_utilisateurs_inc.php)" as MODELE
+end box
+
+== Saisie des identifiants ==
+
+Admin -> VUE : saisie login / mdp\n(#login, #mdp)
+activate VUE
+
+VUE -> CTRL : $.ajax — commande:'Connexion'\n(login, mdp)
+activate CTRL
+
+CTRL -> MODELE : LoginVerify($login)\nSELECT count(login) WHERE login=:login AND etat=true
+activate MODELE
+
+MODELE --> CTRL : $utilisateur (true / false)
+deactivate MODELE
+
+== [retourLogin = true] ==
+
+opt LoginVerify = true
+
+    CTRL -> MODELE : SELECT mdp FROM UTILISATEURS\nWHERE login=:login AND etat=true
+    activate MODELE
+
+    MODELE --> CTRL : $mdpBdd
+    deactivate MODELE
+
+    CTRL -> MODELE : password_verify($mdp, $mdpBdd)
+    activate MODELE
+
+    MODELE --> CTRL : $mdpOk (true / false)
+    deactivate MODELE
+
+    == [retourMdp = true] ==
+
+    opt mdpOk = true
+
+        CTRL -> CTRL : $_SESSION['connecte'] = true\n$_SESSION['utilisateur'] = $login
+
+        CTRL --> VUE : json_encode(['statut' => 'ok'])
+        deactivate CTRL
+
+        VUE -> VUE : setTimeout → window.location.href = "login.php"\n(redirection vers choix_bornes.php ou admin.php)
+        VUE --> Admin : redirection
+
+    end
+
+    == [retourMdp = false] ==
+
+    opt mdpOk = false
+
+        
+
+        CTRL --> VUE : json_encode(['statut' => 'erreur'])
+        deactivate CTRL
+
+        VUE -> VUE : $("#login").css("background-color", "red")
+        VUE --> Admin : champ login coloré en rouge\n(Erreur 404)
+
+    end
+
+end
+
+== [retourLogin = false] ==
+
+opt LoginVerify = false
+
+    CTRL --> VUE : json_encode(['statut' => 'erreur'])
+    VUE -> VUE : $("#login").css("background-color", "red")
+    VUE --> Admin : champ login coloré en rouge\n(Erreur 404)
+
+end
+
+deactivate VUE
+
+@enduml

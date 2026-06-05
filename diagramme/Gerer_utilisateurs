@@ -1,0 +1,165 @@
+@startuml GererLesUtilisateurs
+skinparam textalignment center
+skinparam shadowing false
+skinparam SequenceMessageAlign center
+
+' Configuration du thème pour coller à l'exemple
+skinparam BoxPadding 10
+skinparam ParticipantPadding 10
+
+skinparam sequence {
+    ArrowColor #495057
+    LifeLineBorderColor #495057
+    LifeLineBackgroundColor #FFFFFF
+    
+    ParticipantBackgroundColor #E5E7EB
+    ParticipantBorderColor #495057
+    ParticipantFontStyle bold
+    
+    GroupBackgroundColor rgba(255, 255, 255, 0.5)
+    GroupBorderColor #495057
+    GroupFontStyle bold
+    GroupHeaderBackgroundColor #F1F3F5
+}
+
+actor "Admin" as Admin
+
+box "Front-end" #98D2EB
+    participant "admin.php / admin.js\n(VueUtilisateur)" as Front
+end box
+
+box "Back-end" #7CEB8A
+    participant "controleur.php\n(Php : Controleur)" as Ctrl
+end box
+
+box "Base de données" #FFF9A6
+    participant "modele_utilisateurs.inc.php\n(Users : Modele)" as Bdd
+end box
+
+' ─────────────────────────────────────────
+'  CHARGEMENT DU TABLEAU
+' ─────────────────────────────────────────
+== Chargement de la table des utilisateurs ==
+
+Admin -> Front : Accède à la page admin.php
+activate Front
+
+Front -> Ctrl : $.ajax — commande: 'RecupererListeUtilisateur'
+activate Ctrl
+
+Ctrl -> Bdd : RecupererListeUtilisateur()
+activate Bdd
+Bdd -> Bdd : SELECT id_utilisateur, login, etat\nFROM UTILISATEURS
+Ctrl <-- Bdd : $tabUtilisateurs (Array)
+deactivate Bdd
+
+Front <-- Ctrl : json_encode($lsUtilisateurs)
+deactivate Ctrl
+
+Front -> Front : $('#table_utilisateur').DataTable({...})\n(Initialise et affiche le tableau)
+deactivate Front
+
+' ─────────────────────────────────────────
+'  MODIFICATION D'UN UTILISATEUR
+' ─────────────────────────────────────────
+== Modification du mot de passe d'un utilisateur ==
+
+Admin -> Front : Clique sur l'icône Modifier (✏️)
+activate Front
+Front -> Front : Ouvre la modale et pré-remplit le login
+Admin -> Front : Saisit le nouveau mot de passe et valide
+Front -> Ctrl : $.ajax — commande: 'ModifierUtilisateur'\n(id_utilisateur, mdp)
+activate Ctrl
+
+Ctrl -> Bdd : ModifierUtilisateur($id, $mdp)
+activate Bdd
+Bdd -> Bdd : password_hash($mdp, PASSWORD_DEFAULT)
+Bdd -> Bdd : UPDATE UTILISATEURS SET mdp = :mdp\nWHERE id_utilisateur = :id
+Ctrl <-- Bdd : 'ok' / 'erreur'
+deactivate Bdd
+
+Front <-- Ctrl : json_encode(['statut' => $reponse])
+deactivate Ctrl
+
+alt statut == 'ok'
+    Front -> Front : Ferme la modale et réinitialise le formulaire
+else statut == 'erreur'
+    Front -> Front : Affiche le conteneur d'erreur (#modUtilisateurError)
+end
+deactivate Front
+
+' ─────────────────────────────────────────
+'  ACTIVATION / SUSPENSION
+' ─────────────────────────────────────────
+== Changement d'état (Activer / Suspendre) ==
+
+Admin -> Front : Change l'état via le bouton switch
+activate Front
+
+alt Case cochée (Activer)
+    Front -> Ctrl : $.ajax — commande: 'ActiverUtilisateur' (id_utilisateur)
+    activate Ctrl
+    Ctrl -> Bdd : ChangerEtatUtilisateur($id, 1)
+    activate Bdd
+    Bdd -> Bdd : UPDATE UTILISATEURS SET etat = 1\nWHERE id_utilisateur = :id
+    Ctrl <-- Bdd : 'ok'
+    deactivate Bdd
+    Front <-- Ctrl : json_encode(['statut' => 'ok'])
+    deactivate Ctrl
+    Front -> Front : Met à jour la ligne (Badge Actif)
+else Case décochée (Suspendre)
+    Front -> Ctrl : $.ajax — commande: 'SuspendreUtilisateur' (id_utilisateur)
+    activate Ctrl
+    Ctrl -> Bdd : ChangerEtatUtilisateur($id, 0)
+    activate Bdd
+    Bdd -> Bdd : UPDATE UTILISATEURS SET etat = 0\nWHERE id_utilisateur = :id
+    Ctrl <-- Bdd : 'ok'
+    deactivate Bdd
+    Front <-- Ctrl : json_encode(['statut' => 'ok'])
+    deactivate Ctrl
+    Front -> Front : Met à jour la ligne (Badge Suspendu)
+end
+deactivate Front
+
+' ─────────────────────────────────────────
+'  SUPPRESSION D'UN UTILISATEUR
+' ─────────────────────────────────────────
+== Suppression d'un utilisateur ==
+
+Admin -> Front : Clique sur l'icône Supprimer (🗑️)
+activate Front
+Front -> Front : Ouvre la modale de confirmation
+Admin -> Front : Confirme la suppression
+Front -> Ctrl : $.ajax — commande: 'SupprimerUtilisateur' (id_utilisateur)
+activate Ctrl
+
+Ctrl -> Bdd : SupprimerUtilisateur($id)
+activate Bdd
+Bdd -> Bdd : DELETE FROM UTILISATEURS\nWHERE id_utilisateur = :id
+Ctrl <-- Bdd : 'ok'
+deactivate Bdd
+
+Front <-- Ctrl : json_encode(['statut' => 'ok'])
+deactivate Ctrl
+
+Front -> Front : table.row().remove().draw()\n(Retire la ligne du tableau dynamiquement)
+deactivate Front
+
+' ─────────────────────────────────────────
+'  DECONNEXION
+' ─────────────────────────────────────────
+== Déconnexion ==
+
+Admin -> Front : Clique sur "Déconnexion"
+activate Front
+Front -> Ctrl : $.ajax — commande: 'Deconnexion'
+activate Ctrl
+
+Ctrl -> Ctrl : Deconnexion()\n($_SESSION = [], session_destroy())
+Front <-- Ctrl : json_encode(['statut' => 'ok'])
+deactivate Ctrl
+
+Front -> Front : window.location.href = "login.php"
+deactivate Front
+
+@enduml

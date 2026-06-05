@@ -1,0 +1,50 @@
+@startuml Exporter_les_donnees
+
+title Exporter les données (via Highcharts)
+
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+
+actor Admin
+
+box "Front-end" #LightBlue
+    participant "IHM : VueAdmin\n(borne.php / borne.js)" as VUE
+end box
+
+box "Highcharts" #LightGreen
+    participant "Module Exporting\n(exporting.js / export-data.js)" as HC
+end box
+
+== Affichage du graphique ==
+
+Admin -> VUE : accès borne.php\net sélection plage horaire
+activate VUE
+
+VUE -> VUE : Highcharts.chart('graphe', {\n  exporting: {\n    enabled: true,\n    buttons: { contextButton: {\n      menuItems: [\n        'downloadPNG', 'downloadJPEG',\n        'downloadPDF', 'downloadSVG',\n        'downloadCSV', 'downloadXLS'\n      ]\n    }}\n  }\n})
+
+VUE --> Admin : graphique affiché\navec bouton export (☰) en haut à droite
+
+== Export du graphique / des données ==
+
+Admin -> VUE : clic bouton contextuel (☰)\ndu graphique Highcharts
+
+VUE -> HC : ouverture menu export\n(liste des formats disponibles)
+activate HC
+
+HC --> Admin : affichage menu :\nPNG / JPEG / PDF / SVG / CSV / XLS
+
+alt format image (PNG / JPEG / PDF / SVG)
+    Admin -> HC : sélectionne format image
+    HC -> HC : capture du graphique SVG\nconversion via serveur export.highcharts.com\nou export local
+    HC --> Admin : téléchargement fichier image
+
+else format données (CSV / XLS)
+    Admin -> HC : sélectionne CSV ou XLS
+    HC -> HC : extraction des données\ndepuis donnees.series\n(horodatage, puissance kW)
+    HC --> Admin : téléchargement fichier\nCSV ou XLS
+end
+
+deactivate HC
+deactivate VUE
+
+@enduml
