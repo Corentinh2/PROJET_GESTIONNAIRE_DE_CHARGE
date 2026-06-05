@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/USERS/ELEVES/CIEL2024/avovan/remote/Vues/graphique.php</file>
+            <file>file:/home/USERS/ELEVES/CIEL2024/avovan/remote/index.php</file>
+            <file>file:/home/USERS/ELEVES/CIEL2024/avovan/remote/Controleurs/controleur.php</file>
+            <file>file:/home/USERS/ELEVES/CIEL2024/avovan/remote/Modeles/config.inc.php</file>
+            <file>file:/home/USERS/ELEVES/CIEL2024/avovan/remote/Modeles/modele_borne.php</file>
+            <file>file:/home/USERS/ELEVES/CIEL2024/avovan/remote/Modeles/modele_mesure.php</file>
+            <file>file:/home/USERS/ELEVES/CIEL2024/avovan/remote/Modeles/journalisation.php</file>
+            <file>file:/home/USERS/ELEVES/CIEL2024/avovan/remote/Modeles/modele_utilisateur.php</file>
+            <file>file:/home/USERS/ELEVES/CIEL2024/avovan/remote/Modeles/modele.inc.php</file>
+            <file>file:/home/USERS/ELEVES/CIEL2024/avovan/remote/Vues/login.php</file>
+            <file>file:/home/USERS/ELEVES/CIEL2024/avovan/remote/Vues/VueClient.php</file>
+            <file>file:/home/USERS/ELEVES/CIEL2024/avovan/remote/Vues/ajouter_borne.php</file>
+            <file>file:/home/USERS/ELEVES/CIEL2024/avovan/remote/Vues/choix_borne.php</file>
+            <file>file:/home/USERS/ELEVES/CIEL2024/avovan/remote/Vues/modifier_utilisateur.php</file>
+            <file>file:/home/USERS/ELEVES/CIEL2024/avovan/remote/Vues/gestion_utilisateurs.php</file>
+        </group>
+    </open-files>
+</project-private>

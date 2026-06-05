@@ -8,13 +8,16 @@ if (!isset($_SESSION['connecte']) || $_SESSION['connecte'] !== true) {
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Choix de la borne</title>
+        <title>Dernières mesures</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="js/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
         <script src="js/libs/jquery/jquery.min.js"></script>
         <script src="js/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="choix_bornes.js"></script>
+        <link href="js/libs/datatables/css/dataTables.bootstrap5.min.css" rel="stylesheet"/>
+        <script src="js/libs/datatables/js/jquery.dataTables.min.js"></script>
+        <script src="js/libs/datatables/js/dataTables.bootstrap5.min.js"></script>
+        <script src="mesures.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
         <style>
             :root {
@@ -81,7 +84,6 @@ if (!isset($_SESSION['connecte']) || $_SESSION['connecte'] !== true) {
                 left: -80px;
             }
 
-            /* NAVBAR */
             .navbar {
                 position: relative;
                 z-index: 100;
@@ -130,18 +132,17 @@ if (!isset($_SESSION['connecte']) || $_SESSION['connecte'] !== true) {
                 background: rgba(231,74,59,0.1);
             }
 
-            /* CONTENT */
             .main-content {
                 position: relative;
                 z-index: 10;
                 padding: 40px 24px;
             }
             .page-header {
-                margin-bottom: 32px;
+                margin-bottom: 28px;
             }
-            .page-header h1 {
+            .page-header h2 {
                 font-family: 'Rajdhani', sans-serif;
-                font-size: 2rem;
+                font-size: 1.8rem;
                 font-weight: 700;
                 color: #fff;
             }
@@ -151,72 +152,94 @@ if (!isset($_SESSION['connecte']) || $_SESSION['connecte'] !== true) {
                 margin-top: 4px;
             }
 
-            /* TUILES */
-            .tuile {
+            .table-card {
+                background: var(--glass);
+                border: 1px solid var(--border);
                 border-radius: 16px;
-                padding: 28px;
-                cursor: pointer;
-                transition: transform 0.2s, box-shadow 0.2s;
-                min-height: 150px;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                border: 1px solid rgba(255,255,255,0.1);
-                position: relative;
+                backdrop-filter: blur(12px);
                 overflow: hidden;
+                box-shadow: 0 4px 32px rgba(0,0,0,0.3);
             }
-            .tuile::before {
-                content: '';
-                position: absolute;
-                inset: 0;
-                background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 60%);
-                pointer-events: none;
-            }
-            .tuile:hover {
-                transform: translateY(-4px);
-                box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-            }
-            .tuile h5 {
-                font-family: 'Rajdhani', sans-serif;
-                font-size: 1.3rem;
-                font-weight: 700;
-                color: #fff;
-                margin: 0;
-            }
-            .tuile p {
-                font-size: 0.88rem;
-                margin: 0;
-                color: rgba(255,255,255,0.75);
-            }
-            .tuile-icon {
-                font-size: 1.6rem;
-                margin-bottom: 12px;
-                display: block;
-            }
-            .tuile-arrow {
-                align-self: flex-end;
-                font-size: 1.1rem;
-                color: rgba(255,255,255,0.5);
+            .table-card > div {
+                padding: 20px;
             }
 
-            /* Couleurs des tuiles — conservées compatibles avec choix_bornes.js */
-            .couleur-0 {
-                background: linear-gradient(135deg, #2d5fc4, #4e73df);
+            #table_mesures {
+                color: var(--text);
+                border-color: var(--border) !important;
             }
-            .couleur-1 {
-                background: linear-gradient(135deg, #12a572, #1cc88a);
+            #table_mesures thead th {
+                background: rgba(45,125,210,0.35) !important;
+                color: #fff !important;
+                font-family: 'Rajdhani', sans-serif;
+                font-size: 0.8rem;
+                font-weight: 700;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                border-color: var(--border) !important;
+                padding: 14px 12px;
             }
-            .couleur-2 {
-                background: linear-gradient(135deg, #1f8fa0, #36b9cc);
+            #table_mesures tbody tr {
+                background: rgba(10,22,40,0.6) !important;
+                border-color: var(--border) !important;
+                transition: background 0.15s;
+                color: var(--text) !important;
             }
-            .couleur-3 {
-                background: linear-gradient(135deg, #c0392b, #e74a3b);
+            #table_mesures tbody tr:hover td {
+                background: rgba(45,125,210,0.07) !important;
             }
-            .couleur-4 {
-                background: linear-gradient(135deg, #d4a017, #f6c23e);
+            #table_mesures tbody td {
+                border-color: var(--border) !important;
+                padding: 12px;
+                font-size: 0.92rem;
             }
-            .couleur-5 {
-                background: linear-gradient(135deg, #5a5c69, #858796);
+            #table_mesures.table-striped > tbody > tr:nth-of-type(odd) > td {
+                background: rgba(255,255,255,0.04) !important;
+                color: var(--text) !important;
+            }
+
+            /* Force all table cells dark */
+            .table > :not(caption) > * > * {
+                background-color: transparent !important;
+                color: var(--text) !important;
+            }
+            .table-striped > tbody > tr:nth-of-type(odd) > * {
+                background-color: rgba(255,255,255,0.04) !important;
+                color: var(--text) !important;
+            }
+            .table-striped > tbody > tr:nth-of-type(even) > * {
+                background-color: rgba(10,22,40,0.5) !important;
+                color: var(--text) !important;
+            }
+            .dataTables_wrapper .dataTables_length label,
+            .dataTables_wrapper .dataTables_filter label,
+            .dataTables_wrapper .dataTables_info,
+            .dataTables_wrapper .dataTables_paginate {
+                color: var(--muted) !important;
+                font-size: 0.83rem;
+            }
+            .dataTables_wrapper .dataTables_filter input,
+            .dataTables_wrapper .dataTables_length select {
+                background: rgba(255,255,255,0.05);
+                border: 1px solid var(--border);
+                border-radius: 8px;
+                color: var(--text);
+                padding: 5px 10px;
+                outline: none;
+            }
+            .dataTables_wrapper .dataTables_filter input:focus {
+                border-color: var(--accent);
+            }
+            .dataTables_wrapper .dataTables_paginate .paginate_button {
+                color: var(--muted) !important;
+                border-radius: 6px !important;
+                border: none !important;
+            }
+            .dataTables_wrapper .dataTables_paginate .paginate_button.current,
+            .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+                background: rgba(45,125,210,0.2) !important;
+                color: #fff !important;
+                border: none !important;
             }
         </style>
     </head>
@@ -233,7 +256,13 @@ if (!isset($_SESSION['connecte']) || $_SESSION['connecte'] !== true) {
                 <div class="collapse navbar-collapse" id="navbarAdmin">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="gerer_bornes.php" id="navGererBorne">Gérer les bornes</a>
+                            <a class="nav-link" href="#" id="titreBorne"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="borne.php" id="navBorne">Tableau de bord</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#" id="navMesures">30 dernières mesures</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#" id="navDeconnexion">Déconnexion</a>
@@ -246,10 +275,24 @@ if (!isset($_SESSION['connecte']) || $_SESSION['connecte'] !== true) {
         <div class="main-content">
             <div class="container-fluid">
                 <div class="page-header">
-                    <h1>Choisissez une borne</h1>
-                    <p>Sélectionnez une borne de recharge pour accéder à ses données</p>
+                    <h2 id="titreMesures">Chargement...</h2>
+                    <p>Historique des 30 dernières mesures enregistrées</p>
                 </div>
-                <div id="listeBornes" class="row g-3"></div>
+                <div class="table-card">
+                    <div>
+                        <table id="table_mesures" class="table table-striped table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">id mesure</th>
+                                    <th class="text-center">Horodatage</th>
+                                    <th class="text-center">Puissance (kW)</th>
+                                    <th class="text-center">id session</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
