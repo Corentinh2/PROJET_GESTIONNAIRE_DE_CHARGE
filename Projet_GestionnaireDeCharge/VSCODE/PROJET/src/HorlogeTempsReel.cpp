@@ -1,7 +1,7 @@
 #include "HorlogeTempsReel.h"
 #include <Arduino.h>
 #include <time.h>
-
+ 
 /**
  * @brief Constructeur - initialise le DS3231, configure la broche d'alarme
  *        et attache l'interruption sur front descendant
@@ -9,14 +9,12 @@
 HorlogeTempsReel::HorlogeTempsReel()
 {
   succes = false;
-  alarmeDeclenchee = false;
   pinMode(PIN_ALARME, INPUT_PULLUP);
-  anchor = this;
   if (RTC_DS3231::begin())
   {
     if (DEBUGETTEST) Serial.println("DS3231 initialisé.");
     succes = true;
-    attachInterrupt(digitalPinToInterrupt(PIN_ALARME), HorlogeTempsReel::marshall, FALLING);
+    attachInterrupt(digitalPinToInterrupt(PIN_ALARME), HorlogeTempsReel::onAlarme, FALLING);
   }
   else
   {
@@ -150,15 +148,6 @@ int HorlogeTempsReel::obtenirJourSemaine()
 }
 
 /**
- * @brief Fonction statique intermédiaire pour router l'interruption vers l'instance courante
- *        Nécessaire car attachInterrupt ne peut pas prendre une méthode non statique
- */
-void HorlogeTempsReel::marshall()
-{
-  anchor->onAlarme();
-}
-
-/**
  * @brief Gestionnaire d'interruption déclenché sur front descendant de PIN_ALARME
  *        Placé en RAM (IRAM_ATTR) pour une exécution rapide
  */
@@ -167,8 +156,6 @@ void IRAM_ATTR HorlogeTempsReel::onAlarme()
   alarmeDeclenchee = true;
 }
 
-/** @brief Initialisation du pointeur statique vers l'instance courante */
-HorlogeTempsReel *HorlogeTempsReel::anchor = NULL;
 
 //DEBUGETTEST
 void HorlogeTempsReel::afficherHeureAcutelle()
@@ -178,3 +165,4 @@ void HorlogeTempsReel::afficherHeureAcutelle()
                 maintenant.day(), maintenant.month(), maintenant.year(),
                 maintenant.hour(), maintenant.minute(), maintenant.second());
 }
+volatile bool HorlogeTempsReel::alarmeDeclenchee = false;

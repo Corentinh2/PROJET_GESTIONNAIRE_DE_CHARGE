@@ -16,7 +16,6 @@ private:
 
 public:
     ConnectionRaspberryPi();
-    void initialiserConnexion();
     void EnvoyerNotification(String msg);
     void cloturerSession();
     void maintenirConnexion();

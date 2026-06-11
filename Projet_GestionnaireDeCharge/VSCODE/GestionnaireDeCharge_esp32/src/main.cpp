@@ -2,7 +2,7 @@
 #include <WiFi.h>
 #include "GestionnaireCharge.h"
 
-#define BP1 39
+#define BP1 36
 
 const char *ssid = "fortinet";
 const char *motDePasse = "Projet2026";
@@ -16,7 +16,7 @@ void afficherMenuTest()
   bool choixValide = false;
 
   Serial.println("=== MENU ===");
-  Serial.println("1 - ajouterEvenement");
+  Serial.println("1 - ajouterCalendrier");
   Serial.println("2 - supprimerCalendrier");
   Serial.println("3 - ajouterAlerte");
   Serial.println("4 - supprimerAlerte");

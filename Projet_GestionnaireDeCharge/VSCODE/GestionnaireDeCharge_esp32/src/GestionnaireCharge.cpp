@@ -36,8 +36,6 @@ GestionnaireCharge::GestionnaireCharge(const char *_ssid, const char *_motDePass
   horloge->synchroniserNTP();
   horloge->configurerAlarmeMinute();
 
-  raspi->initialiserConnexion();
-
   chargeEnCourt = false;
   marcheForceeActive = false;
 }
@@ -79,6 +77,12 @@ void GestionnaireCharge::controler()
   if (horloge->getAlarme())
   {
     horloge->reinitialiserAlarme();
+    
+    if(chargeEnCourt || marcheForceeActive)
+    {
+      raspi->EnvoyerMesures(capteur->getMoyennePuissance());
+    } 
+
     DateTime maintenant = horloge->obtenirHeureActuelle();
     int jour = horloge->obtenirJourSemaine();
     int heure = maintenant.hour();
@@ -101,10 +105,6 @@ void GestionnaireCharge::controler()
         relais->ouvrir();
         chargeEnCourt = false;
       }
-    }
-    if(chargeEnCourt || marcheForceeActive)
-    {
-      raspi->EnvoyerMesures(capteur->getMoyennePuissance());
     }
   }
 

@@ -9,7 +9,7 @@ CommunicationMobile::CommunicationMobile(MemoireProgramme *_memoire)
 {
     memoire = _memoire;
     clientConnecte = false;
-    relais = -1;
+    marcheForcee = -1;
     serveur.listen(PORT);
     if (DEBUGETTEST) Serial.println("Serveur WebSocket démarré sur le port 5555 !");
 }
@@ -33,7 +33,7 @@ void CommunicationMobile::traiterMessage(String data)
     if (erreur)
     {
         if (DEBUGETTEST) Serial.printf("Erreur JSON : %s\n", erreur.c_str());
-        relais = -1;
+        marcheForcee = -1;
     }
 
     String action = doc["action"].as<String>();
@@ -55,11 +55,11 @@ void CommunicationMobile::traiterMessage(String data)
     {
         if (doc["activer"])
         {
-            relais = 1;
+            marcheForcee = 1;
         }
         else
         {
-            relais = 0;
+            marcheForcee = 0;
         }
     }
 }
@@ -70,7 +70,7 @@ void CommunicationMobile::traiterMessage(String data)
  */
 int CommunicationMobile::gererCommunication()
 {
-    relais = -1;
+    marcheForcee = -1;
 
     if (serveur.poll())
     {
@@ -101,5 +101,5 @@ int CommunicationMobile::gererCommunication()
         client.poll();
     }
 
-    return relais;
+    return marcheForcee;
 }

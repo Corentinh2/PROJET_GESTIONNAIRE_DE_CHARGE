@@ -5,7 +5,7 @@
 #define PORT 5555
 
 /** @brief Température maximale en degrés Celsius avant déclenchement de l'alarme */
-#define TEMPMAX 80
+#define TEMPMAX 60
 
 /** @brief Broche de réception du signal d'alarme du DS3231 */
 #define PIN_ALARME 19
@@ -21,8 +21,6 @@
 #define CALIB       234.26  // Calibration tension
 #define DEPHASAGE   1.7     // Déphasage tension
 #define SENSI       60.6    // Sensibilité capteur courant
-
-
 
 
 #define DEBUGETTEST true

@@ -521,7 +521,7 @@ String MemoireProgramme::obtenirAlerte()
       }
       else
       {
-        typeAlerte = "surtension";
+        typeAlerte = "surintensite";
       }
 
       char ligne[256];

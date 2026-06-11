@@ -27,7 +27,7 @@ private:
     bool clientConnecte;
 
     /** @brief État de la marche forcée : 1 = activer, 0 = désactiver, -1 = pas de message */
-    int relais;
+    int marcheForcee;
 
     /**
      * @brief Traite un message JSON reçu du client

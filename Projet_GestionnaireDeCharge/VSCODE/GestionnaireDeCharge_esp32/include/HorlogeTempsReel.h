@@ -20,18 +20,10 @@ private:
    * @brief Gestionnaire d'interruption déclenché par l'alarme du DS3231
    *        Placé en RAM pour une exécution rapide
    */
-  void IRAM_ATTR onAlarme();
-
-  /**
-   * @brief Fonction statique intermédiaire pour router l'interruption vers l'instance courante
-   */
-  static void marshall();
-
-  /** @brief Pointeur statique vers l'instance courante pour le routage de l'interruption */
-  static HorlogeTempsReel *anchor;
+  static void IRAM_ATTR onAlarme();
 
   /** @brief Indicateur volatile d'alarme déclenchée, modifié dans le contexte d'interruption */
-  volatile bool alarmeDeclenchee;
+  static volatile bool alarmeDeclenchee;
 
 public:
   /**

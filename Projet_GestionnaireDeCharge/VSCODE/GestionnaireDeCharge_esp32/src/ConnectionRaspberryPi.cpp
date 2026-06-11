@@ -13,15 +13,7 @@
  */
 ConnectionRaspberryPi::ConnectionRaspberryPi()
 {
-    // Constructeur vide
-}
-
-/**
- * @brief Initialise la connexion Wi-Fi et établit la connexion WebSocket.
- */
-void ConnectionRaspberryPi::initialiserConnexion()
-{
-    // Enregistrement du callback de réception de messages
+        // Enregistrement du callback de réception de messages
     _webSocket.onMessage([](WebsocketsMessage message) {
         Serial.println("[WS] Message reçu : " + message.data());
     });
@@ -97,7 +89,7 @@ void ConnectionRaspberryPi::maintenirConnexion()
  */
 void ConnectionRaspberryPi::EnvoyerAlerte(int type, String texte)
 {
-    JsonDocument doc;
+    StaticJsonDocument<200> doc;
     doc["action"]  = "alerte";
     doc["type"]    = type;
     doc["message"] = texte;
