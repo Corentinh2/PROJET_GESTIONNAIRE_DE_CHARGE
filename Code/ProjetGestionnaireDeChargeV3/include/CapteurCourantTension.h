@@ -7,24 +7,21 @@ class CapteurCourantTension {
 private:
     EnergyMonitor emon;
 
-    float sommeTension = 0;
-    float sommeCourant = 0;
-    double sommePuissance = 0;
-    int nombreLectures = 0;
+    float sommeTension;
+    float sommeCourant;
+    double sommePuissance;
+    int nombreLectures;
 
-    float moyenneTension = 0.0;
-    float moyenneCourant = 0.0;
-    float moyennePuissance = 0.0;
+    float moyenneTension;
+    float moyenneCourant;
+    float moyennePuissance;
 
 public:
     CapteurCourantTension();
 
-    void initialiserCapteursCourantTension();
     void effectuerMesures();
     bool verifierSeuils();
 
-    float getMoyenneTension();
-    float getMoyenneCourant();
     float getMoyennePuissance();
 };
 

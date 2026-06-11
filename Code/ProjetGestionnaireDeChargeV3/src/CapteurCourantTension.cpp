@@ -18,17 +18,15 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 CapteurCourantTension::CapteurCourantTension()
-    : sommeTension(0), sommeCourant(0), sommePuissance(0), nombreLectures(0) {}
+    : sommeTension(0), 
+    sommeCourant(0), 
+    sommePuissance(0),
+    nombreLectures(0), 
+    moyenneTension(0),
+    moyenneCourant(0.0),
+    moyennePuissance(0.0) 
+    {
 
-/**
- * @brief Initialise les capteurs de tension et de courant.
- *
- * Appelle successivement les méthodes d'initialisation des deux capteurs et
- * démarre le chronomètre utilisé pour le rapport à la minute.
- *
- * @note Doit être appelée une fois dans le setup() avant la boucle principale.
- */
-void CapteurCourantTension::initialiserCapteursCourantTension() {
     analogReadResolution(12);
     analogSetAttenuation(ADC_11db);
 
@@ -36,7 +34,8 @@ void CapteurCourantTension::initialiserCapteursCourantTension() {
     emon.current(COURANT, SENSI);
 
     Serial.println("--- Initialisation GestionnaireDeCharge OK ---");
-}
+    }
+
 
 /**
  * @brief Acquiert les mesures, les affiche et envoie un rapport toutes les minutes.
@@ -117,22 +116,13 @@ void CapteurCourantTension::effectuerMesures() {
  */
 bool CapteurCourantTension::verifierSeuils() {
     // Seuil de 18A (protection 20A ES-01)
+    bool retour = false;
     float courant = emon.Irms;
     if (courant > 18.0) {
         Serial.printf("!!! ALERTE COURANT : %.2f A !!!\n", courant);
-        return true;
+        retour = true;
     }
-    return false;
-}
-
-float CapteurCourantTension::getMoyenneTension()
-{
-    return moyenneTension;
-}
-
-float CapteurCourantTension::getMoyenneCourant()
-{
-    return moyenneCourant;
+    return retour;
 }
 
 float CapteurCourantTension::getMoyennePuissance()

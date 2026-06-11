@@ -26,7 +26,6 @@ GestionnaireDeCharge::GestionnaireDeCharge()
     raspi = new ConnectionRaspberryPi;
     capteur = new CapteurCourantTension;
     
-    capteur->initialiserCapteursCourantTension();
     raspi->initialiserConnexion();
     chronoMinute = millis();
 }

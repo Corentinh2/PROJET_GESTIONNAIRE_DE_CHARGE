@@ -9,9 +9,9 @@ private:
     ConnectionRaspberryPi  *raspi;
     CapteurCourantTension  *capteur;
 
-    float          energieCumuleeWh = 0;
-    unsigned long  chronoMinute     = 0;
-    unsigned long  derniereMesure   = 0;
+    float          energieCumuleeWh;
+    unsigned long  chronoMinute;
+    unsigned long  derniereMesure;
 
 public:
     GestionnaireDeCharge();
