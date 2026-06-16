@@ -61,7 +61,7 @@ function construireMessageAlerte(type) {
     if (type === "surchauffe") {
         msg = "La charge s'est arrêtée pour la raison suivante : Température trop élevée ! ";
     } else {
-        msg = "La charge s'est arrêtée pour la raison suivante : Tension trop élevée !";
+        msg = "La charge s'est arrêtée pour la raison suivante : Intensité trop élevée !";
     }
     return msg;
 }

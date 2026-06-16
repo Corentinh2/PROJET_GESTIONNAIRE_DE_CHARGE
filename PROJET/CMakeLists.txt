@@ -44,6 +44,7 @@ qt_add_qml_module(appPROJET
         QML_FILES js/SessionPage.js
         QML_FILES
         QML_FILES js/StatusPage.js
+        QML_FILES TimePicker.qml
 )
 
 set_target_properties(appPROJET PROPERTIES

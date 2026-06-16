@@ -16,4 +16,5 @@ KmPage 1.0 js/KmPage.js
 Main 1.0 js/Main.js
 SessionPage 1.0 js/SessionPage.js
 StatusPage 1.0 js/StatusPage.js
+TimePicker 1.0 TimePicker.qml
 

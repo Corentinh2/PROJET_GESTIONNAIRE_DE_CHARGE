@@ -110,6 +110,13 @@ namespace _qt_qml_PROJET_js_StatusPage_js {
         reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
     };
 }
+namespace _qt_qml_PROJET_TimePicker_qml { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
 
 }
 namespace {
@@ -139,6 +146,7 @@ Registry::Registry() {
     resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/js/Main.js"), &QmlCacheGeneratedCode::_qt_qml_PROJET_js_Main_js::unit);
     resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/js/SessionPage.js"), &QmlCacheGeneratedCode::_qt_qml_PROJET_js_SessionPage_js::unit);
     resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/js/StatusPage.js"), &QmlCacheGeneratedCode::_qt_qml_PROJET_js_StatusPage_js::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/PROJET/TimePicker.qml"), &QmlCacheGeneratedCode::_qt_qml_PROJET_TimePicker_qml::unit);
     QQmlPrivate::RegisterQmlUnitCacheHook registration;
     registration.structVersion = 0;
     registration.lookupCachedQmlUnit = &lookupCachedUnit;

@@ -185,14 +185,15 @@ Item {
                 property var tempDaysList: []
                 property string initialStart: "08:00"
                 property string initialEnd: "17:00"
-                property var timeModelData: ["00:00","01:00","02:00","03:00","04:00","05:00",
-                    "06:00","07:00","08:00","09:00","10:00","11:00",
-                    "12:00","13:00","14:00","15:00","16:00","17:00",
-                    "18:00","19:00","20:00","21:00","22:00","23:00"]
 
                 Component.onCompleted: {
-                    sTime.currentIndex = SessionsJS.findIndexInArray(timeModelData, initialStart);
-                    eTime.currentIndex = SessionsJS.findIndexInArray(timeModelData, initialEnd);
+                    var partiesDebut = initialStart.split(":");
+                    sTime.tumblerHeure.currentIndex = parseInt(partiesDebut[0]);
+                    sTime.tumblerMinute.currentIndex = parseInt(partiesDebut[1]);
+
+                    var partiesFin = initialEnd.split(":");
+                    eTime.tumblerHeure.currentIndex = parseInt(partiesFin[0]);
+                    eTime.tumblerMinute.currentIndex = parseInt(partiesFin[1]);
                 }
 
                 function toggleDay(dayStr) {
@@ -208,7 +209,7 @@ Item {
                 }
 
                 ColumnLayout {
-                    anchors.fill: parent; anchors.margins: 20; spacing: 20
+                    anchors.fill: parent; anchors.margins: 20; spacing: 10
 
                     Text {
                         text: {
@@ -232,13 +233,14 @@ Item {
                         }
                     }
 
+                    // Jours sur 2 lignes (4 + 3) pour éviter les débordements
                     GridLayout {
                         Layout.fillWidth: true; columns: 4; rowSpacing: 8; columnSpacing: 8
                         Repeater {
                             model: ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"]
                             delegate: Rectangle {
                                 property bool isSelected: schedulePageItem.isDaySelected(modelData)
-                                Layout.fillWidth: true; height: 44; radius: 12
+                                Layout.fillWidth: true; height: 40; radius: 12
                                 color: {
                                     if (isSelected) { return "#1E88E5"; }
                                     return "#F5F5F5";
@@ -256,7 +258,7 @@ Item {
                                         return "#546E7A";
                                     }
                                     font.bold: parent.isSelected
-                                    font.pixelSize: 13
+                                    font.pixelSize: 12
                                 }
 
                                 MouseArea { anchors.fill: parent; onClicked: schedulePageItem.toggleDay(modelData) }
@@ -264,18 +266,34 @@ Item {
                         }
                     }
 
-                    Rectangle {
-                        Layout.fillWidth: true; height: 160; radius: 14
-                        color: "white"; border.color: "#EEEEEE"; border.width: 1
-
-                        ColumnLayout {
-                            anchors.fill: parent; anchors.margins: 14; spacing: 8
-                            Text { text: "Heure de début"; color: "#78909C"; font.pixelSize: 12 }
-                            ComboBox { id: sTime; Layout.fillWidth: true; model: schedulePageItem.timeModelData }
-                            Text { text: "Heure de fin"; color: "#78909C"; font.pixelSize: 12 }
-                            ComboBox { id: eTime; Layout.fillWidth: true; model: schedulePageItem.timeModelData }
-                        }
+                    // Heure de début
+                    Text {
+                        text: "Heure de début"
+                        color: "#78909C"
+                        font.pixelSize: 12
+                        Layout.alignment: Qt.AlignHCenter
                     }
+
+                    TimePicker { id: sTime; Layout.alignment: Qt.AlignHCenter }
+
+                    // Séparateur
+                    Rectangle {
+                        Layout.fillWidth: true
+                        height: 1
+                        color: "#E0E0E0"
+                        Layout.topMargin: 4
+                        Layout.bottomMargin: 4
+                    }
+
+                    // Heure de fin
+                    Text {
+                        text: "Heure de fin"
+                        color: "#78909C"
+                        font.pixelSize: 12
+                        Layout.alignment: Qt.AlignHCenter
+                    }
+
+                    TimePicker { id: eTime; Layout.alignment: Qt.AlignHCenter }
 
                     Item { Layout.fillHeight: true }
 
@@ -297,8 +315,14 @@ Item {
 
                             onClicked: {
                                 window.bookingDays = schedulePageItem.getDaysString();
-                                window.bookingStart = sTime.currentText;
-                                window.bookingEnd = SessionsJS.calculerHeureFin(sTime.currentText, eTime.currentText);
+
+                                var hD = sTime.tumblerHeure.currentIndex < 10 ? "0" + sTime.tumblerHeure.currentIndex : "" + sTime.tumblerHeure.currentIndex
+                                var mD = sTime.tumblerMinute.currentIndex < 10 ? "0" + sTime.tumblerMinute.currentIndex : "" + sTime.tumblerMinute.currentIndex
+                                window.bookingStart = hD + ":" + mD
+
+                                var hF = eTime.tumblerHeure.currentIndex < 10 ? "0" + eTime.tumblerHeure.currentIndex : "" + eTime.tumblerHeure.currentIndex
+                                var mF = eTime.tumblerMinute.currentIndex < 10 ? "0" + eTime.tumblerMinute.currentIndex : "" + eTime.tumblerMinute.currentIndex
+                                window.bookingEnd = SessionsJS.calculerHeureFin(hD + ":" + mD, hF + ":" + mF)
 
                                 if (sessionsRoot.editingIndex !== -1) {
                                     window.attenteAjoutApresSuppr = true;
