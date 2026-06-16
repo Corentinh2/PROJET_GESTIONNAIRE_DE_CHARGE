@@ -34,22 +34,17 @@ bool accesBdd::connecter()
     return resultat;
 }
 
-/*void accesBdd::insererMesure(float puissance)
+int accesBdd::getSessionActive(int id_borne)
 {
-    try {
-        QSqlQuery query;
-        query.prepare("INSERT INTO MESURE (horodatage, puissance, id_session) VALUES (NOW(), :p, :id)");
-        query.bindValue(":p", puissance);
-        query.bindValue(":id", 4);
-
-        if (!query.exec()) {
-            throw std::runtime_error(query.lastError().text().toStdString());
-        }
-        qDebug() << "Mesure insérée :" << puissance << "W";
+    int idSession = -1;
+    QSqlQuery query;
+    query.prepare("SELECT id_session FROM SESSIONS WHERE id_borne = :id ORDER BY date_charge DESC LIMIT 1");
+    query.bindValue(":id", id_borne);
+    if (query.exec() && query.next()) {
+        idSession = query.value(0).toInt();
     }
-    catch (const std::exception& e) {
-        qDebug() << "Exception Insertion :" << e.what();
-  */
+    return idSession;
+}
 
 void accesBdd::ajouterVehicule(const QString &nom, int km)
 {

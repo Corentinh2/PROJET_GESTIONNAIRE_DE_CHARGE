@@ -1,3 +1,11 @@
+/**
+ @file ConnectionRaspberryPi.h
+ @brief Déclaration de la classe ConnectionRaspberryPi
+ @version 1.0
+ @author Valentin RUELLE
+ @date 28/05/2026
+ */
+
 #ifndef CONNECTIONRASPBERRYPI_H
 #define CONNECTIONRASPBERRYPI_H
 

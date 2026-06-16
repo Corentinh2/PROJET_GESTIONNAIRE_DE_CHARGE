@@ -2,8 +2,10 @@
  * @file ConnectionRaspberryPi.cpp
  * @brief Implémentation de la classe ConnectionRaspberryPi pour la communication
  *        Wi-Fi et WebSocket entre l'ESP32 et le serveur Qt du Raspberry Pi.
- *
- * Ce fichier gère la connexion Wi-Fi de l'ESP32, l'établissement et le maintien
+ * @version 1.0
+ * @author Valentin Ruelle
+ * @date 28/05/2026
+ * @details Ce fichier gère la connexion Wi-Fi de l'ESP32, l'établissement et le maintien
  * d'une connexion WebSocket vers le serveur Qt, l'envoi de notifications et
  * d'alertes structurées en JSON, ainsi que la gestion des événements WebSocket.
  */

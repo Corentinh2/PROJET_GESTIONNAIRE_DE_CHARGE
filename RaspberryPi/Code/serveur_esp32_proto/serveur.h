@@ -29,7 +29,7 @@ private:
     QWebSocketServer *socketServeur;
     QList<QWebSocket *> listeClients;
     accesBdd maBdd;
-    void insererEnBase(float puissance);
+    void insererEnBase(float puissance, int idSession);
 
 
 };

@@ -2,8 +2,10 @@
  * @file GestionnaireDeCharge.cpp
  * @brief Implémentation de la classe GestionnaireDeCharge pour la supervision
  *        et l'envoi des mesures électriques.
- *
- * Ce fichier orchestre l'acquisition des données via CapteurCourantTension,
+ * @version 1.0
+ * @author Valentin Ruelle
+ * @date 28/05/2026
+ * @details Ce fichier orchestre l'acquisition des données via CapteurCourantTension,
  * la détection de seuils critiques, et l'envoi de rapports vers le Raspberry Pi
  * via WebSocket.
  */

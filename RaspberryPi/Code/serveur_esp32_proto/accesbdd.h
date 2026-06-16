@@ -30,7 +30,7 @@ public:
     void supprimerVehicule(int id);
     void modifierKilometrage(int id, int km);
     void resterConnecter();
-    //void insererMesure(float puissance);
+    int getSessionActive(int id_borne);
 
     void ajouterEvenement(bool type_alerte, const QString &message_erreur, int id_session);
 

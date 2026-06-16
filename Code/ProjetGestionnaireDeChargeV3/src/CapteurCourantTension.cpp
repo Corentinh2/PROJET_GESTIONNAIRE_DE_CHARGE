@@ -1,8 +1,10 @@
 /**
  * @file CapteurCourantTension.cpp
  * @brief Implémentation de la classe CapteurCourantTension.
- *
- * Gère l'initialisation et l'acquisition des mesures de tension et de courant
+ * @version 1.0
+ * @author Valentin Ruelle
+ * @date 28/05/2026
+ * @details Gère l'initialisation et l'acquisition des mesures de tension et de courant
  * via la bibliothèque EmonLib.
  */
 

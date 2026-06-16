@@ -70,7 +70,13 @@ void Serveur::onTextMessageReceived(const QString &message)
 
         // --- CAS 1 : Puissance (ESP32) ---
         if (obj.contains("puissance")) {
-            insererEnBase(obj["puissance"].toDouble());
+            int idBorne = obj["idBorne"].toInt();
+                int idSession = maBdd.getSessionActive(idBorne);
+                if (idSession != -1) {
+                    insererEnBase(obj["puissance"].toDouble(), idSession);
+                } else {
+                    qDebug() << "ERREUR : aucune session trouvée pour la borne" << idBorne;
+                }
         }
 
         // --- CAS 2 : Actions (Mobile) ---
@@ -106,17 +112,19 @@ void Serveur::onTextMessageReceived(const QString &message)
                 QString msg  = obj["message"].toString();
                 int idBorne  = obj["idBorne"].toInt();
 
-                // On traite le courant (0)
-                if (typeRecu == 0) {
-                    maBdd.ajouterEvenement(false, msg, idBorne); // false enverra 0 en BDD
-                    qDebug() << "Alerte COURANT enregistrée.";
-                }
-
-                // On traite la température (1)
-                if (typeRecu == 1) {
-                    maBdd.ajouterEvenement(true, msg, idBorne); // true enverra 1 en BDD
-                    qDebug() << "Alerte TEMPÉRATURE enregistrée.";
-                }
+                int idSession = maBdd.getSessionActive(idBorne);
+                    if (idSession == -1) {
+                        qDebug() << "ERREUR : aucune session trouvée pour la borne" << idBorne;
+                    } else {
+                        if (typeRecu == 0) {
+                            maBdd.ajouterEvenement(false, msg, idSession);
+                            qDebug() << "Alerte COURANT enregistrée.";
+                        }
+                        if (typeRecu == 1) {
+                            maBdd.ajouterEvenement(true, msg, idSession);
+                            qDebug() << "Alerte TEMPÉRATURE enregistrée.";
+                        }
+                    }
 
                 // --- Notification commune au mobile ---
                 QJsonObject notif;
@@ -133,20 +141,17 @@ void Serveur::onTextMessageReceived(const QString &message)
     }
 }
 
-void Serveur::insererEnBase(float puissance)
+void Serveur::insererEnBase(float puissance, int idSession)
 {
     QSqlQuery query;
-    query.prepare("INSERT INTO MESURES (horodatage, puissance, id_session) VALUES (NOW(), :p, :id)");
-    query.bindValue(":p", puissance);
-    query.bindValue(":id", 4);
-
-    if (query.exec()) {
-        qDebug() << "Mesure insérée ! Puissance:" << puissance << "W";
-    }
-
-    if (!query.isActive()) {
-        qDebug() << "Erreur insertion :" << query.lastError().text();
-    }
+        query.prepare("INSERT INTO MESURES (horodatage, puissance, id_session) VALUES (NOW(), :p, :id)");
+        query.bindValue(":p", puissance);
+        query.bindValue(":id", idSession);
+        if (query.exec()) {
+            qDebug() << "Mesure insérée ! Puissance:" << puissance << "W";
+        } else {
+            qDebug() << "Erreur insertion :" << query.lastError().text();
+        }
 }
 
 void Serveur::onDisconnected()
