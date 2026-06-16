@@ -27,7 +27,7 @@ activate VUE
 VUE -> CTRL : $.ajax — commande:'GetNomBorne'\n(id_borne depuis $_SESSION['idBorne'])
 activate CTRL
 
-CTRL -> MODELE : GetNomBorne($idBorne)\nSELECT nom_borne FROM BORNES\nWHERE id_borne = :idBorne
+CTRL -> MODELE : GetNomBorne()
 activate MODELE
 
 MODELE --> CTRL : $nom
@@ -41,7 +41,7 @@ VUE -> VUE : $("#titreBorne").text(donnees)
 VUE -> CTRL : $.ajax — commande:'GetMesuresParBorne'\n(date_debut=now, date_fin=now)
 activate CTRL
 
-CTRL -> MODELE : GetMesuresParBorne($idBorne, $debut, $fin)\nSELECT horodatage, puissance FROM MESURES\nINNER JOIN SESSIONS ON id_borne=:idBorne\nWHERE horodatage BETWEEN :debut AND :fin\nORDER BY horodatage ASC
+CTRL -> MODELE : GetMesuresParBorne($debut, $fin)
 activate MODELE
 
 MODELE --> CTRL : $tabDonnees\n(categories[], series[])
@@ -70,7 +70,7 @@ alt date_debut == "" OU date_fin == ""
     CTRL -> CTRL : $debut = $date->format('Y-m-d H:i:s')\n$fin   = $date->format('Y-m-d H:i:s')
 end
 
-CTRL -> MODELE : GetMesuresParBorne($idBorne, $debut, $fin)\nSELECT horodatage, puissance FROM MESURES\nINNER JOIN SESSIONS ON id_borne=:idBorne\nWHERE horodatage BETWEEN :debut AND :fin\nORDER BY horodatage ASC
+CTRL -> MODELE : GetMesuresParBorne($debut, $fin)
 activate MODELE
 
 MODELE --> CTRL : $tabDonnees\n(categories[horodatage], series[puissance])
